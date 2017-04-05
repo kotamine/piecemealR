@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Piecemeal R</title>
+  <meta name="description" content="This is a R tutorial.">
+  <meta name="generator" content="bookdown 0.3.14 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Piecemeal R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a R tutorial." />
+  <meta name="github-repo" content="/kotamine/piecemealR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Piecemeal R" />
+  
+  <meta name="twitter:description" content="This is a R tutorial." />
+  
+
+<meta name="author" content="Kota Minegishi">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="about.html">
+<link rel="next" href="1-1-materials.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<script src="libs/datatables-binding-0.2/datatables.js"></script>
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Piecemeal R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-materials.html"><a href="1-1-materials.html"><i class="fa fa-check"></i><b>1.1</b> Materials</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-arts-carfts.html"><a href="1-2-arts-carfts.html"><i class="fa fa-check"></i><b>1.2</b> Arts &amp; Carfts</a><ul>
+<li class="chapter" data-level="" data-path="1-2-arts-carfts.html"><a href="1-2-arts-carfts.html#crafts"><i class="fa fa-check"></i>Crafts</a></li>
+<li class="chapter" data-level="" data-path="1-2-arts-carfts.html"><a href="1-2-arts-carfts.html#arts"><i class="fa fa-check"></i>Arts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-huning-down-numbers.html"><a href="1-3-huning-down-numbers.html"><i class="fa fa-check"></i><b>1.3</b> Huning down numbers</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-reflections.html"><a href="1-4-reflections.html"><i class="fa fa-check"></i><b>1.4</b> Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-essentials.html"><a href="2-essentials.html"><i class="fa fa-check"></i><b>2</b> Essentials</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-cheatsheets.html"><a href="2-1-cheatsheets.html"><i class="fa fa-check"></i><b>2.1</b> Cheatsheets</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-data-types.html"><a href="2-2-data-types.html"><i class="fa fa-check"></i><b>2.2</b> Data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-data-types.html"><a href="2-2-data-types.html#atomic"><i class="fa fa-check"></i><b>2.2.1</b> Atomic</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-data-types.html"><a href="2-2-data-types.html#factor"><i class="fa fa-check"></i><b>2.2.2</b> Factor</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-data-types.html"><a href="2-2-data-types.html#matrix"><i class="fa fa-check"></i><b>2.2.3</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-2-data-types.html"><a href="2-2-data-types.html#data-frame"><i class="fa fa-check"></i><b>2.2.4</b> Data Frame</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-2-data-types.html"><a href="2-2-data-types.html#list"><i class="fa fa-check"></i><b>2.2.5</b> List</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-programming.html"><a href="2-3-programming.html"><i class="fa fa-check"></i><b>2.3</b> Programming</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-programming.html"><a href="2-3-programming.html#operator"><i class="fa fa-check"></i><b>2.3.1</b> Operator</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-programming.html"><a href="2-3-programming.html#if-else"><i class="fa fa-check"></i><b>2.3.2</b> If else</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-programming.html"><a href="2-3-programming.html#loop"><i class="fa fa-check"></i><b>2.3.3</b> Loop</a></li>
+<li class="chapter" data-level="2.3.4" data-path="2-3-programming.html"><a href="2-3-programming.html#function"><i class="fa fa-check"></i><b>2.3.4</b> Function</a></li>
+<li class="chapter" data-level="2.3.5" data-path="2-3-programming.html"><a href="2-3-programming.html#environment"><i class="fa fa-check"></i><b>2.3.5</b> Environment</a></li>
+<li class="chapter" data-level="2.3.6" data-path="2-3-programming.html"><a href="2-3-programming.html#debugging"><i class="fa fa-check"></i><b>2.3.6</b> Debugging</a></li>
+<li class="chapter" data-level="2.3.7" data-path="2-3-programming.html"><a href="2-3-programming.html#stat-func."><i class="fa fa-check"></i><b>2.3.7</b> Stat func.</a></li>
+<li class="chapter" data-level="2.3.8" data-path="2-3-programming.html"><a href="2-3-programming.html#string-func."><i class="fa fa-check"></i><b>2.3.8</b> String func.</a></li>
+<li class="chapter" data-level="2.3.9" data-path="2-3-programming.html"><a href="2-3-programming.html#set-func."><i class="fa fa-check"></i><b>2.3.9</b> Set func.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html"><i class="fa fa-check"></i><b>2.4</b> Housekeeping</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#working-directory"><i class="fa fa-check"></i><b>2.4.1</b> Working directory</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#r-session"><i class="fa fa-check"></i><b>2.4.2</b> R session</a></li>
+<li class="chapter" data-level="2.4.3" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#save-load"><i class="fa fa-check"></i><b>2.4.3</b> Save &amp; load</a></li>
+<li class="chapter" data-level="2.4.4" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#input-output"><i class="fa fa-check"></i><b>2.4.4</b> Input &amp; Output</a></li>
+<li class="chapter" data-level="2.4.5" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>2.4.5</b> Updating</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-good-to-knows.html"><a href="3-good-to-knows.html"><i class="fa fa-check"></i><b>3</b> Good-to-Knows</a></li>
+<li class="chapter" data-level="4" data-path="4-piecemeal-top.html"><a href="4-piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-next.html"><a href="4-2-next.html"><i class="fa fa-check"></i><b>4.2</b> Upcoming topics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Piecemeal R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>2017-04-05: <span style="color:red"><em>VERY Preliminary!</em></span></p>
+<p>A Few Words</p>
+<p><a href="https://www.r-project.org/">R</a> has come a long way in its evolution. Its <a href="https://cran.r-project.org/">download page</a> looks the same as it was many years ago when I started using R. Don’t be fooled by its archaic first look. My personal guess is that this has to do with how the R developer community honors its history of turning this open-source software into one of the most popular data analytic tools today. The community is extremely supportive, and learning resources abound. That archaic look is not a sign of snobbishness, and I hope you too will appreciate it. Welcome to the community.</p>
+<p>In below, we assume that you have <a href="https://cran.r-project.org/">R</a> and <a href="https://www.rstudio.com/products/rstudio/download/">RStudio Desktop</a> (free IDE) installed. It will be handy to have cheat sheets for <a href="http://github.com/rstudio/cheatsheets/raw/master/source/pdfs/base-r.pdf">base R</a>, <a href="https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf">RStudio IDE</a>, <a href="https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf">dplyr</a>, and <a href="https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf">ggplot2</a>.</p>
+<p>If you find this introduction too technical, please start with <a href="https://ismayc.github.io/moderndiver-book/4-viz.html">ModernDive</a> open-source textbook (say, up to Chapter 5). The book gave an initial inspiration to start this site.</p> 
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="about.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-1-materials.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/kotamine/piecemealR/edit/master/01-Introduction.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

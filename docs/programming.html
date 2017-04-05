@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Piecemeal R</title>
+  <meta name="description" content="This is a R tutorial.">
+  <meta name="generator" content="bookdown 0.3.14 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Piecemeal R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a R tutorial." />
+  <meta name="github-repo" content="/kotamine/piecemealR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Piecemeal R" />
+  
+  <meta name="twitter:description" content="This is a R tutorial." />
+  
+
+<meta name="author" content="Kota Minegishi">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="data-types.html">
+<link rel="next" href="housekeeping.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<script src="libs/datatables-binding-0.2/datatables.js"></script>
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Piecemeal R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="a-few-words.html"><a href="a-few-words.html"><i class="fa fa-check"></i><b>1.1</b> A Few Words</a></li>
+<li class="chapter" data-level="1.2" data-path="materials.html"><a href="materials.html"><i class="fa fa-check"></i><b>1.2</b> Materials</a></li>
+<li class="chapter" data-level="1.3" data-path="arts-carfts.html"><a href="arts-carfts.html"><i class="fa fa-check"></i><b>1.3</b> Arts &amp; Carfts</a><ul>
+<li class="chapter" data-level="" data-path="arts-carfts.html"><a href="arts-carfts.html#crafts"><i class="fa fa-check"></i>Crafts</a></li>
+<li class="chapter" data-level="" data-path="arts-carfts.html"><a href="arts-carfts.html#arts"><i class="fa fa-check"></i>Arts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="huning-down-numbers.html"><a href="huning-down-numbers.html"><i class="fa fa-check"></i><b>1.4</b> Huning down numbers</a></li>
+<li class="chapter" data-level="1.5" data-path="reflections.html"><a href="reflections.html"><i class="fa fa-check"></i><b>1.5</b> Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="essentials.html"><a href="essentials.html"><i class="fa fa-check"></i><b>2</b> Essentials</a><ul>
+<li class="chapter" data-level="2.1" data-path="cheatsheets.html"><a href="cheatsheets.html"><i class="fa fa-check"></i><b>2.1</b> Cheatsheets</a></li>
+<li class="chapter" data-level="2.2" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>2.2</b> Data types</a><ul>
+<li class="chapter" data-level="" data-path="data-types.html"><a href="data-types.html#atomic"><i class="fa fa-check"></i>Atomic</a></li>
+<li class="chapter" data-level="" data-path="data-types.html"><a href="data-types.html#factor"><i class="fa fa-check"></i>Factor</a></li>
+<li class="chapter" data-level="" data-path="data-types.html"><a href="data-types.html#matrix"><i class="fa fa-check"></i>Matrix</a></li>
+<li class="chapter" data-level="" data-path="data-types.html"><a href="data-types.html#data-frame"><i class="fa fa-check"></i>Data Frame</a></li>
+<li class="chapter" data-level="" data-path="data-types.html"><a href="data-types.html#list"><i class="fa fa-check"></i>List</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i><b>2.3</b> Programming</a><ul>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#operator"><i class="fa fa-check"></i>Operator</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#if-else"><i class="fa fa-check"></i>If else</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#loop"><i class="fa fa-check"></i>Loop</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#function"><i class="fa fa-check"></i>Function</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#environment"><i class="fa fa-check"></i>Environment</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#debugging"><i class="fa fa-check"></i>Debugging</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#stat-func."><i class="fa fa-check"></i>Stat func.</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#string-func."><i class="fa fa-check"></i>String func.</a></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html#set-func."><i class="fa fa-check"></i>Set func.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="housekeeping.html"><a href="housekeeping.html"><i class="fa fa-check"></i><b>2.4</b> Housekeeping</a><ul>
+<li class="chapter" data-level="" data-path="housekeeping.html"><a href="housekeeping.html#working-directory"><i class="fa fa-check"></i>Working directory</a></li>
+<li class="chapter" data-level="" data-path="housekeeping.html"><a href="housekeeping.html#r-session"><i class="fa fa-check"></i>R session</a></li>
+<li class="chapter" data-level="" data-path="housekeeping.html"><a href="housekeeping.html#save-load"><i class="fa fa-check"></i>Save &amp; load</a></li>
+<li class="chapter" data-level="" data-path="housekeeping.html"><a href="housekeeping.html#input-output"><i class="fa fa-check"></i>Input &amp; Output</a></li>
+<li class="chapter" data-level="" data-path="housekeeping.html"><a href="housekeeping.html#updating"><i class="fa fa-check"></i>Updating</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="good-to-knows.html"><a href="good-to-knows.html"><i class="fa fa-check"></i><b>3</b> Good-to-Knows</a></li>
+<li class="chapter" data-level="4" data-path="piecemeal-top.html"><a href="piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="4.1" data-path="dplyr.html"><a href="dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="dplyr.html"><a href="dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="next.html"><a href="next.html"><i class="fa fa-check"></i><b>4.2</b> Upcoming topics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Piecemeal R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="programming" class="section level2">
+<h2><span class="header-section-number">2.3</span> Programming</h2>
+<div id="operator" class="section level3 unnumbered">
+<h3>Operator</h3>
+<table>
+<caption><span id="tab:unnamed-chunk-15">Table 2.1: </span>Basic R Operators</caption>
+<thead>
+<tr class="header">
+<th align="left">Operation</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">x + y</td>
+<td align="left">Addition</td>
+</tr>
+<tr class="even">
+<td align="left">x - y</td>
+<td align="left">Subtraction</td>
+</tr>
+<tr class="odd">
+<td align="left">x * y</td>
+<td align="left">Multiplication</td>
+</tr>
+<tr class="even">
+<td align="left">x / y</td>
+<td align="left">Division</td>
+</tr>
+<tr class="odd">
+<td align="left">x ^ y</td>
+<td align="left">Exponentiation</td>
+</tr>
+<tr class="even">
+<td align="left">x %% y</td>
+<td align="left">Modular arithmatic</td>
+</tr>
+<tr class="odd">
+<td align="left">x %/% y</td>
+<td align="left">Integer division</td>
+</tr>
+<tr class="even">
+<td align="left">x == y</td>
+<td align="left">Test for equality</td>
+</tr>
+<tr class="odd">
+<td align="left">x &lt;= y</td>
+<td align="left">Test for less than or equal to</td>
+</tr>
+<tr class="even">
+<td align="left">x &gt;= y</td>
+<td align="left">Test for greater than or equal to</td>
+</tr>
+<tr class="odd">
+<td align="left">x &amp;&amp; y</td>
+<td align="left">Boolean AND for scalars</td>
+</tr>
+<tr class="even">
+<td align="left">x || y</td>
+<td align="left">Boolean OR for scalers</td>
+</tr>
+<tr class="odd">
+<td align="left">x &amp; y</td>
+<td align="left">Boolean AND for vectors</td>
+</tr>
+<tr class="even">
+<td align="left">x | y</td>
+<td align="left">Boolean OR for vectors</td>
+</tr>
+<tr class="odd">
+<td align="left">!x</td>
+<td align="left">Boolean negation</td>
+</tr>
+</tbody>
+</table>
+<p>source: Matloff (2011)</p>
+</div>
+<div id="if-else" class="section level3 unnumbered">
+<h3>If else</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (<span class="dv">1</span> &gt;<span class="st"> </span><span class="dv">0</span>) {
+  <span class="kw">print</span>(<span class="st">&quot;result: if&quot;</span>)
+} else {
+  <span class="kw">print</span>(<span class="st">&quot;result: else&quot;</span>)
+}</code></pre></div>
+<pre><code>## [1] &quot;result: if&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># {} brackets can be used to combine multiple expressions </span>
+<span class="co"># but they are not required for if-elese statement, function, etc.  </span>
+if (<span class="dv">1</span> &gt;<span class="st"> </span><span class="dv">2</span>) <span class="kw">print</span>(<span class="st">&quot;result: if&quot;</span>)  else <span class="kw">print</span>(<span class="st">&quot;result: else&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;result: else&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) &gt;<span class="st"> </span><span class="dv">2</span>, <span class="dv">1</span>, -<span class="dv">1</span>)  <span class="co"># assign 1 if TRUE and -1 if else  </span></code></pre></div>
+<pre><code>## [1] -1 -1  1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
+<pre><code>## [1] &quot;2017-03-29 20:23:59 CDT&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
+hour &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">substr</span>(time, <span class="dv">12</span>,<span class="dv">13</span>))
+<span class="co"># sequencial if else statements</span>
+if (hour &gt;<span class="st"> </span><span class="dv">7</span> &amp;<span class="st"> </span>hour &lt;<span class="st"> </span><span class="dv">12</span>) {
+    <span class="kw">print</span>(<span class="st">&quot;morning&quot;</span>)
+} else if (hour &lt;<span class="st"> </span><span class="dv">18</span>) {
+    <span class="kw">print</span>(<span class="st">&quot;afternoon&quot;</span>)
+} else {
+    <span class="kw">print</span>(<span class="st">&quot;private time&quot;</span>)
+}</code></pre></div>
+<pre><code>## [1] &quot;private time&quot;</code></pre>
+</div>
+<div id="loop" class="section level3 unnumbered">
+<h3>Loop</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for (i in <span class="dv">1</span>:<span class="dv">3</span>) {
+  <span class="kw">print</span>(i)
+}</code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">for (i in <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)) <span class="kw">print</span>(i)</code></pre></div>
+<pre><code>## [1] 1
+## [1] 3
+## [1] 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">i &lt;-<span class="st"> </span><span class="dv">1</span> 
+while (i &lt;<span class="st"> </span><span class="dv">5</span>) {
+  <span class="kw">print</span>(i) 
+  i &lt;-<span class="st"> </span>i +<span class="st"> </span><span class="dv">1</span>
+}</code></pre></div>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4</code></pre>
+</div>
+<div id="function" class="section level3 unnumbered">
+<h3>Function</h3>
+<p>Functions are used to bundle a series of tasks that are repeated over a set of varying circumstances such as different vectors, matrices, characters, data frames, lists, functions, and other kinds of objects. A function consists of input arguments, tasks (R expressions), and output as an object (e.g. a vector, matrix, character, data frame, list, or function etc.).</p>
+<p>A function can be named or remain annonymous (typically defined and used inside a function like <code>lapply()</code>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">##  name_to_be_assigned  &lt;- function(input args) {
+##                            tasks 
+##                           }</code></pre></div>
+<p>The output of the function, aside from those that are printed, saved, or exported, is the very last task (expression). If varialbe <code>result</code> is created inside the function, having <code>result</code> at the very end will return this item as an output. When multiple objects are created, it is often convenient to return those as a list. Use <code>return()</code> to return a specific item in the middle of the function and skip the rest of the evaluations. For checking errors and holting evaluations, use <code>stop()</code> or <code>stopifnot()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfun1 &lt;-<span class="st"> </span>function() <span class="kw">print</span>(<span class="st">&quot;Hello world&quot;</span>)  <span class="co"># just returning &quot;Hello world&quot;</span>
+<span class="kw">myfun1</span>()  </code></pre></div>
+<pre><code>## [1] &quot;Hello world&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfun2 &lt;-<span class="st"> </span>function(var) var^<span class="dv">2</span> 
+<span class="kw">myfun2</span>(<span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfun3 &lt;-<span class="st"> </span>function(<span class="dt">var =</span> <span class="dv">1</span>)  <span class="kw">ifelse</span>(var&gt;<span class="dv">0</span>, <span class="kw">log</span>(var), var) 
+<span class="kw">myfun3</span>()   <span class="co"># default argument is var = 1</span></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">myfun3</span>(<span class="dv">2</span>)</code></pre></div>
+<pre><code>## [1] 0.6931472</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">myfun4 &lt;-<span class="st"> </span>function(x1, x2) {
+            if (!<span class="kw">is.numeric</span>(x1) |<span class="st"> </span>!<span class="kw">is.numeric</span>(x2)) <span class="kw">stop</span>(<span class="st">&#39;demo of error: numeric args needed&#39;</span>)
+            x1*x2
+          }
+<span class="kw">try</span>(<span class="kw">myfun4</span>(<span class="dv">1</span>, <span class="st">&quot;a&quot;</span>))
+<span class="kw">myfun4</span>(<span class="dv">4</span>, <span class="dv">3</span>)</code></pre></div>
+<pre><code>## [1] 12</code></pre>
+</div>
+<div id="environment" class="section level3 unnumbered">
+<h3>Environment</h3>
+<p>In R documentation a function is formally known as a <em>closure</em> and cosists of its arguments (called <em>formals</em>), body, and <em>environment</em>. An <em>environment</em> is a collection of existing objects when the function is created. Functions created at the <em>top level</em> have <code>.GlobalEnv</code> as their environments (R may refer to it as <code>R_GlobalEnv</code> as well).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span>function(arg1) <span class="kw">environment</span>()
+<span class="kw">formals</span>(f1)  <span class="co"># arguments of f1()</span>
+<span class="kw">body</span>(f1)     <span class="co"># body of f1()</span>
+<span class="kw">environment</span>(f1)  <span class="co"># environment of f1() itself is .GlobalEnv </span>
+<span class="kw">f1</span>()  <span class="co"># inside f1 has its own enviornment </span>
+
+
+
+a &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># object named &quot;a&quot; in .GlobalEnv</span>
+f2 &lt;-<span class="st"> </span>function() {
+        a &lt;-<span class="st"> </span><span class="dv">1</span>  <span class="co"># object named &quot;a&quot; in an environment inside f2</span>
+        <span class="kw">print</span>(a)
+        <span class="kw">environment</span>()
+      }
+<span class="kw">f2</span>()  <span class="co">#  one instance creating an environment   </span>
+<span class="kw">f2</span>()  <span class="co">#  another instance creating another environment</span>
+a  <span class="co"># stays NULL </span>
+
+
+<span class="kw">ls</span>()  <span class="co"># ls() shows all objects of an environment (here .GlobablEnv)</span>
+<span class="kw">rm</span>(<span class="dt">list =</span> <span class="kw">ls</span>())  <span class="co"># rm() removes items of an  environment (here .GlobablEnv)</span>
+<span class="kw">ls</span>()  <span class="co"># all gone in GlobalEnv</span></code></pre></div>
+<p>Thus, a function can access to the objects in its environment ( <em>global</em> to the function) and those defined inside (<em>local</em> to the function) and cannot overwrite those global ojbects. It allows for using common names such as “x1”, “var1” etc. defiend inside functions, but those ojbects are only accessible within the functions of their creation. Using global assignment <code>&lt;&lt;-</code> operator, one can bend this general rule. This can be useful when it is desirable to make certain ojbects accessible across multiple functions without explicitly passing them through arguments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="ot">NULL</span>
+b &lt;-<span class="st"> </span><span class="ot">NULL</span>
+f1 &lt;-<span class="st"> </span>function() {
+        a &lt;&lt;-<span class="st"> </span><span class="dv">1</span>  <span class="co"># global assignment</span>
+        <span class="co"># another way to assign to GlobalEnv </span>
+        <span class="kw">assign</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">2</span>, <span class="dt">envir =</span> .GlobalEnv)  
+      }
+<span class="kw">f1</span>() 
+a
+b
+
+a &lt;-<span class="st"> </span><span class="dv">2</span>
+f2 &lt;-<span class="st"> </span>function() {
+        <span class="co"># Since there is no &quot;a&quot; local to f2, R looks for &quot;a&quot; </span>
+        <span class="co"># im a parent environment, or .GlobalEnv  </span>
+        <span class="kw">print</span>(a) 
+        
+        <span class="co"># function defined inside f2 </span>
+        <span class="co"># g() assigns a number to &quot;a&quot; in g()&#39;s environment </span>
+        g &lt;-<span class="st"> </span>function() a &lt;&lt;-<span class="st"> </span><span class="dv">5</span>
+        
+        a &lt;-<span class="st"> </span><span class="dv">0</span>  <span class="co">#  object called &quot;a&quot; local to f2   </span>
+        <span class="kw">print</span>(a)
+        
+        <span class="co"># g() updates only the local &quot;a&quot; to f2(), but not &quot;a&quot; in GlobalEnv </span>
+        <span class="co"># R&#39;s scope hierarchy starts from local to its environment  </span>
+        <span class="kw">g</span>()   
+        <span class="kw">print</span>(a)
+      }
+a &lt;-<span class="st"> </span><span class="dv">3</span>
+
+<span class="co"># the first &quot;a&quot; is in .GlobalEnv when f2() is called</span>
+<span class="co"># the second &quot;a&quot; is local to an instace of f2()</span>
+<span class="co"># the third &quot;a&quot; is the updated version of the local &quot;a&quot; by g() </span>
+<span class="kw">f2</span>() 
+a   <span class="co"># object &quot;a&quot; in GlobalEnv: unchanged by g()</span></code></pre></div>
+<p>If you are sure about which object to overwrite by <code>&lt;&lt;-</code>, it can be convenient. Otherwise, the use of <code>&lt;&lt;-</code> should be avoided.</p>
+</div>
+<div id="debugging" class="section level3 unnumbered">
+<h3>Debugging</h3>
+<p><code>browser()</code> and <code>traceback()</code> are common debugging tools. Debugging session starts where <code>browser()</code> is inserted and allows for a line by line execution onward. Putting <code>browser()</code> inside a loop or function is useful because it allows for accessing the objects at a particular moment of execution. After an error, typing <code>traceback()</code> can give at which process the error occured. Other tools include <code>debug()</code>, <code>debugger()</code>, and <code>stopifnot()</code>.</p>
+</div>
+<div id="stat-func." class="section level3 unnumbered">
+<h3>Stat func.</h3>
+<table>
+<caption><span id="tab:unnamed-chunk-20">Table 2.2: </span>Common R Statistical Distribution Functions</caption>
+<thead>
+<tr class="header">
+<th align="left">Distribution</th>
+<th align="left">Density_pmf</th>
+<th align="left">cdf</th>
+<th align="left">Quantiles</th>
+<th align="left">Random_draw</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Normal</td>
+<td align="left">dnorm( )</td>
+<td align="left">pnorm( )</td>
+<td align="left">qnorm( )</td>
+<td align="left">rnorm( )</td>
+</tr>
+<tr class="even">
+<td align="left">Chi square</td>
+<td align="left">dchisq( )</td>
+<td align="left">pchisq( )</td>
+<td align="left">qchisq( )</td>
+<td align="left">rchisq( )</td>
+</tr>
+<tr class="odd">
+<td align="left">Binomial</td>
+<td align="left">dbinom( )</td>
+<td align="left">pbinom( )</td>
+<td align="left">qbinom( )</td>
+<td align="left">rbinom()</td>
+</tr>
+</tbody>
+</table>
+<p>source: Matloff (2011)</p>
+</div>
+<div id="string-func." class="section level3 unnumbered">
+<h3>String func.</h3>
+<p>R has built-in string manipulation functions. Common applications include;</p>
+<ul>
+<li><p>detecting a certain pattern in a vector (<code>grep()</code> returning a location index vector, <code>grepl()</code> returning a logical vector)</p></li>
+<li><p>replacing a certain pattern with another ( <code>gsub()</code>); counting the length of a string (<code>nchar()</code>)</p></li>
+<li><p>concatenating characters and numbers as a string (<code>paste()</code>, <code>paste0()</code>, <code>sprintf()</code>)</p></li>
+<li><p>extracting a segment of a string by character position range (<code>substr()</code>)</p></li>
+<li><p>splitting a string with a particular pattern (<code>strsplit()</code>)</p></li>
+<li><p>finding a character position of the first instance of pattern in a string (<code>regexpr()</code>) <code>grep()</code> <code>grepl()</code> <code>gsub()</code> <code>nchar()</code> <code>paste()</code> <code>paste0()</code> <code>sprintf()</code> <code>substr()</code> <code>strsplit()</code></p></li>
+</ul>
+<p><code>regexpr()</code></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">oasis &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Liam Gallagher&quot;</span>, <span class="st">&quot;Noel Gallagher&quot;</span>, <span class="st">&quot;Paul Arthurs&quot;</span>, <span class="st">&quot;Paul McGuigan&quot;</span>, <span class="st">&quot;Tony McCarroll&quot;</span>) 
+<span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="st">&quot;Paul&quot;</span>, oasis)
+
+<span class="kw">grepl</span>(<span class="dt">pattern =</span> <span class="st">&quot;Gall&quot;</span>, oasis)
+
+<span class="kw">gsub</span>(<span class="st">&quot;Gallagher&quot;</span>, <span class="st">&quot;Gallag.&quot;</span>, oasis)
+
+<span class="kw">nchar</span>(oasis)
+
+<span class="kw">paste</span>(oasis)
+
+<span class="kw">paste</span>(oasis, <span class="dt">collapse=</span><span class="st">&quot;, &quot;</span>)
+
+<span class="kw">sprintf</span>(<span class="st">&quot;%s from %d to %d&quot;</span>, <span class="st">&quot;Oasis&quot;</span>, <span class="dv">1991</span>, <span class="dv">2009</span>)
+
+<span class="kw">substr</span>(oasis, <span class="dv">1</span>, <span class="dv">6</span>)
+
+<span class="kw">strsplit</span>(oasis, <span class="dt">split=</span><span class="st">&quot; &quot;</span>)  <span class="co"># split by a blank space</span>
+
+<span class="kw">regexpr</span>(<span class="st">&quot;ll&quot;</span>, oasis[<span class="dv">1</span>])[<span class="dv">1</span>]</code></pre></div>
+<p>Common regular expressions used in R are <code>&quot;[char]&quot;</code> (any string containing either “c”, “h”, “a”, or “r” ); <code>&quot;a.c&quot;</code> (any string containing “a” followed by anyletter followed by “c”); and <code>&quot;\\.&quot;</code> (any string containing symbol “.”).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">grepl</span>(<span class="st">&quot;[is]&quot;</span>, oasis)
+
+<span class="kw">grepl</span>(<span class="st">&quot;P..l&quot;</span>, oasis)
+
+<span class="kw">grepl</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;Liam&quot;</span>, <span class="st">&quot;Noel&quot;</span>, <span class="st">&quot;Paul A.&quot;</span>, <span class="st">&quot;Paul M.&quot;</span>, <span class="st">&quot;Tony&quot;</span>))</code></pre></div>
+</div>
+<div id="set-func." class="section level3 unnumbered">
+<h3>Set func.</h3>
+<p>The functions for common set operations are avilable: <code>union()</code>, <code>intersect()</code>, <code>setdiff()</code>, and <code>setequal()</code>. <code>%in%</code> operator is probably most commonly used. <code>X %in% Y</code> returns a logical vector indicating whether an each element of <code>X</code> is a member of <code>Y</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>) %in%<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">5</span>)
+<span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;s&quot;</span>) %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;t&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>)</code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-types.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="housekeeping.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/kotamine/piecemealR/edit/master/02-Essentials.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

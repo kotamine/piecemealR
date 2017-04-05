@@ -1,0 +1,782 @@
+--- 
+# title: "Piecemeal R"
+# subtitle: "Fast-track Introduction to Data Exploration with R and Piecemeal Topics"
+date: "Last updated: `r Sys.Date()`"
+output: bookdown::gitbook
+documentclass: book
+# bibliography: [book.bib, packages.bib]
+# biblio-style: apalike
+# link-citations: yes
+# github-repo: /kotamine/piecemealR
+# description: "This is a piecemeal R tutorial. "
+---
+
+```{r, echo=FALSE }
+suppressWarnings({
+  suppressMessages({
+    library(dplyr)
+    library(knitr)
+  })  
+})
+```
+
+# Essentials {#essentials}
+
+`r Sys.Date()`: <span style="color:red">*VERY Preliminary!*</span>
+
+
+## Cheatsheets 
+
+Cheatsheets can be useful to glance at various functions.    
+
+* [Base R](http://github.com/rstudio/cheatsheets/raw/master/source/pdfs/base-r.pdf)
+
+* [RStudio IDE](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)
+
+* [dplyr](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf)
+
+* [ggplot2](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
+
+
+## Data types
+
+### Atomic 
+
+In most cases, each atomic element has a type (mode) of;
+
+* `numeric`: number
+
+* `logical`: TRUE or FALSE (T or F for shortcuts)
+
+* `character`: character string
+
+* `factor`: a level of categorical variable   
+
+Other types include [date](http://www.statmethods.net/input/dates.html) and nonexistent `NULL`. The factor is also a *class* of its own, meaning that many R functions apply operations that are specific to the *factor class*.  
+
+```{r} 
+# assess objects 123, "abc", and TRUE for their types 
+str(123)  # str() returns the structure
+str("abc")
+str(TRUE)
+c(is.numeric(123), is.numeric("abc"), is.numeric(TRUE))
+c(is.logical(123), is.logical("abc"), is.logical(TRUE))
+c(is.character(123), is.character("abc"), is.character(TRUE))
+
+# "<-" means an assignment from right to left
+factor1 <- as.factor(c(1,2,3)) # Looks like numeric but not
+factor1
+factor2 <- as.factor(c("a","b","c"))  # Looks like characters but not
+factor2
+factor3 <- as.factor(c(TRUE,FALSE,T)) # Looks like logicals but not
+factor3
+
+# Extract the first element of factor1 as factor1[1] etc.
+str(factor1[1])
+str(factor2[1])
+str(factor3[1])
+c(is.factor(factor1[1]), is.factor(factor2[1]), is.factor(factor3[1]))
+```
+
+There are length-zero objects for numeric, logical, and character types. 
+```{r}
+length(NULL) 
+length(numeric(0))
+length(logical(0))
+length(character(0))
+length(factor(0)) # has length 1
+```
+
+Each **vector** has a type of `numeric`, `logical`, `character`, or `factor`.
+Each **matrix** has a type of `numeric`, `logical`, or `character`.
+A **data frame** can contain mixed types in columns; each column (e.g., a variable) has a type of `numeric`, `logical`, `character` or `factor`. 
+
+```{r}
+vector1 <- c(1, NA, 2, 3) # read as numeric
+vector1
+vector2 <- c(TRUE, FALSE, T, F) # read as logical
+vector2
+vector3 <- c(1, NA, "abc", TRUE, "TRUE") # read as character
+vector3
+vector4 <- as.factor(c(1, NA, "abc", TRUE, "TRUE")) # read as factor 
+vector4
+```
+
+```{r}
+matrix1 <- matrix(c(1:6), nrow = 3) # read as character
+matrix1
+matrix2 <- matrix(c(TRUE,FALSE,rep(T,3),F), nrow = 3)  # read as logical
+matrix2
+matrix3 <- matrix(c(1,2,3,"a","b","abc"), nrow = 3) # read as character
+matrix3
+
+df1 <- data.frame(
+        num  = c(1,2,3),           # read as numeric
+        fac1 = c("a","b","abc"),   # read as factor
+        logi = c(TRUE, FALSE, T),  # read as logical
+        fac2  = c(1,"a",TRUE)      # read as factor
+       )  
+df1
+df1$num   # "$" symbol is used to extract a column 
+df1$fac1  # character type is converted into a factor 
+df1$logi
+df1$fac2  # mixed types within a column is converted into a factor
+
+# additional argument "stringsAsFactors = FALSE" preserves character types.
+df2 <- data.frame(
+        num  = c(1,2,3),           # read as numeric
+        char = c("a","b","abc"),   # read as factor
+        logi = c(TRUE, FALSE, T),  # read as logical
+        fac2  = as.factor(c(1,"a",TRUE)),      # read as factor
+        stringsAsFactors = FALSE
+       )  
+df2
+df2$num  
+df2$char
+df2$logi
+df2$fac2
+```
+
+### Factor
+
+A factor object is defined with a set of categorical levels, which may be labeled. The levels are either  **ordered** (defined by `ordered()`) or **unordered** (defined by `factor()`). 
+If ordered, factor objects are treated in the specific order under certain statistical analyses and graphical procedures.    
+
+```{r}
+# We will convert the columns of df into factors   
+df <- data.frame(
+      fac1 = c(0,1,1,4,4,2,2,3),
+      fac2 = c(1,2,3,1,1,2,2,3),
+      fac3 = c(4,2,3,4,4,2,2,3)
+      )
+
+# convert fac1 to ordered factors
+df$fac1 <- ordered(df$fac1,
+                  levels = c(0,4,3,2,1) # defines the order
+                  ) 
+df$fac1
+summary(df$fac1)  # gives the table of counts for each level
+
+
+
+# convert fac2 to unordered factors with labels
+df$fac2 <- factor(df$fac2,
+                  levels = c(1,2,3), #  no particular order
+                  # attach labels to factors: 1=red, 2=blue, 3=green
+                  labels = c("red", "blue", "green")
+                  ) 
+df$fac2
+summary(df$fac2)                
+
+# convert fac3 to ordered factors with labels
+df$fac3 <- ordered(df$fac3,
+                  levels = c(2,3,4),
+                  # attach labels to factors: 2=Low, 3=Medium, 4=High
+                  labels = c("Low", "Medium", "High")
+                  ) 
+df$fac3
+summary(df$fac3)
+```
+
+### Matrix
+
+`matrix()` defines a matrix from a vector. The default is to arrange the vector by column (`byrow = FALSE` option).  
+
+```{r}
+# byrow = FALSE  (the default)
+matrix(data = c(1:6), nrow = 2, ncol = 3, byrow = FALSE, dimnames = NULL)
+
+# byrow = TRUE 
+matrix(data = c(1:6), nrow = 2, ncol = 3, byrow = TRUE, dimnames = NULL)
+
+# give row and column names to a matrix 
+mat1 <- matrix(data = c(1:6), nrow = 2, ncol = 3, byrow = FALSE, 
+       dimnames = list(c("r1","r2"), c("c1","c2","c3")))
+mat1
+dim(mat1)  # dimention: row by column
+colnames(mat1)
+rownames(mat1)
+
+colnames(mat1) <- c("v1","v2","v3")  # change column names by assignment "<-" 
+mat1
+
+# R makes a guess when only nrow or ncol is supplied
+matrix(data = c(1:6), nrow = 2)
+matrix(data = c(1:6), ncol = 3)
+
+# combine matrix by column via "cbind()" or by row via "rbind()"
+cbind(mat1,mat1)
+rbind(mat1,mat1)
+
+```
+
+There are recycling rules in R. 
+
+```{r}
+# the vector shorter than the length of all elements of a matrix
+matrix(data = c(1:4), nrow = 2, ncol= 3)
+
+# R treats a scaler as a vector of length that conforms cbind() or rbind()  
+cbind(mat1, colA = 1)
+rbind(mat1, rowA= 1, rowB= 2, rowC= 3)
+
+```
+
+To replace elements of a matrix, we can use assignment operator `<-`. 
+```{r}
+mat1[1,1] <- 10
+mat1
+
+mat1[,2] <- c(7,8)
+mat1
+
+mat1[,1] <- 0  # recycling rule
+mat1
+```
+
+Matrix allows for easy extraction for rows and columns separated by comma. 
+```{r}
+mat1
+mat1[1, ]  # row = 1 and all columns
+mat1[, 1]  # all rows and col = 1 
+
+mat1[c(TRUE,FALSE),]  # by a logical vector 
+mat1[, c(TRUE,FALSE)]
+
+mat1[2,3]  # row = 2 and col = 3
+mat1[1:2, 2:3]  # row = 1:2 and col = 2:3
+mat1[1:2, 2:3][2,2]  # subset of a subset
+mat1[, 1][2]  # vector extraction is done with one-dimensional index  
+```
+
+Important: when a single row or column is extracted, it gets converted to a vector with no dimension. 
+```{r}
+mat1[1,]
+is.matrix(mat1[1, ])  
+dim(mat1[1,])
+length(mat1[1, ])  
+
+# to keep a row or column vector structure, use drop = FALSE
+mat1[1,, drop = FALSE]
+is.matrix(mat1[1,,drop = FALSE])  
+dim(mat1[1,,drop = FALSE])
+length(mat1[1,,drop = FALSE])  
+
+mat1[,1, drop = FALSE]
+is.matrix(mat1[,1,drop = FALSE])  
+dim(mat1[,1,drop = FALSE])
+length(mat1[,1,drop = FALSE])  
+```
+
+Another way to subset is to use row or column names.
+```{r}
+mat1[,'v1']
+mat1[,c('v1','v3')]
+mat1['r2',,drop= FALSE]
+```
+
+`apply()` applies a function for a specified margin (dimension index number) of the matrix. 
+
+```{r}
+mat1
+apply(mat1,1,mean)  # dimention 1 (across rows)
+apply(mat1,2,mean)  # dimention 2 (across columns)
+
+# one can write a custom function inside apply(). (called annonymous function)    
+# Its argument corresponds to the row or column vector passed by apply(). 
+apply(mat1,2, function(x) sum(x)/length(x) )  # x is the internal vector name
+
+ans1 <- apply(mat1,2, function(x) {   
+                         avg = mean(x)
+                         sd = sd(x)
+                         z = (x - mean(x))/sd(x)  
+                          # return the results as a list
+                         list(avg = avg, sd = sd, z = z)
+                      }
+        )
+
+unlist(ans1[[2]])  # results for the second column  
+unlist(ans1[[3]])  # results for the third column  
+```
+
+
+Arrays are a generalization of matrices and can be more than 2 dimension. 
+```{r}
+array(c(1:18), c(2,3,3))  # dimention 2 by 2 by 3
+
+array(c(1:9), c(2,3,3))  # R recycles the vector 
+```
+
+### Data Frame
+A data frame is similar to a matrix, but it accepts multiple types (modes) of variables across columns (e.g., a dataset in a typical data analysis programs like SAS, SPSS, Stata etc.). In some cases matrices and data frames can be treated interchangeably. Generally, data manipulation functions are written for data frames, while base R functions are written for matrices.    
+
+```{r}
+mymat1 <- matrix(data = c(1:6), nrow = 2, ncol = 3, 
+       dimnames = list(c("r1","r2"), c("c1","c2","c3"))) 
+mymat1
+
+class(mymat1)
+colnames(mymat1)
+names(mymat1)
+
+mydf1 <- data.frame(
+                mymat1, 
+                num  = c(1,2),         
+                fac1 = c("a","abc"),    
+                logi = c(TRUE, FALSE), 
+                fac2  = c(1,"a")   
+              )  
+mydf1
+
+class(mydf1)
+colnames(mydf1)
+names(mydf1)   # colnames and names are the same 
+```
+
+Subsetting a data frame is similar to subsetting a matrix, but there are a few additional methods.
+```{r}
+mydf1[1,]   # row = 1 and all columns 
+mydf1[,1]   # all rows and col = 1
+
+# data frame preserves dimension while subsetting a row but not a column
+dim(mydf1[1,])  
+dim(mydf1[,1])  
+dim(mydf1[,1,drop=FALSE])   # use drop = FALSE to keep a column vector
+mydf1[,1,drop=FALSE]
+
+mydf1[, c('c1','num','logi')]
+class(mydf1[, c('c1','num','logi')])
+
+# extraction by column name with "$" symbol:  df$varname  
+mydf1$c1
+dim(mydf1$c1)
+# one can use quote ' ' or " " as well 
+mydf1$'c1'
+
+# similarly, extraction by column name with [[ ]]: df[['varname']]    
+mydf1[['c1']]
+dim(mydf1[['c1']])
+
+# or by index 
+mydf1[[1]]
+
+
+# [[ ]] method is useful when passing a variable name as a string
+set_to_na <- function(df, var) {
+                df[[var]] <- NA  
+                df 
+              }
+mydf1
+mydf2 <- set_to_na(mydf1, "c2") 
+mydf2
+
+# add a variable 
+mydf1$newvar <- c(4, 4)
+mydf1
+
+mydf1$newvar2 <- mydf1$c2 + mydf1$c3
+mydf1
+```
+
+`apply()` may not work well with data frames since data frames are not exactly matrices. We can use simplified apply `sapply()` or list apply `lapply()` instead.  
+
+```{r}
+mydf1 
+
+# sapply() 
+idx_num <- sapply(mydf1, is.numeric) 
+idx_num
+apply(mydf1[,idx_num], 2, mean)
+sapply(mydf1[,idx_num], mean)
+
+# unlike apply(), lapply() does not use a margin (dimension) argument 
+idx_num2 <- unlist(lapply(mydf1, is.numeric)) 
+idx_num2
+unlist(lapply(mydf1[,idx_num2], mean))
+```
+
+### List
+
+A list is an ordered collection of (possibly unrelated) objects.  The objects in a list are referenced by [[1]], [[2]], ..., or [['var1']], [['var2']], ... etc.   
+
+```{r}
+mylist1 <- list(v1 = c(1,2,3),
+             v2 = c("a","b"),
+             v3 = factor(c("blue","red","orange","yellow")),
+             v4 = data.frame( u1 = c(1:3), u2 = c("p","q","r"))
+             )
+mylist1 
+
+# subsetting
+mylist1[[1]]             
+mylist1[["v2"]]             
+mylist1$v3      
+mylist1$v4$u2
+
+# assignment
+mylist1$v5 <- c("a",NA)
+mylist1$v5 
+
+# a list can be nested 
+mylist1$v6 <- list(y1 = c(2,9), y2 = c(0,0,0,1))
+mylist1$v6
+```
+
+`lapply()` is very versatile since the items in a list can be completely unrelated. 
+
+```{r}
+unlist(lapply(mylist1, class))
+unlist(lapply(mylist1, attributes))  # some variables have attributes
+
+lapply(mylist1, function(x) {
+                  if (is.numeric(x)) return(summary(x))
+                  if (is.character(x)) return(x)
+                  if (is.factor(x)) return(table(x))
+                  if (is.data.frame(x)) return(head(x))
+                  if (is.list(x)) return(unlist(lapply(x,class)))
+                }
+)
+```
+
+## Programming
+
+### Operator
+
+```{r, echo=FALSE}
+tbl_operator <- data.frame(
+                  Operation = c("x + y", "x - y", "x * y", "x / y", "x ^ y",
+                                "x %% y", "x %/% y", "x == y", "x <= y", "x >= y",
+                                "x && y", "x || y", "x & y", "x | y", "!x"),
+                  Description = c("Addition","Subtraction","Multiplication","Division","Exponentiation",
+                                  "Modular arithmatic","Integer division","Test for equality",
+                                  "Test for less than or equal to","Test for greater than or equal to",
+                                  "Boolean AND for scalars", "Boolean OR for scalers",
+                                  "Boolean AND for vectors", "Boolean OR for vectors",
+                                  "Boolean negation")
+                )
+```
+
+`r tbl_operator %>% kable(caption = "Basic R Operators")`
+
+source: [@Matloff2011]
+
+
+### If else
+
+```{r}
+if (1 > 0) {
+  print("result: if")
+} else {
+  print("result: else")
+}
+
+# {} brackets can be used to combine multiple expressions 
+# They can be skipped for a single-expression if-else statement. 
+if (1 > 2) print("result: if")  else print("result: else")
+
+ifelse(c(1,2,3) > 2, 1, -1)  # return 1 if TRUE and -1 if else  
+
+Sys.time()
+time <- Sys.time()
+hour <- as.integer(substr(time, 12,13))
+# sequential if-else statements
+if (hour > 8 & hour < 12) {
+    print("morning")
+} else if (hour < 18) {
+    print("afternoon")
+} else {
+    print("private time")
+}
+```
+
+### Loop
+
+```{r}
+for (i in 1:3) {
+  print(i)
+}
+
+for (i in c(1,3,5)) print(i)
+
+i <- 1 
+while (i < 5) {
+  print(i) 
+  i <- i + 1
+}
+```
+
+
+### Function
+
+We can avoid repeating ourselves with writing similar lines of codes if we turn them into a function. Functions contain a series of tasks that can be applied to varying objects such as different vectors, matrices, characters, data frames, lists, and functions.
+
+A function consists of input arguments, tasks (R expressions), and output as an object (e.g. a vector, matrix, character, data frame, list, or function etc.). It can be named or remain anonymous (typically defined and used inside a function like `lapply()`). 
+
+```{r}
+##  name_to_be_assigned  <- function(input args) {
+##                            tasks 
+##                           }
+```
+
+The output of the function, aside from those that are printed, saved, or exported, is the very last task (expression). If variable `result` is created inside the function, having `result` at the very end will return this item as an output. When multiple objects are created, it is often convenient to return those as a *list*. Use `return()` to return a specific item in the middle of the function and skip the rest of the evaluations.  For checking errors and halting evaluations, use `stop()` or `stopifnot()`.           
+
+
+
+```{r}
+myfun1 <- function() print("Hello world")  # just returning "Hello world"
+myfun1()  
+
+myfun2 <- function(var) var^2 
+myfun2(var = 3)
+
+myfun3 <- function(var = 1)  ifelse(var>0, log(var), var) 
+myfun3()   # default argument is var = 1
+myfun3(2)
+
+myfun4 <- function(x1, x2) {
+            if (!is.numeric(x1) | !is.numeric(x2)) stop('demo of error: numeric args needed')
+            x1*x2
+          }
+# try(myfun4(1, "a"))  
+myfun4(4, 3)
+```
+
+
+### Environment
+
+A function, formally known as a *closure*, consists of its arguments (called *formals*), body, and *environment*. An *environment*  is a collection of existing objects when the function is created. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
+
+
+```{r}
+f1 <- function(arg1) environment()  
+formals(f1)  # arguments of f1()
+body(f1)     # body of f1()
+environment(f1)  # environment of f1() is .GlobalEnv 
+f1()  # inside f1 has its own enviornment 
+```
+
+A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and cannot overwrite those global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the functions of their creation. 
+
+```{r}
+a <- NULL  # object named "a" in .GlobalEnv
+f2 <- function() {
+        a <- 1  # object named "a" in an environment inside f2
+        print(a)
+        environment()
+      }
+f2()  #  one instance creating an environment   
+f2()  #  another instance creating another environment
+a  # stays NULL 
+
+ls()  # ls() shows all objects of an environment (here .GlobablEnv)
+rm(list = ls())  # rm() removes items of an  environment (here .GlobablEnv)
+ls()  # all gone in GlobalEnv
+```
+
+Using  global assignment `<<-` operator,  one can bend this general rule. This can be useful when it is desirable to make certain objects accessible across multiple functions without explicitly passing them through arguments.  
+
+```{r}
+a <- NULL
+b <- NULL
+f1 <- function() {
+        a <<- 1  # global assignment
+        # another way to assign to GlobalEnv 
+        assign("b", 2, envir = .GlobalEnv)  
+      }
+f1() 
+a
+b
+
+a <- 2
+f2 <- function() {
+        # Since there is no "a" local to f2, R looks for "a" 
+        # in a parent environment, or .GlobalEnv  
+        print(a) 
+        
+        # function defined inside f2 
+        # g() assigns a number to "a" in g()'s environment 
+        g <- function() a <<- 5
+        
+        a <- 0  #  object called "a" local to f2   
+        print(a)
+        
+        # g() updates only the local "a" to f2(), but not "a" in GlobalEnv 
+        # R's scope hierarchy starts from local to its environment  
+        g()   
+        print(a)
+      }
+a <- 3
+
+# the first "a" is in .GlobalEnv when f2() is called
+# the second "a" is local to an instace of f2()
+# the third "a" is the updated version of the local "a" by g() 
+f2() 
+a   # object "a" in GlobalEnv: unchanged by g()
+```
+
+It is convenient to use `<<-` if you are sure about which object to overwrite. Otherwise, the use of `<<-` should be avoided.    
+
+### Debugging 
+
+`browser()` and `traceback()` are common debugging tools. A debugging session starts where `browser()` is inserted and allows for a line by line execution onward. Putting `browser()` inside a loop or function is useful because it allows for accessing the objects at a particular moment of execution in its environment.  After an error, executing `traceback()` shows  at which process the error occurred. Other tools include `debug()`, `debugger()`, and `stopifnot()`. 
+
+
+### Stat func.
+
+```{r, echo=FALSE}
+tbl_statfunc <- data.frame(
+                  Distribution = c("Normal", "Chi square", "Binomial"),
+                  Density_pmf =c("dnorm( )","dchisq( )", "dbinom( )"),
+                  cdf = c("pnorm( )", "pchisq( )", "pbinom( )"),
+                  Quantiles = c("qnorm( )","qchisq( )", "qbinom( )"),
+                  Random_draw = c("rnorm( )", "rchisq( )","rbinom()")
+                )
+```
+
+`r tbl_statfunc %>% kable(caption = "Common R Statistical Distribution Functions")`
+
+source: [@Matloff2011]
+
+### String func.
+
+R has built-in string manipulation functions. They are commonly used for;
+
+* detecting a certain pattern in a vector (`grep()` returning a location index vector, `grepl()` returning a logical vector)
+
+* replacing a certain pattern with another (`gsub()`)
+
+* counting the length of a string (`nchar()`) 
+
+* concatenating characters and numbers as a string (`paste()`, `paste0()`, `sprintf()`)
+
+* extracting a segment of a string by character position range (`substr()`)
+
+* splitting a string with a particular pattern (`strsplit()`)
+
+* finding a character position of a pattern in a string (`regexpr()`)
+`grep()` `grepl()` `gsub()` `nchar()` `paste()` `paste0()` `sprintf()` `substr()` `strsplit()` 
+
+```{r}
+oasis <- c("Liam Gallagher", "Noel Gallagher", "Paul Arthurs", "Paul McGuigan", "Tony McCarroll") 
+grep(pattern = "Paul", oasis)
+
+grepl(pattern = "Gall", oasis)
+
+gsub("Gallagher", "Gallag.", oasis)
+
+nchar(oasis)
+
+paste(oasis)
+
+paste(oasis, collapse=", ")
+
+sprintf("%s from %d to %d", "Oasis", 1991, 2009)
+
+substr(oasis, 1, 6)
+
+strsplit(oasis, split=" ")  # split by a blank space
+
+regexpr("ll", oasis[1])[1]
+```
+
+Common regular expressions used in R include;
+
+* `"[char]"` (any string containing either "c", "h", "a", or "r" )
+
+* `"a.c"` (any string containing "a" followed by any letter followed by "c")
+
+* `"\\."` (any string containing symbol ".").   
+
+```{r}
+grepl("[is]", oasis)
+
+grepl("P..l", oasis)
+
+grepl("\\.", c("Liam", "Noel", "Paul A.", "Paul M.", "Tony"))
+```
+
+
+### Set func.
+The functions for common set operations include `union()`, `intersect()`, `setdiff()`, and `setequal()`. The most commonly used function is `%in%` operator; `X %in% Y` returns a logical vector indicating whether an each element of `X` is a member of `Y`.        
+```r
+c(1,2,3,4,5) %in% c(3,2,5)
+c("a","b","t","s") %in% c("t","a","a")
+```
+
+
+## Housekeeping
+
+### Working directory
+
+`getwd()` returns the current working directly.  `setwd(new_directory)`  sets a specified working directory. 
+
+### R session
+
+`sessionInfo()` shows the current session information. In RStudio, `.rs.restartR()` restarts a session. 
+
+### Save & load 
+
+R objects can be saved and loaded by `save(object1, object2, ..., file="file_name.RData")` and `load(file="file_name.RData")`. A `ggplot` object can be save by `ggsave("file_name.png")`.   
+
+
+### Input & Output
+
+A common method to read and write data files is `read.csv("file_name.csv")` and `write.csv(data_frame, file = "file_name.csv")`. `scan()` is a more general function to read data files and interact with user keyboard inputs. `file()`  is also a general functions to read data through *connections*, which refer to R's mechanism for various I/O operations. `dir()` returns the file names in your working directory.     
+
+A useful function is `cat()`, which can print a cleaner output to the screen, compared to `print()`.
+```{r}
+print("example")
+
+cat("example\n")  # end with \n
+
+cat("some string", c(1:4), "more string\n")
+cat("some string", c(1:4), "more string\n", sep="_")
+```
+
+
+### Updating
+
+R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice.  For updating RStudio, go to `Help` and then `Check for Updates`. Also, RStudio also makes it easy to update packages; go to `Tools` and the `Check for Package Updates`.  Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems.    
+
+```{r}
+# check R version
+getRversion()
+version
+
+# check installed packages
+## installed.packages()
+
+# list all packages where an update is available
+## old.packages()
+
+# update all available packages of installed packages 
+## update.packages()
+
+# update, without prompt
+## update.packages(ask = FALSE)
+```
+
+For windows users, one can automate the process using `installr` package. 
+```{r}
+## --- execute the following ---
+## install.packages("installr") # install
+## setInternet2(TRUE) # only for R versions older than 3.3.0
+## installr::updateR() # updating R.
+```
+
+<!-- not sure if this works
+Another way to automate is discussed [here](http://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html).
+```{r}
+### get packages installed
+## packs = as.data.frame(installed.packages(.libPaths()[1]), stringsAsFactors = F)
+
+### and now re-install install packages using install.packages()
+## install.packages(packs$Package)
+```
+--> 
+
+Sometimes, you can accidentally corrupt sample datasets that come with packages. To restore the original datasets, you have to remove the package by `remove.packages()` and then install it again. Use `class()`, `attributes()`, and `str()` to check for any unrecognized attributes attached to the dataset. Also, if you suspect that you have accidentally corrupted R itself, you should re-install the R distribution.  
+
+
+
+

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Piecemeal R</title>
+  <meta name="description" content="This is a R tutorial.">
+  <meta name="generator" content="bookdown 0.3.14 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Piecemeal R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a R tutorial." />
+  <meta name="github-repo" content="/kotamine/piecemealR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Piecemeal R" />
+  
+  <meta name="twitter:description" content="This is a R tutorial." />
+  
+
+<meta name="author" content="Kota Minegishi">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="1-1-materials.html">
+<link rel="next" href="1-3-huning-down-numbers.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<script src="libs/datatables-binding-0.2/datatables.js"></script>
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Piecemeal R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-materials.html"><a href="1-1-materials.html"><i class="fa fa-check"></i><b>1.1</b> Materials</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-arts-carfts.html"><a href="1-2-arts-carfts.html"><i class="fa fa-check"></i><b>1.2</b> Arts &amp; Carfts</a><ul>
+<li class="chapter" data-level="" data-path="1-2-arts-carfts.html"><a href="1-2-arts-carfts.html#crafts"><i class="fa fa-check"></i>Crafts</a></li>
+<li class="chapter" data-level="" data-path="1-2-arts-carfts.html"><a href="1-2-arts-carfts.html#arts"><i class="fa fa-check"></i>Arts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-huning-down-numbers.html"><a href="1-3-huning-down-numbers.html"><i class="fa fa-check"></i><b>1.3</b> Huning down numbers</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-reflections.html"><a href="1-4-reflections.html"><i class="fa fa-check"></i><b>1.4</b> Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-essentials.html"><a href="2-essentials.html"><i class="fa fa-check"></i><b>2</b> Essentials</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-cheatsheets.html"><a href="2-1-cheatsheets.html"><i class="fa fa-check"></i><b>2.1</b> Cheatsheets</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-data-types.html"><a href="2-2-data-types.html"><i class="fa fa-check"></i><b>2.2</b> Data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-data-types.html"><a href="2-2-data-types.html#atomic"><i class="fa fa-check"></i><b>2.2.1</b> Atomic</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-data-types.html"><a href="2-2-data-types.html#factor"><i class="fa fa-check"></i><b>2.2.2</b> Factor</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-data-types.html"><a href="2-2-data-types.html#matrix"><i class="fa fa-check"></i><b>2.2.3</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-2-data-types.html"><a href="2-2-data-types.html#data-frame"><i class="fa fa-check"></i><b>2.2.4</b> Data Frame</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-2-data-types.html"><a href="2-2-data-types.html#list"><i class="fa fa-check"></i><b>2.2.5</b> List</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-programming.html"><a href="2-3-programming.html"><i class="fa fa-check"></i><b>2.3</b> Programming</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-programming.html"><a href="2-3-programming.html#operator"><i class="fa fa-check"></i><b>2.3.1</b> Operator</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-programming.html"><a href="2-3-programming.html#if-else"><i class="fa fa-check"></i><b>2.3.2</b> If else</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-programming.html"><a href="2-3-programming.html#loop"><i class="fa fa-check"></i><b>2.3.3</b> Loop</a></li>
+<li class="chapter" data-level="2.3.4" data-path="2-3-programming.html"><a href="2-3-programming.html#function"><i class="fa fa-check"></i><b>2.3.4</b> Function</a></li>
+<li class="chapter" data-level="2.3.5" data-path="2-3-programming.html"><a href="2-3-programming.html#environment"><i class="fa fa-check"></i><b>2.3.5</b> Environment</a></li>
+<li class="chapter" data-level="2.3.6" data-path="2-3-programming.html"><a href="2-3-programming.html#debugging"><i class="fa fa-check"></i><b>2.3.6</b> Debugging</a></li>
+<li class="chapter" data-level="2.3.7" data-path="2-3-programming.html"><a href="2-3-programming.html#stat-func."><i class="fa fa-check"></i><b>2.3.7</b> Stat func.</a></li>
+<li class="chapter" data-level="2.3.8" data-path="2-3-programming.html"><a href="2-3-programming.html#string-func."><i class="fa fa-check"></i><b>2.3.8</b> String func.</a></li>
+<li class="chapter" data-level="2.3.9" data-path="2-3-programming.html"><a href="2-3-programming.html#set-func."><i class="fa fa-check"></i><b>2.3.9</b> Set func.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html"><i class="fa fa-check"></i><b>2.4</b> Housekeeping</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#working-directory"><i class="fa fa-check"></i><b>2.4.1</b> Working directory</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#r-session"><i class="fa fa-check"></i><b>2.4.2</b> R session</a></li>
+<li class="chapter" data-level="2.4.3" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#save-load"><i class="fa fa-check"></i><b>2.4.3</b> Save &amp; load</a></li>
+<li class="chapter" data-level="2.4.4" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#input-output"><i class="fa fa-check"></i><b>2.4.4</b> Input &amp; Output</a></li>
+<li class="chapter" data-level="2.4.5" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>2.4.5</b> Updating</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-good-to-knows.html"><a href="3-good-to-knows.html"><i class="fa fa-check"></i><b>3</b> Good-to-Knows</a></li>
+<li class="chapter" data-level="4" data-path="4-piecemeal-top.html"><a href="4-piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-next.html"><a href="4-2-next.html"><i class="fa fa-check"></i><b>4.2</b> Upcoming topics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Piecemeal R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="arts-carfts" class="section level2">
+<h2><span class="header-section-number">1.2</span> Arts &amp; Carfts</h2>
+<div id="crafts" class="section level3 unnumbered">
+<h3>Crafts</h3>
+<p>We will focus on six data wrangling functions in the <code>dplyr</code> package.</p>
+<ul>
+<li><p><code>filter()</code>: extracts rows (e.g. observations) of a data frame. We put logical vectors in its arguments.</p></li>
+<li><p><code>select()</code>: extracts columns (e.g. variables) of a data frame. We put column names in its arguments.</p></li>
+<li><p><code>arrange()</code>: orders rows of a data frame. We put column names in its arguments.</p></li>
+<li><p><code>summarise()</code>: collapses a data frame into summary statistics. We put <strong>summary functions</strong> (e.g. statistics functions) using column names in its arguments.</p></li>
+<li><p><code>mutate()</code>: creates new variables and adds them to the existing columns. We put <strong>window functions</strong> (e.g. transforming operations) using column names in its arguments.</p></li>
+<li><p><code>group_by()</code>: assigns rows into groups in a data frame. We put column names in its arguments.</p></li>
+</ul>
+<p>The very first argument in all these functions is a <strong>data frame</strong>, and by knowing this we can easily <strong>pipe</strong> a sequence of data operations through <code>%&gt;%</code> operator. The key is to start with a data frame and then form a sequence of data operations in plain English, which we can translate into codes by replacing <strong>then</strong> in the sequence with <code>%&gt;%</code> operator. For example, if we want to find the average delays in departures and arrivals from New York to St. Paul-Minneapolis airport (MSP), we take the flight data frame, apply <code>filter()</code> to subset rows of the flights to MSP, and then apply <code>summarise()</code> to calculate the mean.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights %&gt;%<span class="st">  </span><span class="co"># take data frame &quot;flights&quot;, then</span>
+<span class="st">  </span><span class="kw">filter</span>(dest ==<span class="st"> &quot;MSP&quot;</span>) %&gt;%<span class="st">  </span><span class="co"># filter rows, then  </span>
+<span class="st">  </span><span class="kw">summarise</span>(   
+    <span class="co"># summarise departure and arrival delays for their means </span>
+    <span class="co"># and call them mean_dep_delay and mean_arr_delay </span>
+    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
+    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+    )    <span class="co"># calculate the mean, while removing NA values  </span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   mean_dep_delay mean_arr_delay
+##            &lt;dbl&gt;          &lt;dbl&gt;
+## 1       13.32481       7.270169</code></pre>
+<p>In <code>summarise()</code>, one can use <strong>summary functions</strong> that takes a vector as an input and produces a scaler as an output such as <code>mean()</code>, <code>sd()</code> (standard deviation), <code>quantile()</code>, <code>min()</code>, <code>max()</code>, and <code>n()</code> (observation count: <code>dplyr</code> package).</p>
+<p>Each time we apply <code>%&gt;%</code> operator above, we pass a modified data frame from one data operation to another through the first argument. This code is equivalent to</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(   <span class="co"># data frame &quot;flights&quot; is inside filter(), which is inside summarise() </span>
+    <span class="kw">filter</span>(flights, dest ==<span class="st"> &quot;MSP&quot;</span>), 
+    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+    )</code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   mean_dep_delay mean_arr_delay
+##            &lt;dbl&gt;          &lt;dbl&gt;
+## 1       13.32481       7.270169</code></pre>
+<p>You will quickly discover that <code>%&gt;%</code> operator makes the code much easier to read, write, and edit and how that makes you want to play with the data more.</p>
+<p>Let’s add a few more lines to the previous example. Say, additionally we want to see the average delays by carrier and sort the results by the number of observations (e.g. flights) in descending order. Okay, what do we do now? We make <strong>a sequence of operations in plain English</strong> and translate that into <strong>codes</strong> by replacing <strong>then</strong> with <code>%&gt;%</code> operator. Thus, we take the data frame <code>flights</code>; <strong>then</strong> (<code>%&gt;%</code>) <code>filter()</code> to extract the rows of flights to MSP; <strong>then</strong> (<code>%&gt;%</code>) group rows by carrier; <strong>then</strong> (<code>%&gt;%</code>) <code>summarise()</code> data for the number of observations and the means.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flight_stats_MSP &lt;-<span class="st"> </span>flights %&gt;%<span class="st">  </span><span class="co"># assign the results to an object named &quot;flight_stats&quot;</span>
+<span class="st">  </span><span class="kw">filter</span>(dest ==<span class="st"> &quot;MSP&quot;</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(carrier) %&gt;%<span class="st">  </span><span class="co">#  group rows by carrier </span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">n_obs =</span> <span class="kw">n</span>(),  <span class="co"># count number of rows </span>
+    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+  ) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n_obs))  <span class="co"># sort by n_obs in descending order</span>
+
+flight_stats_MSP  <span class="co"># show flight_stats object</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 4
+##   carrier n_obs mean_dep_delay mean_arr_delay
+##     &lt;chr&gt; &lt;int&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+## 1      DL  2864      10.651392       4.035702
+## 2      EV  1773      17.093413      10.527995
+## 3      MQ  1293       8.255457       9.559350
+## 4      9E  1249      19.658113       8.089776
+## 5      OO     4       0.750000      -2.000000
+## 6      UA     2      -6.000000      -5.500000</code></pre>
+<p>Carrier variable is expressed in the International Air Transportation Association (IATA) code, so let’s add a column of carrier names by joining a data frame called <code>airlines</code>. In RStudio, you can find this data frame under the <strong>Environment</strong> tab (in the upper right corner) if you switch the display option from <strong>Global Environment</strong> to <strong>package:nycflights13</strong>. To inspect the data frame, type <code>View(airlines)</code> in R console. Also, by command <code>data()</code> you can see a list of all datasets that are loaded with libraries.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(flight_stats_MSP, airlines, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) %&gt;%
+<span class="st">  </span><span class="co"># left_join(a,b, by=&quot;var&quot;) joins two data frames a, b by matching rows of b to a by identifier &quot;var&quot;.  </span>
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)  <span class="co"># kable() prints a better-looking table here</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="right">n_obs</th>
+<th align="right">mean_dep_delay</th>
+<th align="right">mean_arr_delay</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">DL</td>
+<td align="right">2864</td>
+<td align="right">10.65</td>
+<td align="right">4.04</td>
+<td align="left">Delta Air Lines Inc.</td>
+</tr>
+<tr class="even">
+<td align="left">EV</td>
+<td align="right">1773</td>
+<td align="right">17.09</td>
+<td align="right">10.53</td>
+<td align="left">ExpressJet Airlines Inc.</td>
+</tr>
+<tr class="odd">
+<td align="left">MQ</td>
+<td align="right">1293</td>
+<td align="right">8.26</td>
+<td align="right">9.56</td>
+<td align="left">Envoy Air</td>
+</tr>
+<tr class="even">
+<td align="left">9E</td>
+<td align="right">1249</td>
+<td align="right">19.66</td>
+<td align="right">8.09</td>
+<td align="left">Endeavor Air Inc.</td>
+</tr>
+<tr class="odd">
+<td align="left">OO</td>
+<td align="right">4</td>
+<td align="right">0.75</td>
+<td align="right">-2.00</td>
+<td align="left">SkyWest Airlines Inc.</td>
+</tr>
+<tr class="even">
+<td align="left">UA</td>
+<td align="right">2</td>
+<td align="right">-6.00</td>
+<td align="right">-5.50</td>
+<td align="left">United Air Lines Inc.</td>
+</tr>
+</tbody>
+</table>
+<p>In the next example, we add new variables to <code>flights</code> using <code>mutate()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights %&gt;%
+<span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="co"># keep only columns named &quot;dep_delay&quot; and &quot;arr_delay&quot;</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">gain =</span> arr_delay -<span class="st"> </span>dep_delay,
+    <span class="dt">gain_rank =</span> <span class="kw">round</span>(<span class="kw">percent_rank</span>(gain), <span class="dt">digits =</span> <span class="dv">2</span>)
+      <span class="co"># Note: we can immediately use the &quot;gain&quot; variable we just defined. </span>
+  )</code></pre></div>
+<pre><code>## # A tibble: 336,776 × 4
+##    dep_delay arr_delay  gain gain_rank
+##        &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+## 1          2        11     9      0.81
+## 2          4        20    16      0.88
+## 3          2        33    31      0.94
+## 4         -1       -18   -17      0.22
+## 5         -6       -25   -19      0.18
+## 6         -4        12    16      0.88
+## 7         -5        19    24      0.92
+## 8         -3       -14   -11      0.37
+## 9         -3        -8    -5      0.54
+## 10        -2         8    10      0.82
+## # ... with 336,766 more rows</code></pre>
+<p>We extracted specific columns of <code>flights</code> by <code>select()</code> and added new columns defined in <code>mutate()</code>. <code>mutate()</code> differs from <code>summarise()</code> in that <code>mutate()</code> expand the data frame in the column dimension and makes not change in the row dimension, while <code>summarise()</code> collapses the data frame into a summary table of much smaller column and row dimensions.</p>
+<p>There are about five types of <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html">window functions</a> that may be used in <code>mutate()</code>: (1) any <strong>summary function</strong>, which is interpreted as a vector of repeated values (e.g., the same mean value in a column) : (2) ranking or ordering function (e.g., <code>row_number()</code>, <code>min_rank()</code>, <code>dense_rank()</code>, <code>cume_dist()</code>,<code>percent_rank()</code>, and <code>ntile()</code>): (3) offset function, say defining a lagged variable in time series data (<code>lead()</code> and <code>lag()</code>): (4) cumulative aggregate (e.g., <code>cumsum()</code>, <code>cummin()</code>, <code>cummax()</code>, <code>cumall()</code>, <code>cumany()</code>, and <code>cummean()</code>): (5) fixed-window rolling aggregate such as a windowed mean, median, etc. You can find a help file for any function, for example, by typing <code>?cumsum</code>.</p>
+<p>Before moving to the graphics, let’s quickly go over what a <strong>function</strong> is in R and how you can use a custom function in <code>summarise()</code> or <code>mutate()</code>. In R, we use <code>function()</code> to create a function, which has its name, input arguments separated by comma, and body (e.g., tasks to perform and what to return as an output).</p>
+<pre><code>your_function_name &lt;- function(input arguments) {
+                        task1
+                        task2
+                        .
+                        .
+                        .
+                        output_to_return 
+                      } 
+                      
+
+# For a function having only a single expression to execute, we can omit brakets { }. 
+another_function &lt;- function(input args) task/output_in_a_single_expression                    </code></pre>
+<p>Let’s go through a few examples.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate a sequence from 1 to 10 (by the increment of 1) and name it  &quot;vec1&quot;.  </span>
+vec1 &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">10</span>
+vec1            </code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># c() concatenates </span>
+vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(vec1, <span class="ot">NA</span>, <span class="ot">NA</span>)
+vec2</code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 NA NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mean_1 &lt;-<span class="st"> </span>function(x)  <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+  <span class="co"># Input arguments: x </span>
+  <span class="co"># Output: the calculation result of mean(x, na.rm = TRUE). </span>
+  <span class="co"># x is required by mean() (and implicitly assumed to be a vector of numeric values). </span>
+  <span class="co"># mean() is an existing function. The &quot;na.rm&quot; argument of mean() is set to be TRUE.  </span>
+
+<span class="kw">my_mean_1</span>(vec1)</code></pre></div>
+<pre><code>## [1] 5.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mean_2 &lt;-<span class="st"> </span>function(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)  <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> na.rm)   
+  <span class="co"># Input arguments: x and na.rm (optional with the default value of TRUE) </span>
+  <span class="co"># Output: the calculation result of mean(x, na.rm = na.rm).</span>
+  <span class="co"># The input argument &quot;na.rm&quot; is passed to the input argument &quot;na.rm&quot; of mean() </span>
+
+<span class="kw">my_mean_2</span>(vec2)</code></pre></div>
+<pre><code>## [1] 5.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_mean_2</span>(vec2, <span class="dt">na.rm=</span><span class="ot">FALSE</span>)  <span class="co"># not revmoving NA returns NA for the mean calculation.  </span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_zscore &lt;-<span class="st"> </span>function(x, <span class="dt">remove_na=</span><span class="ot">TRUE</span>) { 
+  <span class="co"># A function body may be enclosed by { }.  </span>
+  <span class="co"># That is optional for a single expression but required for multiple expressions</span>
+  (x -<span class="st"> </span><span class="kw">my_mean_2</span>(x, <span class="dt">na.rm =</span> remove_na))/<span class="kw">sd</span>(x, <span class="dt">na.rm =</span> remove_na)  
+}
+  <span class="co"># Inputs: x and remove_na (optional: default = TRUE)</span>
+  <span class="co"># Output: z-score of vector x</span>
+  <span class="co"># my_mean() and sd() are scalers but are interpreted </span>
+  <span class="co"># as a vector of repeated valuses that has the same length as x. </span>
+
+<span class="kw">my_zscore</span>(vec1) %&gt;%<span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</code></pre></div>
+<pre><code>##  [1] -1.49 -1.16 -0.83 -0.50 -0.17  0.17  0.50  0.83  1.16  1.49</code></pre>
+<p>Let’s apply functions<code>my_mean_2()</code> and <code>my_zscore()</code> in <code>summarise()</code> and <code>mutate()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(dep_delay) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">mean_dep_delay =</span> <span class="kw">my_mean_2</span>(dep_delay),  <span class="co"># using my_mean_2()  </span>
+    <span class="dt">mean_dep_delay_na =</span> <span class="kw">my_mean_2</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>)  <span class="co"># this returns NA</span>
+  ) %&gt;%
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">mean_dep_delay</th>
+<th align="right">mean_dep_delay_na</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">12.64</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_gain &lt;-<span class="st"> </span>flights %&gt;%
+<span class="st">  </span><span class="kw">ungroup</span>() %&gt;%
+<span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">gain =</span> arr_delay -<span class="st"> </span>dep_delay,
+    <span class="dt">gain_z =</span> (gain -<span class="st"> </span><span class="kw">my_mean_2</span>(gain))/<span class="kw">sd</span>(gain, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),  <span class="co"># using my_mean_2()  </span>
+    <span class="dt">gain_z2 =</span> <span class="kw">my_zscore</span>(gain_z)  <span class="co"># using my_zscore()   </span>
+  )
+
+<span class="kw">head</span>(flights_gain) %&gt;%
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">dep_delay</th>
+<th align="right">arr_delay</th>
+<th align="right">gain</th>
+<th align="right">gain_z</th>
+<th align="right">gain_z2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">11</td>
+<td align="right">9</td>
+<td align="right">0.81</td>
+<td align="right">0.81</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">20</td>
+<td align="right">16</td>
+<td align="right">1.20</td>
+<td align="right">1.20</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">33</td>
+<td align="right">31</td>
+<td align="right">2.03</td>
+<td align="right">2.03</td>
+</tr>
+<tr class="even">
+<td align="right">-1</td>
+<td align="right">-18</td>
+<td align="right">-17</td>
+<td align="right">-0.63</td>
+<td align="right">-0.63</td>
+</tr>
+<tr class="odd">
+<td align="right">-6</td>
+<td align="right">-25</td>
+<td align="right">-19</td>
+<td align="right">-0.74</td>
+<td align="right">-0.74</td>
+</tr>
+<tr class="even">
+<td align="right">-4</td>
+<td align="right">12</td>
+<td align="right">16</td>
+<td align="right">1.20</td>
+<td align="right">1.20</td>
+</tr>
+</tbody>
+</table>
+<p>Creating a function helps avoid repeating ourselves with writing similar codes in multiple places. Avoiding such repetitions is important for making reading and editing codes easier, which helps reduce coding errors.</p>
+<p>What if we want to apply the same function, say <code>mean()</code>, in <code>summary()</code> or <code>mutate()</code> to several columns in a data frame? The <code>dplyr</code> package also has <code>summarise_each()</code> and <code>mutate_each()</code> functions that apply a variety of standard <strong>summary functions</strong> to each variables in columns. They are very easy to use, but it will be helpful to remember a few things.</p>
+<p><code>summarise_each()</code> or <code>mutate_each()</code> <em>calls</em> a function by its name, and it is straightforward when you only need to pass a column vector into a function, say <code>mean(var1)</code>. However, providing additional arguments into the function, say <code>mean(var1, na.rm=TRUE)</code>, becomes somewhat cumbersome in terms of its syntax.</p>
+<p>There are two easy ways to get around this problem. The first approach is to pre-process the data frame before getting to <code>summarise_each()</code> or <code>mutate_each()</code>. For example, if we want to pass the argument <code>na.rm=TRUE</code> to <code>mean()</code>, we can first filter out rows that contain missing values (<code>NA</code>) and then apply <code>summarise_each()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_gain %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay, gain)  %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay) &amp;<span class="st"> </span>!<span class="kw">is.na</span>(arr_delay)) %&gt;%<span class="st">  </span>
+<span class="st">    </span><span class="co"># filter out rows that have NA values in dep_delay or arr_deplay</span>
+<span class="st">  </span><span class="kw">summarise_each</span>(<span class="st">&quot;mean&quot;</span>) %&gt;%<span class="st">  </span>
+<span class="st">    </span><span class="co"># summarise_each(func_names) applies functions named func_names to each column. </span>
+<span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>) </code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">dep_delay</th>
+<th align="right">arr_delay</th>
+<th align="right">gain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">12.56</td>
+<td align="right">6.9</td>
+<td align="right">-5.66</td>
+</tr>
+</tbody>
+</table>
+<p>The other approach is to use a custom function. For instance, in the <code>my_mean_2()</code> above we specified default argument <code>na.rm=TRUE</code> that gets passed into <code>mean()</code>, effectively overwriting the default argument <code>na.rm=FALSE</code> of <code>mean()</code>. A custom function (as well as any standard summary function) can be called in <code>summarise_each()</code> or <code>mutate_each()</code> using <code>funs()</code>;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_gain %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(-<span class="kw">contains</span>(<span class="st">&quot;_z&quot;</span>)) %&gt;%<span class="st">  </span>
+<span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="st">&quot;my_mean_2&quot;</span>)) %&gt;%
+<span class="st">    </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="right">dep_delay</th>
+<th align="right">arr_delay</th>
+<th align="right">gain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">12.64</td>
+<td align="right">6.9</td>
+<td align="right">-5.66</td>
+</tr>
+</tbody>
+</table>
+<p>Being able to use your own functions in <code>dplyr</code>-style data operations will dramatically enhance your ability to wrangle data for analysis.</p>
+</div>
+<div id="arts" class="section level3 unnumbered">
+<h3>Arts</h3>
+<p>Now we will cover the basics of data visualization via <a href="http://docs.ggplot2.org/current/">ggplot2</a> package. The <code>ggplot2</code> syntax has three essential components to generating graphics: <strong>data</strong>, <strong>aes</strong>, and <strong>geom</strong>. This implements a philosophy stated as follows (a quote mentioned in <a href="https://ismayc.github.io/moderndiver-book/4-viz.html">ModernDive</a>);</p>
+<blockquote>
+<p>A statistical graphic is a mapping of <strong>data</strong> variables to <strong>aesthetic</strong> attributes of <strong>geometric</strong> objects.<br />
+— <span class="citation">(Wilkinson <a href="#ref-Wilkinson2005">2005</a>)</span></p>
+</blockquote>
+<p>While coding complex graphics via <code>ggplot()</code> function may appear intimidating at first, it boils down to the three primary components:</p>
+<ul>
+<li><p><strong>data</strong>: a data frame e.g., the first argument in <code>ggplot(data, ...)</code>.</p></li>
+<li><p><strong>aes</strong>: specifications for x-y variables, as well as variables to differentiate <strong>geom</strong> objects by color , shape, or size. e.g., <code>aes(x = var_x, y = var_y, shape = var_z)</code></p></li>
+<li><p><strong>geom</strong>: geometric objects such as points, lines, bars, etc. e.g., <code>geom_point()</code>, <code>geom_line()</code>, <code>geom_histogram()</code></p></li>
+</ul>
+<p>Given the large flexibility with graphics in R, one can refine the plot figure by adding secondary components or characteristics such as:</p>
+<ul>
+<li><p>stat: data transformation, overlay of statistical inferences etc.</p></li>
+<li><p>scales: scaling data points etc.</p></li>
+<li><p>coord: Cartesian coordinates, polar coordinates, mapping projections etc.</p></li>
+<li><p>facet: laying out multiple plot panels in a grid etc.</p></li>
+</ul>
+<p>Let’s generate plots of five common types: <strong>scatter-plots</strong>, <strong>line-graphs</strong>, <strong>boxplots</strong>, <strong>histograms</strong>, and <strong>barplots</strong>. We will use these plots to investigate what may explain patterns in flight departure delays.</p>
+<p>First, let’s consider a possibility of congestion at the airport during certain times of the day or certain seasons. We can use <strong>barplots</strong> to see whether there is any obvious pattern in the flight distribution across flight origins (i.e., airports) in New York City. A barplot shows observation counts (e.g., rows of a data frame) by category.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> flights,  <span class="co"># the first argument is the data frame</span>
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> origin)) +<span class="st">   </span><span class="co"># the second argument is &quot;mapping&quot;, which is aes()   </span>
+<span class="st">  </span><span class="kw">geom_bar</span>()  <span class="co">#  after &quot;+&quot; piping operator of ggplot(), we add geom_XXX() elements </span></code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>We can make this more informative and aesthetic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> flights, 
+       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> origin, <span class="dt">fill =</span> origin)) +<span class="st">  </span><span class="co"># here &quot;fill&quot; gives bars distinct colors </span>
+<span class="st">  </span><span class="kw">geom_bar</span>() +<span class="st">  </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>( ~<span class="st"> </span>hour)  <span class="co">#  &quot;facet_wrap( ~ var)&quot; generates a grid of plots by var </span></code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Another way to see the same information is a <strong>histogram</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(hour &gt;=<span class="st"> </span><span class="dv">5</span>) %&gt;%<span class="st">  </span><span class="co"># exclude hour earlier than 5 a.m.</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">fill =</span> origin )) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>While mornings and late afternoons get busy, there is not much difference in the number of flights across origins throughout the day.</p>
+<p>Let’s see if there are distinct patters in departure delays over the course of a year. We do this by taking the average of departure delays for each day by flight origin and plot as a time series using <strong>line-graphs</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(origin, year, month, day) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))  %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay))  <span class="co">#  exclude rows with dep_delay == NA </span>
+
+delay_day %&gt;%<span class="st">     </span><span class="co"># &quot;facet_grid( var ~ .)&quot; is similar to &quot;facet_wrap( ~ var)&quot; </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> dep_delay)) +<span class="st"> </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_grid</span>( origin ~<span class="st"> </span>. ) </code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>The months in summer appear to be busier on average, and the seasonal pattern seems similar across airports. Let’s see how closely these patterns are related to each other by focusing on a few summer months and overlying the line-graphs in a single plot.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="st">&quot;2013-07-01&quot;</span> &lt;=<span class="st"> </span>date, <span class="st">&quot;2013-08-31&quot;</span> &gt;=<span class="st"> </span>date)  %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> dep_delay, <span class="dt">color =</span> origin)) +<span class="st"> </span><span class="kw">geom_line</span>()  </code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>We can see similar patterns of spikes across airports occurring on certain days, which indicate that all three airports get busy on the same days. Does that mean they tend to be congested at the same time?</p>
+<p>In the previous figure, it appears that there is some cyclical pattern of delays. Let’s compare delays by day of the week. Here is a function to calculate day of the week for a given date.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_dow &lt;-<span class="st"> </span>function(date) {
+  dow &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(date)[[<span class="st">&#39;wday&#39;</span>]] +<span class="st"> </span><span class="dv">1</span>
+  <span class="co"># as.POSIXlt(date)[[&#39;wday&#39;]] returns integers 0, 1, 2, .. 6, for Sun, Mon, ... Sat.  </span>
+  <span class="co"># Here we extract one item from a vector (Sun, Mon, ..., Sat) by position numbered between 1 to 7. </span>
+  <span class="kw">c</span>(<span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>)[dow]  <span class="co"># extract &quot;dow&quot;-th element    </span>
+} 
+  <span class="co"># Input: date in the format as in &quot;2017-01-23&quot;</span>
+  <span class="co"># Output: day of week </span>
+<span class="kw">Sys.Date</span>()  <span class="co"># Sys.Date() returns the current date </span></code></pre></div>
+<pre><code>## [1] &quot;2017-04-05&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_dow</span>(<span class="kw">Sys.Date</span>()) </code></pre></div>
+<pre><code>## [1] &quot;Wed&quot;</code></pre>
+<p>Now let’s take a look at the mean delays by day of the week in <strong>boxplots</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(year, month, day) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))  %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),  
+         <span class="co"># date defined by as.Data() function </span>
+         <span class="dt">wday =</span> <span class="kw">my_dow</span>(date),
+         <span class="dt">weekend =</span> wday %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)  
+         <span class="co"># %in% operator: A %in% B returns TRUE/FALSE for whether each element of A is in B. </span>
+  )
+
+<span class="co"># show the first 20 elements of &quot;wday&quot; variable in &quot;delay_day&quot; data frame </span>
+delay_day$wday[<span class="dv">1</span>:<span class="dv">20</span>] %&gt;%<span class="st"> </span><span class="kw">print</span>()   </code></pre></div>
+<pre><code>##  [1] &quot;Tue&quot; &quot;Wed&quot; &quot;Thu&quot; &quot;Fri&quot; &quot;Sat&quot; &quot;Sun&quot; &quot;Mon&quot; &quot;Tue&quot; &quot;Wed&quot; &quot;Thu&quot; &quot;Fri&quot;
+## [12] &quot;Sat&quot; &quot;Sun&quot; &quot;Mon&quot; &quot;Tue&quot; &quot;Wed&quot; &quot;Thu&quot; &quot;Fri&quot; &quot;Sat&quot; &quot;Sun&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day$wday &lt;-<span class="st"> </span><span class="kw">ordered</span>(delay_day$wday, 
+                         <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>))
+                            <span class="co"># adding a sorting order (Mon, Tue, ..., Sun)   </span>
+delay_day$wday[<span class="dv">1</span>:<span class="dv">20</span>] %&gt;%<span class="st"> </span><span class="kw">print</span>() </code></pre></div>
+<pre><code>##  [1] Tue Wed Thu Fri Sat Sun Mon Tue Wed Thu Fri Sat Sun Mon Tue Wed Thu
+## [18] Fri Sat Sun
+## Levels: Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat &lt; Sun</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day  %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay)) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wday, <span class="dt">y =</span> dep_delay, <span class="dt">fill =</span> weekend)) +<span class="st"> </span><span class="kw">geom_boxplot</span>() </code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>It appears that delays are on average longer on Thursdays and Fridays and shorter on Saturdays. You might think that it makes sense that more people are traveling on Thursdays and Fridays before the weekend, and less are traveling on Saturdays to enjoy the weekend. Are Saturdays busier? Let’s find out.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_wday &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),  
+         <span class="dt">wday =</span> <span class="kw">ordered</span>(<span class="kw">my_dow</span>(date),
+                        <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)),
+         <span class="dt">weekend =</span> wday %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)  
+  )
+
+flights_wday %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(wday) %&gt;%
+<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">nobs =</span> <span class="kw">n</span>() )</code></pre></div>
+<pre><code>## # A tibble: 7 × 2
+##    wday  nobs
+##   &lt;ord&gt; &lt;int&gt;
+## 1   Mon 50690
+## 2   Tue 50422
+## 3   Wed 50060
+## 4   Thu 50219
+## 5   Fri 50308
+## 6   Sat 38720
+## 7   Sun 46357</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_wday  %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wday)) +<span class="st"> </span><span class="kw">geom_bar</span>() </code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>Yes, Saturdays are less busy for the airports in terms of flight numbers.</p>
+<p>Can we generalize this positive relationship between the number of flights and the average delays, which we see across day of the week? Let’s summarize the data into the average delays by date-hour and see if the business of a particular hour of a particular day is correlated with the mean delay. We visualize these data using a <strong>scatter plot</strong>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(year, month, day, hour) %&gt;%<span class="st">  </span><span class="co"># grouping by date-hour </span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">n_obs =</span> <span class="kw">n</span>(),
+    <span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+    )  %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),
+         <span class="dt">wday =</span> <span class="kw">my_dow</span>(date)
+  )
+
+plot_delay &lt;-<span class="st"> </span>delay_day_hr  %&gt;%<span class="st"> </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> n_obs, <span class="dt">y =</span> dep_delay)) +<span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)  
+    <span class="co"># plot of n_obs and the average dep_delay </span>
+    <span class="co"># where each point represents an date-hour average</span>
+    <span class="co"># &quot;alpha = 0.1&quot;  controls the degree of transparency of points </span>
+
+plot_delay </code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Along the horizontal axis, we can see how the number of flights is distributed across date-hours. Some days are busy, and some hours busier still. It appears that there are two clusters in the number of lights, showing very slow date-hours (e.g., less than 10 flights flying out of New York city per hour) and normal date-hours (e.g., about 60 flights per hour). We may guess that the delays in the slow hours be caused by bad weather. On the other hand, we may wonder if the excess delays in normal hours, compared to slow hours, are caused by congestion at the airports. To see this, let’s fit a curve that captures the relationships between <code>n_obs</code> and <code>dep_delay</code>. Our hypothesis is that the delay would become more likely and longer as the number of flights increases.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_delay  +
+<span class="st">  </span><span class="kw">geom_smooth</span>()   <span class="co">#  geom_smooth() addes a layer of fitted curve(s) </span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>We cannot see any clear pattern. How about fitting a curve by day of the week?</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_delay  +
+<span class="st">     </span><span class="co"># additional aes() argument for applying different colors to the day of the week</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">color =</span> wday), <span class="dt">se=</span><span class="ot">FALSE</span>) </code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Surprisingly, the delay does not seem to increase with the flights. There are more delays on Thursdays and Fridays and less delays on Saturdays, but we see no evidence of congestion as a cause of delay.</p>
+<p>Let’s take a closer look at the distribution of the delays. If it is not normally distributed, we may want to apply a transformation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr %&gt;%<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay)) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr$dep_delay_shifted &lt;-<span class="st"> </span>delay_day_hr %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">with</span>(dep_delay -<span class="st"> </span><span class="kw">min</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) +<span class="st"> </span><span class="dv">1</span>) 
+    <span class="co"># with() function takes a data frame in the first argument and allows for </span>
+    <span class="co"># referencing its variable names</span>
+    <span class="co"># Before we apply a logarithmic transformation, we shift the variable so that</span>
+    <span class="co"># its minimum is greater than zero. </span>
+
+delay_day_hr %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ungroup</span>() %&gt;%<span class="st">   </span><span class="co"># removing group_by() attribute</span>
+<span class="st">  </span><span class="kw">select</span>(dep_delay, dep_delay_shifted) %&gt;%
+<span class="st">  </span><span class="kw">with</span>(
+    <span class="kw">apply</span>(., <span class="dv">2</span>, summary)
+    <span class="co"># apply(data, num, fun)  applies function &quot;fun&quot; for each item </span>
+    <span class="co"># in dimention &quot;num&quot; (1 = cows, 2= columns) of the data frame    </span>
+    <span class="co"># The data referenced by &quot;.&quot; (all variables).  </span>
+    ) %&gt;%<span class="st"> </span><span class="kw">t</span>() <span class="co">#  transpose rows and columns  </span></code></pre></div>
+<pre><code>##                   Min. 1st Qu. Median  Mean 3rd Qu. Max. NA&#39;s
+## dep_delay          -18   1.054  6.571 12.99   15.44  269   13
+## dep_delay_shifted    1  20.050 25.570 31.99   34.44  288   13</code></pre>
+<p>Now the transformed distribution;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr %&gt;%<span class="st"> </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay_shifted), dep_delay_shifted &gt;<span class="st"> </span><span class="dv">5</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay_shifted))  +<span class="st">  </span>
+<span class="st">  </span><span class="kw">scale_x_log10</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="co"># Under the log of 10 transformation, the distribution looks closer to a normal distribution.</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr %&gt;%<span class="st"> </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay_shifted), dep_delay_shifted &gt;<span class="st"> </span><span class="dv">5</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay_shifted)) +<span class="st">  </span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log&quot;</span>) +<span class="st">  </span>
+<span class="st">    </span><span class="co"># Alternatively, one can apply the natural logarithm to transform a variable. Histogram shows no difference here.    </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-26-2.png" width="672" /></p>
+<p>The transformed distribution is much less skewed than the original. Now, let’s plot the relationship between delays and flights again.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr  %&gt;%<span class="st"> </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay_shifted), dep_delay_shifted &gt;<span class="st"> </span><span class="dv">5</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> n_obs, <span class="dt">y =</span> dep_delay_shifted)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_y_log10</span>() +<span class="st">     </span><span class="co"># using transformation scale_y_log10() </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)  +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>()  </code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>We still do not see a pattern that busier hours have more delays. This seems to suggest that the airports in New York City manage the fluctuating number of flights without causing congestion.</p>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Wilkinson2005">
+<p>Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="1-1-materials.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-3-huning-down-numbers.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/kotamine/piecemealR/edit/master/01-Introduction.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
