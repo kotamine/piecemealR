@@ -548,6 +548,7 @@ A function, formally known as a *closure*, consists of its arguments (called *fo
 
 
 ```{r}
+environment()  # .GlobalEnv  (or R_GlobalEnv) is the top-level environment 
 f1 <- function(arg1) environment()  
 formals(f1)  # arguments of f1()
 body(f1)     # body of f1()

@@ -146,17 +146,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4.5" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>2.4.5</b> Updating</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-good-to-knows.html"><a href="3-good-to-knows.html"><i class="fa fa-check"></i><b>3</b> Good-to-Knows</a></li>
-<li class="chapter" data-level="4" data-path="4-piecemeal-top.html"><a href="4-piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
-<li class="chapter" data-level="4.1" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="3" data-path="3-piecemeal-top.html"><a href="3-piecemeal-top.html"><i class="fa fa-check"></i><b>3</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html"><i class="fa fa-check"></i><b>3.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="4-2-next.html"><a href="4-2-next.html"><i class="fa fa-check"></i><b>4.2</b> Upcoming topics</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-next.html"><a href="3-2-next.html"><i class="fa fa-check"></i><b>3.2</b> Upcoming topics</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="4" data-path="4-resources.html"><a href="4-resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
@@ -216,27 +215,28 @@ factor2</code></pre></div>
 factor3</code></pre></div>
 <pre><code>## [1] TRUE  FALSE TRUE 
 ## Levels: FALSE TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract the first element of factor1 as factor1[1] etc.</span>
-<span class="kw">str</span>(factor1[<span class="dv">1</span>])</code></pre></div>
-<pre><code>##  Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;: 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(factor2[<span class="dv">1</span>])</code></pre></div>
-<pre><code>##  Factor w/ 3 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;: 1</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(factor3[<span class="dv">1</span>])</code></pre></div>
-<pre><code>##  Factor w/ 2 levels &quot;FALSE&quot;,&quot;TRUE&quot;: 2</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="kw">is.factor</span>(factor1[<span class="dv">1</span>]), <span class="kw">is.factor</span>(factor2[<span class="dv">1</span>]), <span class="kw">is.factor</span>(factor3[<span class="dv">1</span>]))</code></pre></div>
 <pre><code>## [1] TRUE TRUE TRUE</code></pre>
-<p>There are length-zero objects for numeric, logical, and character types.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Extract the first element (factor1[1] etc.) </span>
+factor1[<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] 1
+## Levels: 1 2 3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">factor2[<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] b
+## Levels: a b c</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">factor3[<span class="dv">3</span>]</code></pre></div>
+<pre><code>## [1] TRUE
+## Levels: FALSE TRUE</code></pre>
+<p><code>NULL</code> has zero-length. Also, empty numeric, logical, and character objects have zero-length.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="ot">NULL</span>) </code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">numeric</span>(<span class="dv">0</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">numeric</span>(<span class="dv">0</span>))  <span class="co"># numeric(N) returns a vector of N zeros </span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">logical</span>(<span class="dv">0</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">logical</span>(<span class="dv">0</span>))  <span class="co"># logical(N) returns a vector of N FALSE objects</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">character</span>(<span class="dv">0</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">character</span>(<span class="dv">0</span>)) <span class="co"># character(N) returns a vector of N &quot;&quot; objects</span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">factor</span>(<span class="dv">0</span>)) <span class="co"># has length 1</span></code></pre></div>
-<pre><code>## [1] 1</code></pre>
-<p>Each <strong>vector</strong> has a type of <code>numeric</code>, <code>logical</code>, <code>character</code>, or <code>factor</code>. Each <strong>matrix</strong> has a type of <code>numeric</code>, <code>logical</code>, or <code>character</code>. A <strong>data frame</strong> can contain mixed types in columns; each column (e.g., a variable) has a type of <code>numeric</code>, <code>logical</code>, <code>character</code> or <code>factor</code>.</p>
+<p>Each <strong>vector</strong> has a type of <code>numeric</code>, <code>logical</code>, <code>character</code>, or <code>factor</code>. Each <strong>matrix</strong> has a type of <code>numeric</code>, <code>logical</code>, or <code>character</code>. A <strong>data frame</strong> can contain mixed types across columns where each column (e.g., a variable) has a type of <code>numeric</code>, <code>logical</code>, <code>character</code> or <code>factor</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vector1 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="ot">NA</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="co"># read as numeric</span>
 vector1</code></pre></div>
 <pre><code>## [1]  1 NA  2  3</code></pre>
@@ -250,7 +250,7 @@ vector3</code></pre></div>
 vector4</code></pre></div>
 <pre><code>## [1] 1    &lt;NA&gt; abc  TRUE TRUE
 ## Levels: 1 abc TRUE</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">3</span>) <span class="co"># read as character</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matrix1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">3</span>) <span class="co"># read as numeric</span>
 matrix1</code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    4
@@ -292,7 +292,7 @@ df1</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># additional argument &quot;stringsAsFactors = FALSE&quot; preserves character types.</span>
 df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
         <span class="dt">num  =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),           <span class="co"># read as numeric</span>
-        <span class="dt">char =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;abc&quot;</span>),   <span class="co"># read as factor</span>
+        <span class="dt">char =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;abc&quot;</span>),   <span class="co"># read as character</span>
         <span class="dt">logi =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>, T),  <span class="co"># read as logical</span>
         <span class="dt">fac2  =</span> <span class="kw">as.factor</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>,<span class="ot">TRUE</span>)),      <span class="co"># read as factor</span>
         <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>
@@ -314,7 +314,7 @@ df2</code></pre></div>
 </div>
 <div id="factor" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Factor</h3>
-<p>A factor object is defined with a set of categorical levels, which may be labeled. The levels are either <strong>ordered</strong> (defined by <code>ordered()</code>) or <strong>unordered</strong> (defined by <code>factor()</code>). If ordered, factor objects are treated in the specific order under certain statistical analyses and graphical procedures.</p>
+<p>A factor object is defined with a set of categorical levels, which may be labeled. The levels are either <strong>ordered</strong> (defined by <code>ordered()</code>) or <strong>unordered</strong> (defined by <code>factor()</code>). Ordered factor objects are treated in the specific order by certain statistical and graphical procedures.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># We will convert the columns of df into factors   </span>
 df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
       <span class="dt">fac1 =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>),
@@ -359,7 +359,7 @@ df$fac3</code></pre></div>
 </div>
 <div id="matrix" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> Matrix</h3>
-<p><code>matrix()</code> defines a matrix from a vector. The default is to arrange the vector by column (<code>byrow = FALSE</code> option).</p>
+<p><code>matrix()</code> defines a matrix from a vector. The default is to arrange the vector by column (<code>byrow = FALSE</code>).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># byrow = FALSE  (the default)</span>
 <span class="kw">matrix</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, <span class="dt">byrow =</span> <span class="ot">FALSE</span>, <span class="dt">dimnames =</span> <span class="ot">NULL</span>)</code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
@@ -377,7 +377,7 @@ mat1</code></pre></div>
 <pre><code>##    c1 c2 c3
 ## r1  1  3  5
 ## r2  2  4  6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(mat1)  <span class="co"># dimention: row by column</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(mat1)  <span class="co"># dimension: row by column</span></code></pre></div>
 <pre><code>## [1] 2 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colnames</span>(mat1)</code></pre></div>
 <pre><code>## [1] &quot;c1&quot; &quot;c2&quot; &quot;c3&quot;</code></pre>
@@ -397,7 +397,7 @@ mat1</code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    3    5
 ## [2,]    2    4    6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combine matrix by column via &quot;cbind()&quot; or by row via &quot;rbind()&quot;</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># combine matrices by column via &quot;cbind()&quot; or by row via &quot;rbind()&quot;</span>
 <span class="kw">cbind</span>(mat1,mat1)</code></pre></div>
 <pre><code>##    v1 v2 v3 v1 v2 v3
 ## r1  1  3  5  1  3  5
@@ -503,7 +503,7 @@ mat1[<span class="dv">1</span>,, drop =<span class="st"> </span><span class="ot"
 <pre><code>## [1] 2 1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(mat1[,<span class="dv">1</span>,<span class="dt">drop =</span> <span class="ot">FALSE</span>])  </code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<p>Another way to subset is to use row or column names.</p>
+<p>Another way of extraction from a matrix is to use row or column names.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mat1[,<span class="st">&#39;v1&#39;</span>]</code></pre></div>
 <pre><code>## r1 r2 
 ##  0  0</code></pre>
@@ -519,10 +519,10 @@ mat1[<span class="dv">1</span>,, drop =<span class="st"> </span><span class="ot"
 <pre><code>##    v1 v2 v3
 ## r1  0  7  5
 ## r2  0  8  6</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat1,<span class="dv">1</span>,mean)  <span class="co"># dimention 1 (across rows)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat1,<span class="dv">1</span>,mean)  <span class="co"># dimension 1 (across rows)</span></code></pre></div>
 <pre><code>##       r1       r2 
 ## 4.000000 4.666667</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat1,<span class="dv">2</span>,mean)  <span class="co"># dimention 2 (across columns)</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apply</span>(mat1,<span class="dv">2</span>,mean)  <span class="co"># dimension 2 (across columns)</span></code></pre></div>
 <pre><code>##  v1  v2  v3 
 ## 0.0 7.5 5.5</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># one can write a custom function inside apply(). (called annonymous function)    </span>
@@ -533,20 +533,19 @@ mat1[<span class="dv">1</span>,, drop =<span class="st"> </span><span class="ot"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ans1 &lt;-<span class="st"> </span><span class="kw">apply</span>(mat1,<span class="dv">2</span>, function(x) {   
                          avg =<span class="st"> </span><span class="kw">mean</span>(x)
                          sd =<span class="st"> </span><span class="kw">sd</span>(x)
-                         z =<span class="st"> </span>(x -<span class="st"> </span><span class="kw">mean</span>(x))/<span class="kw">sd</span>(x)  
                           <span class="co"># return the results as a list</span>
-                         <span class="kw">list</span>(<span class="dt">avg =</span> avg, <span class="dt">sd =</span> sd, <span class="dt">z =</span> z)
+                         <span class="kw">list</span>(<span class="dt">Avg =</span> avg, <span class="dt">Sd =</span> sd)
                       }
         )
 
 <span class="kw">unlist</span>(ans1[[<span class="dv">2</span>]])  <span class="co"># results for the second column  </span></code></pre></div>
-<pre><code>##        avg         sd       z.r1       z.r2 
-##  7.5000000  0.7071068 -0.7071068  0.7071068</code></pre>
+<pre><code>##       Avg        Sd 
+## 7.5000000 0.7071068</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unlist</span>(ans1[[<span class="dv">3</span>]])  <span class="co"># results for the third column  </span></code></pre></div>
-<pre><code>##        avg         sd       z.r1       z.r2 
-##  5.5000000  0.7071068 -0.7071068  0.7071068</code></pre>
+<pre><code>##       Avg        Sd 
+## 5.5000000 0.7071068</code></pre>
 <p>Arrays are a generalization of matrices and can be more than 2 dimension.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">array</span>(<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">18</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>))  <span class="co"># dimention 2 by 2 by 3</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">array</span>(<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">18</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>))  <span class="co"># dimension 2 by 2 by 3</span></code></pre></div>
 <pre><code>## , , 1
 ## 
 ##      [,1] [,2] [,3]
@@ -585,7 +584,7 @@ mat1[<span class="dv">1</span>,, drop =<span class="st"> </span><span class="ot"
 </div>
 <div id="data-frame" class="section level3">
 <h3><span class="header-section-number">2.2.4</span> Data Frame</h3>
-<p>A data frame is similar to a matrix, but it accepts multiple types (modes) of variables across columns (e.g., a dataset in a typical data analysis programs like SAS, SPSS, Stata etc.). In some cases matrices and data frames can be treated interchangeably. Generally, data manipulation functions are written for data frames, while base R functions are written for matrices.</p>
+<p>A data frame is similar to a matrix, but it accepts multiple types (modes) of variables across columns (e.g., a dataset in typical data analysis programs like SAS, SPSS, Stata etc.). In some cases matrices and data frames may be treated interchangeably, but generally they need to be distinguished. Data manipulation functions are often written for data frames, while some base R functions are written for matrices.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mymat1 &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">3</span>, 
        <span class="dt">dimnames =</span> <span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;r1&quot;</span>,<span class="st">&quot;r2&quot;</span>), <span class="kw">c</span>(<span class="st">&quot;c1&quot;</span>,<span class="st">&quot;c2&quot;</span>,<span class="st">&quot;c3&quot;</span>))) 
 mymat1</code></pre></div>
@@ -615,13 +614,13 @@ mydf1</code></pre></div>
 <pre><code>## [1] &quot;c1&quot;   &quot;c2&quot;   &quot;c3&quot;   &quot;num&quot;  &quot;fac1&quot; &quot;logi&quot; &quot;fac2&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(mydf1)   <span class="co"># colnames and names are the same </span></code></pre></div>
 <pre><code>## [1] &quot;c1&quot;   &quot;c2&quot;   &quot;c3&quot;   &quot;num&quot;  &quot;fac1&quot; &quot;logi&quot; &quot;fac2&quot;</code></pre>
-<p>Subsetting a data frame is similar to subsetting a matrix, but there are a few additional methods.</p>
+<p>Extracting elements from a data frame is similar to extracting from a matrix, but there are a few additional methods.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf1[<span class="dv">1</span>,]   <span class="co"># row = 1 and all columns </span></code></pre></div>
 <pre><code>##    c1 c2 c3 num fac1 logi fac2
 ## r1  1  3  5   1    a TRUE    1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mydf1[,<span class="dv">1</span>]   <span class="co"># all rows and col = 1</span></code></pre></div>
 <pre><code>## [1] 1 2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># data frame preserves dimension while subsetting a row but not a column</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># data frame preserves dimension while extracting a row but not a column</span>
 <span class="kw">dim</span>(mydf1[<span class="dv">1</span>,])  </code></pre></div>
 <pre><code>## [1] 1 7</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">dim</span>(mydf1[,<span class="dv">1</span>])  </code></pre></div>
@@ -695,7 +694,7 @@ idx_num</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(mydf1[,idx_num], mean)</code></pre></div>
 <pre><code>##      c1      c2      c3     num  newvar newvar2 
 ##     1.5     3.5     5.5     1.5     4.0     9.0</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># unlike apply(), lapply() does not use a margin (dimension) argument </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lapply() </span>
 idx_num2 &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">lapply</span>(mydf1, is.numeric)) 
 idx_num2</code></pre></div>
 <pre><code>##      c1      c2      c3     num    fac1    logi    fac2  newvar newvar2 
@@ -728,7 +727,7 @@ mylist1 </code></pre></div>
 ## 1  1  p
 ## 2  2  q
 ## 3  3  r</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># subsetting</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># extraction</span>
 mylist1[[<span class="dv">1</span>]]             </code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mylist1[[<span class="st">&quot;v2&quot;</span>]]             </code></pre></div>

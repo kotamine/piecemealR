@@ -146,17 +146,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4.5" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>2.4.5</b> Updating</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-good-to-knows.html"><a href="3-good-to-knows.html"><i class="fa fa-check"></i><b>3</b> Good-to-Knows</a></li>
-<li class="chapter" data-level="4" data-path="4-piecemeal-top.html"><a href="4-piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
-<li class="chapter" data-level="4.1" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="3" data-path="3-piecemeal-top.html"><a href="3-piecemeal-top.html"><i class="fa fa-check"></i><b>3</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html"><i class="fa fa-check"></i><b>3.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="4-2-next.html"><a href="4-2-next.html"><i class="fa fa-check"></i><b>4.2</b> Upcoming topics</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-next.html"><a href="3-2-next.html"><i class="fa fa-check"></i><b>3.2</b> Upcoming topics</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="4" data-path="4-resources.html"><a href="4-resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
@@ -180,9 +179,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="reflections" class="section level2">
 <h2><span class="header-section-number">1.4</span> Reflections</h2>
-<p>The differences in air time across carriers that we found above are relatively small (e.g. less than 5 minutes). While there may be cumulative impacts of slightly longer air times throughout the day, it is not clear how that would relate to the delay patterns.</p>
-<p>In fact, the concept of “delay” is complicated because it is defined in reference to the scheduled departure and arrival times, which may differ by carrier. A delay would not include the time sitting in the airplane before taking off or after landing as long as it is within the schedule. It might be more interesting to compare scheduled flight durations instead of delays or air time. (Such an analysis would involve somewhat complicated manipulations of date and time with our flight data.)</p>
-<p>This leads us to a final point of this exercise: an interesting data analysis requires <strong>detailed knowledge on the reality, interconnections, and processes that generated the data</strong> and <strong>the ability to ask interesting questions</strong>. An easy-to-access language for data analysis, as is the case with <code>deplyr</code> and <code>ggplot2</code> packages in R, can be a great asset, but the ultimate power of data analysis will always rest on your knowledge and creativity.</p>
+<p>In this introduction, we have reviewed the tools of <code>deplyr</code> and <code>ggplot2</code> packages as a starting point for data analyses and visualization in R. This new generation of tools is a data exploration language as much as a set of functions to shortcut traditional data manipulation methods in R. This language provides a very intuitive system of translating our inquiries to the data analysis in R.</p>
+<p>Using the flight dataset, we have also investigated flight delay patterns. We find that airport congestion is unlikely a major cause of delay in New York City. There are small differences in the air time (e.g. less than 5 minutes) across carriers for a given destination although it remains unclear how this relates to the delay patterns.</p>
+<p>In fact, the concept of “delay” is complicated because it is defined in reference to the scheduled departure and arrival times, which may differ by carrier. A delay would not include the time sitting in the airplane before taking off or after landing as long as it is within the schedule. It might be more interesting to compare scheduled flight duration instead of delays or air time. (Such an analysis would involve somewhat complicated manipulations of date and time with our flight data.)</p>
+<p>This leads us to the final point of this exercise; an interesting data analysis requires <strong>knowledge on the real-world process that generated the data</strong> and <strong>the ability to ask interesting questions</strong>. <code>deplyr</code> and <code>ggplot2</code> packages can let you employ a variety of data analytics tools with ease, but the ultimate power of the analysis will always rest on your knowledge and creativity.</p>
 
 </div>
 <!-- </div> -->

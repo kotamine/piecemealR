@@ -1,7 +1,7 @@
 --- 
 # title: "Piecemeal R"
 # subtitle: "Fast-track Introduction to Data Exploration with R and Piecemeal Topics"
-date: "Last updated: 2017-04-05"
+date: "Last updated: 2017-04-06"
 output: bookdown::gitbook
 documentclass: book
 # bibliography: [book.bib, packages.bib]
@@ -15,12 +15,14 @@ documentclass: book
 
 # Essentials {#essentials}
 
-2017-04-05: <span style="color:red">*VERY Preliminary!*</span>
+2017-04-06: <span style="color:red">*VERY Preliminary!*</span>
+
+This section provides an overview of the essential concepts for manipulating data and programming in R. 
 
 
 ## Cheatsheets 
 
-Cheatsheets can be useful to glance at various functions.    
+Cheatsheets are useful for glancing at various functions.    
 
 * [Base R](http://github.com/rstudio/cheatsheets/raw/master/source/pdfs/base-r.pdf)
 
@@ -129,31 +131,6 @@ factor3
 ```
 
 ```r
-# Extract the first element of factor1 as factor1[1] etc.
-str(factor1[1])
-```
-
-```
-##  Factor w/ 3 levels "1","2","3": 1
-```
-
-```r
-str(factor2[1])
-```
-
-```
-##  Factor w/ 3 levels "a","b","c": 1
-```
-
-```r
-str(factor3[1])
-```
-
-```
-##  Factor w/ 2 levels "FALSE","TRUE": 2
-```
-
-```r
 c(is.factor(factor1[1]), is.factor(factor2[1]), is.factor(factor3[1]))
 ```
 
@@ -161,7 +138,35 @@ c(is.factor(factor1[1]), is.factor(factor2[1]), is.factor(factor3[1]))
 ## [1] TRUE TRUE TRUE
 ```
 
-There are length-zero objects for numeric, logical, and character types. 
+```r
+# Extract the first element (factor1[1] etc.) 
+factor1[1]
+```
+
+```
+## [1] 1
+## Levels: 1 2 3
+```
+
+```r
+factor2[2]
+```
+
+```
+## [1] b
+## Levels: a b c
+```
+
+```r
+factor3[3]
+```
+
+```
+## [1] TRUE
+## Levels: FALSE TRUE
+```
+
+`NULL` has zero-length. Also, empty numeric, logical, and character objects have zero-length.  
 
 ```r
 length(NULL) 
@@ -172,7 +177,7 @@ length(NULL)
 ```
 
 ```r
-length(numeric(0))
+length(numeric(0))  # numeric(N) returns a vector of N zeros 
 ```
 
 ```
@@ -180,7 +185,7 @@ length(numeric(0))
 ```
 
 ```r
-length(logical(0))
+length(logical(0))  # logical(N) returns a vector of N FALSE objects
 ```
 
 ```
@@ -188,24 +193,16 @@ length(logical(0))
 ```
 
 ```r
-length(character(0))
+length(character(0)) # character(N) returns a vector of N "" objects
 ```
 
 ```
 ## [1] 0
-```
-
-```r
-length(factor(0)) # has length 1
-```
-
-```
-## [1] 1
 ```
 
 Each **vector** has a type of `numeric`, `logical`, `character`, or `factor`.
 Each **matrix** has a type of `numeric`, `logical`, or `character`.
-A **data frame** can contain mixed types in columns; each column (e.g., a variable) has a type of `numeric`, `logical`, `character` or `factor`. 
+A **data frame** can contain mixed types across columns where each column (e.g., a variable) has a type of `numeric`, `logical`, `character` or `factor`. 
 
 
 ```r
@@ -247,7 +244,7 @@ vector4
 
 
 ```r
-matrix1 <- matrix(c(1:6), nrow = 3) # read as character
+matrix1 <- matrix(c(1:6), nrow = 3) # read as numeric
 matrix1
 ```
 
@@ -337,7 +334,7 @@ df1$fac2  # mixed types within a column is converted into a factor
 # additional argument "stringsAsFactors = FALSE" preserves character types.
 df2 <- data.frame(
         num  = c(1,2,3),           # read as numeric
-        char = c("a","b","abc"),   # read as factor
+        char = c("a","b","abc"),   # read as character
         logi = c(TRUE, FALSE, T),  # read as logical
         fac2  = as.factor(c(1,"a",TRUE)),      # read as factor
         stringsAsFactors = FALSE
@@ -388,7 +385,7 @@ df2$fac2
 ### Factor
 
 A factor object is defined with a set of categorical levels, which may be labeled. The levels are either  **ordered** (defined by `ordered()`) or **unordered** (defined by `factor()`). 
-If ordered, factor objects are treated in the specific order under certain statistical analyses and graphical procedures.    
+Ordered factor objects are treated in the specific order by certain statistical and graphical procedures.    
 
 
 ```r
@@ -470,7 +467,7 @@ summary(df$fac3)
 
 ### Matrix
 
-`matrix()` defines a matrix from a vector. The default is to arrange the vector by column (`byrow = FALSE` option).  
+`matrix()` defines a matrix from a vector. The default is to arrange the vector by column (`byrow = FALSE`).  
 
 
 ```r
@@ -509,7 +506,7 @@ mat1
 ```
 
 ```r
-dim(mat1)  # dimention: row by column
+dim(mat1)  # dimension: row by column
 ```
 
 ```
@@ -565,7 +562,7 @@ matrix(data = c(1:6), ncol = 3)
 ```
 
 ```r
-# combine matrix by column via "cbind()" or by row via "rbind()"
+# combine matrices by column via "cbind()" or by row via "rbind()"
 cbind(mat1,mat1)
 ```
 
@@ -852,7 +849,7 @@ length(mat1[,1,drop = FALSE])
 ## [1] 2
 ```
 
-Another way to subset is to use row or column names.
+Another way of extraction from a matrix is to use row or column names.
 
 ```r
 mat1[,'v1']
@@ -896,7 +893,7 @@ mat1
 ```
 
 ```r
-apply(mat1,1,mean)  # dimention 1 (across rows)
+apply(mat1,1,mean)  # dimension 1 (across rows)
 ```
 
 ```
@@ -905,7 +902,7 @@ apply(mat1,1,mean)  # dimention 1 (across rows)
 ```
 
 ```r
-apply(mat1,2,mean)  # dimention 2 (across columns)
+apply(mat1,2,mean)  # dimension 2 (across columns)
 ```
 
 ```
@@ -928,9 +925,8 @@ apply(mat1,2, function(x) sum(x)/length(x) )  # x is the internal vector name
 ans1 <- apply(mat1,2, function(x) {   
                          avg = mean(x)
                          sd = sd(x)
-                         z = (x - mean(x))/sd(x)  
                           # return the results as a list
-                         list(avg = avg, sd = sd, z = z)
+                         list(Avg = avg, Sd = sd)
                       }
         )
 
@@ -938,8 +934,8 @@ unlist(ans1[[2]])  # results for the second column
 ```
 
 ```
-##        avg         sd       z.r1       z.r2 
-##  7.5000000  0.7071068 -0.7071068  0.7071068
+##       Avg        Sd 
+## 7.5000000 0.7071068
 ```
 
 ```r
@@ -947,15 +943,15 @@ unlist(ans1[[3]])  # results for the third column
 ```
 
 ```
-##        avg         sd       z.r1       z.r2 
-##  5.5000000  0.7071068 -0.7071068  0.7071068
+##       Avg        Sd 
+## 5.5000000 0.7071068
 ```
 
 
 Arrays are a generalization of matrices and can be more than 2 dimension. 
 
 ```r
-array(c(1:18), c(2,3,3))  # dimention 2 by 2 by 3
+array(c(1:18), c(2,3,3))  # dimension 2 by 2 by 3
 ```
 
 ```
@@ -1003,7 +999,7 @@ array(c(1:9), c(2,3,3))  # R recycles the vector
 ```
 
 ### Data Frame
-A data frame is similar to a matrix, but it accepts multiple types (modes) of variables across columns (e.g., a dataset in a typical data analysis programs like SAS, SPSS, Stata etc.). In some cases matrices and data frames can be treated interchangeably. Generally, data manipulation functions are written for data frames, while base R functions are written for matrices.    
+A data frame is similar to a matrix, but it accepts multiple types (modes) of variables across columns (e.g., a dataset in typical data analysis programs like SAS, SPSS, Stata etc.). In some cases matrices and data frames may be treated interchangeably, but generally they need to be distinguished. Data manipulation functions are often written for data frames, while some base R functions are written for matrices.    
 
 
 ```r
@@ -1083,7 +1079,7 @@ names(mydf1)   # colnames and names are the same
 ## [1] "c1"   "c2"   "c3"   "num"  "fac1" "logi" "fac2"
 ```
 
-Subsetting a data frame is similar to subsetting a matrix, but there are a few additional methods.
+Extracting elements from a data frame is similar to extracting from a matrix, but there are a few additional methods.
 
 ```r
 mydf1[1,]   # row = 1 and all columns 
@@ -1103,7 +1099,7 @@ mydf1[,1]   # all rows and col = 1
 ```
 
 ```r
-# data frame preserves dimension while subsetting a row but not a column
+# data frame preserves dimension while extracting a row but not a column
 dim(mydf1[1,])  
 ```
 
@@ -1299,7 +1295,7 @@ sapply(mydf1[,idx_num], mean)
 ```
 
 ```r
-# unlike apply(), lapply() does not use a margin (dimension) argument 
+# lapply() 
 idx_num2 <- unlist(lapply(mydf1, is.numeric)) 
 idx_num2
 ```
@@ -1351,7 +1347,7 @@ mylist1
 ```
 
 ```r
-# subsetting
+# extraction
 mylist1[[1]]             
 ```
 
@@ -1545,7 +1541,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-04-05 12:47:30 CDT"
+## [1] "2017-04-06 11:04:04 CDT"
 ```
 
 ```r
@@ -1562,7 +1558,7 @@ if (hour > 8 & hour < 12) {
 ```
 
 ```
-## [1] "afternoon"
+## [1] "morning"
 ```
 
 ### Loop
@@ -1610,7 +1606,7 @@ while (i < 5) {
 
 We can avoid repeating ourselves with writing similar lines of codes if we turn them into a function. Functions contain a series of tasks that can be applied to varying objects such as different vectors, matrices, characters, data frames, lists, and functions.
 
-A function consists of input arguments, tasks (R expressions), and output as an object (e.g. a vector, matrix, character, data frame, list, or function etc.). It can be named or remain anonymous (typically defined and used inside a function like `lapply()`). 
+A function consists of input arguments, tasks (R expressions), and output as an object (e.g. a vector, matrix, character, data frame, list, or function etc.). It can be named or remain anonymous (typically used inside a function like `lapply()`). 
 
 
 ```r
@@ -1675,9 +1671,17 @@ myfun4(4, 3)
 
 ### Environment
 
-A function, formally known as a *closure*, consists of its arguments (called *formals*), body, and *environment*. An *environment*  is a collection of existing objects when the function is created. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
+A function, formally known as a *closure*, consists of its arguments (called *formals*), a body, and an *environment*. An *environment*  is a collection of existing objects at the time when the function is created. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
 
 
+
+```r
+environment()  # .GlobalEnv  (or R_GlobalEnv) is the top-level environment 
+```
+
+```
+## <environment: R_GlobalEnv>
+```
 
 ```r
 f1 <- function(arg1) environment()  
@@ -1697,7 +1701,7 @@ body(f1)     # body of f1()
 ```
 
 ```r
-environment(f1)  # environment of f1() is .GlobalEnv 
+environment(f1)  # environment of f1(), which is .GlobalEnv 
 ```
 
 ```
@@ -1709,10 +1713,10 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7feb330ff548>
+## <environment: 0x7fe02288f4d0>
 ```
 
-A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and cannot overwrite those global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the functions of their creation. 
+A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
 
 
 ```r
@@ -1730,7 +1734,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7feb31b30bc8>
+## <environment: 0x7fe023ace260>
 ```
 
 ```r
@@ -1742,7 +1746,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7feb32d86298>
+## <environment: 0x7fe02502bc30>
 ```
 
 ```r
@@ -1778,7 +1782,7 @@ ls()  # all gone in GlobalEnv
 ## character(0)
 ```
 
-Using  global assignment `<<-` operator,  one can bend this general rule. This can be useful when it is desirable to make certain objects accessible across multiple functions without explicitly passing them through arguments.  
+Using  global assignment `<<-` operator,  one can bend this general rule of not affecting global objects. This can be useful when it is desirable to make certain objects accessible across multiple functions without explicitly passing them through arguments.  
 
 
 ```r
@@ -1812,7 +1816,6 @@ f2 <- function() {
         # in a parent environment, or .GlobalEnv  
         print(a) 
         
-        # function defined inside f2 
         # g() assigns a number to "a" in g()'s environment 
         g <- function() a <<- 5
         

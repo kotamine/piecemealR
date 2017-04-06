@@ -1,4 +1,6 @@
-
+---
+always_allow_html: yes
+---
 
 `r if (knitr:::is_html_output()) '# References {-}'`
 

@@ -146,17 +146,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4.5" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>2.4.5</b> Updating</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-good-to-knows.html"><a href="3-good-to-knows.html"><i class="fa fa-check"></i><b>3</b> Good-to-Knows</a></li>
-<li class="chapter" data-level="4" data-path="4-piecemeal-top.html"><a href="4-piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
-<li class="chapter" data-level="4.1" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="3" data-path="3-piecemeal-top.html"><a href="3-piecemeal-top.html"><i class="fa fa-check"></i><b>3</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html"><i class="fa fa-check"></i><b>3.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="4-2-next.html"><a href="4-2-next.html"><i class="fa fa-check"></i><b>4.2</b> Upcoming topics</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-next.html"><a href="3-2-next.html"><i class="fa fa-check"></i><b>3.2</b> Upcoming topics</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="4" data-path="4-resources.html"><a href="4-resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
@@ -180,11 +179,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="materials" class="section level2">
 <h2><span class="header-section-number">1.1</span> Materials</h2>
-<p>R becomes more capable with each addition of user-contributed R package, or a bundle of user-developed programs. Recent developments such as <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">tidy</a>, <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html">dplyr</a>, and <a href="http://docs.ggplot2.org/current/">ggplot2</a> have streamlined much of coding for data manipulation and analysis, and this can be a good place to start learning R. With this new syntax system, you will learn the components of data wrangling and visualization as <em>your data operation language</em>. Like any language, its grammar and framework provide a particular way of understanding the world. In this case, it will influence your thinking about data.</p>
-<p>Let’s start with a sample dataset of airplane departures and arrivals. The dataset contains information on about 337,000 flights departed from New York City in 2013 (source: <a href="https://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&amp;Link=0">Bureau of Transportation Statistics</a>). We load a built-in data frame by command <code>library(nycflights13)</code> where <code>library(package_name)</code> loads a R package named <code>package_name</code> in the current R session, or the computing environment. In the R console (the left bottom pane in RStudio), type <code>install.packages(&quot;nycflights13&quot;)</code> and hit enter.</p>
-<p>Generally, R packages are installed to a local computer as an as-needed basis. To install several more packages that we will use, copy the following code and execute it in your R console.</p>
+<p>The power of R grows with each addition of user-contributed R packages, or a bundle of user-developed programs. Recent developments such as <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">tidy</a>, <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html">dplyr</a>, and <a href="http://docs.ggplot2.org/current/">ggplot2</a> have greatly streamlined the coding for data manipulation and analysis, which is the starting point for learning R that is chosen for this site. With this new syntax system, you will learn the basic operations of data wrangling and visualization in a very intuitive <em>data operation language</em>. Like any language, its grammar and framework provide a particular way of understanding the world. In this case, it will influence your thinking about data.</p>
+<p>Following the documentation of <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html">dplyr</a>, let’s start with a sample dataset of airplane departures and arrivals. The dataset contains information on about 337,000 flights departed from New York City in 2013 (source: <a href="https://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&amp;Link=0">Bureau of Transportation Statistics</a>). We load a built-in data frame by command <code>library(nycflights13)</code> where <code>library(package_name)</code> loads an R package named <code>package_name</code> in the current R <em>session</em>, or the computing environment. In the R console (i.e., the left bottom pane in RStudio), type <code>install.packages(&quot;nycflights13&quot;)</code> and hit enter.</p>
+<p>Generally, R packages are installed in the local computer as an as-needed basis. To install several more packages that we will use, copy the following code and execute it in your R console.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Don&#39;t worry about understanding the code here</span>
-<span class="co"># `#` symbole is used to insert comments that are helpful to humans but are ignored by R </span>
+<span class="co"># &quot;#&quot;&quot; symbole is used to insert comments that are helpful to humans but are ignored by R </span>
 
 required_pkgs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;nycflights13&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;broom&quot;</span>)   
   <span class="co">#  creating a new object &quot;required_pkgs&quot; containing strings &quot;nycflights13&quot;, &quot;dplyr&quot;,..</span>
@@ -193,14 +192,14 @@ required_pkgs &lt;-<span class="st"> </span><span class="kw">c</span>(<span clas
 
 new_pkgs &lt;-<span class="st"> </span>required_pkgs[!(required_pkgs  %in%<span class="st"> </span><span class="kw">installed.packages</span>())] 
   <span class="co"># checking whether &quot;required_pkgs&quot; are already installed </span>
-  <span class="co"># required_pkgs[ ] here is an extraction by logical TRUE or FALSE</span>
+  <span class="co"># &quot;[]&quot; of required_pkgs[ ] is extraction by logical TRUE or FALSE</span>
   <span class="co"># &quot;%in%&quot; checks whether items on the left are members of the items on the right.</span>
   <span class="co"># ! is a negation </span>
 
 if (<span class="kw">length</span>(new_pkgs)) {
   <span class="kw">install.packages</span>(new_pkgs, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com&quot;</span>)
-}   <span class="co"># &quot;repos =&quot; specifies the repository from which you download packages.</span></code></pre></div>
-<p>Each time we start a new session in R, we load libraries. In this session, we load the following;</p>
+}   </code></pre></div>
+<p>In each R session, we load libraries. Here we load the following;</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressWarnings</span>({
   <span class="kw">suppressMessages</span>({
     <span class="kw">library</span>(dplyr)  <span class="co"># for data manipulation </span>
@@ -214,7 +213,7 @@ if (<span class="kw">length</span>(new_pkgs)) {
 })</code></pre></div>
 <p>Let’s see the data.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(flights) <span class="co"># shows the class attribute</span>
-<span class="kw">dim</span>(flights)   <span class="co"># obtains dimention rows by columns </span></code></pre></div>
+<span class="kw">dim</span>(flights)   <span class="co"># obtains dimention of rows and columns </span></code></pre></div>
 <pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
 ## [1] 336776     19</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights)  <span class="co"># displays first seveal rows and columns </span></code></pre></div>
@@ -231,8 +230,8 @@ if (<span class="kw">length</span>(new_pkgs)) {
 ## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
 ## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
 ## #   time_hour &lt;dttm&gt;</code></pre>
-<p><code>dim()</code> command returns the dimension (rows and columns) of <code>flights</code> data frame, and <code>head()</code> command returns the first several rows and columns of the data frame. The dataset contains information on dates, actual departure and arrival times, scheduled departures and arrivals, carriers, origins, destinations, travel times, and distances. These variables are arranged in columns, and each row is a observation, or a flight.</p>
-<p>In R, we refer to a dataset as <strong>data frame</strong>, which is a <em>class</em> of R object. The <strong>data frame</strong> class is more general than the <strong>matrix</strong> class in that it can contain variables of more than one mode (numeric, character, factor etc). In case you cannot wait to know more about data types, here is a <a href="http://www.statmethods.net/input/datatypes.html">summary</a>.</p>
+<p><code>dim()</code> command returns the dimension of a data frame, and <code>head()</code> command returns the first several rows and columns. The <code>flights</code> dataset contains information on dates, actual departure and arrival times, scheduled departure and arrival times, carriers, origins, destinations, travel times, and distances. These variables are arranged in columns, and each row is an observation of flight.</p>
+<p>In R, we refer to a dataset as <strong>data frame</strong>, which is a <em>class</em> of R object. The <strong>data frame</strong> class is more general than the <strong>matrix</strong> class in that it can contain variables of more than one mode (numeric, character, factor etc). In case you want an overview of data types right away, here is a <a href="http://www.statmethods.net/input/datatypes.html">summary</a>.</p>
 </div>
             </section>
 

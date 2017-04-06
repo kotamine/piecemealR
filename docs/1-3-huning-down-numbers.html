@@ -146,17 +146,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.4.5" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>2.4.5</b> Updating</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="3-good-to-knows.html"><a href="3-good-to-knows.html"><i class="fa fa-check"></i><b>3</b> Good-to-Knows</a></li>
-<li class="chapter" data-level="4" data-path="4-piecemeal-top.html"><a href="4-piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
-<li class="chapter" data-level="4.1" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
-<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="3" data-path="3-piecemeal-top.html"><a href="3-piecemeal-top.html"><i class="fa fa-check"></i><b>3</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html"><i class="fa fa-check"></i><b>3.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="4-2-next.html"><a href="4-2-next.html"><i class="fa fa-check"></i><b>4.2</b> Upcoming topics</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-next.html"><a href="3-2-next.html"><i class="fa fa-check"></i><b>3.2</b> Upcoming topics</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="4" data-path="4-resources.html"><a href="4-resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
@@ -180,7 +179,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="huning-down-numbers" class="section level2">
 <h2><span class="header-section-number">1.3</span> Huning down numbers</h2>
-<p>If not the congestion at airports, what else can explain the delays? Are the airlines partly responsible? Previously, we observe that some airlines have longer delays than others for NYC-MSP flights. Let’s take a look at the overall average delays by carrier.</p>
+<p>This section is optional but contains more examples of <code>dplyr</code> and <code>ggplot2</code> functions.</p>
+<p>Previously, we find that the congestion at the airports is unlikely the cause of delays. Then, what else may explain the patterns of delays? Are the airlines partly responsible? Recall that earlier we observe that some airlines have longer delays than others for NYC-MSP flights. Let’s take a look at the overall average delays by carrier.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stat_carrier &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(carrier) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_obs =</span> <span class="kw">n</span>(),
@@ -316,39 +316,41 @@ stat_carrier %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span 
 </tr>
 </tbody>
 </table>
-<p>There may be some differences across carriers. However, the simple average of delays across various routes, days, and hours of flights may not be a good measure to compare carriers. For example, some carriers may serve the routes and hours that tend to have more delays. Also, given that our dataset covers only the flights from New York City, the comparison may not be nationally representative since carriers use different airports around the country as their regional hubs.</p>
-<p>For our purposes, let’s compare the average air time among carriers while accounting for flight’s destination and timing. The differences in air time are not the same as the differences in delays, but they may tell us some efficiency difference among carriers.</p>
+<p>There could be some differences across carriers. However, the simple average of delays across various routes, days, and hours of flights may not be a good measure to compare the carriers. For example, some carriers may serve the routes and hours that tend to have more delays. Also, given that our dataset covers only the flights from New York City, the comparison may not be nationally representative since carriers use different airports around the country for their regional hubs.</p>
+<p>For our purposes, let’s compare the average air time among carriers, while accounting for flight’s destination and timing. The differences in air time are not the same as the differences in delays, but they may indicate some efficiency difference among carriers.</p>
 <p>Let’s first check how air time relates to flight distance.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span> (month ==<span class="st"> </span><span class="dv">1</span>, day ==<span class="st"> </span><span class="dv">1</span>, !<span class="kw">is.na</span>(air_time)) %&gt;%
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> distance, <span class="dt">y =</span> air_time)) +<span class="st"> </span>
 <span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>)  +<span class="st">  </span>
-<span class="st">  </span><span class="co"># alpha is useful for showing overlapping data points. </span>
 <span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
-<p><img src="01-Introduction_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
-<p><code>air_time</code> and <code>distance</code> shows a general linear relationship. We can better account for this relationship if we calculate an average air time for each flight destination from New York City.</p>
-<p>Consider a simple approach that controls for such average air time for each destination and compares the remaining variation in air time among carriers. We can do this by fitting a linear regression model with fixed destination-fixed effects and comparing the residuals.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># TRUE/FALSE vector showing whther air_time is not NA. </span>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><code>air_time</code> and <code>distance</code> shows a general linear relationship. We can better account for this relationship if we calculate the average air time for each flight destination from New York City.</p>
+<p>First, we will consider a simple approach to control for such average air time for each destination and compare the variation in air time among carriers. We can do this by fitting a linear regression model with fixed destination effects and comparing the residuals. This resembles the ANOVA for comparing the mean air times among carriers, but the fixed destination effects here difference out the average air time for each destination from the total variation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a copy of flights data</span>
+flights2 &lt;-<span class="st"> </span>flights
+
+<span class="co"># TRUE/FALSE vector showing whther air_time is not NA. </span>
 idx0 &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span><span class="kw">with</span>(!<span class="kw">is.na</span>(air_time))  
 
-flights$res &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># prepare a column of residuals that will be defined below </span>
+flights2$res &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># prepare a column of residuals to be defined below </span>
 
-flights$res[idx0] &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+flights2$res[idx0] &lt;-<span class="st"> </span>flights2 %&gt;%<span class="st">  </span><span class="co"># replace rows with idx0 = TRUE</span>
 <span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(air_time)) %&gt;%<span class="st"> </span>
-<span class="st"> </span><span class="kw">with</span>( 
+<span class="st">  </span><span class="kw">with</span>( 
    <span class="kw">lm</span>( air_time ~<span class="st"> </span><span class="kw">as.factor</span>(dest))  
         <span class="co"># lm() estimates a linear model. </span>
         <span class="co"># &quot;y ~ x&quot;&quot; is the formula for regressing y on x. </span>
         <span class="co"># as.factor() converts &quot;dest&quot; to a factor (categorical) class</span>
-        <span class="co"># used as a set of dummy variables in the regression.  </span>
+        <span class="co"># which is used as a set of dummy variables in the regression.  </span>
    ) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">residuals</span>()  <span class="co"># obtains residuals of the lm() object </span>
 
-stat_res &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+stat_res &lt;-<span class="st"> </span>flights2 %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(carrier) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(
-    <span class="dt">mean_res =</span> <span class="kw">mean</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+    <span class="dt">mean_res =</span> <span class="kw">mean</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="co"># mean residual by carrier </span>
     <span class="dt">sd_res =</span> <span class="kw">sd</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
     ) 
 
@@ -512,10 +514,10 @@ stat_res &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
 </tr>
 </tbody>
 </table>
-<p>The differences in air time across carriers greatly differ from the averages delays we calculated previously. These differences are also small, compared to their standard deviations.</p>
-<p>To get a sense of whether these differences have any statistical significance, let’s use t-test to compare the mean residual between the United Airlines and the American Airlines.</p>
+<p>The differences in air time across carriers (“mean_res”) somewhat differ from the patterns of differences in the simple averages of delays (“dep_delay” and “arr_delay”). The patterns are different between “dep_delay” and “arr_delay” for that matter.</p>
+<p>To some extent, it appears to make sense that the average air time is longer for low-cost carriers such as Virgin America, Frontier Airlines, and Hawaiian Airlines. The differences across other carriers, on the other hand, are small, compared to the standard deviations. To get a sense of whether these differences have any statistical significance, let’s use t-test to compare the mean residual between United Airlines and American Airlines.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t-test comparing UA vs AA for the mean air time </span>
-flights %&gt;%
+flights2 %&gt;%
 <span class="st">  </span><span class="kw">with</span>({
     idx_UA &lt;-<span class="st"> </span>carrier ==<span class="st"> &quot;UA&quot;</span>
     idx_AA &lt;-<span class="st"> </span>carrier ==<span class="st"> &quot;AA&quot;</span>
@@ -532,23 +534,17 @@ flights %&gt;%
 ## sample estimates:
 ##  mean of x  mean of y 
 ## -0.8689523  0.6791852</code></pre>
-<p>With a large number of observations, even a seemingly-small difference in the means tend to be statistically significant.</p>
-<p>We can do this sort of pair-wise comparisons all at once using a regression. For this, we use carrier fixed effects in addition to destination fixed effects and directly compare the carrier fixed effects. We will set the United Airlines to be a reference of carrier fixed effects, so that the fixed effect for the United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights$carrier %&gt;%<span class="st"> </span><span class="kw">table</span>()</code></pre></div>
-<pre><code>## .
-##    9E    AA    AS    B6    DL    EV    F9    FL    HA    MQ    OO    UA 
-## 18460 32729   714 54635 48110 54173   685  3260   342 26397    32 58665 
-##    US    VX    WN    YV 
-## 20536  5162 12275   601</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights$carrier &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(flights$carrier), <span class="dt">ref=</span><span class="st">&quot;UA&quot;</span>)  
-  <span class="co"># reference level at the United Airlines</span>
-flights$carrier %&gt;%<span class="st"> </span><span class="kw">table</span>()</code></pre></div>
+<p>With a large number of observations, a seemingly-small difference in the means often turn out to be a statistically significant difference. Nonetheless, statistical significance is not sufficient for being an empirically significant difference that matters in the real world. The average difference of about 1.5 minute air time per flight appears very small.</p>
+<p>In fact, we can do this sort of pair-wise comparisons all at once using a regression. Using carrier fixed effects in addition to destination fixed effects, we can directly compare the mean effects across carriers. We will set United Airlines to be a reference of the carrier fixed effects, so that the fixed effect for United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2$carrier &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(flights2$carrier), <span class="dt">ref=</span><span class="st">&quot;UA&quot;</span>)  
+<span class="co"># reference level is United Airlines</span>
+flights2$carrier %&gt;%<span class="st"> </span><span class="kw">table</span>()</code></pre></div>
 <pre><code>## .
 ##    UA    9E    AA    AS    B6    DL    EV    F9    FL    HA    MQ    OO 
 ## 58665 18460 32729   714 54635 48110 54173   685  3260   342 26397    32 
 ##    US    VX    WN    YV 
 ## 20536  5162 12275   601</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">with</span>({
     n_carrier &lt;-<span class="st"> </span><span class="kw">unique</span>(carrier) %&gt;%<span class="st"> </span><span class="kw">length</span>()
     n_dest &lt;-<span class="st"> </span><span class="kw">unique</span>(dest) %&gt;%<span class="st"> </span><span class="kw">length</span>() 
@@ -556,14 +552,12 @@ flights$carrier %&gt;%<span class="st"> </span><span class="kw">table</span>()</
                 n_dest,<span class="st">&#39;distinct destinations in the data.&#39;</span> ))
   })</code></pre></div>
 <pre><code>## [1] &quot;There are 16 distinct carriers and 105 distinct destinations in the data.&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span>flights %&gt;%
+<p>With 16 carriers and 105 destinations minus 2 reference levels for carriers and destinations, the total of 119 coefficients will be estimated for the fixed effects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span>flights2 %&gt;%
 <span class="st"> </span><span class="kw">with</span>(
    <span class="kw">lm</span>( air_time  ~<span class="st">  </span><span class="kw">as.factor</span>(carrier) +<span class="st"> </span><span class="kw">as.factor</span>(dest) )  
     <span class="co"># fixed effects for carriers and destinations</span>
  )
-
-<span class="co"># 119 coefficients are estimated in f1 for the fixed effects for </span>
-<span class="co">#  16 carriers + 105 destinations - 2 (reference carrier and destination)</span>
 
 <span class="kw">tidy</span>(f1)[<span class="dv">1</span>:<span class="dv">20</span>,] <span class="co"># show the first 20 coefficients</span></code></pre></div>
 <pre><code>##                    term     estimate  std.error    statistic       p.value
@@ -587,19 +581,25 @@ flights$carrier %&gt;%<span class="st"> </span><span class="kw">table</span>()</
 ## 18   as.factor(dest)ALB -216.6188634 0.95130943 -227.7059972  0.000000e+00
 ## 19   as.factor(dest)ANC  165.1365126 4.26930687   38.6799351  0.000000e+00
 ## 20   as.factor(dest)ATL -136.1282095 0.75641976 -179.9638460  0.000000e+00</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># cleaning up the coefficient table above   </span>
-<span class="co"># keep only rows with term-column containing &quot;carrier&quot;</span>
-lm_rlt1 &lt;-<span class="st"> </span><span class="kw">tidy</span>(f1) %&gt;%<span class="st"> </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;carrier&quot;</span>,term)) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a function to clean up the coefficient table above  </span>
+clean_lm_rlt &lt;-<span class="st"> </span>function(f) {
+  <span class="co"># keep only rows for which column &quot;term&quot; contains &quot;carrier&quot;  e.g., rows 2 to 16 above</span>
+  rlt &lt;-<span class="st"> </span><span class="kw">tidy</span>(f) %&gt;%<span class="st"> </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;carrier&quot;</span>,term)) 
 
-<span class="co"># create column named carrier </span>
-lm_rlt1 &lt;-<span class="st"> </span>lm_rlt1 %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">carrier =</span> <span class="kw">gsub</span>(<span class="st">&#39;as.factor</span><span class="ch">\\</span><span class="st">(carrier</span><span class="ch">\\</span><span class="st">)&#39;</span>,<span class="st">&#39;&#39;</span>, term)) 
+  <span class="co"># create column named carrier </span>
+  rlt &lt;-<span class="st"> </span>rlt %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">carrier =</span> <span class="kw">gsub</span>(<span class="st">&#39;as.factor</span><span class="ch">\\</span><span class="st">(carrier</span><span class="ch">\\</span><span class="st">)&#39;</span>,<span class="st">&#39;&#39;</span>, term)) 
 
-<span class="co"># drop column term</span>
-lm_rlt1 &lt;-<span class="st"> </span>lm_rlt1 %&gt;%<span class="st"> </span><span class="kw">select</span>(-term)  
+  <span class="co"># drop column term</span>
+  rlt &lt;-<span class="st"> </span>rlt %&gt;%<span class="st"> </span><span class="kw">select</span>(-term)
+  
+  <span class="co"># add columns of carrier, name, and n_obs from the stat_carrier data frame</span>
+  stat_carrier %&gt;%<span class="st">  </span>
+<span class="st">    </span><span class="kw">select</span>(carrier, name, n_obs) %&gt;%
+<span class="st">    </span><span class="kw">left_join</span>(rlt, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) 
+}
 
-stat_carrier %&gt;%
-<span class="st">  </span><span class="kw">select</span>(carrier, name, n_obs) %&gt;%
-<span class="st">  </span><span class="kw">left_join</span>(lm_rlt1, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+lm_rlt1 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f1)
+lm_rlt1 %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -759,28 +759,20 @@ stat_carrier %&gt;%
 </tr>
 </tbody>
 </table>
-<p>In the table, the estimate column shows the mean difference in air time with the United, accounting for flight destination. The estimate tends to be more precise for carriers with a larger number of observations. In this estimation, we see the tendency that low-cost carriers such as the Virgin America, the Air Tran, and the Frontier Airlines, as well as the Hawaiian Airlines, tend to show particularly longer air times than the United.</p>
-<p>Now, let’s take a step further to account for flight timing. We can do this by adding fixed effects for flight dates and hours of the day.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights &lt;-<span class="st"> </span>flights %&gt;%
+<p>The “estimate” column shows the mean difference in air time with United Airlines, accounting for flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines.</p>
+<p>Next, let’s take a step further to account for flight timing as well. We can do this by adding fixed effects for flight dates and hours.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 &lt;-<span class="st"> </span>flights2 %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">date_id =</span> month*<span class="dv">100</span> +<span class="st"> </span>day )
 
-flights$date_id %&gt;%<span class="st"> </span><span class="kw">unique</span>() %&gt;%<span class="st"> </span><span class="kw">length</span>()</code></pre></div>
+flights2$date_id %&gt;%<span class="st"> </span><span class="kw">unique</span>() %&gt;%<span class="st"> </span><span class="kw">length</span>()</code></pre></div>
 <pre><code>## [1] 365</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f2 &lt;-<span class="st"> </span>flights %&gt;%
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f2 &lt;-<span class="st"> </span>flights2 %&gt;%
 <span class="st"> </span><span class="kw">with</span>(
    <span class="kw">lm</span>( air_time ~<span class="st">  </span><span class="kw">as.factor</span>(carrier) +<span class="st"> </span><span class="kw">as.factor</span>(dest) +
 <span class="st">        </span>+<span class="st"> </span><span class="kw">as.factor</span>(date_id) +<span class="st"> </span><span class="kw">as.factor</span>(hour) )
  )
 
-
-lm_rlt2 &lt;-<span class="st"> </span><span class="kw">tidy</span>(f2) %&gt;%<span class="st"> </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;carrier&quot;</span>,term)) 
-lm_rlt2 &lt;-<span class="st"> </span>lm_rlt2 %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">carrier =</span> <span class="kw">gsub</span>(<span class="st">&#39;as.factor</span><span class="ch">\\</span><span class="st">(carrier</span><span class="ch">\\</span><span class="st">)&#39;</span>,<span class="st">&#39;&#39;</span>, term)) 
-lm_rlt2 &lt;-<span class="st"> </span>lm_rlt2 %&gt;%<span class="st"> </span><span class="kw">select</span>(-term)  
-
-lm_rlt2 &lt;-<span class="st"> </span>stat_carrier %&gt;%
-<span class="st">  </span><span class="kw">select</span>(carrier, name, n_obs) %&gt;%
-<span class="st">  </span><span class="kw">left_join</span>(lm_rlt2, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) 
-
+lm_rlt2 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f2)
 lm_rlt2 %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
 <table>
 <thead>
@@ -944,37 +936,30 @@ lm_rlt2 %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_rlt2 %&gt;%<span class="st"> </span><span class="kw">filter</span>(carrier!=<span class="st">&#39;UA&#39;</span>) %&gt;%
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) +<span class="st"> </span><span class="kw">geom_col</span>() +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines&quot;</span>)</code></pre></div>
-<p><img src="01-Introduction_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
-<p>The results are very similar to the previous linear model.</p>
-<p>Before wrapping up, consider checking the robustness of our results by replacing date and hour fixed effects with date-hour fixed effects (i.e., the interaction between date and hour). We could add such fixed effects using <code>time_hour</code> variable defined above. However, that would mean adding nearly 7,000 dummy variables to our linear regression, which is computationally too intensive.</p>
-<p>To get around this issue, we approximate this estimation by pre-processing the dependent variable. Specifically, we calculate the average air time for each combination of <code>time_hour</code> and <code>dest</code> and define a new dependent variable by subtracting this average value from the original air time variable (i.e., the new variable is centered at zero-mean for each combination of <code>time_hour</code> and <code>dest</code>). Then, we estimate a linear model with carrier and destination fixed effects.</p>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>The results are similar to the previous linear mode except that this time SkyWest Airlines shows much longer air time.</p>
+<p>Before wrapping up, our final model is a check for the robustness of the above results. We would like to replace the date and hour fixed effects in the previous model with date-hour fixed effects (i.e., the interaction between date and hour). We could add such fixed effects using <code>time_hour</code> variable defined above. However, that would mean adding nearly 7,000 dummy variables to our linear regression, which is computationally too intensive.</p>
+<p>To work around this issue, we approximate this estimation by pre-processing the dependent variable. Specifically, we calculate the average air time for each combination of <code>time_hour</code> and <code>dest</code> and define a new dependent variable by subtracting this average value from the original air time variable (i.e., the new variable is centered at zero-mean for each combination of <code>time_hour</code> and <code>dest</code>). Then, we estimate a linear model with carrier and destination fixed effects.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Adding time_hour fixed effects is too computationally intensive 
 <span class="co"># f1 &lt;- flights %&gt;%</span>
 <span class="co">#  with(</span>
 <span class="co">#    lm( air_time  ~  as.factor(carrier) + as.factor(dest) + as.factor(time_hour))   </span>
 <span class="co">#  )</span>
 
-<span class="kw">unique</span>(flights$time_hour) %&gt;%<span class="st"> </span><span class="kw">length</span>()  <span class="co"># 6,936 unique time_hour </span></code></pre></div>
+<span class="kw">unique</span>(flights2$time_hour) %&gt;%<span class="st"> </span><span class="kw">length</span>()  <span class="co"># 6,936 unique time_hour </span></code></pre></div>
 <pre><code>## [1] 6936</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights &lt;-<span class="st"> </span>flights %&gt;%<span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 &lt;-<span class="st"> </span>flights2 %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">group_by</span>(dest, time_hour) %&gt;%<span class="st">   </span>
 <span class="st">  </span><span class="kw">mutate</span>(
     <span class="dt">air_time_centered =</span> air_time -<span class="st"> </span><span class="kw">mean</span>(air_time, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) 
   )
 
-f3 &lt;-<span class="st"> </span>flights %&gt;%
+f3 &lt;-<span class="st"> </span>flights2 %&gt;%
 <span class="st"> </span><span class="kw">with</span>(
    <span class="kw">lm</span>( air_time_centered  ~<span class="st">  </span><span class="kw">as.factor</span>(carrier) +<span class="st"> </span><span class="kw">as.factor</span>(dest) )
  )
   
-lm_rlt3 &lt;-<span class="st"> </span><span class="kw">tidy</span>(f3) %&gt;%<span class="st"> </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;carrier&quot;</span>,term)) 
-lm_rlt3 &lt;-<span class="st"> </span>lm_rlt3 %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">carrier =</span> <span class="kw">gsub</span>(<span class="st">&#39;as.factor</span><span class="ch">\\</span><span class="st">(carrier</span><span class="ch">\\</span><span class="st">)&#39;</span>,<span class="st">&#39;&#39;</span>, term))  
-lm_rlt3 &lt;-<span class="st"> </span>lm_rlt3 %&gt;%<span class="st"> </span><span class="kw">select</span>(-term) 
-
-lm_rlt3 &lt;-<span class="st"> </span>stat_carrier %&gt;%
-<span class="st">  </span><span class="kw">select</span>(carrier, name, n_obs) %&gt;%
-<span class="st">  </span><span class="kw">left_join</span>(lm_rlt3, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) 
-
+lm_rlt3 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f3)
 lm_rlt3 %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>) <span class="co"># Note: standard errors, t-stat, and p-val are incorrect</span></code></pre></div>
 <table>
 <thead>
@@ -1138,9 +1123,9 @@ lm_rlt3 %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span class
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_rlt3 %&gt;%<span class="st"> </span><span class="kw">filter</span>(carrier!=<span class="st">&#39;UA&#39;</span>) %&gt;%
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) +<span class="st"> </span><span class="kw">geom_col</span>() +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines: Robustness Check&quot;</span>)</code></pre></div>
-<p><img src="01-Introduction_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>The point estimates should be <em>approximately</em> close to what we would obtain if we regress <code>air_time</code> on the fixed effects of <code>carrier</code>, <code>dest</code>, and <code>time_hour</code>. However, the standard errors are not correctly displayed in the table because the centered variable has less total variation compared to the original <code>air_time</code> variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)</p>
-<p>Overall, we see again a tendency that low-cost carriers like the Sky West Airlines, the Virgin America, the Frontier Airlines, and the Air Tran show particularly longer air time than the United Airlines. The Jet Blue Airways, another low-cost carrier, shows a less obvious difference from the United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City. The Hawaiian Airlines and the Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons.</p>
+<p>Overall, we see again a tendency that low-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City. Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons.</p>
 </div>
             </section>
 
