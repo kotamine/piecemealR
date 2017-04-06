@@ -156,7 +156,7 @@ Now it is your turn. The exercise is to reproduce the above figure for the unusu
 
 We will reproduce:
 
-<img src="tidy_case_study/unusual-big.png" width="100%">
+<img src="tidy_case_study/overall.png" width="100%">
 
 Hints:
 
