@@ -7,9 +7,6 @@ site: bookdown::bookdown_site
 always_allow_html: yes
 output: 
   bookdown::gitbook: 
-    download:
-    - ["piecemealR.pdf", "PDF"]
-    - ["piecemealR.epub", "EPUB"]
   bookdown::pdf_document:
     keep_tex: yes
   bookdown::epub_book: default

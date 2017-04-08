@@ -1529,7 +1529,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-04-08 17:56:19 CDT"
+## [1] "2017-04-08 18:14:03 CDT"
 ```
 
 ```r
@@ -1546,7 +1546,7 @@ if (hour > 8 & hour < 12) {
 ```
 
 ```
-## [1] "afternoon"
+## [1] "private time"
 ```
 
 ### Loop
@@ -1701,7 +1701,7 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7f9b21a01908>
+## <environment: 0x7fbb5d93f230>
 ```
 
 A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
@@ -1722,7 +1722,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7f9b21c6eb20>
+## <environment: 0x7fbb5f1bccd0>
 ```
 
 ```r
@@ -1734,7 +1734,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7f9b22ba8298>
+## <environment: 0x7fbb5e0ce5c8>
 ```
 
 ```r

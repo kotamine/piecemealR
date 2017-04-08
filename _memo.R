@@ -10,6 +10,8 @@ library(bookdown)
 bookdown::render_book("index.Rmd", "bookdown::gitbook",  output_dir = "docs", new_session = TRUE, output_options = list(split_by ="section+number"), preview=TRUE)
 
 
+# Somehow it doesn't get a right URL ...
+
 bookdown::render_book("index.Rmd", "bookdown::pdf_book",  output_dir = "docs", new_session = TRUE)
 
 bookdown::render_book("index.Rmd", "bookdown::epub_book",  output_dir = "docs", new_session = TRUE, output_options = list(chapter_level = 3))
