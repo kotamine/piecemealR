@@ -11,23 +11,23 @@ knitr::opts_chunk$set(cache=TRUE)
 
 **A Few Words from the Author** 
 
-[R](https://www.r-project.org/) has come a long way in its evolution. [Its download page](https://cran.r-project.org/) looks unchanged from many years ago. Don't be fooled by its archaic first look.  This may be something to do with how the R developer community honors its history of turning the open-source project into one of the most popular data analytic tools today. The community is extremely supportive, and there are numerous learning resources. Please don't mistake that archaic look as a sign of snobbishness, and I hope you too will appreciate it some day. Welcome to the community.      
+[R](https://www.r-project.org/) has come a long way in its evolution. [Its download page](https://cran.r-project.org/) looks pretty much unchanged from years ago but don't be fooled by its archaic appearance. This piece of the past may be something to do with how the R developer community honors its legacy of turning an open-source project into one of the most popular data analytic tools of today. Please don't mistake that archaic look as a sign of snobbishness--I hope you too will appreciate it some day. Welcome to the community.      
 
-In below, we assume that you have  [R](https://cran.r-project.org/) and [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) (free IDE) installed. It will be handy to have cheat sheets for [base R](http://github.com/rstudio/cheatsheets/raw/master/source/pdfs/base-r.pdf), 
+In what follows below, we assume that you have  [R](https://cran.r-project.org/) and [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) (free IDE) installed. It will be handy to have cheat sheets for [base R](http://github.com/rstudio/cheatsheets/raw/master/source/pdfs/base-r.pdf), 
 [RStudio IDE](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf), [dplyr](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf), and [ggplot2](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) as well.  
 
-If you find this introduction too technical, please start with [ModernDive](https://ismayc.github.io/moderndiver-book/4-viz.html) open-source textbook (say, up to Chapter 5). The book gave an initial inspiration to start this site. Also, more information on R is available in Section \@ref(essentials), as well as various sources listed in Section \@ref(resources).   
+If you find this introduction too technical, please start with [ModernDive](https://ismayc.github.io/moderndiver-book/4-viz.html) open-source textbook (say, up to Chapter 5). That book provided the initial inspiration for me to start this site. Also, more information on R is available in Section \@ref(essentials), as well as various sources listed in Section \@ref(resources).   
 
 ## Materials
 
-The power of R grows with each addition of user-contributed R packages, or a bundle of user-developed programs. Recent developments such as [tidy](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html),  [dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html), and [ggplot2](http://docs.ggplot2.org/current/)
-have greatly streamlined the coding for data manipulation and analysis, which is the starting point for learning R that is chosen for this site.  With this new syntax system, you will learn the basic operations of data wrangling and visualization in a very intuitive  *data operation language*. Like any language, its grammar and framework provide a particular way of understanding the world. In this case, it will influence your thinking about data.     
+The power of R grows with each addition of user-contributed R packages, or a bundle of user-developed programs. Recent developments such as [tidy](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html), [dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html), and [ggplot2](http://docs.ggplot2.org/current/)
+have greatly streamlined the coding for data manipulation and analysis, which is the starting point for learning R that is chosen for this site. With the R syntax system, you will learn the basic operations of data wrangling and visualization at a rapid pace given that it is an intuitive *data operation language*. Like any language, its grammar and framework provide a particular way of understanding the world. In this case, it will influence your thinking about data.     
 
 Following the documentation of [dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html), let's start with a sample dataset of airplane departures and arrivals. The dataset contains information on about 337,000 flights departed from New York City in 2013 (source: [Bureau of Transportation Statistics](https://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0)). We load a built-in data frame by command `library(nycflights13)` where `library(package_name)` loads an R package named `package_name` in the current R *session*, or the computing environment. In the R console (i.e., the left bottom pane in RStudio), type `install.packages("nycflights13")` and hit enter. 
 
-Generally, R packages are installed in the local computer as an as-needed basis. To install several more packages that we will use, copy the following code and execute it in your R console. 
+Generally, R packages are installed locally on your computer on an as-needed basis. To install several more packages that we will use, copy the following code and execute it in your R console. 
 ```{r}
-# Don't worry about understanding the code here
+# Since we're just starting, don't worry about understanding the code here
 # "#"" symbole is used to insert comments that are helpful to humans but are ignored by R 
 
 required_pkgs <- c("nycflights13", "dplyr", "ggplot2", "lubridate", "knitr", "tidyr", "broom")   
@@ -39,7 +39,7 @@ new_pkgs <- required_pkgs[!(required_pkgs  %in% installed.packages())]
   # checking whether "required_pkgs" are already installed 
   # "[]" of required_pkgs[ ] is extraction by logical TRUE or FALSE
   # "%in%" checks whether items on the left are members of the items on the right.
-  # ! is a negation 
+  # ! is a negation, so if the package is not installed, there will be an 
 
 if (length(new_pkgs)) {
   install.packages(new_pkgs, repos = "http://cran.rstudio.com")
@@ -47,7 +47,7 @@ if (length(new_pkgs)) {
 ```
 
 
-In each R session, we load libraries. Here we load the following;
+In each R session, we load libraries. Libraries are different from "packages" because... [Kota, can you state that difference here?] Here we load the following;
 ```{r}
 suppressWarnings({
   suppressMessages({
@@ -72,17 +72,17 @@ dim(flights)   # obtains dimention of rows and columns
 head(flights)  # displays first seveal rows and columns 
 ```
 
-`dim()` command returns the dimension of a data frame, and `head()` command returns the first several rows and columns. The `flights` dataset contains information on dates, actual departure and arrival times, scheduled departure and arrival times, carriers, origins, destinations, travel times, and distances. These variables are arranged in columns, and each row is an observation of flight.   
+The `dim()` command returns the dimensions of a data frame, and the `head()` command returns the first several rows and columns. The `flights` dataset contains information on dates, actual departure and arrival times, scheduled departure and arrival times, carriers, origins, destinations, travel times, and distances. These variables are arranged in columns, and each row is an observation of flight.   
 
 
 In R, we refer to a dataset as **data frame**, which is a *class* of R object.  The **data frame** class is more general than the **matrix** class in that it can contain variables of more than one mode (numeric, character, factor etc). In case you want an overview of data types right away, here is a [summary](http://www.statmethods.net/input/datatypes.html). 
 
 
-## Arts & Carfts 
+## Arts & Crafts 
 
 ### Crafts  {-}
 
-We will focus on six data wrangling functions in the `dplyr` package.  
+We will focus on six data wrangling functions in the `dplyr` package:
 
 * `filter()`: extracts rows (e.g., observations) of a data frame. We put logical vectors in its arguments.  
 
@@ -96,7 +96,7 @@ We will focus on six data wrangling functions in the `dplyr` package.
 
 * `group_by()`: assigns rows into groups within a data frame. We put column names in its arguments.  
 
-The very first argument in all these functions is a **data frame**, and by using this we can easily **pipe** a sequence of data wrangling operations through `%>%` operator. The key is to start with a data frame and then formulate a sequence of data wrangling operations in plain English, which we can translate into codes by replacing **then** in the sequence with the `%>%` operator.  Say, we want to find the average delays in departures and arrivals from New York to St. Paul-Minneapolis airport (MSP). We can construct the following sequence of instructions; take the flight data frame, apply `filter()` to extract the rows of flights to MSP, and then apply `summarise()` to calculate the mean.  
+The very first argument in all these functions is a **data frame**, and by using this we can easily **pipe** a sequence of data wrangling operations through `%>%` operator. The key is to start with a data frame and then formulate a sequence of data wrangling operations in plain English, which we can translate into code by replacing **then** in the sequence with the `%>%` operator.  Say, we want to find the average of delays in departures and arrivals from New York to the St. Paul-Minneapolis airport (MSP). We can construct the following sequence of instructions: take the flight data frame, apply `filter()` to extract the rows of flights to MSP, and then apply `summarise()` to calculate the mean.
 
 ````{r}
 flights %>%  # take data frame "flights", then
@@ -109,9 +109,9 @@ flights %>%  # take data frame "flights", then
     )    # calculate the mean, while removing NA values  
 ````
 
-In `summarise()`, one can use **summary functions** that takes a vector as an input and produces a scaler as an output. This includes functions like `mean()`, `sd()` (standard deviation), `quantile()`, `min()`, `max()`, and `n()` (observation count in the `dplyr` package).      
+[Kota, the following text appears gray like it's R code--it is that way through line 145]In `summarise()`, one can use **summary functions** that takes a vector as an input and produces a scaler as an output. This includes functions like `mean()`, `sd()` (standard deviation), `quantile()`, `min()`, `max()`, and `n()` (observation count in the `dplyr` package).      
 
-Each time we apply `%>%` operator above, we pass a modified data frame from one data operation to another through the first argument. The above code is equivalent to  
+Each time we apply the `%>%` operator above, we pass a modified data frame from one data operation to another through the first argument. The above code is equivalent to  
 ````{r} 
 summarise(   # data frame "flights" is inside filter(), which is inside summarise() 
     filter(flights, dest == "MSP"), 
@@ -120,11 +120,11 @@ summarise(   # data frame "flights" is inside filter(), which is inside summaris
     )
 ````
 
-You will quickly discover that `%>%` operator makes the code much easier to read, write, and edit and how that makes you want to play with the data more.  
+You will quickly discover that `%>%` operator makes the code much easier to read, write, and edit and how that might inspire you want to play with the data more.  
 
-Let's add a few more lines to the previous example. Say, additionally we want to see the average delays by carrier and sort the results by the number of observations (e.g. flights) in descending order. 
+Let's add a few more lines to the previous example. Say, additionally we want to see the average delay by carrier and sort the results by the number of observations (e.g. flights) in descending order. 
 
-Okay, what do we do?  We make **a sequence of data wrangling operations in plain English** and translate that into **codes** by replacing **then** with `%>%` operator. 
+Okay, what do we do?  We make **a sequence of data wrangling operations in plain English** and translate that into **code** by replacing **then** with `%>%` operator. 
 For example, we say, "take the data frame `flights`; **then** (`%>%`)  `filter()` to extract the rows of flights to MSP;  **then** (`%>%`) group rows by carrier; **then** (`%>%`) `summarise()` data for the number of observations and the means; **then** (`%>%`) `arrange()` the results by the observation count in descending order."   
 
 ````{r}
@@ -142,7 +142,7 @@ flight_stats_MSP  # show flight_stats object
 ````
 
 
-Carrier variable is expressed in the International Air Transportation Association (IATA) code, so let's add a column of carrier names by joining another data frame called `airlines`. In RStudio, you can find this data frame under the **Environment**  tab (in the upper right corner); switch the display option from *Global Environment* to *package:nycflights13*. To inspect the data frame, type `View(airlines)` in R console. Also, by typing `data()`  you can see a list of all datasets that are loaded with libraries. 
+The carrier variable is expressed in the International Air Transportation Association (IATA) code, so let's add a column of carrier names by joining another data frame called `airlines`. In RStudio, you can find this data frame under the **Environment**  tab (in the upper right corner); switch the display option from *Global Environment* to *package:nycflights13*. To inspect the data frame, type `View(airlines)` in the R console. Also, by typing `data()`  you can see a list of all datasets that are loaded with libraries. 
 
 ```{r}
 left_join(flight_stats_MSP, airlines, by="carrier") %>%
@@ -168,7 +168,7 @@ flights %>%
 We extracted specific columns of `flights` by `select()` and added new columns defined in `mutate()`.  `mutate()` differs from `summarise()` in that  `mutate()` adds new columns to the data frame, while `summarise()` collapses the data frame into a summary table. 
 
 
-There are roughly five types of [window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html) that are commonly used inside `mutate()`: (1)  **summary functions**, which are interpreted as a vector of repeated values (e.g., a column of an identical mean value) : (2)  ranking or ordering functions (e.g., `row_number()`, `min_rank()`, `dense_rank()`, `cume_dist()`,`percent_rank()`, and `ntile()`): (3) offset functions, say defining a lagged variable in time series data (`lead()` and `lag()`): (4)  cumulative aggregates (e.g., `cumsum()`, `cummin()`, `cummax()`, `cumall()`, `cumany()`, and `cummean()`): (5) fixed-window rolling aggregates such as a windowed mean, median, etc.  To find help files for these function, for example, type `?cumsum`.  
+There are roughly five types of [window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html) that are commonly used inside `mutate()`: (1)  **summary functions**, which are interpreted as a vector of repeated values (e.g., a column of an identical mean value): (2)  ranking or ordering functions (e.g., `row_number()`, `min_rank()`, `dense_rank()`, `cume_dist()`,`percent_rank()`, and `ntile()`): (3) offset functions, say defining a lagged variable in time series data (`lead()` and `lag()`): (4)  cumulative aggregates (e.g., `cumsum()`, `cummin()`, `cummax()`, `cumall()`, `cumany()`, and `cummean()`): (5) fixed-window rolling aggregates such as a windowed mean, median, etc.  To find help files for these function, for example, type `?cumsum`.  
 
 
 Before moving to the graphics, let's quickly go over what a **function** is in R and how you can use a custom function inside `summarise()` or  `mutate()`. In R, we use `function()` to create a function, which has its name, input arguments separated by comma, and a body (e.g., tasks to perform and what to return as an output).    
@@ -251,11 +251,11 @@ head(flights_gain) %>%  # show the first several rows
   kable(digits=2)
 ```
 
-Creating a function spares us from writing similar codes in multiple places. Avoiding such repetitions is important for making reading and editing codes easier and reducing coding errors. 
+Creating a function spares us from writing similar codes in multiple places. While avoiding such repetition is important for making reading and editing code easier, it also reduces coding errors. 
 
-One situation you may consider use of custom function is inside functions like `summarise_each()` and `mutate_each()`. The two functions allow for applying **summary functions** like `mean()` or `sd()` to each column in a data frame.  `summarise_each()` and `mutate_each()` work by  *calling* a function by its name. They are very easy to use when an operation is to summarize a vector into a statistics without needing to specify additional arguments, say `mean(var1)`. However, providing additional arguments into a function, say `mean(var1, na.rm=TRUE)`, becomes somewhat cumbersome in terms of its syntax. 
+A situation where you may consider using custom functions is inside functions like `summarise_each()` and `mutate_each()`. The two functions allow for applying **summary functions** like `mean()` or `sd()` to each column in a data frame.  `summarise_each()` and `mutate_each()` work by  *calling* a function by its name. They are very easy to use when an operation is to summarize a vector into a statistics without needing to specify additional arguments, say `mean(var1)`. However, providing additional arguments into a function, say `mean(var1, na.rm=TRUE)`, becomes somewhat cumbersome in terms of its syntax. 
 
-One approach to get around this problem is to pre-process the data frame before getting to a `summarise_each()` or `mutate_each()` section. For example, if we want to pass the argument `na.rm=TRUE` to `mean()`,  we can first filter out rows that contain missing values  (`NA`) and then apply `summarise_each()`. 
+One approach to get around this problem is to pre-process the data frame before getting to a `summarise_each()` or `mutate_each()` section. For example, if we want to test the argument `na.rm=TRUE` to `mean()`,  we can first filter out rows that contain missing values  (`NA`) and then apply `summarise_each()`. 
 
 ```{r}
 flights_gain %>% 
@@ -266,7 +266,7 @@ flights_gain %>%
   kable(digits=2) 
 ```
  
-The other approach is to use a custom function. For instance, `my_mean_2()` we defined above has default argument `na.rm=TRUE` that gets passed into `mean()`, effectively overwriting the default argument `na.rm=FALSE` of `mean()`. A custom function (as well as any standard summary function) can be called in `summarise_each()` or `mutate_each()` using `funs()`;   
+The other approach is to use a custom function. For instance, `my_mean_2()` we defined above has the default argument `na.rm=TRUE` that gets passed into `mean()`, effectively overwriting the default argument `na.rm=FALSE` of `mean()`. A custom function (as well as any standard summary function) can be called in `summarise_each()` or `mutate_each()` using `funs()`;   
 
 ```{r}
 flights_gain %>% 
