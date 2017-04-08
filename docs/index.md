@@ -6,10 +6,13 @@ date: "Last updated: 2017-04-08"
 site: bookdown::bookdown_site
 always_allow_html: yes
 output: 
-  gitbook: 
-  pdf_document:
+  bookdown::gitbook: 
+    download:
+    - ["piecemealR.pdf", "PDF"]
+    - ["piecemealR.epub", "EPUB"]
+  bookdown::pdf_document:
     keep_tex: yes
-  epub_book: default
+  bookdown::epub_book: default
 documentclass: book
 bibliography: [articles.bib, book.bib, packages.bib]
 biblio-style: apalike

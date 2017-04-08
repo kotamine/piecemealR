@@ -7,12 +7,13 @@ memo:
 
 library(bookdown)
 
-bookdown::render_book("index.Rmd", "bookdown::gitbook",  output_dir = "docs", new_session = TRUE, output_options = list(split_by ="section+number"))
+bookdown::render_book("index.Rmd", "bookdown::gitbook",  output_dir = "docs", new_session = TRUE, output_options = list(split_by ="section+number"), preview=TRUE)
 
 
 bookdown::render_book("index.Rmd", "bookdown::pdf_book",  output_dir = "docs", new_session = TRUE)
 
-bookdown::render_book("index.Rmd", "bookdown::epub_book",  output_dir = "docs", new_session = TRUE, output_options = list(chapter_level = 3)) 
+bookdown::render_book("index.Rmd", "bookdown::epub_book",  output_dir = "docs", new_session = TRUE, output_options = list(chapter_level = 3))
+
 
 
 # ------- Preview the book ---------------
@@ -30,8 +31,8 @@ bookdown::serve_book( in_session = FALSE, output_dir = "docs")
 
 # ------- Preview HTML chapter ---------------
 
-# use render() to compile a single Rmd document for a HTML page preview.  
-# e.g. 
+# use render() to compile a single Rmd document for a HTML page preview.
+# e.g.
 
 library(rmarkdown)
 setwd("~/Dropbox/R_projects/piecemealR")

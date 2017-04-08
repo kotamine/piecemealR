@@ -1,15 +1,3 @@
---- 
-# title: "Piecemeal R"
-# subtitle: "Fast-track Introduction to Data Exploration with R and Piecemeal Topics"
-date: "Last updated: 2017-04-08"
-output: bookdown::gitbook
-documentclass: book
-# bibliography: [book.bib, packages.bib]
-# biblio-style: apalike
-# link-citations: yes
-# github-repo: /kotamine/piecemealR
-# description: "This is a piecemeal R tutorial. "
----
 
 
 
@@ -1541,7 +1529,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-04-08 16:25:12 CDT"
+## [1] "2017-04-08 17:56:19 CDT"
 ```
 
 ```r
@@ -1713,7 +1701,7 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7f83e56482d8>
+## <environment: 0x7f9b21a01908>
 ```
 
 A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
@@ -1734,7 +1722,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7f83e61a2b50>
+## <environment: 0x7f9b21c6eb20>
 ```
 
 ```r
@@ -1746,7 +1734,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7f83e4534600>
+## <environment: 0x7f9b22ba8298>
 ```
 
 ```r
