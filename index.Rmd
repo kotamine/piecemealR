@@ -4,7 +4,12 @@ subtitle: "A Tutorial for Data Exploration with R"
 author: "Kota Minegishi"
 date: "Last updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
+always_allow_html: yes
+output: 
+  gitbook: 
+  pdf_document:
+    keep_tex: yes
+  epub_book: default
 documentclass: book
 bibliography: [articles.bib, book.bib, packages.bib]
 biblio-style: apalike

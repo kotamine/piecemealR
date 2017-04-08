@@ -2,7 +2,7 @@
 
 # Introduction {#intro} 
 
-2017-04-06: <span style="color:red">*VERY Preliminary!*</span>
+2017-04-08: <span style="color:red">*VERY Preliminary!*</span>
 
 
 
@@ -544,7 +544,7 @@ Sys.Date()  # Sys.Date() returns the current date
 ```
 
 ```
-## [1] "2017-04-06"
+## [1] "2017-04-08"
 ```
 
 ```r
@@ -552,7 +552,7 @@ my_dow(Sys.Date())
 ```
 
 ```
-## [1] "Thu"
+## [1] "Sat"
 ```
 
 Now, let's take a look at the mean delay by day of the week using  **boxplots**.

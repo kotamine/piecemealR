@@ -269,7 +269,7 @@ if (<span class="dv">1</span> &gt;<span class="st"> </span><span class="dv">2</s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) &gt;<span class="st"> </span><span class="dv">2</span>, <span class="dv">1</span>, -<span class="dv">1</span>)  <span class="co"># return 1 if TRUE and -1 if else  </span></code></pre></div>
 <pre><code>## [1] -1 -1  1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-04-06 11:04:04 CDT&quot;</code></pre>
+<pre><code>## [1] &quot;2017-04-08 16:15:14 CDT&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 hour &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">substr</span>(time, <span class="dv">12</span>,<span class="dv">13</span>))
 <span class="co"># sequential if-else statements</span>
@@ -280,7 +280,7 @@ if (hour &gt;<span class="st"> </span><span class="dv">8</span> &amp;<span class
 } else {
     <span class="kw">print</span>(<span class="st">&quot;private time&quot;</span>)
 }</code></pre></div>
-<pre><code>## [1] &quot;morning&quot;</code></pre>
+<pre><code>## [1] &quot;afternoon&quot;</code></pre>
 </div>
 <div id="loop" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> Loop</h3>
@@ -344,7 +344,7 @@ while (i &lt;<span class="st"> </span><span class="dv">5</span>) {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">environment</span>(f1)  <span class="co"># environment of f1(), which is .GlobalEnv </span></code></pre></div>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f1</span>()  <span class="co"># inside f1 has its own enviornment </span></code></pre></div>
-<pre><code>## &lt;environment: 0x7fe02288f4d0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7faf8d4bf8d8&gt;</code></pre>
 <p>A function can access to the objects in its environment (i.e., <em>global</em> to the function) and those defined inside (i.e., <em>local</em> to the function) and generally cannot overwrite the global objects. It allows for using common names such as “x1”, “var1” etc. defined inside functions, but those objects are only accessible within the function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># object named &quot;a&quot; in .GlobalEnv</span>
 f2 &lt;-<span class="st"> </span>function() {
@@ -354,10 +354,10 @@ f2 &lt;-<span class="st"> </span>function() {
       }
 <span class="kw">f2</span>()  <span class="co">#  one instance creating an environment   </span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<pre><code>## &lt;environment: 0x7fe023ace260&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7faf8f84cb50&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f2</span>()  <span class="co">#  another instance creating another environment</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<pre><code>## &lt;environment: 0x7fe02502bc30&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7faf8f8c0200&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a  <span class="co"># stays NULL </span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()  <span class="co"># ls() shows all objects of an environment (here .GlobablEnv)</span></code></pre></div>
@@ -469,7 +469,7 @@ a &lt;-<span class="st"> </span><span class="dv">3</span>
 <li><p>concatenating characters and numbers as a string (<code>paste()</code>, <code>paste0()</code>, <code>sprintf()</code>)</p></li>
 <li><p>extracting a segment of a string by character position range (<code>substr()</code>)</p></li>
 <li><p>splitting a string with a particular pattern (<code>strsplit()</code>)</p></li>
-<li><p>finding a character position of a pattern in a string (<code>regexpr()</code>) <code>grep()</code> <code>grepl()</code> <code>gsub()</code> <code>nchar()</code> <code>paste()</code> <code>paste0()</code> <code>sprintf()</code> <code>substr()</code> <code>strsplit()</code></p></li>
+<li><p>finding a character position of a pattern in a string (<code>regexpr()</code>)</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">oasis &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Liam Gallagher&quot;</span>, <span class="st">&quot;Noel Gallagher&quot;</span>, <span class="st">&quot;Paul Arthurs&quot;</span>, <span class="st">&quot;Paul McGuigan&quot;</span>, <span class="st">&quot;Tony McCarroll&quot;</span>) 
 <span class="kw">grep</span>(<span class="dt">pattern =</span> <span class="st">&quot;Paul&quot;</span>, oasis)</code></pre></div>
@@ -571,7 +571,7 @@ gitbook.start({
 "link": "https://github.com/kotamine/piecemealR/edit/master/02-Essentials.Rmd",
 "text": "Edit"
 },
-"download": null,
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

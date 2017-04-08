@@ -654,7 +654,6 @@ R has built-in string manipulation functions. They are commonly used for;
 * splitting a string with a particular pattern (`strsplit()`)
 
 * finding a character position of a pattern in a string (`regexpr()`)
-`grep()` `grepl()` `gsub()` `nchar()` `paste()` `paste0()` `sprintf()` `substr()` `strsplit()` 
 
 ```{r}
 oasis <- c("Liam Gallagher", "Noel Gallagher", "Paul Arthurs", "Paul McGuigan", "Tony McCarroll") 
