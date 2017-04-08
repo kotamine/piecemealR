@@ -17,7 +17,7 @@ description: "This is a R tutorial. "
 
 Welcome to a tutorial website for data analysis and visualization with [R](https://www.r-project.org/). This site provides a quick overview and topic-based tutorials in a piecemeal fashion. 
 
-The site is organized based on two questions; 
+The site is organized based on two questions: 
 
 * How best to quickly introduce R to new audiences and showcase its data analytics tools? 
 
@@ -26,7 +26,7 @@ The site is organized based on two questions;
 
 To answer the first question, Section \@ref(intro) *Introduction* demonstrates a set of modern data analysis tools in R. Sections  \@ref(essentials) describes essential concepts of R. For the second question, Section \@ref(piecemeal-top) provides topic-based tutorials. Additional resources are listed in Section \@ref(resources).   
 
-More contents will be added when the author hosts a small workshop  _"Data Exploration with R"_  at his workplace.     
+More content will be added when the author hosts a small workshop  _"Data Exploration with R"_  at his workplace.     
 
 
 __New Contents__
