@@ -5,11 +5,11 @@ author: "Kota Minegishi"
 date: "Last updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
 always_allow_html: yes
-output: 
-  bookdown::gitbook: 
-  bookdown::pdf_document:
-    keep_tex: yes
-  bookdown::epub_book: default
+output: bookdown::gitbook
+  # bookdown::gitbook:
+  # bookdown::pdf_document:
+  #   keep_tex: yes
+  # bookdown::epub_book: default
 documentclass: book
 bibliography: [articles.bib, book.bib, packages.bib]
 biblio-style: apalike

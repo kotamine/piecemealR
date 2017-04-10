@@ -51,6 +51,16 @@
 <link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-97062240-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
 
 <style type="text/css">
@@ -91,6 +101,7 @@ code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* Com
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
 
+<link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
 <body>
@@ -103,6 +114,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="./">Piecemeal R</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a></li>
 <li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
@@ -153,6 +167,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="4" data-path="4-resources.html"><a href="4-resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
+
 </ul>
 
       </nav>
@@ -262,7 +279,7 @@ if (<span class="dv">1</span> &gt;<span class="st"> </span><span class="dv">2</s
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) &gt;<span class="st"> </span><span class="dv">2</span>, <span class="dv">1</span>, -<span class="dv">1</span>)  <span class="co"># return 1 if TRUE and -1 if else  </span></code></pre></div>
 <pre><code>## [1] -1 -1  1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
-<pre><code>## [1] &quot;2017-04-10 11:06:25 CDT&quot;</code></pre>
+<pre><code>## [1] &quot;2017-04-10 11:32:01 CDT&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 hour &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">substr</span>(time, <span class="dv">12</span>,<span class="dv">13</span>))
 <span class="co"># sequential if-else statements</span>
@@ -337,7 +354,7 @@ while (i &lt;<span class="st"> </span><span class="dv">5</span>) {
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">environment</span>(f1)  <span class="co"># environment of f1(), which is .GlobalEnv </span></code></pre></div>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f1</span>()  <span class="co"># inside f1 has its own enviornment </span></code></pre></div>
-<pre><code>## &lt;environment: 0x7fb47a2d20a0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7f902cf73040&gt;</code></pre>
 <p>A function can access to the objects in its environment (i.e., <em>global</em> to the function) and those defined inside (i.e., <em>local</em> to the function) and generally cannot overwrite the global objects. It allows for using common names such as “x1”, “var1” etc. defined inside functions, but those objects are only accessible within the function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># object named &quot;a&quot; in .GlobalEnv</span>
 f2 &lt;-<span class="st"> </span>function() {
@@ -347,10 +364,10 @@ f2 &lt;-<span class="st"> </span>function() {
       }
 <span class="kw">f2</span>()  <span class="co">#  one instance creating an environment   </span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<pre><code>## &lt;environment: 0x7fb47d085548&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7f902e847c68&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f2</span>()  <span class="co">#  another instance creating another environment</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<pre><code>## &lt;environment: 0x7fb47abcdca0&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7f902db6b630&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a  <span class="co"># stays NULL </span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()  <span class="co"># ls() shows all objects of an environment (here .GlobablEnv)</span></code></pre></div>
@@ -527,6 +544,18 @@ a &lt;-<span class="st"> </span><span class="dv">3</span>
 <p>Matloff, Norman. 2011. <em>The Art of R Programming</em>.</p>
 </div>
 </div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//piecemealr.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">
+  comments powered by Disqus.</a></noscript>
             </section>
 
           </div>
@@ -562,12 +591,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": null,
-"text": null
+"link": "https://github.com/kotamine/piecemealR/edit/master/02-Essentials.Rmd",
+"text": "Edit"
 },
 "download": ["_main.pdf", "_main.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "subsection",
+"download": false,
+"scroll_highlight": true
 }
 });
 });

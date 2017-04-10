@@ -2,9 +2,8 @@ always_allow_html: yes
 bookdown::gitbook:
   css: style.css
   config:
-    download: no
-  #  download: ["piecemealR.pdf", "piecemealR.epub"]
     toc:
+      download: no
       scroll_highlight: true
       before: |
         <li><a href="./">Piecemeal R</a></li>
