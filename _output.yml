@@ -2,6 +2,7 @@ always_allow_html: yes
 bookdown::gitbook:
   css: style.css
   config:
+    download: no
   #  download: ["piecemealR.pdf", "piecemealR.epub"]
     toc:
       scroll_highlight: true

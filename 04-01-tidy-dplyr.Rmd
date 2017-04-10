@@ -229,14 +229,16 @@ Hints for extracting the same rows as in the Table 16 above
 
 We will reproduce: 
 
-<!--
+
 <img src="tidy_case_study/n-dist-raw.png" width="50%" align="left">
 <img src="tidy_case_study/n-dist-log.png" width="50%" align="left">
---> 
+
+<!--
 ```{r, echo=FALSE, out.width="50%", fig.asp=.75, fig.align='center'}
 include_graphics("tidy_case_study/n-dist-raw.png")
 include_graphics("tidy_case_study/n-dist-log.png")
 ```
+-->
 
 We will create a deviation variable named `dist` by taking the mean of squared differences between `prop` and `prop_all`. The above figures show the the number of observations `n` and this distance measure `dist` by cause of death in the raw scale (left) and in the log scale (right).     
 
@@ -288,7 +290,7 @@ df %>%
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-The geom_smooth() is estimating the following linear regression:
+The `geom_smooth()` is estimating the following linear regression:
 $$ y1 = intercept + coefficient * x1 + residual$$
 The model is estimated by `lm()` as follows; 
 
