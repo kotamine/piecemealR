@@ -25,19 +25,20 @@ colnames(deaths08b) <- c("Year of Death (yod)", "Month of Death (mod)",
 ### Materials {-}
 This is a practice session of [dplyr](http://docs.ggplot2.org/current/) and [ggplot2](http://docs.ggplot2.org/current/) using [a case study](http://vita.had.co.nz/papers/tidy-data.html) related to [tidyr](https://www.r-bloggers.com/data-manipulation-with-tidyr/) package.
 
-The case is about investigating the causes of death in Mexico that have unusual temporal patterns within a day.  The data on mortalities in 2008 has the following pattern by hour;    
+The case is about investigating the causes of death in Mexico that have unusual temporal patterns within a day.  The data on mortalities in 2008 have the following pattern by hour;    
 
 
 ```{r, echo=FALSE, fig.cap = 'Temporal pattern of all causes of death', out.width="90%", fig.asp=.75, fig.align='center'}
 include_graphics("tidy_case_study/overall.png") 
 ```
 
-Do you find anything unusual or unexpected?  The figure shows several peaks within a day, indicating some increased risks of deaths in certain times of the day.  What would be generating these patterns? 
+Do you find anything unusual or unexpected? The figure shows several peaks within a day, indicating some increased risk of death during certain times of the day. What could generate these patterns? 
 
 Wickham, the author, finds; 
 
 > The causes of [unusual] death fall into three main groups: murder, drowning, and transportation related. Murder is more common at night, drowning in the afternoon, and transportation related deaths during commute times [@Wickham2014]. 
 
+[Kota, can the caption include a couple more details? Like hour of day (hod) on the x-axis and propportion (prop) on the y-axis. Also, is the black line representing the raw data?]
 
 ```{r unusual-big, echo=FALSE, fig.cap = 'Causes of death with unusual temporal courses. Overall hourly death rate shown in grey. Causes of death with more than 350 deaths over a year.', out.width="100%", fig.asp=.75}
 include_graphics("tidy_case_study/unusual-big.png") 
@@ -78,7 +79,7 @@ We will reproduce this case study and practice using functions of `dplyr` and `g
 
 ### Arts & Crafts {-}
 
-Let's recap key ingredients of [dplyr](http://docs.ggplot2.org/current/) and [ggplot2](http://docs.ggplot2.org/current/) from the introduction in Section \@ref(intro).
+Let's recap the key ingredients of [dplyr](http://docs.ggplot2.org/current/) and [ggplot2](http://docs.ggplot2.org/current/) from the introduction in Section \@ref(intro).
 
 The six important functions in `dplyr` are:
 
@@ -99,8 +100,8 @@ We use piping operator `%>%` (read as *then*) to translate a sentence of sequent
 
 ```{r} 
 deaths08 %>% 
-  group_by(mod) %>%   # mod: month of death
-  summarise( nobs = n() )  # n(): a dplyr funciton to count rows 
+  group_by(mod) %>% # mod: month of death
+  summarise(nobs = n()) # n(): a dplyr funciton to count rows 
 ```
 
 
@@ -109,9 +110,9 @@ The graphics with `ggplot2`  consist of three components:
 
 * **data**: a data frame e.g., the first argument in `ggplot(data, ...)`.    
 
-* **aes**:  specifications for x-y variables, as well as variables to differentiate **geom** objects by color , shape, or size. e.g., `aes(x = var_x, y = var_y, shape = var_z)` 
+* **geom**: geometric objects such as points, lines, bars, etc. with parameters in parenthesis; e.g., `geom_point()`, `geom_line()`, `geom_histogram()`  
 
-* **geom**: geometric objects such as points, lines, bars, etc. e.g., `geom_point()`,  `geom_line()`,  `geom_histogram()`  
+* **aes**:  specifications for x-y variables, as well as variables to differentiate **geom** objects by color, shape, or size. e.g., `aes(x = var_x, y = var_y, shape = var_z)` 
  
 
 We specify **data** and **aes** in `ggplot()` and then add **geom** objects followed by `+` symbol (read as *add a layer of*);  e.g., `ggplot(data = dataset, mapping = aes(x = ...)) + geom_point()`. The order of layers added by `+` symbol is generally interchangeable. 
@@ -150,9 +151,9 @@ Now it is your turn. The exercise is to reproduce the above results for the unus
 
 3. Load libraries: `library(dplyr)`, `library(ggplot2)`, `library(MASS)` (used for fitting data by robust regression)
 
-* Note 1: There is a minor error in the case study that the author accidentally kept several records of data from years other than 2008. This virtually has no effect on the results, and we would do the same to reproduce the exact results.    
+* Note 1: There is a minor error in the case study where the author accidentally kept several records of data from years other than 2008. This has virtually no effect on the results, and we are seeking to produce the same results as that case study.     
 
-* Note 2: You could look at the codes in the paper for hints. However, the code is written with the functions of [plyr](https://cran.r-project.org/web/packages/plyr/index.html) package, or the precesssor of `dplyr`. Do not load both `plyr` and `dplyr` libraries in the same R session; they do not seem to have good compatibility. Restart R if you accidentally loaded both.  
+* Note 2: You could look at the code in the paper for hints. However, the code is written with the functions of [plyr](https://cran.r-project.org/web/packages/plyr/index.html) package, or the precesssor of `dplyr`. Do not load both `plyr` and `dplyr` libraries in the same R session; they do not seem to have good compatibility. Restart R if you accidentally loaded both.  
 
 #### Part A. Display overall hourly deaths {-}
 
@@ -189,7 +190,7 @@ include_graphics("tidy_case_study/table16.png")
 
 Panel (a) of the table contains the frequency (i.e. the number of rows) for each combination of hour of day (hod) and cause of death (cod), supplemented by the disease description in panel (b). Panel (c) shows the proportion (prop) of each hod-cod combination in the total deaths by the cod. Panel (d) contains the frequency and proportion (freq_all and prop_all) of the deaths by hour of day.  
 
-That is, panel (a) is the raw counts (e.g., frequency) of observations by **each pair** of hour of day (hod) and cause of death (cod), and panel (b) makes it easy to see the cause of death (cod).  Panel (c) converts this frequency of *hod-cod pair* into the relative frequency within the total frequency of **cod**, so that we see at which **hour** a disproportinately large number of deaths occurs for  **cod**. Panel (d), on the other hand, presents the overall hourly death rates; if every hour has the same probablity of death, we would see prop_all $\approx$ 0.042 (i.e., 1/24).  Here, we see the author's idea of identifying "unusual deaths" by comparing "prop" of each **hod-cod pairs** for the deviation from to "prop_all" (see figure \@ref(fig:unusual-big)).  
+That is, panel (a) is the raw counts (e.g., frequency) of observations by **each pair** of hour of day (hod) and cause of death (cod), and panel (b) makes it easy to see the cause of death (cod). Panel (c) converts this frequency of *hod-cod pair* into the relative frequency within the total frequency of **cod**, so that we see at which **hour** a disproportionately large number of deaths occurs for  **cod**. Panel (d), on the other hand, presents the overall hourly death rates; if every hour has the same probablity of death, we would see prop_all $\approx$ 0.042 (i.e., 1/24). Here, we see the author's idea of identifying "unusual deaths" by comparing "prop" of each **hod-cod pairs** for the deviation from to "prop_all" (see figure \@ref(fig:unusual-big)).  
 
 
 Hints for creating panels (a) 
@@ -208,7 +209,7 @@ Hints for creating panel (c)
 
 Hints for creating panels (d) 
 
-* Create a new data frame by using `summarise()` on the joined and mutated data frame. (`summarise()` will reduce the dimension of the data frame to its summmary, which is the basis of panel (d). Once the desired summary is created, merge it to the data frame of panels (a)-(c).)
+* Create a new data frame by using `summarise()` on the joined and mutated data frame. `summarise()` will reduce the dimension of the data frame to its summmary, which is the basis of panel (d). Once the desired summary is created, merge it to the data frame of panels (a)-(c).
 
 * Before using `summarise()` above, use `group_by()` to specify new grouping
 
