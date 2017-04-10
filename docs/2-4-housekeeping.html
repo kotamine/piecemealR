@@ -186,7 +186,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="input-output" class="section level3">
 <h3><span class="header-section-number">2.4.4</span> Input &amp; Output</h3>
-<p>A common method to read and write data files is <code>read.csv(&quot;file_name.csv&quot;)</code> and <code>write.csv(data_frame, file = &quot;file_name.csv&quot;)</code>. <code>scan()</code> is a more general function to read data files and interact with user keyboard inputs. <code>file()</code> is also a general functions to read data through <em>connections</em>, which refer to R’s mechanism for various I/O operations. <code>dir()</code> returns the file names in your working directory.</p>
+<p>A common method to read and write data files is <code>read.csv(&quot;file_name.csv&quot;)</code> and <code>write.csv(data_frame, file = &quot;file_name.csv&quot;)</code>. <code>scan()</code> is a more general function to read data files and interact with user keyboard inputs. <code>file()</code> is also a general function for reading data through <em>connections</em>, which refer to R’s mechanism for various I/O operations. <code>dir()</code> returns the file names in your working directory.</p>
 <p>A useful function is <code>cat()</code>, which can print a cleaner output to the screen, compared to <code>print()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="st">&quot;example&quot;</span>)</code></pre></div>
 <pre><code>## [1] &quot;example&quot;</code></pre>
@@ -199,7 +199,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="updating" class="section level3">
 <h3><span class="header-section-number">2.4.5</span> Updating</h3>
-<p>R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice. For updating RStudio, go to <code>Help</code> and then <code>Check for Updates</code>. Also, RStudio also makes it easy to update packages; go to <code>Tools</code> and the <code>Check for Package Updates</code>. Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems.</p>
+<p>R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice. For updating RStudio, go to <code>Help</code> and then <code>Check for Updates</code>. Also, RStudio also makes it easy to update packages; go to <code>Tools</code> and the <code>Check for Package Updates</code>. Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems. [Kota, should we worry about an update to R restricting what packages or libraries might work?]</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check R version</span>
 <span class="kw">getRversion</span>()</code></pre></div>
 <pre><code>## [1] &#39;3.3.3&#39;</code></pre>
@@ -289,7 +289,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

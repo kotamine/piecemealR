@@ -7,7 +7,7 @@ memo:
 
 library(bookdown)
 
-bookdown::render_book("index.Rmd", "bookdown::gitbook",  output_dir = "docs", new_session = TRUE, output_options = list(split_by ="section+number"), preview=TRUE)
+bookdown::render_book("index.Rmd", "bookdown::gitbook",  output_dir = "docs", new_session = TRUE, output_options = list(split_by ="section+number"))
 
 
 # Somehow it doesn't get a right URL ...

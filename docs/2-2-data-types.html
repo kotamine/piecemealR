@@ -174,7 +174,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.2</span> Data types</h2>
 <div id="atomic" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Atomic</h3>
-<p>In most cases, each atomic element has a type (mode) of;</p>
+<p>In most cases, each atomic element has a type (mode) of</p>
 <ul>
 <li><p><code>numeric</code>: number</p></li>
 <li><p><code>logical</code>: TRUE or FALSE (T or F for shortcuts)</p></li>
@@ -401,7 +401,7 @@ mat1</code></pre></div>
 ## r2  2  4  6
 ## r1  1  3  5
 ## r2  2  4  6</code></pre>
-<p>There are recycling rules in R.</p>
+<p>There are recycling rules (which does/controls what?) in R.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># the vector shorter than the length of all elements of a matrix</span>
 <span class="kw">matrix</span>(<span class="dt">data =</span> <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">4</span>), <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol=</span> <span class="dv">3</span>)</code></pre></div>
 <pre><code>## Warning in matrix(data = c(1:4), nrow = 2, ncol = 3): data length [4] is
@@ -537,7 +537,7 @@ mat1[<span class="dv">1</span>,, drop =<span class="st"> </span><span class="ot"
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">unlist</span>(ans1[[<span class="dv">3</span>]])  <span class="co"># results for the third column  </span></code></pre></div>
 <pre><code>##       Avg        Sd 
 ## 5.5000000 0.7071068</code></pre>
-<p>Arrays are a generalization of matrices and can be more than 2 dimension.</p>
+<p>Arrays are a generalization of matrices and can have more than 2 dimensions.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">array</span>(<span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">18</span>), <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>))  <span class="co"># dimension 2 by 2 by 3</span></code></pre></div>
 <pre><code>## , , 1
 ## 
@@ -828,7 +828,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

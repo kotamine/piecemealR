@@ -319,7 +319,7 @@ stat_carrier %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span 
 <span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
-<p><code>air_time</code> and <code>distance</code> shows a general linear relationship. We can better account for this relationship if we calculate the average air time for each flight destination from New York City.</p>
+<p><code>air_time</code> and <code>distance</code> show a general linear relationship. We can better account for this relationship if we calculate the average air time for each flight destination from New York City.</p>
 <p>First, we will consider a simple approach to control for such average air time for each destination and compare the variation in air time among carriers. We can do this by fitting a linear regression model with fixed destination effects and comparing the residuals. This resembles the ANOVA for comparing the mean air times among carriers, but the fixed destination effects here difference out the average air time for each destination from the total variation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a copy of flights data</span>
 flights2 &lt;-<span class="st"> </span>flights
@@ -527,8 +527,8 @@ flights2 %&gt;%
 ## sample estimates:
 ##  mean of x  mean of y 
 ## -0.8689523  0.6791852</code></pre>
-<p>With a large number of observations, a seemingly-small difference in the means often turn out to be a statistically significant difference. Nonetheless, statistical significance is not sufficient for being an empirically significant difference that matters in the real world. The average difference of about 1.5 minute air time per flight appears very small.</p>
-<p>In fact, we can do this sort of pair-wise comparisons all at once using a regression. Using carrier fixed effects in addition to destination fixed effects, we can directly compare the mean effects across carriers. We will set United Airlines to be a reference of the carrier fixed effects, so that the fixed effect for United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated.</p>
+<p>With a large number of observations, a seemingly small difference in the means often turns out to be a statistically significant difference. Nonetheless, statistical significance is not sufficient for being an empirically significant difference that matters in the real world. The average difference of about 1.5 minute air time per flight appears very small.</p>
+<p>In fact, we can do this sort of pair-wise comparison all at once using a regression. Using carrier fixed effects in addition to destination fixed effects, we can directly compare the mean effects across carriers. We will set United Airlines to be a reference of the carrier fixed effects, so that the fixed effect for United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2$carrier &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(flights2$carrier), <span class="dt">ref=</span><span class="st">&quot;UA&quot;</span>)  
 <span class="co"># reference level is United Airlines</span>
 flights2$carrier %&gt;%<span class="st"> </span><span class="kw">table</span>()</code></pre></div>
@@ -752,7 +752,7 @@ lm_rlt1 %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span class
 </tr>
 </tbody>
 </table>
-<p>The “estimate” column shows the mean difference in air time with United Airlines, accounting for flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines.</p>
+<p>The “estimate” column shows the mean difference in air time with United Airlines, accounting for the flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines.</p>
 <p>Next, let’s take a step further to account for flight timing as well. We can do this by adding fixed effects for flight dates and hours.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 &lt;-<span class="st"> </span>flights2 %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>( <span class="dt">date_id =</span> month*<span class="dv">100</span> +<span class="st"> </span>day )
@@ -1117,8 +1117,8 @@ lm_rlt3 %&gt;%<span class="st"> </span><span class="kw">kable</span>(<span class
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) +<span class="st"> </span><span class="kw">geom_col</span>() +
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines: Robustness Check&quot;</span>)</code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<p>The point estimates should be <em>approximately</em> close to what we would obtain if we regress <code>air_time</code> on the fixed effects of <code>carrier</code>, <code>dest</code>, and <code>time_hour</code>. However, the standard errors are not correctly displayed in the table because the centered variable has less total variation compared to the original <code>air_time</code> variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)</p>
-<p>Overall, we see again a tendency that low-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City. Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons.</p>
+<p>The point estimates should be <em>approximately</em> close to what we would obtain if we regress <code>air_time</code> on the fixed effects of <code>carrier</code>, <code>dest</code>, and <code>time_hour</code>. However, the standard errors are not correctly displayed in the table because the centered variable has a smaller total variation compared to the original <code>air_time</code> variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)</p>
+<p>Overall, we see again a tendency that lower-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City. Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons.</p>
 </div>
             </section>
 
@@ -1158,7 +1158,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }

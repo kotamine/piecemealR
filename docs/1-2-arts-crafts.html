@@ -314,7 +314,7 @@ flight_stats_MSP  <span class="co"># show flight_stats object</span></code></pre
 ## 10        -2         8    10      0.82
 ## # ... with 336,766 more rows</code></pre>
 <p>We extracted specific columns of <code>flights</code> by <code>select()</code> and added new columns defined in <code>mutate()</code>. <code>mutate()</code> differs from <code>summarise()</code> in that <code>mutate()</code> adds new columns to the data frame, while <code>summarise()</code> collapses the data frame into a summary table.</p>
-<p>There are roughly five types of <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html">window functions</a> that are commonly used inside <code>mutate()</code>: (1) <strong>summary functions</strong>, which are interpreted as a vector of repeated values (e.g., a column of an identical mean value): (2) ranking or ordering functions (e.g., <code>row_number()</code>, <code>min_rank()</code>, <code>dense_rank()</code>, <code>cume_dist()</code>,<code>percent_rank()</code>, and <code>ntile()</code>): (3) offset functions, say defining a lagged variable in time series data (<code>lead()</code> and <code>lag()</code>): (4) cumulative aggregates (e.g., <code>cumsum()</code>, <code>cummin()</code>, <code>cummax()</code>, <code>cumall()</code>, <code>cumany()</code>, and <code>cummean()</code>): (5) fixed-window rolling aggregates such as a windowed mean, median, etc. To find help files for these function, for example, type <code>?cumsum</code>.</p>
+<p>There are roughly five types of <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html">window functions</a> that are commonly used inside <code>mutate()</code>: (1) <strong>summary functions</strong>, which are interpreted as a vector of repeated values (e.g., a column of an identical mean value): (2) ranking or ordering functions (e.g., <code>row_number()</code>, <code>min_rank()</code>, <code>dense_rank()</code>, <code>cume_dist()</code>, <code>percent_rank()</code>, and <code>ntile()</code>): (3) offset functions, say defining a lagged variable in time series data (<code>lead()</code> and <code>lag()</code>): (4) cumulative aggregates (e.g., <code>cumsum()</code>, <code>cummin()</code>, <code>cummax()</code>, <code>cumall()</code>, <code>cumany()</code>, and <code>cummean()</code>): (5) fixed-window rolling aggregates such as a windowed mean, median, etc. To find help files for these function, for example, type <code>?cumsum</code>.</p>
 <p>Before moving to the graphics, let’s quickly go over what a <strong>function</strong> is in R and how you can use a custom function inside <code>summarise()</code> or <code>mutate()</code>. In R, we use <code>function()</code> to create a function, which has its name, input arguments separated by comma, and a body (e.g., tasks to perform and what to return as an output).</p>
 <pre><code>your_function_name &lt;- function(input arguments) {
                         task1
@@ -474,7 +474,7 @@ vec2</code></pre></div>
 </tr>
 </tbody>
 </table>
-<p>The other approach is to use a custom function. For instance, <code>my_mean_2()</code> we defined above has the default argument <code>na.rm=TRUE</code> that gets passed into <code>mean()</code>, effectively overwriting the default argument <code>na.rm=FALSE</code> of <code>mean()</code>. A custom function (as well as any standard summary function) can be called in <code>summarise_each()</code> or <code>mutate_each()</code> using <code>funs()</code>;</p>
+<p>The other approach is to use a custom function. For instance, <code>my_mean_2()</code> we defined above has the default argument <code>na.rm=TRUE</code> that gets passed into <code>mean()</code>, effectively overwriting the default argument <code>na.rm=FALSE</code> of <code>mean()</code>. A custom function (as well as any standard summary function) can be called in <code>summarise_each()</code> or <code>mutate_each()</code> using <code>funs()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_gain %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay, gain) %&gt;%
 <span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="st">&quot;my_mean_2&quot;</span>)) %&gt;%
@@ -507,18 +507,18 @@ vec2</code></pre></div>
 <p>While coding complex graphics via <code>ggplot()</code> may appear intimidating at first, it boils down to the three primary components:</p>
 <ul>
 <li><p><strong>data</strong>: a data frame e.g., the first argument in <code>ggplot(data, ...)</code>.</p></li>
+<li><p><strong>geom</strong>: geometric objects such as points, lines, bars, etc. with parameters given in the (), e.g., <code>geom_point()</code>, <code>geom_line()</code>, <code>geom_histogram()</code></p></li>
 <li><p><strong>aes</strong>: specifications for x-y variables, as well as variables to differentiate <strong>geom</strong> objects by color , shape, or size. e.g., <code>aes(x = var_x, y = var_y, shape = var_z)</code></p></li>
-<li><p><strong>geom</strong>: geometric objects such as points, lines, bars, etc. e.g., <code>geom_point()</code>, <code>geom_line()</code>, <code>geom_histogram()</code></p></li>
 </ul>
-<p>One can refine a plot figure by adding secondary components or characteristics such as:</p>
+<p>One can refine a plot figure by adding secondary components or characteristics such as</p>
 <ul>
 <li><p>stat: data transformation, overlay of statistical inferences etc.</p></li>
 <li><p>scales: scaling data points etc.</p></li>
 <li><p>coord: Cartesian coordinates, polar coordinates, mapping projections etc.</p></li>
 <li><p>facet: laying out multiple plot panels in a grid etc.</p></li>
 </ul>
-<p>In below, we will generate five common types of plots: <strong>scatter-plots</strong>, <strong>line-graphs</strong>, <strong>boxplots</strong>, <strong>histograms</strong>, and <strong>barplots</strong>. To provide a context, let’s use these plots to investigate what may explain patterns of flight departure delays.</p>
-<p>First, let’s consider a possibility of congestion at the airport during certain times of the day or certain seasons. We can use <strong>barplots</strong> to see whether there is any obvious pattern in the flight distribution across flight origins (i.e., airports) in New York City. A barplot shows observation counts (e.g., rows) by category.</p>
+<p>In what follows below, we will generate five common types of plots: <strong>scatter-plots</strong>, <strong>line-graphs</strong>, <strong>boxplots</strong>, <strong>histograms</strong>, and <strong>barplots</strong>. To provide a context, let’s use these plots to investigate what may explain patterns of flight departure delays.</p>
+<p>First, let’s consider the possibility of congestion at an airport during certain times of the day or certain seasons. We can use <strong>barplots</strong> to see whether there is any obvious pattern in the flight distribution across flight origins (i.e., airports) in New York City with St. Paul-Minneapolis airport (MSP) as a destination. A barplot shows observation counts (e.g., rows) by category.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> flights,  <span class="co"># the first argument is the data frame</span>
        <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> origin)) +<span class="st">   </span><span class="co"># the second argument is &quot;mapping&quot;, which is aes()   </span>
 <span class="st">  </span><span class="kw">geom_bar</span>()  <span class="co">#  after &quot;+&quot; piping operator of ggplot(), we add geom_XXX() elements </span></code></pre></div>
@@ -545,12 +545,12 @@ vec2</code></pre></div>
 delay_day %&gt;%<span class="st">     </span><span class="co"># &quot;facet_grid( var ~ .)&quot; is similar to &quot;facet_wrap( ~ var)&quot; </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> dep_delay)) +<span class="st"> </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">facet_grid</span>( origin ~<span class="st"> </span>. ) </code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<p>The seasonal pattern seems similar across airports, and summer months appear to be busier on average. Let’s see how closely these patterns across airports are related to each other by focusing on a few summer months and overlying the line-graphs.</p>
+<p>The seasonal pattern seems similar across airports, and summer months appear to be busier on average. Across these airports, let’s see how closely these patterns are related to each other by focusing on a few summer months and making an overlap of the three line-graphs (EWR, JFK, and LGA).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">filter</span>(<span class="st">&quot;2013-07-01&quot;</span> &lt;=<span class="st"> </span>date, <span class="st">&quot;2013-08-31&quot;</span> &gt;=<span class="st"> </span>date)  %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> dep_delay, <span class="dt">color =</span> origin)) +<span class="st"> </span><span class="kw">geom_line</span>()  </code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<p>We can see similar patterns of spikes across airports occurring on certain days, indicating a tendency that the three airports get busy on the same days. Would this mean that the three airports tend to be congested at the same time?</p>
+<p>We can see similar patterns of spikes across airports occurring on certain days, indicating a tendency for the three airports to get busy on the same days. Would this mean that the three airports tend to be congested at the same time?</p>
 <p>In the previous figure, there seems to be some cyclical pattern of delays. A good place to start would be comparing delays by day of the week. Here is a function to calculate day of the week for a given date.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_dow &lt;-<span class="st"> </span>function(date) {
   <span class="co"># as.POSIXlt(date)[[&#39;wday&#39;]] returns integers 0, 1, 2, .. 6, for Sun, Mon, ... Sat.  </span>
@@ -633,7 +633,7 @@ plot_delay &lt;-<span class="st"> </span>delay_day_hr  %&gt;%
 
 plot_delay </code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<p>Along the horizontal axis, we can see how the number of flights is distributed across date-hours. Some days are busy, and some hours busier still. It appears that there are two clusters in the number of lights, showing very slow date-hours (e.g., less than 10 flights flying out of New York city per hour) and normal date-hours (e.g., about 50 to 70 flights per hour). We could guess that the delays in the slow hours be caused by bad weather. On the other hand, we may wonder if the excess delays in the normal hours, compared to the slow hours, are caused by congestion at the airports. To see this, let’s fit a curve that captures the relationships between <code>n_obs</code> and <code>dep_delay</code>. Our hypothesis is that the delay would become more likely and longer as the number of flights increases.</p>
+<p>Along the horizontal axis, we can see how the number of flights is distributed across date-hours. Some days are busy, and some hours busier still. It appears that there are two clusters in the number of flights, showing very slow date-hours (e.g., less than 10 flights flying out of New York city per hour) and normal date-hours (e.g., about 50 to 70 flights per hour). We could guess that the delays in the slow hours are caused by bad weather. On the other hand, we may wonder if the excess delays in the normal hours, compared to the slow hours, are caused by congestion at the airports. To see this, let’s fit a curve that captures the relationships between <code>n_obs</code> and <code>dep_delay</code>. Our hypothesis is that the delay would become more likely and longer as the number of flights increases.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_delay  +
 <span class="st">  </span><span class="kw">geom_smooth</span>()   <span class="co">#  geom_smooth() addes a layer of fitted curve(s) </span></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
@@ -644,7 +644,7 @@ plot_delay </code></pre></div>
 <span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">color =</span> wday), <span class="dt">se=</span><span class="ot">FALSE</span>) </code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
-<p>Surprisingly, the delay does not seem to increase with the flights. There are more delays on Thursdays and Fridays and less delays on Saturdays, but we see no evidence of congestion as a cause of delay.</p>
+<p>Surprisingly, the delay does not seem to increase with the flights. There are more delays on Thursdays and Fridays and less delays on Saturdays, but we see no evidence of flight congestion as a cause of delay.</p>
 <p>Let’s take a closer look at the distribution of the delays. If it is not normally distributed, we may want to apply a transformation.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr %&gt;%<span class="st">  </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(dep_delay)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </code></pre></div>
@@ -740,7 +740,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["_main.epub"],
+"download": ["_main.pdf", "_main.epub"],
 "toc": {
 "collapse": "subsection"
 }
