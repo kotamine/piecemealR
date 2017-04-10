@@ -3,7 +3,7 @@
 
 # Essentials {#essentials}
 
-2017-04-08: <span style="color:red">*VERY Preliminary!*</span>
+2017-04-10: <span style="color:red">*VERY Preliminary!*</span>
 
 This section provides an overview of the essential concepts for manipulating data and programming in R. 
 
@@ -25,7 +25,7 @@ Cheatsheets are useful for glancing at various functions.
 
 ### Atomic 
 
-In most cases, each atomic element has a type (mode) of;
+In most cases, each atomic element has a type (mode) of
 
 * `numeric`: number
 
@@ -372,7 +372,7 @@ df2$fac2
 
 ### Factor
 
-A factor object is defined with a set of categorical levels, which may be labeled. The levels are either  **ordered** (defined by `ordered()`) or **unordered** (defined by `factor()`). 
+A factor object is defined with a set of categorical levels, which may be labeled. The levels are either **ordered** (defined by `ordered()`) or **unordered** (defined by `factor()`). 
 Ordered factor objects are treated in the specific order by certain statistical and graphical procedures.    
 
 
@@ -572,7 +572,7 @@ rbind(mat1,mat1)
 ## r2  2  4  6
 ```
 
-There are recycling rules in R. 
+There are recycling rules (which does/controls what?) in R. 
 
 
 ```r
@@ -936,7 +936,7 @@ unlist(ans1[[3]])  # results for the third column
 ```
 
 
-Arrays are a generalization of matrices and can be more than 2 dimension. 
+Arrays are a generalization of matrices and can have more than 2 dimensions. 
 
 ```r
 array(c(1:18), c(2,3,3))  # dimension 2 by 2 by 3
@@ -1529,7 +1529,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-04-08 18:14:03 CDT"
+## [1] "2017-04-10 10:52:42 CDT"
 ```
 
 ```r
@@ -1546,7 +1546,7 @@ if (hour > 8 & hour < 12) {
 ```
 
 ```
-## [1] "private time"
+## [1] "morning"
 ```
 
 ### Loop
@@ -1603,7 +1603,7 @@ A function consists of input arguments, tasks (R expressions), and output as an 
 ##                           }
 ```
 
-The output of the function, aside from those that are printed, saved, or exported, is the very last task (expression). If variable `result` is created inside the function, having `result` at the very end will return this item as an output. When multiple objects are created, it is often convenient to return those as a *list*. Use `return()` to return a specific item in the middle of the function and skip the rest of the evaluations.  For checking errors and halting evaluations, use `stop()` or `stopifnot()`.           
+The output of the function, aside from those that are printed, saved, or exported, is the very last task (expression). If variable `result` is created inside the function, having `result` at the very end will return this item as an output. When multiple objects are created, it is often convenient to return those as a *list*. Use `return()` to return a specific item in the middle of the function and skip the rest of the evaluations. For checking errors and halting evaluations, use `stop()` or `stopifnot()`.           
 
 
 
@@ -1659,7 +1659,7 @@ myfun4(4, 3)
 
 ### Environment
 
-A function, formally known as a *closure*, consists of its arguments (called *formals*), a body, and an *environment*. An *environment*  is a collection of existing objects at the time when the function is created. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
+A function, formally known as a *closure*, consists of its arguments (called *formals*), a body, and an *environment*. An *environment*  is a collection of existing objects at the time when the function is created [Kota, what are those objects? Are they, for example, file locations?]. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
 
 
 
@@ -1701,7 +1701,7 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7fbb5d93f230>
+## <environment: 0x7fd9c337ac70>
 ```
 
 A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
@@ -1722,7 +1722,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7fbb5f1bccd0>
+## <environment: 0x7fd9c36a0ce0>
 ```
 
 ```r
@@ -1734,7 +1734,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7fbb5e0ce5c8>
+## <environment: 0x7fd9c370d518>
 ```
 
 ```r
@@ -1770,7 +1770,7 @@ ls()  # all gone in GlobalEnv
 ## character(0)
 ```
 
-Using  global assignment `<<-` operator,  one can bend this general rule of not affecting global objects. This can be useful when it is desirable to make certain objects accessible across multiple functions without explicitly passing them through arguments.  
+Using global assignment `<<-` operator, one can bend this general rule of not affecting global objects. This can be useful when it is desirable to make certain objects accessible across multiple functions without explicitly passing them through arguments.  
 
 
 ```r
@@ -1841,10 +1841,12 @@ It is convenient to use `<<-` if you are sure about which object to overwrite. O
 
 ### Debugging 
 
-`browser()` and `traceback()` are common debugging tools. A debugging session starts where `browser()` is inserted and allows for a line by line execution onward. Putting `browser()` inside a loop or function is useful because it allows for accessing the objects at a particular moment of execution in its environment.  After an error, executing `traceback()` shows  at which process the error occurred. Other tools include `debug()`, `debugger()`, and `stopifnot()`. 
+`browser()` and `traceback()` are common debugging tools. A debugging session starts where `browser()` is inserted and allows for a line-by-line execution onward. Putting `browser()` inside a loop or function is useful because it allows for accessing the objects at a particular moment of execution in its environment. After an error alert, executing `traceback()` shows at which process the error occurred. Other tools include `debug()`, `debugger()`, and `stopifnot()`. 
 
 
 ### Stat func.
+
+What is going on here? What do we see?
 
 
 
@@ -2023,7 +2025,7 @@ c("a","b","t","s") %in% c("t","a","a")
 
 ### Working directory
 
-`getwd()` returns the current working directly.  `setwd(new_directory)`  sets a specified working directory. 
+`getwd()` returns the current working directly. `setwd(new_directory)` sets a specified working directory. 
 
 ### R session
 
@@ -2036,7 +2038,7 @@ R objects can be saved and loaded by `save(object1, object2, ..., file="file_nam
 
 ### Input & Output
 
-A common method to read and write data files is `read.csv("file_name.csv")` and `write.csv(data_frame, file = "file_name.csv")`. `scan()` is a more general function to read data files and interact with user keyboard inputs. `file()`  is also a general functions to read data through *connections*, which refer to R's mechanism for various I/O operations. `dir()` returns the file names in your working directory.     
+A common method to read and write data files is `read.csv("file_name.csv")` and `write.csv(data_frame, file = "file_name.csv")`. `scan()` is a more general function to read data files and interact with user keyboard inputs. `file()` is also a general function for reading data through *connections*, which refer to R's mechanism for various I/O operations. `dir()` returns the file names in your working directory.     
 
 A useful function is `cat()`, which can print a cleaner output to the screen, compared to `print()`.
 
@@ -2075,7 +2077,7 @@ cat("some string", c(1:4), "more string\n", sep="_")
 
 ### Updating
 
-R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice.  For updating RStudio, go to `Help` and then `Check for Updates`. Also, RStudio also makes it easy to update packages; go to `Tools` and the `Check for Package Updates`.  Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems.    
+R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice.  For updating RStudio, go to `Help` and then `Check for Updates`. Also, RStudio also makes it easy to update packages; go to `Tools` and the `Check for Package Updates`. Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems. [Kota, should we worry about an update to R restricting what packages or libraries might work?]
 
 
 ```r

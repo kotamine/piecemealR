@@ -2,7 +2,7 @@
 
 # Introduction {#intro} 
 
-2017-04-08: <span style="color:red">*VERY Preliminary!*</span>
+2017-04-10: <span style="color:red">*VERY Preliminary!*</span>
 
 
 
@@ -98,7 +98,7 @@ head(flights)  # displays first seveal rows and columns
 The `dim()` command returns the dimensions of a data frame, and the `head()` command returns the first several rows and columns. The `flights` dataset contains information on dates, actual departure and arrival times, scheduled departure and arrival times, carriers, origins, destinations, travel times, and distances. These variables are arranged in columns, and each row is an observation of flight.   
 
 
-In R, we refer to a dataset as **data frame**, which is a *class* of R object.  The **data frame** class is more general than the **matrix** class in that it can contain variables of more than one mode (numeric, character, factor etc). In case you want an overview of data types right away, here is a [summary](http://www.statmethods.net/input/datatypes.html). 
+In R, we refer to a dataset as **data frame**, which is a *class* of R object. The **data frame** class is more general than the **matrix** class in that it can contain variables of more than one mode (numeric, character, factor etc). In case you want an overview of data types right away, here is a [summary](http://www.statmethods.net/input/datatypes.html). 
 
 
 ## Arts & Crafts 
@@ -113,9 +113,9 @@ We will focus on six data wrangling functions in the `dplyr` package:
 
 * `arrange()`: orders rows of a data frame. We put column names in its arguments. 
 
-* `summarise()`: collapses a data frame into summary statistics. We put **summary functions**  (e.g., statistics functions) using column names in its arguments.     
+* `summarise()`: collapses a data frame into summary statistics. We put **summary functions** (e.g., statistics functions) using column names in its arguments.     
 
-* `mutate()`: creates new variables and adds them to the existing columns. We put  **window functions** (e.g., transforming operations) using column names in its arguments.  
+* `mutate()`: creates new variables and adds them to the existing columns. We put **window functions** (e.g., transforming operations) using column names in its arguments.  
 
 * `group_by()`: assigns rows into groups within a data frame. We put column names in its arguments.  
 
@@ -164,7 +164,7 @@ You will quickly discover that `%>%` operator makes the code much easier to read
 Let's add a few more lines to the previous example. Say, additionally we want to see the average delay by carrier and sort the results by the number of observations (e.g. flights) in descending order. 
 
 Okay, what do we do?  We make **a sequence of data wrangling operations in plain English** and translate that into **code** by replacing **then** with `%>%` operator. 
-For example, we say, "take the data frame `flights`; **then** (`%>%`)  `filter()` to extract the rows of flights to MSP;  **then** (`%>%`) group rows by carrier; **then** (`%>%`) `summarise()` data for the number of observations and the means; **then** (`%>%`) `arrange()` the results by the observation count in descending order."   
+For example, we say, "take the data frame `flights`; **then** (`%>%`) `filter()` to extract the rows of flights to MSP; **then** (`%>%`) group rows by carrier; **then** (`%>%`) `summarise()` data for the number of observations and the means; **then** (`%>%`) `arrange()` the results by the observation count in descending order."   
 
 
 ```r
@@ -194,7 +194,7 @@ flight_stats_MSP  # show flight_stats object
 ```
 
 
-The carrier variable is expressed in the International Air Transportation Association (IATA) code, so let's add a column of carrier names by joining another data frame called `airlines`. In RStudio, you can find this data frame under the **Environment**  tab (in the upper right corner); switch the display option from *Global Environment* to *package:nycflights13*. To inspect the data frame, type `View(airlines)` in the R console. Also, by typing `data()`  you can see a list of all datasets that are loaded with libraries. 
+The carrier variable is expressed in the International Air Transportation Association (IATA) code, so let's add a column of carrier names by joining another data frame called `airlines`. In RStudio, you can find this data frame under the **Environment**  tab (in the upper right corner); switch the display option from *Global Environment* to *package:nycflights13*. To inspect the data frame, type `View(airlines)` in the R console. Also, by typing `data()` you can see a list of all datasets that are loaded with libraries. 
 
 
 ```r
@@ -247,10 +247,10 @@ flights %>%
 ## # ... with 336,766 more rows
 ```
 
-We extracted specific columns of `flights` by `select()` and added new columns defined in `mutate()`.  `mutate()` differs from `summarise()` in that  `mutate()` adds new columns to the data frame, while `summarise()` collapses the data frame into a summary table. 
+We extracted specific columns of `flights` by `select()` and added new columns defined in `mutate()`. `mutate()` differs from `summarise()` in that  `mutate()` adds new columns to the data frame, while `summarise()` collapses the data frame into a summary table. 
 
 
-There are roughly five types of [window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html) that are commonly used inside `mutate()`: (1)  **summary functions**, which are interpreted as a vector of repeated values (e.g., a column of an identical mean value): (2)  ranking or ordering functions (e.g., `row_number()`, `min_rank()`, `dense_rank()`, `cume_dist()`,`percent_rank()`, and `ntile()`): (3) offset functions, say defining a lagged variable in time series data (`lead()` and `lag()`): (4)  cumulative aggregates (e.g., `cumsum()`, `cummin()`, `cummax()`, `cumall()`, `cumany()`, and `cummean()`): (5) fixed-window rolling aggregates such as a windowed mean, median, etc.  To find help files for these function, for example, type `?cumsum`.  
+There are roughly five types of [window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html) that are commonly used inside `mutate()`: (1)  **summary functions**, which are interpreted as a vector of repeated values (e.g., a column of an identical mean value): (2)  ranking or ordering functions (e.g., `row_number()`, `min_rank()`, `dense_rank()`, `cume_dist()`, `percent_rank()`, and `ntile()`): (3) offset functions, say defining a lagged variable in time series data (`lead()` and `lag()`): (4)  cumulative aggregates (e.g., `cumsum()`, `cummin()`, `cummax()`, `cumall()`, `cumany()`, and `cummean()`): (5) fixed-window rolling aggregates such as a windowed mean, median, etc.  To find help files for these function, for example, type `?cumsum`.  
 
 
 Before moving to the graphics, let's quickly go over what a **function** is in R and how you can use a custom function inside `summarise()` or  `mutate()`. In R, we use `function()` to create a function, which has its name, input arguments separated by comma, and a body (e.g., tasks to perform and what to return as an output).    
@@ -412,7 +412,7 @@ flights_gain %>%
 ----------  ----------  ------
      12.56         6.9   -5.66
  
-The other approach is to use a custom function. For instance, `my_mean_2()` we defined above has the default argument `na.rm=TRUE` that gets passed into `mean()`, effectively overwriting the default argument `na.rm=FALSE` of `mean()`. A custom function (as well as any standard summary function) can be called in `summarise_each()` or `mutate_each()` using `funs()`;   
+The other approach is to use a custom function. For instance, `my_mean_2()` we defined above has the default argument `na.rm=TRUE` that gets passed into `mean()`, effectively overwriting the default argument `na.rm=FALSE` of `mean()`. A custom function (as well as any standard summary function) can be called in `summarise_each()` or `mutate_each()` using `funs()`
 
 
 ```r
@@ -446,12 +446,11 @@ While coding complex graphics via `ggplot()` may appear intimidating at first, i
 
 * **data**: a data frame e.g., the first argument in `ggplot(data, ...)`.    
 
-* **aes**:  specifications for x-y variables, as well as variables to differentiate **geom** objects by color , shape, or size. e.g., `aes(x = var_x, y = var_y, shape = var_z)` 
+* **geom**: geometric objects such as points, lines, bars, etc. with parameters given in the (), e.g., `geom_point()`, `geom_line()`,  `geom_histogram()`  
 
-* **geom**: geometric objects such as points, lines, bars, etc. e.g., `geom_point()`,  `geom_line()`,  `geom_histogram()`  
+* **aes**:  specifications for x-y variables, as well as variables to differentiate **geom** objects by color , shape, or size. e.g., `aes(x = var_x, y = var_y, shape = var_z)`  
  
- 
-One can refine a plot figure by adding secondary components or characteristics such as: 
+One can refine a plot figure by adding secondary components or characteristics such as
 
 * stat: data transformation, overlay of statistical inferences etc. 
 
@@ -461,11 +460,11 @@ One can refine a plot figure by adding secondary components or characteristics s
 
 * facet: laying out multiple plot panels in a grid etc. 
 
-In below, we will generate five common types of plots: 
+In what follows below, we will generate five common types of plots: 
 **scatter-plots**, **line-graphs**, **boxplots**, **histograms**, and **barplots**. 
 To provide a context, let's use these plots to investigate what may explain patterns of flight departure delays.   
 
-First, let's consider a possibility of congestion at the airport during certain times of the day or certain seasons. We can use  **barplots** to see whether there is any obvious pattern in the flight distribution across flight origins (i.e., airports) in New York City. A barplot shows observation counts (e.g., rows) by category. 
+First, let's consider the possibility of congestion at an airport during certain times of the day or certain seasons. We can use  **barplots** to see whether there is any obvious pattern in the flight distribution across flight origins (i.e., airports) in New York City with St. Paul-Minneapolis airport (MSP) as a destination. A barplot shows observation counts (e.g., rows) by category. 
 
 
 ```r
@@ -515,7 +514,7 @@ delay_day %>%     # "facet_grid( var ~ .)" is similar to "facet_wrap( ~ var)"
 
 <img src="01-Introduction_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
-The seasonal pattern seems similar across airports, and summer months appear to be busier on average. Let's see how closely these patterns across airports are related to each other by focusing on a few summer months and overlying the line-graphs.
+The seasonal pattern seems similar across airports, and summer months appear to be busier on average. Across these airports, let's see how closely these patterns are related to each other by focusing on a few summer months and making an overlap of the three line-graphs (EWR, JFK, and LGA).
 
 
 ```r
@@ -526,7 +525,7 @@ delay_day %>%
 
 <img src="01-Introduction_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
-We can see similar patterns of spikes across airports occurring on certain days, indicating a tendency that the three airports get busy on the same days. Would this mean that the three airports tend to be congested at the same time? 
+We can see similar patterns of spikes across airports occurring on certain days, indicating a tendency for the three airports to get busy on the same days. Would this mean that the three airports tend to be congested at the same time? 
 
 In the previous figure, there seems to be some cyclical pattern of delays. A good place to start would be comparing delays by day of the week. Here is a function to calculate day of the week for a given date.   
 
@@ -635,7 +634,7 @@ flights_wday  %>%
 
 Yes, Saturdays are less busy for the airports in terms of flight numbers.   
 
-Could we generalize this positive relationship between the number of flights and the average delays, which we find across days of the week?  To investigate this, we can summarize the data into the average delays by date-hour and see if the busyness of a particular hour of a particular day is correlated with the mean delay. We visualize these data using a **scatter plot**.     
+Could we generalize this positive relationship between the number of flights and the average delays, which we find across days of the week? To investigate this, we can summarize the data into the average delays by date-hour and see if the busyness of a particular hour of a particular day is correlated with the mean delay. We visualize these data using a **scatter plot**.     
 
 
 ```r
@@ -661,7 +660,7 @@ plot_delay
 
 <img src="01-Introduction_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
-Along the horizontal axis, we can see how the number of flights is distributed across date-hours.  Some days are busy, and some hours busier still. It appears that there are two clusters in the number of lights, showing very slow date-hours (e.g., less than 10 flights flying out of New York city per hour) and normal date-hours (e.g., about 50 to 70 flights per hour). We could guess that the delays in the slow hours be caused by bad weather. On the other hand, we may wonder if the excess delays in the normal hours, compared to the slow hours, are caused by congestion at the airports. To see this, let's fit a curve that captures the relationships between `n_obs` and `dep_delay`.  Our hypothesis is that the delay would become more likely and longer as the number of flights increases.     
+Along the horizontal axis, we can see how the number of flights is distributed across date-hours. Some days are busy, and some hours busier still. It appears that there are two clusters in the number of flights, showing very slow date-hours (e.g., less than 10 flights flying out of New York city per hour) and normal date-hours (e.g., about 50 to 70 flights per hour). We could guess that the delays in the slow hours are caused by bad weather. On the other hand, we may wonder if the excess delays in the normal hours, compared to the slow hours, are caused by congestion at the airports. To see this, let's fit a curve that captures the relationships between `n_obs` and `dep_delay`. Our hypothesis is that the delay would become more likely and longer as the number of flights increases.     
 
 
 ```r
@@ -675,7 +674,7 @@ plot_delay  +
 
 <img src="01-Introduction_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
-We cannot see any clear pattern.    How about fitting a curve by day of the week? 
+We cannot see any clear pattern. How about fitting a curve by day of the week? 
 
 
 ```r
@@ -690,7 +689,7 @@ plot_delay  +
 
 <img src="01-Introduction_files/figure-html/unnamed-chunk-24-1.png" width="672" />
 
-Surprisingly, the delay does not seem to increase with the flights.  There are more delays on Thursdays and Fridays and less delays on Saturdays, but we see no evidence of congestion as a cause of delay.   
+Surprisingly, the delay does not seem to increase with the flights. There are more delays on Thursdays and Fridays and less delays on Saturdays, but we see no evidence of flight congestion as a cause of delay.   
 
 Let's take a closer look at the distribution of the delays. If it is not normally distributed, we may want to apply a transformation.  
 
@@ -782,13 +781,13 @@ delay_day_hr  %>% filter(!is.na(dep_delay_shifted), dep_delay_shifted > 5) %>%
 
 <img src="01-Introduction_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
-We still do not see a pattern that busier hours have more delays.  This seems to suggest that the airports in New York City manage the fluctuating number of flights without causing congestion.  
+We still do not see a pattern that busier hours have more delays. This seems to suggest that the airports in New York City manage the fluctuating number of flights without causing congestion.  
 
 ## Huning down numbers
 
 This section is optional but contains more examples of `dplyr` and `ggplot2` functions.  
 
-Previously, we find that the congestion at the airports is unlikely the cause of delays. Then, what else may explain the patterns of delays? Are the airlines partly responsible?  Recall that earlier we observe that some airlines have longer delays than others for NYC-MSP flights. Let's take a look at the overall average delays by carrier.   
+Previously, we find that the congestion at the airports is unlikely the cause of delays. Then, what else may explain the patterns of delays? Are the airlines partly responsible? Recall that earlier we observe that some airlines have longer delays than others for NYC-MSP flights. Let's take a look at the overall average delays by carrier.   
 
 
 ```r
@@ -825,9 +824,9 @@ YV           601       19.00       15.56  Mesa Airlines Inc.
 HA           342        4.90       -6.92  Hawaiian Airlines Inc.      
 OO            32       12.59       11.93  SkyWest Airlines Inc.       
 
-There could be some differences across carriers. However, the simple average of delays across various routes, days, and hours of flights may not be a good measure to compare the carriers. For example, some carriers may serve the routes and hours that tend to have more delays. Also, given that our dataset covers only the flights from New York City, the comparison may not be  nationally representative since carriers use different airports around the country for their regional hubs. 
+There could be some differences across carriers. However, the simple average of delays across various routes, days, and hours of flights may not be a good measure to compare the carriers. For example, some carriers may serve the routes and hours that tend to have more delays. Also, given that our dataset covers only the flights from New York City, the comparison may not be nationally representative since carriers use different airports around the country for their regional hubs. 
 
-For our purposes, let's compare the average air time among carriers, while accounting for flight's destination and timing.  The differences in air time are not the same as the differences in delays, but they may indicate some efficiency difference among carriers. 
+For our purposes, let's compare the average air time among carriers, while accounting for flight's destination and timing. The differences in air time are not the same as the differences in delays, but they may indicate some efficiency difference among carriers. 
 
 Let's first check how air time relates to flight distance.   
 
@@ -845,7 +844,7 @@ flights %>%
 
 <img src="01-Introduction_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
-`air_time` and `distance` shows a general linear relationship. We can better account for this relationship if we calculate the average air time for each flight destination from New York City.  
+`air_time` and `distance` show a general linear relationship. We can better account for this relationship if we calculate the average air time for each flight destination from New York City.  
 
 First, we will consider a simple approach to control for such average air time for each destination and compare the variation in air time among carriers. We can do this by fitting a linear regression model with fixed destination effects and comparing the residuals. This resembles the ANOVA for comparing the mean air times among carriers, but the fixed destination effects here difference out the average air time for each destination from the total variation.  
 
@@ -903,7 +902,7 @@ OO            32       12.59       11.93  SkyWest Airlines Inc.              1.0
 
 The differences in air time across carriers ("mean_res") somewhat differ from the patterns of differences in the simple averages of delays ("dep_delay" and "arr_delay"). The patterns are different between "dep_delay" and "arr_delay" for that matter. 
 
-To some extent, it appears to make sense that the average air time is longer for low-cost carriers such as Virgin America,  Frontier Airlines, and Hawaiian Airlines.  The differences across other carriers, on the other hand, are small, compared to the standard deviations. To get a sense of whether these differences have any statistical significance, let's use t-test to compare the mean residual between United Airlines and American Airlines.    
+To some extent, it appears to make sense that the average air time is longer for low-cost carriers such as Virgin America, Frontier Airlines, and Hawaiian Airlines. The differences across other carriers, on the other hand, are small, compared to the standard deviations. To get a sense of whether these differences have any statistical significance, let's use t-test to compare the mean residual between United Airlines and American Airlines.    
 
 ```r
 # t-test comparing UA vs AA for the mean air time 
@@ -929,9 +928,9 @@ flights2 %>%
 ## -0.8689523  0.6791852
 ```
 
-With a large number of observations, a seemingly-small difference in the means often turn out to be a statistically significant difference. Nonetheless, statistical significance is not sufficient for being an empirically significant difference that matters in the real world. The average difference of about 1.5 minute air time per flight appears very small. 
+With a large number of observations, a seemingly small difference in the means often turns out to be a statistically significant difference. Nonetheless, statistical significance is not sufficient for being an empirically significant difference that matters in the real world. The average difference of about 1.5 minute air time per flight appears very small. 
 
-In fact, we can do this sort of pair-wise comparisons all at once using a regression. Using carrier fixed effects in addition to destination fixed effects, we can directly compare the mean effects across carriers. We will set United Airlines to be a reference of the carrier fixed effects, so that the fixed effect for United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated. 
+In fact, we can do this sort of pair-wise comparison all at once using a regression. Using carrier fixed effects in addition to destination fixed effects, we can directly compare the mean effects across carriers. We will set United Airlines to be a reference of the carrier fixed effects, so that the fixed effect for United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated. 
 
 
 ```r
@@ -1043,7 +1042,7 @@ YV        Mesa Airlines Inc.               601       0.52        0.53        0.9
 HA        Hawaiian Airlines Inc.           342      11.01        0.90       12.26      0.00
 OO        SkyWest Airlines Inc.             32       1.81        2.21        0.82      0.41
  
-The "estimate" column shows the mean difference in air time with United Airlines, accounting for flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines. 
+The "estimate" column shows the mean difference in air time with United Airlines, accounting for the flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines. 
 
 Next, let's take a step further to account for flight timing as well. We can do this by adding fixed effects for flight dates and hours. 
 
@@ -1165,15 +1164,15 @@ lm_rlt3 %>% filter(carrier!='UA') %>%
 
 <img src="01-Introduction_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
-The point estimates should be *approximately* close to what we would obtain if we regress `air_time` on the fixed effects of `carrier`, `dest`, and `time_hour`. However, the standard errors are not correctly displayed in the table because the centered variable has less total variation compared to the original `air_time` variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)  
+The point estimates should be *approximately* close to what we would obtain if we regress `air_time` on the fixed effects of `carrier`, `dest`, and `time_hour`. However, the standard errors are not correctly displayed in the table because the centered variable has a smaller total variation compared to the original `air_time` variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)  
 
-Overall, we see again a tendency that low-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from  United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City.  Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons. 
+Overall, we see again a tendency that lower-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from  United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City.  Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons. 
 
 ##  Reflections 
 
-In this introduction, we have reviewed the tools of `deplyr` and `ggplot2` packages as a starting point for data analyses and visualization in R. This new generation of tools is a data exploration language as much as a set of functions to shortcut traditional data manipulation  methods in R. This language provides a very intuitive system of translating our inquiries to the data analysis in R.      
+In this introduction, we have reviewed the tools of `deplyr` and `ggplot2` packages as a starting point for data analyses and visualization in R. This new generation of tools is a data exploration language as much as a set of functions to shortcut traditional data manipulation methods in R. This language provides an intuitive system of translating our inquiries to the data analysis in R.      
 
-Using the flight dataset, we have also investigated flight delay patterns. We find that airport congestion is unlikely a major cause of delay in New York City.  There are small differences in the air time (e.g. less than 5 minutes) across carriers for a given destination although it remains unclear how this relates to the delay patterns.  
+Using the flight dataset, we have also investigated flight delay patterns. We find that airport congestion is unlikely a major cause of delay in New York City. There are small differences in the air time (e.g. less than 5 minutes) across carriers for a given destination although it remains unclear how this relates to the delay patterns.  
 
 In fact, the concept of "delay" is complicated because it is defined in reference to the scheduled departure and arrival times, which may differ by carrier. A delay would not include the time sitting in the airplane before taking off or after landing as long as it is within the schedule. It might be more interesting to compare scheduled flight duration instead of delays or air time. (Such an analysis would involve somewhat complicated manipulations of date and time with our flight data.)  
 
