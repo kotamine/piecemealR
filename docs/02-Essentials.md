@@ -1529,7 +1529,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-04-10 11:32:01 CDT"
+## [1] "2017-04-10 18:06:36 CDT"
 ```
 
 ```r
@@ -1546,7 +1546,7 @@ if (hour > 8 & hour < 12) {
 ```
 
 ```
-## [1] "morning"
+## [1] "private time"
 ```
 
 ### Loop
@@ -1701,7 +1701,7 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7f902cf73040>
+## <environment: 0x7fb9316e4030>
 ```
 
 A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
@@ -1722,7 +1722,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7f902e847c68>
+## <environment: 0x7fb933bb9348>
 ```
 
 ```r
@@ -1734,7 +1734,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7f902db6b630>
+## <environment: 0x7fb933c2faa0>
 ```
 
 ```r
@@ -2086,7 +2086,7 @@ getRversion()
 ```
 
 ```
-## [1] '3.3.3'
+## [1] '3.3.1'
 ```
 
 ```r
@@ -2101,14 +2101,14 @@ version
 ## system         x86_64, darwin13.4.0        
 ## status                                     
 ## major          3                           
-## minor          3.3                         
-## year           2017                        
-## month          03                          
-## day            06                          
-## svn rev        72310                       
+## minor          3.1                         
+## year           2016                        
+## month          06                          
+## day            21                          
+## svn rev        70800                       
 ## language       R                           
-## version.string R version 3.3.3 (2017-03-06)
-## nickname       Another Canoe
+## version.string R version 3.3.1 (2016-06-21)
+## nickname       Bug in Your Hair
 ```
 
 ```r
