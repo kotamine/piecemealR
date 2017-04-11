@@ -15,7 +15,7 @@ bibliography: [articles.bib, book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 github-repo: /kotamine/piecemealR
-description: "This is an R tutorial. "
+description: "This is a R tutorial. "
 ---
 
 # Welcome {-}
