@@ -209,7 +209,7 @@ new_pkgs &lt;-<span class="st"> </span>required_pkgs[!(required_pkgs  %in%<span 
 if (<span class="kw">length</span>(new_pkgs)) {
   <span class="kw">install.packages</span>(new_pkgs, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com&quot;</span>)
 }   </code></pre></div>
-<p>In each R session, we load libraries, which are the downloaded pacakges. Here we load the following;</p>
+<p>Once packages are downloaded and installed on your computer, they become available for your libraries. In each R session, we load libraries we need (instead of all existing libraries). Here we load the following;</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressWarnings</span>({
   <span class="kw">suppressMessages</span>({
     <span class="kw">library</span>(dplyr)  <span class="co"># for data manipulation </span>

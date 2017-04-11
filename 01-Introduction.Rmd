@@ -46,8 +46,9 @@ if (length(new_pkgs)) {
 }   
 ```
 
+Once packages are downloaded and installed on your computer, they become available for your libraries. 
+In each R session, we load libraries we need (instead of all existing libraries). Here we load the following;
 
-In each R session, we load libraries, which are the downloaded pacakges. Here we load the following;
 ```{r}
 suppressWarnings({
   suppressMessages({
