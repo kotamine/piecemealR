@@ -46,7 +46,7 @@ if (length(new_pkgs)) {
 ```
 
 
-In each R session, we load libraries. Libraries are different from "packages" because... [Kota, can you state that difference here?] Here we load the following;
+In each R session, we load libraries, which are the downloaded pacakges. Here we load the following;
 
 ```r
 suppressWarnings({
@@ -140,9 +140,10 @@ flights %>%  # take data frame "flights", then
 ## 1       13.32481       7.270169
 ```
 
-[Kota, the following text appears gray like it's R code--it is that way through line 145]In `summarise()`, one can use **summary functions** that takes a vector as an input and produces a scaler as an output. This includes functions like `mean()`, `sd()` (standard deviation), `quantile()`, `min()`, `max()`, and `n()` (observation count in the `dplyr` package).      
+In `summarise()`, one can use **summary functions** that takes a vector as an input and produces a scaler as an output. This includes functions like `mean()`, `sd()` (standard deviation), `quantile()`, `min()`, `max()`, and `n()` (observation count in the `dplyr` package).      
 
 Each time we apply the `%>%` operator above, we pass a modified data frame from one data operation to another through the first argument. The above code is equivalent to  
+
 
 ```r
 summarise(   # data frame "flights" is inside filter(), which is inside summarise() 

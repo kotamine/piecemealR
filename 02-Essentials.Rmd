@@ -532,7 +532,7 @@ myfun4(4, 3)
 
 ### Environment
 
-A function, formally known as a *closure*, consists of its arguments (called *formals*), a body, and an *environment*. An *environment*  is a collection of existing objects at the time when the function is created [Kota, what are those objects? Are they, for example, file locations?]. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
+A function, formally known as a *closure*, consists of its arguments (called *formals*), a body, and an *environment*. An *environment*  is a collection of existing R objects at the time when the function is created. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
 
 
 ```{r}
@@ -725,7 +725,7 @@ cat("some string", c(1:4), "more string\n", sep="_")
 
 ### Updating
 
-R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice.  For updating RStudio, go to `Help` and then `Check for Updates`. Also, RStudio also makes it easy to update packages; go to `Tools` and the `Check for Package Updates`. Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems. [Kota, should we worry about an update to R restricting what packages or libraries might work?]
+R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice.  For updating RStudio, go to `Help` and then `Check for Updates`. Also, RStudio also makes it easy to update packages; go to `Tools` and the `Check for Package Updates`. Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems. 
 
 ```{r}
 # check R version

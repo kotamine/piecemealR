@@ -38,9 +38,8 @@ Wickham, the author, finds;
 
 > The causes of [unusual] death fall into three main groups: murder, drowning, and transportation related. Murder is more common at night, drowning in the afternoon, and transportation related deaths during commute times [@Wickham2014]. 
 
-[Kota, can the caption include a couple more details? Like hour of day (hod) on the x-axis and propportion (prop) on the y-axis. Also, is the black line representing the raw data?]
 
-```{r unusual-big, echo=FALSE, fig.cap = 'Causes of death with unusual temporal courses. Overall hourly death rate shown in grey. Causes of death with more than 350 deaths over a year.', out.width="100%", fig.asp=.75}
+```{r unusual-big, echo=FALSE, fig.cap = 'Causes of death with unusual temporal courses. Hour of day (hod) on the x-axis and propportion (prop) on the y-axis. Overall hourly death rate shown in grey. Causes of death with more than 350 deaths over a year. ', out.width="100%", fig.asp=.75}
 include_graphics("tidy_case_study/unusual-big.png") 
 ```
 

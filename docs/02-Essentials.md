@@ -1529,7 +1529,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-04-10 18:06:36 CDT"
+## [1] "2017-04-10 19:30:45 CDT"
 ```
 
 ```r
@@ -1659,7 +1659,7 @@ myfun4(4, 3)
 
 ### Environment
 
-A function, formally known as a *closure*, consists of its arguments (called *formals*), a body, and an *environment*. An *environment*  is a collection of existing objects at the time when the function is created [Kota, what are those objects? Are they, for example, file locations?]. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
+A function, formally known as a *closure*, consists of its arguments (called *formals*), a body, and an *environment*. An *environment*  is a collection of existing R objects at the time when the function is created. Functions created at the *top level* have `.GlobalEnv` as their environments (R may refer to it as `R_GlobalEnv` as well).  
 
 
 
@@ -1701,7 +1701,7 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7fb9316e4030>
+## <environment: 0x7f826efd1750>
 ```
 
 A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
@@ -1722,7 +1722,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7fb933bb9348>
+## <environment: 0x7f826f712400>
 ```
 
 ```r
@@ -1734,7 +1734,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7fb933c2faa0>
+## <environment: 0x7f8270981638>
 ```
 
 ```r
@@ -2077,7 +2077,7 @@ cat("some string", c(1:4), "more string\n", sep="_")
 
 ### Updating
 
-R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice.  For updating RStudio, go to `Help` and then `Check for Updates`. Also, RStudio also makes it easy to update packages; go to `Tools` and the `Check for Package Updates`. Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems. [Kota, should we worry about an update to R restricting what packages or libraries might work?]
+R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice.  For updating RStudio, go to `Help` and then `Check for Updates`. Also, RStudio also makes it easy to update packages; go to `Tools` and the `Check for Package Updates`. Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems. 
 
 
 ```r
@@ -2086,7 +2086,7 @@ getRversion()
 ```
 
 ```
-## [1] '3.3.1'
+## [1] '3.3.3'
 ```
 
 ```r
@@ -2101,14 +2101,14 @@ version
 ## system         x86_64, darwin13.4.0        
 ## status                                     
 ## major          3                           
-## minor          3.1                         
-## year           2016                        
-## month          06                          
-## day            21                          
-## svn rev        70800                       
+## minor          3.3                         
+## year           2017                        
+## month          03                          
+## day            06                          
+## svn rev        72310                       
 ## language       R                           
-## version.string R version 3.3.1 (2016-06-21)
-## nickname       Bug in Your Hair
+## version.string R version 3.3.3 (2017-03-06)
+## nickname       Another Canoe
 ```
 
 ```r

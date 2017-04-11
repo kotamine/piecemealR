@@ -1,4 +1,4 @@
-memo:
+# memo:
 # All Rmd files (except those starting with “_”) are copied into “_main.Rmd” and compiled
 
 

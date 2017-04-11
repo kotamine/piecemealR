@@ -1,6 +1,3 @@
----
-always_allow_html: yes
----
 
 # References {-}
 
