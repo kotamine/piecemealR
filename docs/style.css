@@ -8,12 +8,25 @@ p code {
 pre {
   word-break: normal;
   word-wrap: normal;
+  margin: 0 !important;
+  margin-left: 15px !important;
+  margin-bottom: 30px !important;
+  padding: 0 !important;
 }
 pre code {
   white-space: inherit;
 }
 
 .sourceCode {
-  background-color: #609aff;
   border: 1px solid #609aff;
+  margin-left: 15px;
+}
+
+.sourceCode > pre {
+    margin: 0 !important;
+    padding-left: 15px !important;
+}
+
+.code-block {
+  background-color: #DCDDDA !important;
 }
