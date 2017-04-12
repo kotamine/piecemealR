@@ -2,7 +2,7 @@
 title: "Piecemeal R"
 subtitle: "A Tutorial for Data Exploration with R"
 author: "Kota Minegishi"
-date: "Last updated: 2017-04-10"
+date: "Last updated: 2017-04-12"
 site: bookdown::bookdown_site
 always_allow_html: yes
 output: bookdown::gitbook
@@ -36,7 +36,7 @@ More content will be added when the author hosts a small workshop  _"Data Explor
 
 __New Contents__
 
-* 2017-04-10: <span style="color:red">*Test upload. VERY Preliminary!*</span>
+* 2017-04-12: <span style="color:red">*Test upload. VERY Preliminary!*</span>
 
 
 
