@@ -12,7 +12,7 @@ pre {
 pre code {
   white-space: inherit;
 }
-sourcecode.r {
+.sourcecode.r {
   background-color: #609aff;
   border: 1px solid #609aff;
 }
