@@ -385,3 +385,20 @@ Let's recap. The author (Wickham) investigates the temporal pattern of death in 
 
 In a typical application, it will be unlikely that these steps can be followed in order. Most likely, we will have to go back and forth between these steps to define variables, visualize data, and refine a model till we reach the final results. Also, the purpose of creating a model may vary from making predictions to identifying certain parameters or outliers. However, the thought process and techniques in the above exercise will be applicable to many situations of data analysis.               
 
+
+Just in case you need to see more examples, here are additional `dplyr` tutorials.  
+
+* [100 Free Tutorials for Learning R](http://www.listendata.com/p/r-programming-tutorials.html)
+
+* [RPubs - Data Processing with dplyr &amp; tidyr](https://rpubs.com/bradleyboehmke/data_wrangling)
+
+* [Discovering Python & R](https://pythonandr.com/2015/12/17/data-manipulation-in-r-with-dplyr-part-1/)
+
+* [Aggregating and analyzing data with dplyr](http://tracykteal.github.io/R-genomics/04-dplyr.html)
+
+* [genomics class dplyr tutorial](http://genomicsclass.github.io/book/pages/dplyr_tutorial.html)
+
+* [dplyr Tutorial (With 50 Examples)](http://www.listendata.com/2016/08/dplyr-tutorial.html)
+
+
+
