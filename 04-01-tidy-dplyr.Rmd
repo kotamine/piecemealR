@@ -44,7 +44,7 @@ include_graphics("tidy_case_study/unusual-big.png")
 ```
 
 
-We will use two datasets: `deaths` containing the timing and coded causes of deaths and `codes` containing the lookup table for the coded causes. 
+We will use two datasets: `deaths` containing the timing and coded causes of deaths and `codes` containing the look-up table for the coded causes. 
 
 <!--
 # ```{r, echo=FALSE} 
@@ -95,7 +95,7 @@ The six important functions in `dplyr` are:
 * `group_by()`: assigns rows into groups within a data frame. We put column names in its arguments.  
 
 
-We use piping operator `%>%` (read as *then*) to translate a sentence of sequential instructions. For example, take dataset `deaths08`, `%>%` (*then*) group the data by month of death, and `%>%` (*then*) summarise the grouped data for the number of observations.   
+We use piping operator `%>%` (read as *then*) to translate a sentence of sequential instructions. For example, take dataset `deaths08`, `%>%` (*then*) group the data by month of death, and `%>%` (*then*) summarize the grouped data for the number of observations.   
 
 ```{r} 
 deaths08 %>% 
@@ -152,7 +152,7 @@ Now it is your turn. The exercise is to reproduce the above results for the unus
 
 * Note 1: There is a minor error in the case study where the author accidentally kept several records of data from years other than 2008. This has virtually no effect on the results, and we are seeking to produce the same results as that case study.     
 
-* Note 2: You could look at the code in the paper for hints. However, the code is written with the functions of [plyr](https://cran.r-project.org/web/packages/plyr/index.html) package, or the precesssor of `dplyr`. Do not load both `plyr` and `dplyr` libraries in the same R session; they do not seem to have good compatibility. Restart R if you accidentally loaded both.  
+* Note 2: You could look at the code in the paper for hints. However, the code is written with the functions of [plyr](https://cran.r-project.org/web/packages/plyr/index.html) package, or the predecessor of `dplyr`. Do not load both `plyr` and `dplyr` libraries in the same R session; they do not seem to have good compatibility. Restart R if you accidentally loaded both.  
 
 #### Part A. Display overall hourly deaths {-}
 
@@ -189,16 +189,16 @@ include_graphics("tidy_case_study/table16.png")
 
 Panel (a) of the table contains the frequency (i.e. the number of rows) for each combination of hour of day (hod) and cause of death (cod), supplemented by the disease description in panel (b). Panel (c) shows the proportion (prop) of each hod-cod combination in the total deaths by the cod. Panel (d) contains the frequency and proportion (freq_all and prop_all) of the deaths by hour of day.  
 
-That is, panel (a) is the raw counts (e.g., frequency) of observations by **each pair** of hour of day (hod) and cause of death (cod), and panel (b) makes it easy to see the cause of death (cod). Panel (c) converts this frequency of *hod-cod pair* into the relative frequency within the total frequency of **cod**, so that we see at which **hour** a disproportionately large number of deaths occurs for  **cod**. Panel (d), on the other hand, presents the overall hourly death rates; if every hour has the same probablity of death, we would see prop_all $\approx$ 0.042 (i.e., 1/24). Here, we see the author's idea of identifying "unusual deaths" by comparing "prop" of each **hod-cod pairs** for the deviation from to "prop_all" (see figure \@ref(fig:unusual-big)).  
+That is, panel (a) is the raw counts (e.g., frequency) of observations by **each pair** of hour of day (hod) and cause of death (cod), and panel (b) makes it easy to see the cause of death (cod). Panel (c) converts this frequency of *hod-cod pair* into the relative frequency within the total frequency of **cod**, so that we see at which **hour** a disproportionately large number of deaths occurs for  **cod**. Panel (d), on the other hand, presents the overall hourly death rates; if every hour has the same probability of death, we would see prop_all $\approx$ 0.042 (i.e., 1/24). Here, we see the author's idea of identifying "unusual deaths" by looking at how "prop" of each **hod-cod pairs** deviates from "prop_all" (see figure \@ref(fig:unusual-big)).  
 
 
-Hints for creating panels (a) 
+Hints for creating panel (a) 
 
 * Use more than one variable in `group_by()` 
 
 * Use `summarise()` with `n()` to obtain death counts by group
 
-Hints for creating panels (b)
+Hints for creating panel (b)
 
 * Use `left_join()` to add the information from dataset `codes` 
 
@@ -206,9 +206,9 @@ Hints for creating panel (c)
 
 * Use `mutate()` with `sum()` on the joined dataset 
 
-Hints for creating panels (d) 
+Hints for creating panel (d) 
 
-* Create a new data frame by using `summarise()` on the joined and mutated data frame. `summarise()` will reduce the dimension of the data frame to its summmary, which is the basis of panel (d). Once the desired summary is created, merge it to the data frame of panels (a)-(c).
+* Create a new data frame by using `summarise()` on the joined and mutated data frame. `summarise()` will reduce the dimension of the data frame to its summary, which is the basis of panel (d). Once the desired summary is created, merge it to the data frame of panels (a)-(c).
 
 * Before using `summarise()` above, use `group_by()` to specify new grouping
 
@@ -242,6 +242,8 @@ include_graphics("tidy_case_study/n-dist-log.png")
 
 We will create a deviation variable named `dist` by taking the mean of squared differences between `prop` and `prop_all`. The above figures show the the number of observations `n` and this distance measure `dist` by cause of death in the raw scale (left) and in the log scale (right).     
 
+This is the author's linear model that describes how each cause of death tends to exhibit a similar pattern of hourly death rates with the overall pattern.  Once the model is defined, we can define "outliers", which do not follow the model's prediction. 
+
 Hints
 
 * Use `group_by()` and `summarise()` on the `master_hod` data frame to generate `n` with function `sum()` and `dist` by `mean((prop - prop_all)^2)`
@@ -273,7 +275,7 @@ We will reproduce:
 include_graphics("tidy_case_study/n-dist-resid.png")
 ```
 
-The figure is a plot of the regression residuals `resid` of `log(dist)` on `log(n)`. By visual inspection, the points lying above the holizontal line at `resid=1.5` are considered to be "unusual causes of deaths" by the author.
+The figure is a plot of the regression residuals `resid` of `log(dist)` on `log(n)`. By visual inspection, the points lying above the horizontal line at `resid=1.5` are considered to be "unusual causes of deaths" by the author.
 
 Here the author used the robust linear model (`rlm()`) regression, but the syntax is mostly the same as that of the standard linear model regression (`lm()` ).  
 
@@ -325,7 +327,7 @@ Hints
 
 
 
-#### Part E. Visualise unusual causes of death {-}
+#### Part E. Visualize unusual causes of death {-}
 
 We will reproduce:
 
@@ -344,7 +346,7 @@ The first figure is the unusual causes of deaths in `devi_cod` with a relatively
 
 Hints
 
-* Using the cuttoff value `resid > 1.5`, filter `devi_cod` and call it `unusual` data frame. Join `master_hod` and `unusual` data frames. Then create two subsets of data with conditions  `n > 350` and `n <= 350`.  
+* Using the cut-toff value `resid > 1.5`, filter `devi_cod` and call it `unusual` data frame. Join `master_hod` and `unusual` data frames. Then create two subsets of data with conditions  `n > 350` and `n <= 350`.  
 
 * Use `ggplot() + geom_line()` structure with `+ facet_warp(~ disease, ncol = 3)` 
 
@@ -357,7 +359,7 @@ Hints
 
 ### The Key {-}
 
-The solution will be presented at the workshop and later posted.  
+<a href="tidy_case_study/04_01_key.nb.html">Click here</a>
 
 <!--
 
@@ -367,10 +369,19 @@ The solution will be presented at the workshop and later posted.
 
 -->
 
-<!-- ### Reflections
+### Reflections {-}
 
+Let's recap. The author (Wickham) investigates the temporal pattern of death in Mexico to find the causes of death that have unusual temporal patterns within a day.  Here are the five steps used in his approach. 
 
-`r if (knitr:::is_html_output()) '# References {-}'`
--->
+* A. Visualize the overall hourly frequency of death within a day 
 
+* B. Construct variables to compare the relative frequency of death per hour per cause with the overall hourly death rate
+
+* C. Plot the data to identify a general relationship among key variables 
+
+* D. Create a linear model (i.e., data point = model prediction + residual)
+
+* E. Visualize the temporal pattern of the "unusual" cases, or the causes of death that have relatively large residuals  
+
+In a typical application, it will be unlikely that these steps can be followed in order. Most likely, we will have to go back and forth between these steps to define variables, visualize data, and refine a model till we reach the final results. Also, the purpose of creating a model may vary from making predictions to identifying certain parameters or outliers. However, the thought process and techniques in the above exercise will be applicable to many situations of data analysis.               
 

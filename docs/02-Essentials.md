@@ -3,7 +3,7 @@
 
 # Essentials {#essentials}
 
-2017-04-12: <span style="color:red">*VERY Preliminary!*</span>
+2017-04-20: <span style="color:red">*VERY Preliminary!*</span>
 
 This section provides an overview of the essential concepts for manipulating data and programming in R. 
 
@@ -1529,7 +1529,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-04-12 12:28:46 CDT"
+## [1] "2017-04-20 16:36:21 CDT"
 ```
 
 ```r
@@ -1701,7 +1701,7 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7fb485e80150>
+## <environment: 0x7f9ac55a5d78>
 ```
 
 A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
@@ -1722,7 +1722,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7fb488003200>
+## <environment: 0x7f9ac5ecf950>
 ```
 
 ```r
@@ -1734,7 +1734,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7fb488045438>
+## <environment: 0x7f9ac5efe038>
 ```
 
 ```r
@@ -2086,7 +2086,7 @@ getRversion()
 ```
 
 ```
-## [1] '3.3.3'
+## [1] '3.3.1'
 ```
 
 ```r
@@ -2101,14 +2101,14 @@ version
 ## system         x86_64, darwin13.4.0        
 ## status                                     
 ## major          3                           
-## minor          3.3                         
-## year           2017                        
-## month          03                          
-## day            06                          
-## svn rev        72310                       
+## minor          3.1                         
+## year           2016                        
+## month          06                          
+## day            21                          
+## svn rev        70800                       
 ## language       R                           
-## version.string R version 3.3.3 (2017-03-06)
-## nickname       Another Canoe
+## version.string R version 3.3.1 (2016-06-21)
+## nickname       Bug in Your Hair
 ```
 
 ```r

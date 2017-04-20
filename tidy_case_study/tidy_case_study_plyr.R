@@ -8,12 +8,12 @@ library(MASS)
 #source("xtable.r")
 library(xtable)
 
+# change this to your working directory
+setwd("/Users/kota/Dropbox/R_projects/piecemealR/tidy_case_study")
+
 # --------------------------------------
 #   Data arrangement
 # --------------------------------------
-
-# change this to your working directory
-setwd("/Users/kota/Dropbox/R_projects/piecemealR/tidy_case_study")
 
 # if (!file.exists("deaths.rds")) {
 #   src <- "https://github.com/hadley/mexico-mortality/raw/master/deaths/deaths08.csv.bz2"
@@ -32,24 +32,25 @@ setwd("/Users/kota/Dropbox/R_projects/piecemealR/tidy_case_study")
 #   saveRDS(deaths, "deaths.rds")
 # }
 
-deaths <- readRDS("deaths.rds")
-
-ok <- subset(deaths, yod == 2008 & mod != 0 & dod != 0)
-# generate a latex table for the a sample of 15 rows
-xtable(ok[c(1, 1:14 * 2000), c("yod", "mod", "dod", "hod", "cod")],
-       "raw.tex")
-
-codes <- read.csv("icd-main.csv")
-codes$disease <- sapply(codes$disease,
-                        function(x) str_c(strwrap(x, width = 30), collapse = "\n"))
-names(codes)[1] <- "cod"  # rename the first variable to "cod"
-codes <- codes[!duplicated(codes$cod), ]  # eliminate duplication of rows
-
-# deaths08 <- deaths %>% filter(yod == 2008, mod != 0, dod != 0)
+# deaths <- readRDS("deaths.rds")
+# 
+# ok <- subset(deaths, yod == 2008 & mod != 0 & dod != 0)
+# # generate a latex table for the a sample of 15 rows
+# xtable(ok[c(1, 1:14 * 2000), c("yod", "mod", "dod", "hod", "cod")],
+#        "raw.tex")
+# 
+# codes <- read.csv("icd-main.csv")
+# codes$disease <- sapply(codes$disease,
+#                         function(x) str_c(strwrap(x, width = 30), collapse = "\n"))
+# names(codes)[1] <- "cod"  # rename the first variable to "cod"
+# codes <- codes[!duplicated(codes$cod), ]  # eliminate duplication of rows
+# 
 
 # --------------------------------------
 #   Rewrite starts here
 # --------------------------------------
+
+load("tidy_case_study.RData")
 
 # ---- Display overall hourly deaths ----
 

@@ -1,0 +1,272 @@
+---
+title: "Key: dplyr exercise"
+output: html_notebook
+---
+
+
+
+Load libraries and data.
+
+```{r, warning=FALSE, message=FALSE}
+library(MASS)
+library(stringr)
+library(dplyr)
+library(ggplot2)
+library(xtable)
+load("tidy_case_study.RData")
+```
+
+
+
+### Part A. Display overall hourly deaths {-}
+
+We use `ggplot() + geom_line()`; 
+```{r}
+deaths %>%
+  filter(!is.na(hod)) %>%
+  group_by(hod) %>%
+  summarise(nobs = n()) %>%
+  ggplot(aes(x = hod, y = nobs)) + geom_line()
+```
+
+Add axis labels and comma;  
+```{r}
+deaths %>%
+  filter(!is.na(hod)) %>%
+  group_by(hod) %>%
+  summarise(nobs = n()) %>%
+  ggplot(aes(x = hod, y = nobs)) + geom_line() +
+  labs(x = "Hour of day", y = "Number of deaths" ) +
+  scale_y_continuous(labels = scales::comma)
+```
+
+We use `ggsave()` to save the figure. 
+```{r}
+ggsave("overall.png", width = 10, height = 6)
+```
+
+
+```{r}
+### Note: Strictly speaking, the 2008 data should be used. 
+# deaths08 <- deaths %>% filter(yod == 2008, mod != 0, dod != 0)
+# table(deaths$yod)
+
+# deaths08 %>%
+#   filter(!is.na(hod)) %>%
+#   group_by(hod) %>%
+#   summarise(nobs = n()) %>%
+#   ggplot(aes(x = hod, y = nobs)) + geom_line()
+```
+
+
+### Part B. Count deaths per hour, per disease {-}
+
+Create panels (a) and (b) of Table 16;  we group the data by cause of death (`cod`) and hour of day (`hod`), summarize the data for the frequency count, and then join a lookup-table for `cod` descriptions.   
+```{r}
+# ---- Count deaths per hour, per disease ----
+deaths_cod_hod <- deaths %>%
+  group_by(cod, hod) %>%
+  filter(!is.na(hod)) %>%
+  summarise( nobs = n() ) %>%
+  left_join(codes, by = "cod")
+
+head(deaths_cod_hod)
+```
+
+Create panel (c); we group the data by `cod` and create a variable for the proportion of hourly deaths within each `cod`.       
+```{r}
+cod_hod_prop <- deaths_cod_hod %>%
+  group_by(cod) %>%
+  mutate( prop = nobs / sum(nobs) )
+
+head(cod_hod_prop)
+```
+
+
+Create panel (d); we further summarise the data for the overall hourly death rates. In `cod_hod_prop`, we have a frequency of each `cod-hod` pair  (`nobs`), and here we are adding it up across `cod` to obtain the total frequency of deaths for each hour and then converting that into a relative frequency (through dividing it by the grand total of deaths).    
+```{r}
+# ----  Compare to overall abundance ----
+overall_freq <- cod_hod_prop %>%
+  # Note: grouping by hod to get the overal trend for each hour
+  group_by(hod) %>%
+  summarise( freq_all = sum(nobs) ) %>%
+  ungroup() %>%
+  mutate( prop_all = freq_all/sum(freq_all) )
+
+master_hod <- left_join(cod_hod_prop, overall_freq, by = "hod")
+head(master_hod)
+```
+
+
+```{r}
+# ---- Pick better subset of rows to show ----
+
+table_C <- master_hod %>%
+  filter(cod %in% c("I21", "N18", "E84", "B16") & hod >= 8 & hod <= 12)
+
+table_C %>%
+  # MASS package has its own select() function
+  # to specify a function from a particular package, use ::
+  dplyr::select(hod, cod, disease, nobs, prop, freq_all, prop_all) %>%
+  arrange(hod) %>%
+  filter(hod %in% c(8, 9, 10, 11), !(hod==11 & cod=="N18"))
+```
+
+
+
+
+
+### Part C. Find outliers {-}
+
+For each cause of death, we first create an overall frequency count and an average (squared) distance between `prop` and `prop_all` across hours. We then filter out for the cause of death with less than 50 deaths. 
+```{r}
+devi_cod <- master_hod %>%
+  group_by(cod) %>%
+  summarise(
+    n = sum(nobs),
+    dist = mean((prop - prop_all)^2)
+  ) %>%
+  filter(n > 50)
+```
+
+Plot `devi_cod` in the normal scale;
+```{r}
+# ---- Find outliers ----
+devi_cod %>%
+  ggplot(aes(x = n, y = dist)) + geom_point()
+ggsave("n-dist-raw.png", width = 6, height = 6)
+```
+
+We can see that the distributions of `n` and `dist` are both highly skewed, for which the logarithmic transformation is often useful. 
+```{r, message=FALSE}
+devi_cod %>%
+  ggplot(aes(x = n)) +
+  geom_histogram(color='white') 
+
+devi_cod %>%
+  ggplot(aes(x = n)) +
+  scale_x_log10() +
+  geom_histogram(color='white') 
+
+devi_cod %>%
+  ggplot(aes(x = dist)) +
+  geom_histogram(color='white')  
+
+devi_cod %>%
+  ggplot(aes(x = dist)) +
+  scale_x_log10() +
+  geom_histogram(color='white') 
+```
+
+There are a handful of extremely common causes of death, and many somewhat unusual causes of death. 
+There are several causes of death that deviate a lot from the overall hourly death rate, while many causes of death do not deviate much from it.     
+
+Now plot  `devi_cod` in the logarithmic scale; 
+```{r, message=FALSE}
+devi_cod %>%
+  ggplot(aes(x = n, y = dist)) +
+  scale_x_log10() +
+  scale_y_log10() +
+  geom_point() 
+```
+
+Add comma to the scale labels and a fitted line by `geom_smooth()`;  
+```{r}
+devi_cod %>%
+  ggplot(aes(x = n, y = dist)) +
+  scale_x_log10(labels = scales::comma) +
+  scale_y_log10(labels = scales::comma) +
+  geom_point() +
+  geom_smooth(method = "rlm", se = FALSE)
+ggsave("n-dist-log.png", width = 6, height = 6)
+```
+
+Thus, in the logarithmic scale, we see a pattern that the more common the cause, the smaller the deviation from the overall hourly death rate tends to be. In below we will fit a linear relationship to account for this tendency via regression and define the vertical differences between the observed points and the fitted line (i.e., regression residuals). Then, we will define "unusual" causes of death in terms of particularly large residuals. 
+
+
+
+### Part D. Fit data by a regression and plot residuals 
+
+Formally, we use a regression to estimate the linear model above.  We regress `log(dist)` on `log(n)` (i.e., the variables on the y-axis and the x-axis in the previous figure) and store the residuals.
+```{r}
+#  While there are no missing values (`NA`) in this case, 
+#  we write a function to deal with a more general case.  
+my_rlm_resid <- function(y, x1) {
+  use <- (!is.na(y) & !is.na(x1))
+  rlt <- rep(NA, length(y))
+  rlt[use] <- rlm(y ~ x1) %>% residuals()
+  rlt   # returns the residual of same length as y
+}
+
+devi_cod <- devi_cod %>%
+  mutate(
+    resid = my_rlm_resid(log(dist),log(n))
+    )
+
+### Alternatively, we provide instructions inside a function do() with ".$varname" notations
+# devi_cod$resid <- devi_cod %>%
+#   do({
+#     y <- log(.$dist)
+#     x1 <- log(.$n)
+#     use <- (!is.na(y) & !is.na(x1))
+#     rlt <- rep(NA, length(y))
+#     rlt[use] <- rlm(y ~ x1) %>% residuals()
+#     data.frame(rlt)   # returns the residual of same length as y
+#   }) %>% unlist()
+```
+
+Plot the residuals against log(n) with a horizontal line at 1.5.
+```{r}
+devi_cod %>%
+  ggplot(aes(x = n, y = resid)) +
+  geom_hline(yintercept = 1.5, colour = "grey50") +
+  scale_x_log10() +
+  geom_point()
+ggsave("n-dist-resid.png", width = 6, height = 6)
+```
+
+
+### Part E. Visualize unusual causes of death {-}
+
+We filter the data to keep the cause of death that has the residual value greater than 1.5. We join these data and `master_hod`, while filtering out the data on the "usual" cause of death. Then, we split the data into those with relatively large and small numbers of deaths at the cutoff value of 350.   
+```{r}
+unusual <- devi_cod %>% filter(resid > 1.5)
+head(unusual)
+
+hod_unusual <- right_join(master_hod, unusual, by = "cod") # Note: we use right_join() 
+hod_unusual_big <- hod_unusual %>% filter(n > 350)
+hod_unusual_sml <- hod_unusual %>% filter(n <= 350)
+```
+
+```{r}
+# Note the total number of cod at each stage
+unusual$cod %>% unique() %>% length()
+master_hod$cod %>% unique() %>% length()
+hod_unusual$cod %>% unique() %>% length()
+hod_unusual_big$cod %>% unique() %>% length()
+hod_unusual_sml$cod %>% unique() %>% length()
+```
+
+Plot `hod_unusual_big` and `hod_unusual_sml` using `facet_wrap()`, which shows multiple plots in one figure. Add a curve for the overall hourly frequency by combining the data from `overall_freq`.  
+```{r}
+# ---- Visualize unusual causes of death ----
+hod_unusual_big %>%
+ggplot(aes(x = hod, y = prop)) +
+  geom_line() +
+  geom_line(aes(y = prop_all), data = overall_freq, colour = "grey50") +
+  facet_wrap(~ disease, ncol = 3)
+ggsave("unusual-big.png", width = 8, height = 6)
+```
+
+```{r}
+hod_unusual_sml %>%
+  ggplot(aes(x = hod, y = prop)) +
+  geom_line() +
+  geom_line(aes(y = prop_all), data = overall_freq, colour = "grey50") +
+  facet_wrap(~ disease, ncol = 3)
+ggsave("unusual-sml.png", width = 8, height = 4)
+```
+
+
+<a href="../3-1-dplyr.html">Go back</a>
+

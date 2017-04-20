@@ -4,12 +4,12 @@ library(dplyr)
 library(ggplot2)
 library(xtable)
 
+# change this to your working directory
+setwd("/Users/kota/Dropbox/R_projects/piecemealR/tidy_case_study")
+
 # --------------------------------------
 #   Data arrangement
 # --------------------------------------
-
-# change this to your working directory
-setwd("/Users/kota/Dropbox/R_projects/piecemealR/tidy_case_study")
 
 # if (!file.exists("deaths.rds")) {
 #   src <- "https://github.com/hadley/mexico-mortality/raw/master/deaths/deaths08.csv.bz2"
@@ -28,29 +28,31 @@ setwd("/Users/kota/Dropbox/R_projects/piecemealR/tidy_case_study")
 #   saveRDS(deaths, "deaths.rds")
 # }
 
-
-deaths <- readRDS("deaths.rds")
-
-ok <- subset(deaths, yod == 2008 & mod != 0 & dod != 0)
-# generate a latex table for the a sample of 15 rows
-xtable(ok[c(1, 1:14 * 2000), c("yod", "mod", "dod", "hod", "cod")],"raw.tex")
-
-codes <- read.csv("icd-main.csv")
-codes$disease <- sapply(codes$disease,
-                        # insert line change "\n" for every 30 characters
-                        function(x) str_c(strwrap(x, width = 30), collapse = "\n"))
-names(codes)[1] <- "cod"  # rename the first variable to "cod"
-codes <- codes[!duplicated(codes$cod), ]  # eliminate duplication of rows
-
-# Strictly speaking, the 2008 data should be used, but it is nearly identical.
-deaths08 <- deaths %>% filter(yod == 2008, mod != 0, dod != 0)
-table(deaths$yod)
-
-save(deaths, codes, file = "tidy_case_study.RData")
+# 
+# deaths <- readRDS("deaths.rds")
+# 
+# ok <- subset(deaths, yod == 2008 & mod != 0 & dod != 0)
+# # generate a latex table for the a sample of 15 rows
+# xtable(ok[c(1, 1:14 * 2000), c("yod", "mod", "dod", "hod", "cod")],"raw.tex")
+# 
+# codes <- read.csv("icd-main.csv")
+# codes$disease <- sapply(codes$disease,
+#                         # insert line change "\n" for every 30 characters
+#                         function(x) str_c(strwrap(x, width = 30), collapse = "\n"))
+# names(codes)[1] <- "cod"  # rename the first variable to "cod"
+# codes <- codes[!duplicated(codes$cod), ]  # eliminate duplication of rows
+# 
+# # Strictly speaking, the 2008 data should be used, but it is nearly identical.
+# deaths08 <- deaths %>% filter(yod == 2008, mod != 0, dod != 0)
+# table(deaths$yod)
+# 
+# save(deaths, codes, file = "tidy_case_study.RData")
 
 # --------------------------------------
 #   Rewrite starts here
 # --------------------------------------
+
+load("tidy_case_study.RData")
 
 # ---- Display overall hourly deaths ----
 
@@ -108,12 +110,13 @@ master_hod <- left_join(cod_hod_prop, overall_freq, by = "hod")
 table_C <- master_hod %>%
   filter(cod %in% c("I21", "N18", "E84", "B16") & hod >= 8 & hod <= 12)
 
-table_16 <- table_C %>%
+table_C %>%
   # MASS package has its own select() function
   # to specify a function from a particular package, use ::
   dplyr::select(hod, cod, disease, nobs, prop, freq_all, prop_all) %>%
   arrange(hod) %>%
   filter(hod %in% c(8, 9, 10, 11), !(hod==11 & cod=="N18"))
+
 
 devi_cod <- master_hod %>%
   group_by(cod) %>%
@@ -190,11 +193,10 @@ ggplot(aes(x = hod, y = prop)) +
   geom_line() +
   geom_line(aes(y = prop_all), data = overall_freq, colour = "grey50") +
   facet_wrap(~ disease, ncol = 3)
-ggsave("unusual-big.png", width = 8, height = 6)
+# ggsave("unusual-big.png", width = 8, height = 6)
 
-# the following reproduces a plot with a different data frame
-last_plot() %+% hod_unusual_sml
-ggsave("unusual-sml.png", width = 8, height = 4)
+# # the following reproduces a plot with a different data frame
+# last_plot() %+% hod_unusual_sml
 
 # or simply repeat the command
 hod_unusual_sml %>%
@@ -202,11 +204,6 @@ hod_unusual_sml %>%
   geom_line() +
   geom_line(aes(y = prop_all), data = overall_freq, colour = "grey50") +
   facet_wrap(~ disease, ncol = 3)
-
-hod_unusual_sml %>%
-  ggplot(aes(x = hod, y = prop)) +
-  geom_line() +
-  geom_line(aes(y = prop_all), data = overall_freq, colour = "grey50") +
-  facet_wrap(~ disease, ncol = 3)
+ggsave("unusual-sml.png", width = 8, height = 4)
 
 
