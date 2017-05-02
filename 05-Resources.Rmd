@@ -39,6 +39,8 @@ __Videos__
 
 __Tutorials__ 
 
+* [Exploratory Data Analysis in R](http://mgimond.github.io/ES218/index.html) (Recommended)
+
 * [R Tutorial](https://www.tutorialspoint.com/r/index.htm)
 
 * [R Bootcamp - Jared Knowles](https://www.jaredknowles.com/r-bootcamp/)
@@ -77,15 +79,35 @@ http://www-bcf.usc.edu/~gareth/ISL/
 
 [What’s the difference between machine learning, statistics, and data mining? | R-bloggers](https://www.r-bloggers.com/whats-the-difference-between-machine-learning-statistics-and-data-mining/)
 
+GIS and R
+https://mgimond.github.io/Spatial/index.html
+
 ggmap
+http://mgimond.github.io/ES218/Week12a.html
+
 [Geographic visualization with R’s ggmap](https://blog.dominodatalab.com/geographic-visualization-with-rs-ggmaps/)
 [RPubs - ggmap examples](https://rpubs.com/jiayiliu/ggmap_examples)
+https://blog.dominodatalab.com/applied-spatial-data-science-with-r/
+# https://www.r-bloggers.com/mapping-us-counties-in-r-with-fips/
+# maps
+# http://stackoverflow.com/questions/33129917/shading-counties-using-fips-code-in-r-map
+# http://bcb.dfci.harvard.edu/~aedin/courses/R/CDC/maps.html
+http://zevross.com/blog/2015/10/14/manipulating-and-mapping-us-census-data-in-r-using-the-acs-tigris-and-leaflet-packages-3/ 
 
 Spatial Analysis : Using R as a GIS 
 [Spatial data in R: Using R as a GIS](http://pakillo.github.io/R-GIS-tutorial/#intro)
 
+http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html
+
+
 An example of customized plot with plot
 [Visualizing Google Analytics Data With R Tutorial | Analytics & Optimization](http://online-behavior.com/analytics/r)
+
+regular expr
+https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html
+
+graphing 
+http://www.sthda.com/english/wiki/ggplot2-legend-easy-steps-to-change-the-position-and-the-appearance-of-a-graph-legend-in-r-software
 
 Heatmap
 [How to Make a Heatmap – a Quick and Easy Solution | FlowingData](http://flowingdata.com/2010/01/21/how-to-make-a-heatmap-a-quick-and-easy-solution/)
