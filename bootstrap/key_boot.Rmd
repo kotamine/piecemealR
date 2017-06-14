@@ -1,5 +1,5 @@
 ---
-title: "Key: Random Sampling, Bootstrapping, and Linear Models"
+title: "Key: t-test, Bootstrapping, and Linear Models"
 output: html_notebook
 ---
 
