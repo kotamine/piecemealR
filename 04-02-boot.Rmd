@@ -114,7 +114,7 @@ $H_A:   \mu_A \neq \mu_R$
 
 <!--### Arts & Crafts {-}-->
 
-### Central Limit Theorem {-}
+### Random Sampling {-}
 Here are some  fundamental building blocks of statistics. Let $y_{i}$ is an *independently and identically distributed (i.i.d.)* random variable for observation $i = 1, .., N$  drawn from some distribution with population mean $\mu = E[y_i]$ and standard deviation $\sigma = \sqrt{E[(y_i - \mu)^2]}$ where $E[.]$ is an expectation operator over the random variable.  The sample mean and standard deviation of $y_{i}$ are defined as 
 $$\bar{y} = \frac{\sum_i y_i}{N}, \quad  s =\sqrt{\frac{\sum_i (y_{i} - \bar{y})^2}{(N-1)}}.$$
 
