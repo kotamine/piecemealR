@@ -166,7 +166,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="3-2-boot.html"><a href="3-2-boot.html"><i class="fa fa-check"></i><b>3.2</b> Action, Romance, and Chicks</a><ul>
 <li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#materials-2"><i class="fa fa-check"></i>Materials</a></li>
-<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#random-sampling"><i class="fa fa-check"></i>Random Sampling</a></li>
+<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#t-test"><i class="fa fa-check"></i>t-test</a></li>
 <li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#bootstrapping"><i class="fa fa-check"></i>Bootstrapping</a></li>
 <li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#linear-models"><i class="fa fa-check"></i>Linear Models</a></li>
 <li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#exercise-1"><i class="fa fa-check"></i>Exercise</a></li>
@@ -201,7 +201,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">3.2</span> Action, Romance, and Chicks</h2>
 <div id="materials-2" class="section level3 unnumbered">
 <h3>Materials</h3>
-<p>This session covers brief introductions to <strong>random sampling</strong>, <strong>bootstrapping</strong>, and <strong>linear regressions</strong>. Learning these concepts in the same context will help you see how they are related to each other.</p>
+<p>This session covers brief introductions to <strong>t-test</strong>, <strong>bootstrapping</strong>, and <strong>linear regressions</strong>. Learning these concepts in the same context will help you see how they are related to each other.</p>
 <p>We will use a dataset on movies.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2movies)
 movies2 &lt;-<span class="st"> </span>movies %&gt;%<span class="st"> </span>dplyr::<span class="kw">select</span>(title, year, budget, rating, Action, Romance) %&gt;%<span class="st"> </span>
@@ -304,8 +304,8 @@ movie_sample %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span
 <p><span class="math inline">\(H_A: \mu_A \neq \mu_R\)</span></p>
 <!--### Arts & Crafts {-}-->
 </div>
-<div id="random-sampling" class="section level3 unnumbered">
-<h3>Random Sampling</h3>
+<div id="t-test" class="section level3 unnumbered">
+<h3>t-test</h3>
 <p>Here are some fundamental building blocks of statistics. Let <span class="math inline">\(y_{i}\)</span> is an <em>independently and identically distributed (i.i.d.)</em> random variable for observation <span class="math inline">\(i = 1, .., N\)</span> drawn from some distribution with population mean <span class="math inline">\(\mu = E[y_i]\)</span> and standard deviation <span class="math inline">\(\sigma = \sqrt{E[(y_i - \mu)^2]}\)</span> where <span class="math inline">\(E[.]\)</span> is an expectation operator over the random variable. The sample mean and standard deviation of <span class="math inline">\(y_{i}\)</span> are defined as <span class="math display">\[\bar{y} = \frac{\sum_i y_i}{N}, \quad  s =\sqrt{\frac{\sum_i (y_{i} - \bar{y})^2}{(N-1)}}.\]</span></p>
 <p>So, we take the average <span class="math inline">\(\bar{y}\)</span>, which serves as an unbiased estimate of <span class="math inline">\(\mu\)</span>. Yet, how close is <span class="math inline">\(\bar{y}\)</span> to <span class="math inline">\(\mu\)</span>? The statistical theory gives us a probabilistic answer for the inferences about population mean <span class="math inline">\(\mu\)</span>. For example, if we know that <span class="math inline">\(y_i\)</span> is <em>normally distributed</em> with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, then it follows that the sample mean <span class="math inline">\(\bar{y}\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma/\sqrt{N}\)</span>. The distribution of an estimate like this is called <strong>sampling distribution</strong>, and in special cases it is exactly known. With <em>known</em> <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, we know how fast the sample mean <span class="math inline">\(\bar{y}\)</span> probabilistically approaches to the population mean <span class="math inline">\(\mu\)</span> as the sample size <span class="math inline">\(N\)</span> increases. This is done by calculating the z-statistic<br />
 <span class="math display">\[z = \frac{\bar{y} - \mu}{\sigma/\sqrt N}\]</span></p>
@@ -796,7 +796,7 @@ movie_sample %&gt;%<span class="st"> </span><span class="kw">filter</span>(year 
 <h3>Exercise</h3>
 <p>Now it is your turn.</p>
 <ol style="list-style-type: decimal">
-<li><p>Download materials: We will use the same <a href="https://github.com/kotamine/piecemealR/raw/master/bootstrap/movie2.RData">movie2 data</a> data as shown above</p></li>
+<li><p>Download materials: We will use the same <a href="https://github.com/kotamine/piecemealR/raw/master/bootstrap/movies2.RData">movie2 data</a> data as shown above</p></li>
 <li><p>Set working directly: <code>setwd(your_directory)</code></p></li>
 <li><p>Load libraries: <code>library(dplyr)</code>, <code>library(ggplot2)</code>, <code>library(broom)</code>, <code>library(tidyr)</code>, <code>library(mosaic)</code>, <code>library(lme4)</code></p></li>
 </ol>
