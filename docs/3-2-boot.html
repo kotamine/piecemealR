@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Piecemeal R</title>
+  <meta name="description" content="This is a R tutorial.">
+  <meta name="generator" content="bookdown 0.3.14 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Piecemeal R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a R tutorial." />
+  <meta name="github-repo" content="/kotamine/piecemealR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Piecemeal R" />
+  
+  <meta name="twitter:description" content="This is a R tutorial." />
+  
+
+<meta name="author" content="Kota Minegishi">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="3-1-dplyr.html">
+<link rel="next" href="3-3-next.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<script src="libs/datatables-binding-0.2/datatables.js"></script>
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-97062240-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Piecemeal R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a></li>
+<li class="chapter" data-level="1" data-path="1-intro.html"><a href="1-intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="1-1-materials.html"><a href="1-1-materials.html"><i class="fa fa-check"></i><b>1.1</b> Materials</a></li>
+<li class="chapter" data-level="1.2" data-path="1-2-arts-crafts.html"><a href="1-2-arts-crafts.html"><i class="fa fa-check"></i><b>1.2</b> Arts &amp; Crafts</a><ul>
+<li class="chapter" data-level="" data-path="1-2-arts-crafts.html"><a href="1-2-arts-crafts.html#crafts"><i class="fa fa-check"></i>Crafts</a></li>
+<li class="chapter" data-level="" data-path="1-2-arts-crafts.html"><a href="1-2-arts-crafts.html#arts"><i class="fa fa-check"></i>Arts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-3-huning-down-numbers.html"><a href="1-3-huning-down-numbers.html"><i class="fa fa-check"></i><b>1.3</b> Huning down numbers</a></li>
+<li class="chapter" data-level="1.4" data-path="1-4-reflections.html"><a href="1-4-reflections.html"><i class="fa fa-check"></i><b>1.4</b> Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-essentials.html"><a href="2-essentials.html"><i class="fa fa-check"></i><b>2</b> Essentials</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-cheatsheets.html"><a href="2-1-cheatsheets.html"><i class="fa fa-check"></i><b>2.1</b> Cheatsheets</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-data-types.html"><a href="2-2-data-types.html"><i class="fa fa-check"></i><b>2.2</b> Data types</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="2-2-data-types.html"><a href="2-2-data-types.html#atomic"><i class="fa fa-check"></i><b>2.2.1</b> Atomic</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-2-data-types.html"><a href="2-2-data-types.html#factor"><i class="fa fa-check"></i><b>2.2.2</b> Factor</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-2-data-types.html"><a href="2-2-data-types.html#matrix"><i class="fa fa-check"></i><b>2.2.3</b> Matrix</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-2-data-types.html"><a href="2-2-data-types.html#data-frame"><i class="fa fa-check"></i><b>2.2.4</b> Data Frame</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-2-data-types.html"><a href="2-2-data-types.html#list"><i class="fa fa-check"></i><b>2.2.5</b> List</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-programming.html"><a href="2-3-programming.html"><i class="fa fa-check"></i><b>2.3</b> Programming</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="2-3-programming.html"><a href="2-3-programming.html#operator"><i class="fa fa-check"></i><b>2.3.1</b> Operator</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-3-programming.html"><a href="2-3-programming.html#if-else"><i class="fa fa-check"></i><b>2.3.2</b> If else</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-3-programming.html"><a href="2-3-programming.html#loop"><i class="fa fa-check"></i><b>2.3.3</b> Loop</a></li>
+<li class="chapter" data-level="2.3.4" data-path="2-3-programming.html"><a href="2-3-programming.html#function"><i class="fa fa-check"></i><b>2.3.4</b> Function</a></li>
+<li class="chapter" data-level="2.3.5" data-path="2-3-programming.html"><a href="2-3-programming.html#environment"><i class="fa fa-check"></i><b>2.3.5</b> Environment</a></li>
+<li class="chapter" data-level="2.3.6" data-path="2-3-programming.html"><a href="2-3-programming.html#debugging"><i class="fa fa-check"></i><b>2.3.6</b> Debugging</a></li>
+<li class="chapter" data-level="2.3.7" data-path="2-3-programming.html"><a href="2-3-programming.html#stat-func."><i class="fa fa-check"></i><b>2.3.7</b> Stat func.</a></li>
+<li class="chapter" data-level="2.3.8" data-path="2-3-programming.html"><a href="2-3-programming.html#string-func."><i class="fa fa-check"></i><b>2.3.8</b> String func.</a></li>
+<li class="chapter" data-level="2.3.9" data-path="2-3-programming.html"><a href="2-3-programming.html#set-func."><i class="fa fa-check"></i><b>2.3.9</b> Set func.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html"><i class="fa fa-check"></i><b>2.4</b> Housekeeping</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#working-directory"><i class="fa fa-check"></i><b>2.4.1</b> Working directory</a></li>
+<li class="chapter" data-level="2.4.2" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#r-session"><i class="fa fa-check"></i><b>2.4.2</b> R session</a></li>
+<li class="chapter" data-level="2.4.3" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#save-load"><i class="fa fa-check"></i><b>2.4.3</b> Save &amp; load</a></li>
+<li class="chapter" data-level="2.4.4" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#input-output"><i class="fa fa-check"></i><b>2.4.4</b> Input &amp; Output</a></li>
+<li class="chapter" data-level="2.4.5" data-path="2-4-housekeeping.html"><a href="2-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>2.4.5</b> Updating</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-piecemeal-top.html"><a href="3-piecemeal-top.html"><i class="fa fa-check"></i><b>3</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html"><i class="fa fa-check"></i><b>3.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#arts-crafts-1"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="" data-path="3-1-dplyr.html"><a href="3-1-dplyr.html#reflections-1"><i class="fa fa-check"></i>Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="3-2-boot.html"><a href="3-2-boot.html"><i class="fa fa-check"></i><b>3.2</b> Action, Romance, and Chicks</a><ul>
+<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#materials-2"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#central-limit-theorem"><i class="fa fa-check"></i>Central Limit Theorem</a></li>
+<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#bootstrapping"><i class="fa fa-check"></i>Bootstrapping</a></li>
+<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#linear-models"><i class="fa fa-check"></i>Linear Models</a></li>
+<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#exercise-1"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#the-key-1"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="" data-path="3-2-boot.html"><a href="3-2-boot.html#reflections-2"><i class="fa fa-check"></i>Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-next.html"><a href="3-3-next.html"><i class="fa fa-check"></i><b>3.3</b> Upcoming topics</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-resources.html"><a href="4-resources.html"><i class="fa fa-check"></i><b>4</b> Resources</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Piecemeal R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="boot" class="section level2">
+<h2><span class="header-section-number">3.2</span> Action, Romance, and Chicks</h2>
+<div id="materials-2" class="section level3 unnumbered">
+<h3>Materials</h3>
+<p>This session covers brief introductions to <strong>random sampling</strong>, <strong>bootstrapping</strong>, and <strong>linear regressions</strong>. Learning these concepts in the same context will help you see how they are related to each other.</p>
+<p>We will use a dataset on movies.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2movies)
+movies2 &lt;-<span class="st"> </span>movies %&gt;%<span class="st"> </span>dplyr::<span class="kw">select</span>(title, year, budget, rating, Action, Romance) %&gt;%<span class="st"> </span>
+<span class="st">   </span><span class="kw">filter</span>((Action ==<span class="dv">1</span> |<span class="st"> </span>Romance ==<span class="dv">1</span>),
+          !( Action ==<span class="st"> </span><span class="dv">1</span> &amp;<span class="st"> </span>Romance ==<span class="st"> </span><span class="dv">1</span>), 
+          budget &gt;<span class="st"> </span><span class="dv">0</span>, year &gt;=<span class="st"> </span><span class="dv">1970</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">budget =</span> budget/<span class="dv">10</span>^<span class="dv">6</span>) 
+<span class="kw">summary</span>(movies2)</code></pre></div>
+<pre><code>##     title                year          budget            rating     
+##  Length:1206        Min.   :1970   Min.   :  0.001   Min.   :1.500  
+##  Class :character   1st Qu.:1992   1st Qu.:  3.500   1st Qu.:5.025  
+##  Mode  :character   Median :1998   Median : 15.000   Median :6.000  
+##                     Mean   :1996   Mean   : 27.549   Mean   :5.902  
+##                     3rd Qu.:2002   3rd Qu.: 40.000   3rd Qu.:6.800  
+##                     Max.   :2005   Max.   :200.000   Max.   :9.800  
+##      Action          Romance      
+##  Min.   :0.0000   Min.   :0.0000  
+##  1st Qu.:0.0000   1st Qu.:0.0000  
+##  Median :1.0000   Median :0.0000  
+##  Mean   :0.5887   Mean   :0.4113  
+##  3rd Qu.:1.0000   3rd Qu.:1.0000  
+##  Max.   :1.0000   Max.   :1.0000</code></pre>
+<p>The extracted data <code>movies2</code> contain IMDB ratings of Action and Romance movies (excluding those of both Action and Romance genres) that are released between 1970 and 2005 and have known budgets. Action and Romance movies are about 59% and 41% of the data respectively. The average rating is 5.9.</p>
+<p>Let’s look at the distribution of the release years and ratings in this dataset.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies2$year %&gt;%<span class="st"> </span>table</code></pre></div>
+<pre><code>## .
+## 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982 1983 1984 
+##   12   10   11    8   11    7    9   10    7    4   11   16   10    8   13 
+## 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 
+##   27   17   18   15   22   22   19   20   30   32   51   55   64   77   64 
+## 2000 2001 2002 2003 2004 2005 
+##   80   94  110  103  103   36</code></pre>
+<p>We see that more data are available for years 1999-2004 than other years.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies2 %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>rating)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;dodgerblue&quot;</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>The distribution of rating is somewhat skewed to the left.</p>
+<p>Let’s see how Action and Romance movies compare.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies2 &lt;-<span class="st"> </span>movies2 %&gt;%<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">genre =</span> <span class="kw">ifelse</span>(Action==<span class="dv">1</span>, <span class="st">&quot;Action&quot;</span>, <span class="st">&quot;Romance&quot;</span>))
+movies2 %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>rating)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;dodgerblue&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_grid</span>(genre ~<span class="st"> </span>.)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movies2 %&gt;%<span class="st"> </span><span class="kw">group_by</span>(genre) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(rating),
+            <span class="dt">sd =</span> <span class="kw">sd</span>(rating),
+            <span class="dt">n =</span> <span class="kw">n</span>())</code></pre></div>
+<pre><code>## # A tibble: 2 × 4
+##     genre     mean       sd     n
+##     &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+## 1  Action 5.729859 1.419404   710
+## 2 Romance 6.147581 1.262879   496</code></pre>
+<p>Romance genre gets a slightly higher average rating than the Action. For the sake of discussion, suppose that <code>movies2</code> is the <strong>population</strong> (or the <strong>universe</strong>) of our movie data, meaning that <em>it contains all possible observations (movies) that fit our criteria</em> (i.e. Action or Romance movies released in 1970-2005 with known budgets). Then, the <em>population</em> mean ratings for Action and Romance movies are 5.73 and 6.15 respectively.</p>
+<p>Now consider a sampling world. In almost all situations, the researcher does not have <strong>population data</strong> and has to work with a <strong>sample</strong> drawn from the population. Knowing that what we have is <em>only a sample</em>, we make <strong>statistical inferences</strong> for the property of the population. For example, using a sample of Action and Romance movies, we can compare their average ratings to see if one genre has a higher rating than the other at a certain statistical significance.</p>
+<p>Let’s create our sampling world. Here we randomly draw 30 observations from each genre and calculate summary statistics.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">2017</span>)  <span class="co"># Fix a starting point of random number generations for reproducibility </span>
+
+movie_sample &lt;-<span class="st"> </span>movies2 %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(genre) %&gt;%
+<span class="st">  </span><span class="kw">sample_n</span>(<span class="dv">30</span>)
+
+movie_sample %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>rating)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;dodgerblue&quot;</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">facet_grid</span>(genre ~<span class="st"> </span>.)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movie_sample %&gt;%<span class="st"> </span><span class="kw">group_by</span>(genre) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(rating),
+            <span class="dt">std_dev =</span> <span class="kw">sd</span>(rating),
+            <span class="dt">n =</span> <span class="kw">n</span>()) %&gt;%<span class="st"> </span><span class="kw">kable</span>()</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">genre</th>
+<th align="right">mean</th>
+<th align="right">std_dev</th>
+<th align="right">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Action</td>
+<td align="right">5.730000</td>
+<td align="right">1.248489</td>
+<td align="right">30</td>
+</tr>
+<tr class="even">
+<td align="left">Romance</td>
+<td align="right">6.333333</td>
+<td align="right">1.208114</td>
+<td align="right">30</td>
+</tr>
+</tbody>
+</table>
+<p>Here is an another view;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movie_sample %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>( <span class="dt">x =</span> genre, <span class="dt">y =</span> rating)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>To compare the mean ratings between genres, a common practice is to test the equality of means, say <span class="math inline">\(\mu_A\)</span> and <span class="math inline">\(\mu_R\)</span> for Action and Romance movies respectively.</p>
+<p>The null and alternative hypotheses are:</p>
+<p><span class="math inline">\(H_0: \mu_A = \mu_R\)</span> (equivalently, <span class="math inline">\(\mu_A - \mu_R = 0\)</span>)</p>
+<p><span class="math inline">\(H_A: \mu_A \neq \mu_R\)</span></p>
+<!--### Arts & Crafts {-}-->
+</div>
+<div id="central-limit-theorem" class="section level3 unnumbered">
+<h3>Central Limit Theorem</h3>
+<p>Here are some fundamental building blocks of statistics. Let <span class="math inline">\(y_{i}\)</span> is an <em>independently and identically distributed (i.i.d.)</em> random variable for observation <span class="math inline">\(i = 1, .., N\)</span> drawn from some distribution with population mean <span class="math inline">\(\mu = E[y_i]\)</span> and standard deviation <span class="math inline">\(\sigma = \sqrt{E[(y_i - \mu)^2]}\)</span> where <span class="math inline">\(E[.]\)</span> is an expectation operator over the random variable. The sample mean and standard deviation of <span class="math inline">\(y_{i}\)</span> are defined as <span class="math display">\[\bar{y} = \frac{\sum_i y_i}{N}, \quad  s =\sqrt{\frac{\sum_i (y_{i} - \bar{y})^2}{(N-1)}}.\]</span></p>
+<p>So, we take the average <span class="math inline">\(\bar{y}\)</span>, which serves as an unbiased estimate of <span class="math inline">\(\mu\)</span>. Yet, how close is <span class="math inline">\(\bar{y}\)</span> to <span class="math inline">\(\mu\)</span>? The statistical theory gives us a probabilistic answer for the inferences about population mean <span class="math inline">\(\mu\)</span>. For example, if we know that <span class="math inline">\(y_i\)</span> is <em>normally distributed</em> with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>, then it follows that the sample mean <span class="math inline">\(\bar{y}\)</span> is normally distributed with mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma/\sqrt{N}\)</span>. The distribution of an estimate like this is called <strong>sampling distribution</strong>, and in special cases it is exactly known. With <em>known</em> <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>, we know how fast the sample mean <span class="math inline">\(\bar{y}\)</span> probabilistically approaches to the population mean <span class="math inline">\(\mu\)</span> as the sample size <span class="math inline">\(N\)</span> increases. This is done by calculating the z-statistic<br />
+<span class="math display">\[z = \frac{\bar{y} - \mu}{\sigma/\sqrt N}\]</span></p>
+<p>and comparing it to <strong>the standard normal distribution</strong> table. In other words, we don’t just look at <span class="math inline">\(\bar{y}\)</span>; we look at the relationship of <span class="math inline">\(\bar{y}\)</span>, <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>, and <span class="math inline">\(N\)</span> as described in the z-statistic, for which the shape of the distribution is known. This allows us to calculate the probability that the sample mean in the next random sample could be greater or smaller than observed <span class="math inline">\(\bar{y}\)</span>. To put it differently, we can infer how representative observed <span class="math inline">\(\bar{y}\)</span> would be if we were to repeat random samples of size <span class="math inline">\(N\)</span> and calculate the mean many times.</p>
+<p>In most situations, we do not know <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span> of the population, and we would not be sure whether the underlying distribution is really normal. But, that’s okay. We can still make statistical inferences for the population mean <span class="math inline">\(\mu\)</span>.</p>
+<p>Under some regularity conditions (e.g. the existence of a finite mean and variance of the random variable), the <strong>Central Limit Theorem</strong> tells us that regardless the underlying distribution, the sampling distribution of <span class="math inline">\(\bar{y}\)</span> is <em>approximately normal</em>.</p>
+<p>In a world with <em>unknown</em> <span class="math inline">\(\mu\)</span> or <span class="math inline">\(\sigma\)</span>, we approximate the standard normal distribution with <strong>a Student’s t distribution</strong>. The t-statistic is calculated as <span class="math display">\[t = \frac{\bar{y} - \mu}{s/\sqrt N}\]</span></p>
+<p>where <span class="math inline">\(s\)</span> is the consistent estimate of <span class="math inline">\(\sigma\)</span>, and we compare it to the t distribution table at <span class="math inline">\(N-1\)</span> degrees of freedom (one degree of freedom is reduced for the estimate <span class="math inline">\(s\)</span>). The Student’s t distribution is fatter-tailed than the standard normal distribution (due to the <em>estimated standard error</em> on the denominator), but it approaches to the standard normal distribution as the sample size <span class="math inline">\(N\)</span> increases. For given significance level <span class="math inline">\(\alpha\)</span>, the <span class="math inline">\(1-\alpha\)</span> confidence interval is</p>
+<p><span class="math display">\[t_{N, 1-\alpha/2} \le \frac{\bar{y} - \mu}{s/\sqrt N} \le t_{N, \alpha/2}\]</span></p>
+<p>where <span class="math inline">\(t_{N, 1-\alpha/2}\)</span> and <span class="math inline">\(t_{N, 1-\alpha/2}\)</span> are the lower and upper bounds of the t-statistic and are found in the t-distribution table. Since the t-distribution is symmetric, <span class="math inline">\(- t_{N, 1-\alpha/2} = t_{N, 1-\alpha/2}\)</span>. For example, at <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(N&gt;1000\)</span>, we have <span class="math inline">\(t_{N, 1-\alpha/2} \approx -1.96\)</span> and <span class="math inline">\(t_{N, 1-\alpha/2}=1.96\)</span>. Thus, for a large <span class="math inline">\(N\)</span>, the confidence interval of <span class="math inline">\(\mu\)</span> is given by<br />
+<span class="math display">\[ \bar{y} -  1.96 \:\: s/\sqrt{N} \le  \mu \le \bar{y} + 1.96 \:\: s/\sqrt{N}.\]</span></p>
+<p>Let’s get back to the comparison of ratings between genres. How do we test our hypothesis <span class="math inline">\(\mu_A = \mu_R\)</span>? Intuitively, we can make estimates of <span class="math inline">\(\mu_A\)</span> and <span class="math inline">\(\mu_R\)</span> by the corresponding sample means <span class="math inline">\(\bar{y}_A\)</span> and <span class="math inline">\(\bar{y}_R\)</span>. Then, it’s a matter of making statistical inferences about <span class="math inline">\(\bar{y}_A - \bar{y}_R\)</span> for how close they would be to <span class="math inline">\(\mu_A - \mu_R\)</span>. We calculate the t-statistic of <span class="math inline">\(\bar{y}_A - \bar{y}_R\)</span> and infer the probability of rejecting <span class="math inline">\(H_0: \mu_A - \mu_R = 0\)</span>.</p>
+<p>Let <span class="math inline">\(\bar{y}_{A}\)</span> and <span class="math inline">\(s_A\)</span> be the sample mean and standard deviation of ratings for Action movies and <span class="math inline">\(\bar{y}_{R}\)</span> and <span class="math inline">\(s_R\)</span> be those for Romance movies. A typical approach called Welch’s t-test statistic uses <span class="math display">\[t = \frac{\bar{y}_A - \bar{y}_R}{s_\Delta}\]</span></p>
+<p>where <span class="math display">\[s_\Delta = \sqrt{\frac{s_A^2}{N_A} + \frac{s^2_R}{N_R}}\]</span></p>
+<p>is sort of a joint standard deviation of <span class="math inline">\(y_{iA} - y_{iR}\)</span>. Its degree of freedom has a somewhat complicated form but is approximately <span class="math inline">\((N_A-1) + (N_R-1)\)</span> in many situations. For your information (not need to memorize), it is formally given as <span class="math display">\[d.f. = \frac{s^2_\Delta}{(s_A^2/N_A)^2/(N_A - 1) + (s_R^2/N_R)^2/(N_R - 1) }.\]</span></p>
+<p>The Welch’s t-test statistic can be manually calculated as follows.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  Welch&#39;s t-stat for the mean difference of two groups </span>
+mean_ratings &lt;-<span class="st"> </span>movie_sample %&gt;%<span class="st"> </span><span class="kw">group_by</span>(genre) %&gt;%
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(rating), <span class="dt">sd =</span> <span class="kw">sd</span>(rating))
+
+sample_diff &lt;-<span class="st"> </span>mean_ratings$mean[<span class="dv">1</span>] -<span class="st"> </span>mean_ratings$mean[<span class="dv">2</span>]
+sample_diff_sd &lt;-<span class="st"> </span><span class="kw">sqrt</span>(mean_ratings$sd[<span class="dv">1</span>]^<span class="dv">2</span>/<span class="dv">30</span> +<span class="st"> </span>mean_ratings$sd[<span class="dv">2</span>]^<span class="dv">2</span>/<span class="dv">30</span>)  <span class="co"># N = 30</span>
+sample_t &lt;-<span class="st"> </span>sample_diff/sample_diff_sd
+
+<span class="kw">c</span>(sample_diff, sample_diff_sd, sample_t) </code></pre></div>
+<pre><code>## [1] -0.6033333  0.3171889 -1.9021261</code></pre>
+<p>The observed mean difference is -0.603, for which the t-statistic is -1.902 at approximately 58 degrees of freedom.</p>
+<p>Let’s visualize this t-statistic against its theoretical distribution, which can be approximated by many random draws from the Student’s t distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">many_t_df58 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">t =</span> <span class="kw">rt</span>(<span class="dv">10</span>^<span class="dv">6</span>, <span class="dv">58</span>))  
+    <span class="co"># one million random draws from t-dist with 58 d.f. </span>
+many_t_df58 %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>t)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&#39;white&#39;</span>, <span class="dt">binwidth =</span> <span class="fl">0.1</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> sample_t) <span class="co"># add vertical line at -1.902</span></code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>The t distribution is centered at zero and has symmetric tails. We can think of the area of each bar representing the probability that a random draw of t-stat falls in that bin, and the total area of bars on the left of our t-statistic (-1.902) represents the probability that a random draw of t-stat is smaller than -1.902.</p>
+<p>By applying the two-tail t test, we can calculate the probability that a random draw of t-stat is more extreme than our t-statistic (i.e., being located toward either of the tails);</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">nrow</span>(<span class="kw">subset</span>(many_t_df58, <span class="kw">abs</span>(t)&gt;=<span class="st"> </span><span class="kw">abs</span>(sample_t)))/<span class="kw">nrow</span>(many_t_df58)</code></pre></div>
+<pre><code>## [1] 0.061964</code></pre>
+<p>Let’s visualize this probability;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">many_t_df58 %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>t)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&#39;white&#39;</span>, <span class="dt">binwidth =</span> <span class="fl">0.1</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> <span class="kw">subset</span>(many_t_df58, <span class="kw">abs</span>(t)&gt;=<span class="st"> </span><span class="kw">abs</span>(sample_t)), 
+                 <span class="dt">color=</span><span class="st">&#39;white&#39;</span>, <span class="dt">fill=</span><span class="st">&quot;red&quot;</span>, <span class="dt">binwidth =</span> <span class="fl">0.1</span>) +
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> sample_t)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>where the highlighted area represents the probability of <strong>type I</strong> error, or the rejection of the null hypothesis <span class="math inline">\(H_0\)</span> when it is in fact true, and represents the <strong>p-value</strong> (0.062 in this case). If we set our tolerance level for making a type I error at the probability of 10% or less (<span class="math inline">\(\alpha = 0.1\)</span>), we conclude that we <em>reject the null hypothesis <span class="math inline">\(H_0\)</span></em> (i.e., a finding of a statistically significant difference in ratings between Action and Romance genres) since the p-value is smaller than <span class="math inline">\(\alpha\)</span>. If we set our tolerance level at <span class="math inline">\(\alpha = 0.05\)</span>, we <em>fail to reject <span class="math inline">\(H_0\)</span></em> (no statistically significant effect).</p>
+<p>We can visualize how the probability of rejections (called <strong>rejection regions</strong>) associated with <span class="math inline">\(\alpha = 0.1\)</span> (orange below) and <span class="math inline">\(\alpha = 0.05\)</span> (green) compare to our t-statistic;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">many_t_df58 %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>t)) +<span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&#39;white&#39;</span>, <span class="dt">binwidth =</span> <span class="fl">0.1</span>) +<span class="st"> </span>
+<span class="st">  </span><span class="co"># rejection regions with critical val for a = 0.1</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> <span class="kw">subset</span>(many_t_df58, <span class="kw">abs</span>(t)&gt;=<span class="st"> </span><span class="kw">abs</span>(<span class="kw">qt</span>(.<span class="dv">95</span>,<span class="dv">58</span>))),  
+                 <span class="dt">color=</span><span class="st">&#39;white&#39;</span>, <span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>, <span class="dt">binwidth =</span> <span class="fl">0.1</span>) +
+<span class="st">  </span><span class="co"># rejection regions with  critical val for a = 0.05</span>
+<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">data =</span> <span class="kw">subset</span>(many_t_df58, <span class="kw">abs</span>(t)&gt;=<span class="st"> </span><span class="kw">abs</span>(<span class="kw">qt</span>(.<span class="dv">975</span>,<span class="dv">58</span>))), 
+                 <span class="dt">color=</span><span class="st">&#39;white&#39;</span>, <span class="dt">fill=</span><span class="st">&quot;green&quot;</span>, <span class="dt">binwidth =</span> <span class="fl">0.1</span>) +
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> sample_t)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Now that we know what the Welch’s t-test does, we can simply use R’s function to conduct a t-test;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movie_sample %&gt;%<span class="st"> </span><span class="kw">with</span>(<span class="kw">t.test</span>( rating ~<span class="st"> </span>genre ))  <span class="co"># using &quot;formula&quot; input</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  rating by genre
+## t = -1.9021, df = 57.937, p-value = 0.06213
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.23827054  0.03160388
+## sample estimates:
+##  mean in group Action mean in group Romance 
+##              5.730000              6.333333</code></pre>
+<p>Recall that we started with knowing that the population mean rating is slightly higher for Romance than for Action. Here, it seems reasonable that a random sample of 30 observations from each genre leads us to find a statistically significant difference at the 10% level.</p>
+</div>
+<div id="bootstrapping" class="section level3 unnumbered">
+<h3>Bootstrapping</h3>
+<p>Now we will introduce a concept of <strong>bootstrapping</strong>. Recall that our statistic, say <span class="math inline">\(\bar{y}\)</span>, <em>conceptually</em> has its <em>distribution</em>, depending on the version of random sample that we happen to draw. The idea here is to mimic the process of having many versions of random samples through simulations, so that we generate <em>a simulated distribution</em> of the statistic. Then, we can make statistical inferences without invoking the statistical theory of the approximate distribution via the Central Limit Theorem.</p>
+<p>There are many ways to conduct bootstrapping. For simplicity, we will use some of the most common practices.</p>
+<p>First, we make many random draws of <span class="math inline">\(y_{iA}\)</span> and <span class="math inline">\(y_{iR}\)</span> from our sample <code>movie_sample</code> with replacement (i.e., each time the drawn observation is put back into the pool). We can use <code>do()</code> from <code>mosaic</code> package and <code>sample_n()</code> from <code>dplyr</code> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">set.seed</span>(<span class="dv">2017</span>)
+
+boot1 &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(<span class="dv">5000</span>) *<span class="st"> </span><span class="co"># repeat the following expression ({...}) for 5000 times </span>
+<span class="st">  </span>({  movie_sample %&gt;%<span class="st"> </span>
+<span class="st">      </span><span class="kw">group_by</span>(genre) %&gt;%
+<span class="st">       </span><span class="co"># sample 30 obs from each genre with replacement</span>
+<span class="st">      </span><span class="kw">sample_n</span>(<span class="dv">30</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>) %&gt;%<span class="st"> </span>
+<span class="st">      </span><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(rating),
+                <span class="dt">sd =</span> <span class="kw">sd</span>(rating),
+                <span class="dt">n =</span><span class="kw">n</span>()) %&gt;%<span class="st"> </span>
+<span class="st">      </span><span class="kw">data.frame</span>()
+  })
+
+<span class="kw">head</span>(boot1)</code></pre></div>
+<pre><code>##     genre     mean        sd  n .row .index
+## 1  Action 5.536667 1.0473228 30    1      1
+## 2 Romance 6.173333 1.3284508 30    2      1
+## 3  Action 5.683333 1.3164957 30    1      2
+## 4 Romance 6.760000 1.0682244 30    2      2
+## 5  Action 5.630000 0.8317617 30    1      3
+## 6 Romance 6.333333 1.1931799 30    2      3</code></pre>
+<p>The column <code>.index</code> shows the index of bootstrap replications, and the column <code>.row</code> nested in <code>.index</code> gives the indicator of calculated results by genre within each replication.</p>
+<p>Next, we calculate the bootstrap version of our estimates such as <span class="math inline">\(\bar{y}_A - \bar{y}_R\)</span> and Welch’s t statistic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot1_w &lt;-<span class="st">  </span>boot1 %&gt;%<span class="st"> </span>dplyr::<span class="kw">select</span>(-.row) %&gt;%<span class="st">  </span><span class="co"># get rid of .row column </span>
+<span class="st">  </span><span class="kw">reshape</span>(<span class="dt">idvar=</span> <span class="st">&quot;.index&quot;</span>, <span class="dt">timevar=</span><span class="st">&quot;genre&quot;</span>,     <span class="co"># reshape into a &quot;wide-form&quot; dataset </span>
+           <span class="dt">direction=</span><span class="st">&quot;wide&quot;</span>)
+<span class="kw">head</span>(boot1_w)</code></pre></div>
+<pre><code>##    .index mean.Action sd.Action n.Action mean.Romance sd.Romance n.Romance
+## 1       1    5.536667 1.0473228       30     6.173333   1.328451        30
+## 3       2    5.683333 1.3164957       30     6.760000   1.068224        30
+## 5       3    5.630000 0.8317617       30     6.333333   1.193180        30
+## 7       4    5.480000 1.0768408       30     6.170000   1.303087        30
+## 9       5    5.513333 1.1340295       30     6.293333   1.235937        30
+## 11      6    5.950000 1.2601998       30     6.440000   1.131554        30</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot1_w  &lt;-<span class="st"> </span>boot1_w %&gt;%
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">bt_diff  =</span> (mean.Action -<span class="st"> </span>mean.Romance),  <span class="co"># difference </span>
+    <span class="dt">bt_sd =</span> <span class="kw">sqrt</span>(sd.Action^<span class="dv">2</span>/<span class="dv">30</span> +<span class="st"> </span>sd.Romance^<span class="dv">2</span>/<span class="dv">30</span>),
+    <span class="dt">bt_t =</span> bt_diff/bt_sd                <span class="co"># Welch&#39;s t-stat</span>
+    ) </code></pre></div>
+<p>Here is how sample estimate <code>sample_diff</code> compares with the histogram of its bootstrap counterpart <code>bt_diff</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot1_w %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bt_diff, <span class="dt">fill =</span> bt_diff &gt;<span class="st"> </span><span class="dv">0</span>)) +
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">40</span>) +
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> sample_diff) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>Here the <code>bt_diff</code> values that are greater than zero are marked by a different color since they suggest the opposite conclusion that the mean rating is higher for Action than for Romance. Depending on the random draw of a bootstrap replication, one could have the opposite result in some of the times. The question is how often that happens.</p>
+<p>Using the bootstrap estimates, we can estimate the confidence interval in a few ways. For example, to estimate a 95% confidence interval, one can take the 2.5th and 97.5th percentiles of the distribution shown above in the histogram.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># confidence interval</span>
+<span class="kw">quantile</span>(boot1_w$bt_diff, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))  <span class="co"># version 1</span></code></pre></div>
+<pre><code>##        2.5%       97.5% 
+## -1.20333333  0.01333333</code></pre>
+<p>Another approach is to calculate a bootstrap standard deviation and apply <span class="math inline">\(t_{df,\alpha/2} \le (\bar{y}_A - \bar{y}_R)/s_{bt} \le t_{df,1-\alpha/2}\)</span> where <span class="math inline">\(\bar{y}_A - \bar{y}_R\)</span> is the mean difference in ratings between Action and Romance movies, <span class="math inline">\(s_{bt}\)</span> is an estimate of the standard deviation of <span class="math inline">\(\bar{y}_A - \bar{y}_R\)</span>, and <span class="math inline">\(- t_{df,\alpha/2}=t_{df,\alpha/2}=2.00\)</span> for the t distribution with 58 degrees of freedom. Note that here we do not need <span class="math inline">\(\sqrt{N}\)</span> in the confidence interval calculation (unlike the above discussion where <span class="math inline">\(s\)</span> was the standard deviation of rating <span class="math inline">\(y_i\)</span> instead of the standard deviation of the average).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_diff_sd_boot &lt;-<span class="st"> </span><span class="kw">sd</span>(boot1_w$bt_diff)
+sample_diff_sd_boot </code></pre></div>
+<pre><code>## [1] 0.307742</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># version 2</span>
+<span class="kw">c</span>(sample_diff -<span class="st"> </span><span class="fl">2.00</span> *<span class="st"> </span>sample_diff_sd_boot, sample_diff +<span class="st"> </span><span class="fl">2.00</span> *<span class="st"> </span>sample_diff_sd_boot) </code></pre></div>
+<pre><code>## [1] -1.21881724  0.01215058</code></pre>
+<p>Recall that in the case of two-tail test, we would look for extreme values on both tails of the distribution. We can visualize this by centering the above graph at <code>sample_diff</code> and identifying the values that are farther from the center than sample estimate <code>sample_diff</code> is. In the previous plot, we drew a histogram of <code>bt_diff</code> with fill code <code>bt_diff &gt; 0</code>. By subtracting <code>sample_diff</code> and taking the absolute values, we have <code>bt_diff - sample_diff</code> with fill code <code>abs(bt_diff - sample_diff) &gt; abs(sample_diff)</code>. Essentially, we are approximating the distribution of <span class="math inline">\(\bar{y}_A-\bar{y}_R - (\mu_A -\mu_R)\)</span> (<code>sample_diff</code> compared to the population difference) by the distribution of <span class="math inline">\(\bar{y}^*_A-\bar{y}^*_R - (\bar{y}_A-\bar{y}_R )\)</span> ( bootstrap estimate <span class="math inline">\(\bar{y}^*_A-\bar{y}^*_R =\)</span> <code>bt_diff</code> compared to <code>sample_diff</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot1_w %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bt_diff -<span class="st"> </span>sample_diff, 
+             <span class="dt">fill =</span> <span class="kw">abs</span>(bt_diff -<span class="st"> </span>sample_diff) &gt;<span class="st"> </span><span class="kw">abs</span>(sample_diff))) +
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">40</span>) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>The centered histogram makes it easier to see whether our sample estimate <code>sample_diff</code> is representative; how closely are the bootstrap estimates centered around <code>sample_diff</code> and how do they spread? In this sense, the areas of the extreme values correspond to the rejection regions for the two-tail t-test, and the middle part corresponds to the confidence interval. By taking the area of the rejection regions, we can estimate the p-value;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># p-value</span>
+boot1_w %&gt;%<span class="st"> </span><span class="kw">with</span>(<span class="kw">sum</span>(<span class="kw">abs</span>(bt_diff -<span class="st"> </span>sample_diff) &gt;<span class="st"> </span><span class="kw">abs</span>(sample_diff))/<span class="kw">length</span>(bt_diff))  </code></pre></div>
+<pre><code>## [1] 0.0512</code></pre>
+<p>which represents the probability that a bootstrap estimate falls in either of the colored tails.</p>
+<p>Previously, we noted there are many ways to do bootstrapping. Another version here is to bootstrap Welch’s t-statistic instead of the mean difference. An estimate in the form of t-statistic has a <strong>pivotal quality</strong>, meaning that the distribution of the statistic does not depend on unknown parameters. Welch’s t-statistic follows the Student’s t distribution with a given degree of freedom, which does not depend on any unknown parameter such as the population mean or variance. It may be recommended to use a pivotal statistic for bootstrapping.</p>
+<p>Here are the parallel results for bootstrapping Welch’s t-statistic.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">boot1_w %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bt_t, <span class="dt">fill =</span> bt_t &gt;<span class="st"> </span><span class="dv">0</span>)) +
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">40</span>) +
+<span class="st">  </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> sample_t) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>To convert a confidence interval of Welch’s t-statistic <span class="math inline">\((\bar{y}_A - \bar{y}_R)/s_\Delta\)</span> into a confidence interval of the difference in mean ratings <span class="math inline">\(\bar{y}_A - \bar{y}_R\)</span>, we multiply the former by <span class="math inline">\(s_\Delta=\)</span> <code>sample_diff_sd</code>;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># confidence interval</span>
+<span class="kw">quantile</span>(boot1_w$bt_t, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>)) *<span class="st"> </span>sample_diff_sd  <span class="co"># version 1 </span></code></pre></div>
+<pre><code>##        2.5%       97.5% 
+## -1.31094136  0.01345958</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_t_sd_boot &lt;-<span class="st"> </span>boot1_w %&gt;%<span class="st"> </span><span class="kw">with</span>(<span class="kw">sd</span>(bt_t -<span class="st"> </span><span class="kw">mean</span>(bt_t)))  
+<span class="co"># version 2</span>
+<span class="kw">c</span>(sample_t -<span class="st"> </span><span class="fl">2.00</span> *<span class="st"> </span>sample_t_sd_boot, sample_t +<span class="st"> </span><span class="fl">2.00</span> *<span class="st"> </span>sample_t_sd_boot)  *<span class="st"> </span>sample_diff_sd  </code></pre></div>
+<pre><code>## [1] -1.27547455  0.06880788</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># centered at observed Welch&#39;s t-statistic</span>
+boot1_w %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bt_t -<span class="st"> </span>sample_t, <span class="dt">fill =</span> <span class="kw">abs</span>(bt_t -<span class="st"> </span>sample_t) &gt;<span class="st"> </span><span class="kw">abs</span>(sample_t))) +
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">40</span>) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># p-value </span>
+boot1_w %&gt;%<span class="st"> </span><span class="kw">with</span>(<span class="kw">sum</span>(<span class="kw">abs</span>(bt_t -<span class="st"> </span>sample_t) &gt;<span class="st"> </span><span class="kw">abs</span>(sample_t))/<span class="kw">length</span>(bt_t))  </code></pre></div>
+<pre><code>## [1] 0.0716</code></pre>
+</div>
+<div id="linear-models" class="section level3 unnumbered">
+<h3>Linear Models</h3>
+<p>Let’s extend our bootstrapping experiment to a regression framework. While we have not formally covered regressions in this site yet, we can develop an intuitive understanding on how they works.</p>
+<p>A simple form of linear regression is <span class="math display">\[ y_i = a_0 + b_1 x_{i} + \varepsilon_i\]</span> where <span class="math inline">\(y_i\)</span> is the dependent variable of observation <span class="math inline">\(i\)</span>, <span class="math inline">\(x_i\)</span> is an independent variable, <span class="math inline">\(a_0\)</span> and <span class="math inline">\(b_1\)</span> are parameters for the intercept and the slope of <span class="math inline">\(x\)</span> to be estimated, and <span class="math inline">\(\varepsilon_i\)</span> is the residual error term. Depending on the assumption on the error term <span class="math inline">\(\varepsilon_i\)</span>, we can run different models on the same equation. Regardless, we are required to assume that the error <span class="math inline">\(\varepsilon_i\)</span> is uncorrelated with the independent variable <span class="math inline">\(x_i\)</span>.</p>
+<p>Here is an example. By default, <code>lm()</code> assumes a set of the standard assumptions for the Ordinary Least Squares (OLS).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d0 &lt;-<span class="st"> </span><span class="kw">data.frame</span>( <span class="dt">y =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>),
+                  <span class="dt">x =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">8</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">4</span>))
+
+<span class="kw">lm</span>( y ~<span class="st"> </span>x, <span class="dt">data =</span> d0) %&gt;%<span class="st"> </span><span class="kw">summary</span>()</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = y ~ x, data = d0)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.3966 -0.3683  0.2207  0.5145  0.8972 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   1.2213     0.5109   2.390 0.053994 .  
+## x             0.6469     0.0856   7.557 0.000279 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.8338 on 6 degrees of freedom
+## Multiple R-squared:  0.9049, Adjusted R-squared:  0.8891 
+## F-statistic: 57.11 on 1 and 6 DF,  p-value: 0.0002787</code></pre>
+<p>Coefficient estimates are <span class="math inline">\(a_0 = 1.2213\)</span> and <span class="math inline">\(b_1 = 0.6469\)</span> with the standard errors of <span class="math inline">\(sd(a_0) = 0.5109\)</span> and <span class="math inline">\(sd(b1) = 0.0856\)</span>, suggesting that the t-values of <span class="math inline">\(2.390\)</span> and <span class="math inline">\(7.557\)</span> for testing whether these coefficients are statistically different from zero, or <span class="math inline">\(H_0: a_0=0\)</span> and <span class="math inline">\(H_0: b_1 =0\)</span>. The standard error for the residual is estimated with the assumption that <span class="math inline">\(\varepsilon_i\)</span> is <em>i.i.d.</em> normal with mean zero and some standard deviation <span class="math inline">\(\sigma\)</span>. “Pr(&gt;|t|)” shows the p-values of the coefficient estimates, and the statistical significance is indicated with symbols “***”, “**” etc. Let’s not worry about other metrics here.</p>
+<p>Let’s visualize the above regression;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">d0 %&gt;%<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>( <span class="dt">x =</span> x, <span class="dt">y =</span> y)) +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se=</span><span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>With only two variables, the plot like this gives us a clear picture of how the regression relates to the data points. The straight line is the fitted regression equation <span class="math inline">\(\widehat{a}_0 + \widehat{b}_1 x_i\)</span> where hat <span class="math inline">\(\widehat{}\)</span> notation represents an estimate, and the vertical distance (and its direction) from this line is the predicted residual <span class="math inline">\(\widehat{\varepsilon_i}=y_i - \widehat{a}_0 + \widehat{b}_1 x_i\)</span>. The OLS estimates are <strong>the best linear unbiased estimators (BLUE)</strong>.</p>
+<p>Now, let <span class="math inline">\(y_{ij}\)</span> be the rating of movie <span class="math inline">\(i\)</span> in genre <span class="math inline">\(j\)</span> where <span class="math inline">\(j\)</span> is either <span class="math inline">\(A\)</span> (Action) or <span class="math inline">\(R\)</span> (Romance). Also, let <span class="math inline">\(1(A)\)</span> be the indicator function that takes a value of one if condition <span class="math inline">\(A\)</span> is true and zero otherwise. Then, we can formulate a linear regression equation to test the mean difference in movie ratings between Action and Romance as follows.<br />
+<span class="math display">\[ y_{ij} = b_A \: 1(j=A) + b_R \: 1(j=R) + \varepsilon_{ij}\]</span> where the means of Action and Romance movies are estimated as <span class="math inline">\(b_A\)</span> and <span class="math inline">\(b_R\)</span> respectively. Under the standard OLS assumptions, <span class="math inline">\(b_A\)</span> and <span class="math inline">\(b_R\)</span> are equivalent to the sample means (calculated by the usual summing and dividing by the number of observations), and the estimates of the variances for <span class="math inline">\(\hat{b}_A\)</span> and <span class="math inline">\(\hat{b}_R\)</span> are obtained by matrix algebra (which we will cover in a future session).</p>
+<p>For rotational brevity, this equation may be written as<br />
+<span class="math display">\[ y_{ij} = \alpha_j + \varepsilon_{ij}\]</span> where <span class="math inline">\(\alpha_j\)</span> is <span class="math inline">\(\alpha_A = b_A\)</span> for <span class="math inline">\(j=A\)</span> and <span class="math inline">\(\alpha_R = b_R\)</span> for <span class="math inline">\(j=R\)</span>. This model yields the following;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># &quot;0 +&quot; eliminates the intercept </span>
+<span class="kw">lm</span>(rating ~<span class="st"> </span><span class="dv">0</span> +<span class="st"> </span>genre, <span class="dt">data =</span> movie_sample) %&gt;%<span class="st"> </span><span class="kw">summary</span>() </code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rating ~ 0 + genre, data = movie_sample)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.3333 -0.6583 -0.1300  0.7942  3.2700 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## genreAction    5.7300     0.2243   25.55   &lt;2e-16 ***
+## genreRomance   6.3333     0.2243   28.24   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.228 on 58 degrees of freedom
+## Multiple R-squared:  0.9615, Adjusted R-squared:  0.9602 
+## F-statistic:   725 on 2 and 58 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Note that the t-statistics test hypotheses <span class="math inline">\(H_0: b_A = 0\)</span> and <span class="math inline">\(H_0: b_R = 0\)</span>, which differ from our interest, <span class="math inline">\(H_0: b_A = b_R\)</span>.</p>
+<p>We can rewrite the above equation as<br />
+<span class="math display">\[ y_{ij} = a_0  + \beta_R \: 1(j=R) + \varepsilon_{ij}\]</span></p>
+<p>where <span class="math inline">\(\beta_R = b_R - b_A\)</span>. Alternatively, <span class="math display">\[ y_{ij} = a_0  + \alpha_j + \varepsilon_{ij}\]</span> where <span class="math inline">\(\alpha_A\)</span> serves as a reference group and hence is excluded from the coefficient estimates.</p>
+<p>This yields;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ols1 &lt;-<span class="st"> </span><span class="kw">lm</span>( rating ~<span class="st"> </span>genre, <span class="dt">data =</span> movie_sample)  
+<span class="kw">summary</span>(ols1)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rating ~ genre, data = movie_sample)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.3333 -0.6583 -0.1300  0.7942  3.2700 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    5.7300     0.2243  25.548   &lt;2e-16 ***
+## genreRomance   0.6033     0.3172   1.902   0.0621 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.228 on 58 degrees of freedom
+## Multiple R-squared:  0.05872,    Adjusted R-squared:  0.04249 
+## F-statistic: 3.618 on 1 and 58 DF,  p-value: 0.06212</code></pre>
+<p>where the estimate of <span class="math inline">\(\alpha_R\)</span> is equivalent with the calculated difference <code>sample_diff</code>, and its t-statistic is approximately the same as <code>sample_t</code> above. The sign is switched since our estimate here is <span class="math inline">\(b_R - b_A\)</span> instead of <span class="math inline">\(b_A - b_R\)</span>.</p>
+<p>The OLS output provides the estimate of standard errors for the coefficients based on the statistical theory like the output from Welch’s t-statistic above. Now we derive our estimate of standard errors by applying bootstrapping to the OLS model.</p>
+<p>In doing so, we create several functions here. The first two functions extract “formula” and the dependent variable from a <code>lm</code> class object.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">getFormula &lt;-<span class="st"> </span>function(model) <span class="kw">gsub</span>(<span class="st">&quot;()&quot;</span>,<span class="st">&quot;&quot;</span>, model$call[<span class="dv">2</span>])  <span class="co"># gsub() substitues characters</span>
+<span class="kw">getFormula</span>(ols1)</code></pre></div>
+<pre><code>## [1] &quot;rating ~ genre&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">getDependentVar &lt;-<span class="st"> </span>function(model) {
+  str &lt;-<span class="st"> </span><span class="kw">getFormula</span>(model) 
+  <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>,<span class="st">&quot;&quot;</span>, <span class="kw">substr</span>(str, <span class="dv">1</span>, (<span class="kw">regexpr</span>(<span class="st">&quot;~&quot;</span>,str)[<span class="dv">1</span>]-<span class="dv">1</span>)))　 <span class="co"># substr() takes a substring</span>
+  }
+<span class="kw">getDependentVar</span>(ols1)</code></pre></div>
+<pre><code>## [1] &quot;rating&quot;</code></pre>
+<p>The next function takes a <code>lm</code> class object (i.e., a result by <code>lm()</code>) and the number of bootstrap replications for its inputs and produces bootstrap versions of the coefficient estimates as an output. We assume that the distribution of <span class="math inline">\(\varepsilon_i\)</span> is a normal distribution with mean <span class="math inline">\(0\)</span> and variance <span class="math inline">\(\hat{\sigma}^2\)</span> where <span class="math inline">\(\hat{\sigma} = \sum\widehat{\varepsilon}^2_i/(N-k)\)</span> is the OLS estimate of <span class="math inline">\(\sigma\)</span> with <span class="math inline">\(N-k\)</span> degrees of freedom (Num. obs minus num. of parameters). Then, we can generate a bootstrapped dependent variable by combining the predicted part of the linear model $ _0 + _j$ and an random draw of bootstrap error term <span class="math inline">\(\varepsilon^b_i\)</span>, or <span class="math inline">\(y^b_{ij} = \widehat{a}_0 + \widehat{\alpha}_j + \varepsilon^b_i\)</span>. In each bootstrap replication <span class="math inline">\(b=1, .., B\)</span>, we replace <span class="math inline">\(y_{ij}\)</span> with its bootstrap counterpart <span class="math inline">\(y^b_{ij}\)</span> and run the OLS estimation, and we repeat this process for <span class="math inline">\(B\)</span> times (we set <span class="math inline">\(B=5000\)</span>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">run_ols_boot &lt;-<span class="st"> </span>function(lm_rlt, <span class="dt">num_do =</span> <span class="dv">5000</span>) {
+  
+  <span class="co"># calculate the standard deviation of the residuals</span>
+  N &lt;-<span class="st"> </span><span class="kw">length</span>(lm_rlt$residuals)
+  sd_res &lt;-<span class="st"> </span>(<span class="kw">sum</span>(lm_rlt$residuals^<span class="dv">2</span>)/lm_rlt$df.residual) %&gt;%<span class="st"> </span><span class="kw">sqrt</span>()
+  dep_var &lt;-<span class="st"> </span><span class="kw">getDependentVar</span>(lm_rlt)
+
+  <span class="kw">do</span>(num_do) *<span class="st"> </span>
+<span class="st">    </span>({  
+        data_bt &lt;-<span class="st"> </span>lm_rlt$model
+        <span class="co"># replace the dependent variable with its bootstrap counterpart</span>
+        data_bt[[dep_var]] &lt;-<span class="st"> </span>lm_rlt$fitted.values +<span class="st">    </span><span class="co">#  the predicted component</span>
+<span class="st">          </span>+<span class="st"> </span><span class="kw">rnorm</span>(N, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> sd_res)     <span class="co">#  random draws from the error distribution </span>
+         
+        <span class="co"># run the OLS model with the same formula but with a new, bootstrap dataset  </span>
+        ols_bt &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">as.formula</span>(<span class="kw">getFormula</span>(lm_rlt)), <span class="dt">data =</span> data_bt)  
+        <span class="kw">coef</span>(ols_bt)  <span class="co"># get coefficients </span>
+    }) 
+}
+
+<span class="kw">set.seed</span>(<span class="dv">2007</span>)
+<span class="co"># run bootstrap with our function </span>
+bt_est_ols1 &lt;-<span class="st"> </span><span class="kw">run_ols_boot</span>(ols1, <span class="dv">5000</span>) </code></pre></div>
+<p>Let’s compare the estimates of standard errors between the default OLS and our bootstrap results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_ols1 &lt;-<span class="st"> </span><span class="kw">tidy</span>(ols1) <span class="co"># summary of the original OLS estimates </span>
+
+bt_sd_ols1 &lt;-<span class="st"> </span><span class="kw">apply</span>(bt_est_ols1, <span class="dv">2</span>, sd) <span class="co"># calculate bootstrap standard errors </span>
+bt_ols1 &lt;-<span class="st"> </span><span class="kw">cbind</span>(<span class="dt">coeff =</span> sample_ols1$estimate, <span class="co"># copy the coeff from the OLS result</span>
+                 <span class="dt">sd =</span> bt_sd_ols1,              <span class="co"># use bootstrap standard errors</span>
+                 <span class="dt">tstat =</span> sample_ols1$estimate/bt_sd_ols1) 
+
+<span class="co"># OLS estimates with statistical inferences by statistic theory</span>
+sample_ols1 </code></pre></div>
+<pre><code>##           term  estimate std.error statistic      p.value
+## 1  (Intercept) 5.7300000 0.2242864 25.547688 2.999063e-33
+## 2 genreRomance 0.6033333 0.3171889  1.902126 6.212427e-02</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># OLS estimates with statistical inferences by bootstrapping</span>
+bt_ols1 </code></pre></div>
+<pre><code>##                  coeff        sd     tstat
+## Intercept    5.7300000 0.2262160 25.329774
+## genreRomance 0.6033333 0.3231541  1.867014</code></pre>
+<p>In this case they are pretty close.</p>
+<p>Let’s visualize this.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sample_Romance &lt;-<span class="st"> </span>sample_ols1$estimate[<span class="dv">2</span>]
+bt_est_ols1 %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> genreRomance -<span class="st"> </span>sample_Romance, 
+             <span class="dt">fill =</span> (<span class="kw">abs</span>(genreRomance -<span class="st"> </span>sample_Romance) &gt;=<span class="st"> </span><span class="kw">abs</span>(sample_Romance)))) +
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">40</span>) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>Here are estimates of the confidence interval and the p-value by bootstrapping.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># confidence interval by bootstrapping</span>
+<span class="kw">quantile</span>(bt_est_ols1$genreRomance, <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))  <span class="co"># version 1 </span></code></pre></div>
+<pre><code>##        2.5%       97.5% 
+## -0.01984114  1.24606817</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(<span class="st">&#39;2.5%&#39;</span> =<span class="st"> </span>sample_Romance -<span class="st"> </span><span class="fl">2.00</span> *<span class="st"> </span>bt_sd_ols1[<span class="dv">2</span>], 
+  <span class="st">&#39;97.5%&#39;</span> =<span class="st"> </span>sample_Romance  +<span class="st"> </span><span class="fl">2.00</span> *<span class="st"> </span>bt_sd_ols1[<span class="dv">2</span>])   <span class="co"># version 2</span></code></pre></div>
+<pre><code>##  2.5%.genreRomance 97.5%.genreRomance 
+##        -0.04297487         1.24964154</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># p-value </span>
+bt_est_ols1 %&gt;%<span class="st"> </span><span class="kw">with</span>(
+  <span class="kw">sum</span>(<span class="kw">abs</span>(genreRomance -<span class="st"> </span>sample_Romance) &gt;<span class="st"> </span><span class="kw">abs</span>(sample_Romance))/<span class="kw">length</span>(genreRomance)
+  ) </code></pre></div>
+<pre><code>## [1] 0.0604</code></pre>
+<p>These results are also very close to what we saw for the Welch’s t-statistic and its bootstrap estimates above.</p>
+<p>Now let’s get a bit deeper into the <em>modeling</em> aspect of the linear models.</p>
+<p>The regression allows us to utilize additional variables in the model. Let’s try adding a linear effect of movie budget. It seems reasonable to hypothesize that the higher the budget, the better a movie can be since the director can hire famous actors and actresses and use expensive movie settings and computer graphics. Then, our estimation equation becomes<br />
+<span class="math display">\[ y_{ij} = a_0  + \alpha_j + \beta_1 \:budget_i + \varepsilon_{ij}.\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ols2 &lt;-<span class="st"> </span><span class="kw">lm</span>( rating ~<span class="st"> </span>genre +<span class="st"> </span>budget,  <span class="dt">data =</span> movie_sample)
+<span class="kw">summary</span>(ols2)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rating ~ genre + budget, data = movie_sample)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.20205 -0.69226 -0.07884  0.71999  2.92299 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  5.424309   0.304038  17.841   &lt;2e-16 ***
+## genreRomance 0.753435   0.330186   2.282   0.0263 *  
+## budget       0.006944   0.004717   1.472   0.1465    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.216 on 57 degrees of freedom
+## Multiple R-squared:  0.09319,    Adjusted R-squared:  0.06137 
+## F-statistic: 2.929 on 2 and 57 DF,  p-value: 0.06155</code></pre>
+<p>The new estimate of <span class="math inline">\(\alpha_R\)</span> is 0.753 with standard error 0.330. A common interpretation goes like this; the relative effect of Romance to Action genre on the movie rating is 0.753 at the 5% significance level, while controlling for the effect of movie budget. Note that the effect of budget itself is not statistically significant even at the 10% level, but having this variable allows for more robust results.</p>
+<p>Recall that an important assumption in regression analysis is that the error term is uncorrelated with independent variables. Here our model is using the assumption that <span class="math display">\[E[\varepsilon_{ij} \:| \: genre_j,\: budget_i] = E[\varepsilon_{ij} ] = 0\]</span> where <span class="math inline">\(E[v | u]\)</span> denotes the conditional mean of <span class="math inline">\(v\)</span> given <span class="math inline">\(u\)</span>. It says that the information of <span class="math inline">\(genre_j\)</span> and <span class="math inline">\(budget_i\)</span> does not affect the mean of the error distribution. There is no definitive way to test this assumption, so that has to hold at least <em>conceptually</em>. The assumption may be violated in several ways. The most relevant case here is what is known as <strong>omitted variable bias</strong>; some unobserved attributes of the movie (which are conceptually a part of the error <span class="math inline">\(\varepsilon_{ij}\)</span>) may be correlated with both <span class="math inline">\(y_{ij}\)</span> and <span class="math inline">\(budget_i\)</span>.</p>
+<p>For example, many people think that the use of explosions make action movies more exciting and romance movies more dramatic. Then, suppose that the story taking place in the World War setting can increase the movie rating and also inflate the movie budget. In such a case, the OLS estimates could be biased via the omitted variable (an indicator for having a World War setting). In a future session, we will talk more about the potential sources of bias. Let’s not worry about them here.</p>
+<p>The bottom line: every model is incorrect when applied to some real-world data, and the “error term” captures the difference. The correctness is always a matter of degree, and that’s why we care about the error term; how big are its dispersion and its tails? is it systematically varying with independent variables? and so forth. Predicted error can be diagnosed for certain properties, yet the true error is essentially <em>conceptual</em>, for which some judgement on the side of the analyst is necessarily involved. This is why developing sound intuitions is crucial. It is no secret that the statistical modeling of real-world data is an art as much as a science.</p>
+<p>Okay, let’s get back to our topic. Now how about adding another variable to our model? The movies in the dataset were released between 1970 and 2005, during which movie-goers’ preferences or movie production costs may have shifted. By accounting for a quadratic time trend, we estimate the following <span class="math display">\[ y_{ij} = a_0  + \alpha_j + \beta_1 \:budget_i + \beta_2 \: year_i  + \beta_3 \: year^2_i + \varepsilon_{ij}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ols3 &lt;-<span class="st"> </span><span class="kw">lm</span>( rating ~<span class="st"> </span>genre +<span class="st"> </span>budget +<span class="st"> </span>year +<span class="st"> </span><span class="kw">I</span>(year^<span class="dv">2</span>),  <span class="dt">data =</span> movie_sample) 
+  <span class="co"># I() allows the user to construct a new variable on the fly. </span>
+<span class="kw">summary</span>(ols3)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rating ~ genre + budget + year + I(year^2), data = movie_sample)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -2.02921 -0.70194  0.03311  0.60606  3.00738 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)  
+## (Intercept)   5.108e+03  7.024e+03   0.727   0.4701  
+## genreRomance  7.918e-01  3.254e-01   2.434   0.0182 *
+## budget        8.452e-03  4.700e-03   1.798   0.0776 .
+## year         -5.087e+00  7.058e+00  -0.721   0.4741  
+## I(year^2)     1.268e-03  1.773e-03   0.715   0.4776  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.196 on 55 degrees of freedom
+## Multiple R-squared:  0.1544, Adjusted R-squared:  0.09288 
+## F-statistic:  2.51 on 4 and 55 DF,  p-value: 0.05214</code></pre>
+<p>When accounting for the time trend, the coefficient for budget is statistically significant at the 10% level, and the residual standard error is slightly reduced from 1.216 to 1.196. That seems like an improvement, and the model equation looks sensible. Now do we feel confident in our results?</p>
+<p>Let’s see if we can do more to check the results. We assumed a common quadratic time trend for Action and Romance movies. Let’s take a step back and visualize the time trend in the data using <code>ggplot() + geom_jitter() + geom_smooth()</code>. By default <code>geom_smooth()</code> uses a flexible form to fit the relationship between x and y variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movie_sample %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>( <span class="dt">x =</span> year, <span class="dt">y =</span> rating, <span class="dt">color =</span> genre)) +<span class="st"> </span><span class="kw">geom_jitter</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span>F)</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-37-1.png" width="672" /> We immediately spot that in our sample, we only have a few movies from the 1970-1984 period. Also, we see that the time trend seems to be shifted around year 2000. Let’s set aside those older movies in our model. Also, we can use our estimate <span class="math inline">\(\hat{\beta_1}\)</span> to control for the varying impacts of movie budget (<span class="math inline">\(\hat{\beta_1} \: budget_i\)</span>), which we replace with the sample average (<span class="math inline">\(\hat{\beta_1} \: E[budget_i]\)</span>). And here is an update;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movie_sample %&gt;%<span class="st"> </span><span class="kw">filter</span>(year &gt;=<span class="st"> </span><span class="dv">1985</span>) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>( <span class="dt">x =</span> year, 
+              <span class="dt">y =</span> rating -<span class="st"> </span>ols3$coefficients[<span class="st">&#39;budget&#39;</span>]*(budget -<span class="st"> </span><span class="kw">mean</span>(budget)), 
+              <span class="dt">color =</span> genre)) +<span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_jitter</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>We still see the shift in time trend around 2000, at which the trends between Action and Romance movies start to diverge. Year 2000 may be the beginning of increasing computer graphics usage due to its decreasing costs. That could be a turning point, especially for Action movies.</p>
+<p>Now what can we do?</p>
+<p>Assigning different time trends for Action and Romance would be a possibility if our objective were to simply find the model that best fits the data. But, that may not be a good idea if we are interested in comparing the average ratings of the two genres. After all, the genre-specific time trend is a part of the difference between genres that we want to compare. The best we could do seems that we let the time trend vary before and after 2000, while assuming the common trend for both genres.</p>
+<p>Here is a relatively simple solution.<br />
+<span class="math display">\[ 
+\begin{align} 
+\nonumber y_{ij} &amp;= a_0  + \alpha_{j} + \beta_1 \:budget_i + \beta_2 \: year_i  + \beta_3 \: year^2_i 
+\\ 
+\nonumber &amp;+ (a_{0,M}  + \alpha_{j, M} + \beta_{1,M} \:budget_i  + \beta_{2,M} \: year_i  + \beta_{3,M} \: year^2_i) \:M_i + \varepsilon_{ij} 
+\end{align}
+\]</span> where <span class="math inline">\(M_i = 1(year_i\ge2000)\)</span> is an indicator variable for post-millennium years. The items in parenthesis multiplied by <span class="math inline">\(M_i\)</span> are the interaction terms between the baseline variables and the millennium indicator. These additional terms captures the additional effects that only apply to post-millennium movies. The interaction terms can be constructed with * symbol in <code>lm()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ols4 &lt;-<span class="st"> </span><span class="kw">lm</span>( rating ~<span class="st"> </span>genre*<span class="kw">I</span>(year&gt;=<span class="dv">2000</span>) +<span class="st"> </span>budget*<span class="kw">I</span>(year&gt;=<span class="dv">2000</span>) +<span class="st"> </span>
+<span class="st">              </span>year*<span class="kw">I</span>(year&gt;=<span class="dv">2000</span>) +<span class="st"> </span><span class="kw">I</span>(year^<span class="dv">2</span>)*<span class="kw">I</span>(year&gt;=<span class="dv">2000</span>),  
+            <span class="dt">data =</span> <span class="kw">subset</span>(movie_sample, year&gt;=<span class="dv">1985</span>))
+<span class="kw">summary</span>(ols4)</code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = rating ~ genre * I(year &gt;= 2000) + budget * I(year &gt;= 
+##     2000) + year * I(year &gt;= 2000) + I(year^2) * I(year &gt;= 2000), 
+##     data = subset(movie_sample, year &gt;= 1985))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.8226 -0.6920 -0.1258  0.6058  3.5089 
+## 
+## Coefficients:
+##                                    Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)                      -1.649e+05  5.796e+04  -2.845 0.006515
+## genreRomance                      1.801e+00  4.946e-01   3.642 0.000662
+## I(year &gt;= 2000)TRUE              -8.242e+04  4.076e+05  -0.202 0.840627
+## budget                            1.448e-02  8.152e-03   1.776 0.082040
+## year                              1.656e+02  5.820e+01   2.846 0.006498
+## I(year^2)                        -4.159e-02  1.461e-02  -2.847 0.006482
+## genreRomance:I(year &gt;= 2000)TRUE -1.497e+00  7.143e-01  -2.096 0.041371
+## I(year &gt;= 2000)TRUE:budget       -4.906e-03  1.100e-02  -0.446 0.657487
+## I(year &gt;= 2000)TRUE:year          8.120e+01  4.072e+02   0.199 0.842791
+## I(year &gt;= 2000)TRUE:I(year^2)    -2.000e-02  1.017e-01  -0.197 0.844965
+##                                     
+## (Intercept)                      ** 
+## genreRomance                     ***
+## I(year &gt;= 2000)TRUE                 
+## budget                           .  
+## year                             ** 
+## I(year^2)                        ** 
+## genreRomance:I(year &gt;= 2000)TRUE *  
+## I(year &gt;= 2000)TRUE:budget          
+## I(year &gt;= 2000)TRUE:year            
+## I(year &gt;= 2000)TRUE:I(year^2)       
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.119 on 48 degrees of freedom
+## Multiple R-squared:  0.3259, Adjusted R-squared:  0.1995 
+## F-statistic: 2.578 on 9 and 48 DF,  p-value: 0.01649</code></pre>
+<p>The results show that accounting for the effects of budget and distinct time trends for two time spans 1985-1999 and 2000-2005, on average the Romance movie has a 1.801 (<span class="math inline">\(\alpha \le 0.001\)</span>) higher rating during 1985-1999 and 0.304 ( = 1.801 - 1.497) higher rating during 2000-2005, compared to the Action movie.</p>
+<p>To see whether the total effect for the latter period (<span class="math inline">\(\alpha_R + \alpha_{R,M}\)</span>) is statistically different from zero, we can use Wald test (using a function from <code>aod</code> package). The standard notation is <span class="math display">\[H_0: \Gamma \beta = r\]</span> where <span class="math inline">\(\beta\)</span> is the coefficients of the linear model, <span class="math inline">\(\Gamma\)</span> is a matrix that specifies linear combinations of <span class="math inline">\(\beta\)</span>, and <span class="math inline">\(r\)</span> is a column vector of constants. In this case, we only have a single equation for <span class="math inline">\(H_0\)</span> (i.e. a single row), namely <span class="math inline">\(H_0: \alpha_R + \alpha_{R, M} = 0\)</span>. This corresponds to <span class="math inline">\(\Gamma = [0\: 1\: 0\: 0\: 0\: 0\: 1\: 0\: 0\: 0]\)</span> (the second and sixth coefficients corresponding to <span class="math inline">\(\alpha_R\)</span> and <span class="math inline">\(\alpha_{R, M}\)</span>) and <span class="math inline">\(r = [0\: 0\: 0\: 0\: 0\: 0\: \: 0\: 0\: 0]&#39;\)</span>. The test statistic <span class="math inline">\(\alpha_R + \alpha_{R, M}\)</span> approximately follows the chi-square distribution.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">gamma &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="dt">nrow=</span><span class="dv">1</span>)
+<span class="kw">wald.test</span>(<span class="dt">Sigma =</span> <span class="kw">vcov</span>(ols4), <span class="dt">b=</span><span class="kw">coef</span>(ols4), <span class="dt">L=</span>gamma)</code></pre></div>
+<pre><code>## Wald test:
+## ----------
+## 
+## Chi-squared test:
+## X2 = 0.35, df = 1, P(&gt; X2) = 0.56</code></pre>
+<p>which shows the p-value of 0.56. Thus, we fail to reject <span class="math inline">\(H_0: \alpha_R + \alpha_{R, M} = 0\)</span> at the 10% significance level. This means that there is not significant difference between genres for the 2000-2005 period.</p>
+<p>We can visualize the results in a plot. We plot fitted values as data points and their time trends that are approximated by <code>geom_smooth()</code> with a polynomial fit (i.e., having two quadratic time trends is akin to a polynomial of degree 4). We are looking to see whether these predicted trends resemble the raw-data time trends we saw above.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">movie_sample$ols4_fitted &lt;-<span class="st"> </span><span class="ot">NA</span>
+movie_sample$ols4_fitted[movie_sample$year&gt;=<span class="dv">1985</span>] &lt;-<span class="st"> </span>ols4$fitted.values 
+  
+movie_sample %&gt;%<span class="st"> </span><span class="kw">filter</span>(year &gt;=<span class="st"> </span><span class="dv">1985</span>) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>( <span class="dt">x =</span> year, <span class="dt">y =</span> ols4_fitted, <span class="dt">color =</span> genre)) +<span class="st"> </span><span class="kw">geom_jitter</span>() +
+<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">formula =</span> y ~<span class="st"> </span>x +<span class="st"> </span>x^<span class="dv">2</span> +<span class="st"> </span>x^<span class="dv">3</span> +<span class="st"> </span>x^<span class="dv">4</span>, <span class="dt">se =</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-41-1.png" width="672" /> It appears that the model captured the central features of the original time trends.</p>
+<p>Using the predicted parameters <span class="math inline">\(\widehat{\beta}_{1}\)</span> and <span class="math inline">\(\widehat{\beta}_{1,M}\)</span>, we can further account for the varying effects of budget (<span class="math inline">\(\widehat{\beta}_1 \:budget_i + \widehat{\beta}_{1,M} \:budget_i \: M_i\)</span>) by replacing them with the sample average (<span class="math inline">\(\widehat{\beta}_1 \:E[budget_i] + \widehat{\beta}_{1,M} \:E[budget_i | M_i] \: M_i\)</span>). This shows the prediction net the effect of budgets.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">repl_avg_budget &lt;-<span class="st"> </span>movie_sample %&gt;%<span class="st"> </span><span class="kw">filter</span>(year&gt;=<span class="dv">1985</span>) %&gt;%<span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">budget_after_2000  =</span> budget*(year&gt;=<span class="dv">2000</span>)) %&gt;%
+<span class="st">  </span><span class="kw">with</span>(
+       ols4$coefficients[<span class="st">&#39;budget&#39;</span>]*(budget -<span class="st"> </span><span class="kw">mean</span>(budget)) +
+<span class="st">      </span>+<span class="st"> </span>ols4$coefficients[<span class="st">&#39;I(year &gt;= 2000)TRUE:budget&#39;</span>]*
+<span class="st">        </span>(budget_after_2000 -<span class="st"> </span><span class="kw">mean</span>(budget_after_2000)) 
+  )
+
+movie_sample$ols4_fitted2 &lt;-<span class="st"> </span><span class="ot">NA</span>
+movie_sample$ols4_fitted2[movie_sample$year&gt;=<span class="dv">1985</span>] &lt;-<span class="st"> </span>ols4$fitted.values -<span class="st"> </span>repl_avg_budget
+  
+movie_sample %&gt;%<span class="st"> </span><span class="kw">filter</span>(year &gt;=<span class="st"> </span><span class="dv">1985</span>) %&gt;%
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>( <span class="dt">x =</span> year, <span class="dt">y =</span> ols4_fitted2, <span class="dt">color =</span> genre)) +<span class="st"> </span><span class="kw">geom_jitter</span>() +<span class="st"> </span>
+<span class="st">  </span><span class="co">#  geom_smooth( formula = y ~ (x + x^2)*I(x &gt;= 2000), se =FALSE)  # alternative</span>
+<span class="st">  </span><span class="kw">geom_smooth</span>( <span class="dt">formula =</span> y ~<span class="st"> </span>x +<span class="st"> </span>x^<span class="dv">2</span> +<span class="st"> </span>x^<span class="dv">3</span> +<span class="st"> </span>x^<span class="dv">4</span>, <span class="dt">se =</span><span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>In summary, we find that accounting for the time trends and movie budgets, the Romance movie has a 1.801 (<span class="math inline">\(\alpha ≤0.001\)</span>) higher rating than the Action movie for 1985-1999, but the difference is insignificant for 2000-2005. The results from the two sample t-test and various regression models may be correct in their own light, but we see that the conclusions may differ depending on what question we ask and how we execute the analysis. Rarely we ask the right question in our first try, do we need the exploratory data analysis and the tools and intuitions to help us with that.</p>
+</div>
+<div id="exercise-1" class="section level3 unnumbered">
+<h3>Exercise</h3>
+<p>Now it is your turn.</p>
+<ol style="list-style-type: decimal">
+<li><p>Download materials: We will use the same <a href="https://github.com/kotamine/piecemealR/raw/master/bootstrap/movie2.RData">movie2 data</a> data as shown above</p></li>
+<li><p>Set working directly: <code>setwd(your_directory)</code></p></li>
+<li><p>Load libraries: <code>library(dplyr)</code>, <code>library(ggplot2)</code>, <code>library(broom)</code>, <code>library(tidyr)</code>, <code>library(mosaic)</code>, <code>library(lme4)</code></p></li>
+</ol>
+<div id="part-a-observe-the-central-limit-theorem-clt" class="section level4 unnumbered">
+<h4>Part A: Observe the Central Limit Theorem (CLT)</h4>
+<p>Load <code>movies2</code> data, which we consider as the population of interest. Let rating <span class="math inline">\(y_{ij}\)</span> for observation <span class="math inline">\(i\)</span> in genre <span class="math inline">\(j\)</span> where <span class="math inline">\(j\)</span> is either <span class="math inline">\(A\)</span> for Action or <span class="math inline">\(R\)</span> for Romance.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Calculate population means <span class="math inline">\(\mu_{A}\)</span> and <span class="math inline">\(\mu_{R}\)</span> and standard errors <span class="math inline">\(\sigma_{A}\)</span> and <span class="math inline">\(\sigma_{R}\)</span> for Action and Romance movies.</p></li>
+<li><p>Calculate the population mean and standard deviation of difference <span class="math inline">\(y_{iA} - y_{iR}\)</span>. Hint: the variance of <a href="https://en.wikipedia.org/wiki/Variance#Sum_of_uncorrelated_variables_.28Bienaym.C3.A9_formula.29">the sum of uncorrelated variables</a> is <span class="math inline">\(Var[a + b] = Var[a]\)</span> and <span class="math inline">\(Var[b]\)</span> for variables <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</p></li>
+<li><p>What is the predicted distribution of the sample mean difference <span class="math inline">\(\bar{y}_{A} - \bar{y}_{R}\)</span> by the CLT?</p></li>
+<li><p>Draw a random sample of 30 observations from each genre and summarize them for stats (mean, sd, and number of observations). The sampling function in <code>dplyr</code> is <code>sample_n()</code>. Hint: Look back to see what we did above and copy the procedure; having the same format is important for the later part of the exercise.</p></li>
+<li><p>Turn the previous step d into a function, for which the input argument is a sample size and the output is the summary stats by genre.</p></li>
+<li><p>Apply this function to generate a set of 100 bootstrap replications using <code>mosaic::do(100) * { function(N=30) }</code>.</p></li>
+<li><p>Reshape the bootstrap results, plot its density distribution, and calculate summary statistics using the following functions;</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">reshape_movie_samples &lt;-<span class="st"> </span>function(bt_samples) {
+  bt_samples %&gt;%<span class="st"> </span><span class="kw">data.frame</span>() %&gt;%<span class="st">  </span><span class="co"># don&#39;t forget to use data.frame()</span>
+<span class="st">    </span>dplyr::<span class="kw">select</span>(-.row) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">reshape</span>(<span class="dt">idvar=</span> <span class="st">&quot;.index&quot;</span>, <span class="dt">timevar=</span><span class="st">&quot;genre&quot;</span>,
+            <span class="dt">direction=</span><span class="st">&quot;wide&quot;</span>) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">bt_diff  =</span> (mean.Action -<span class="st"> </span>mean.Romance))  
+}
+
+density_sample_movies &lt;-<span class="st"> </span>function(rehsaped_samples, N, B) {
+  rehsaped_samples %&gt;%
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> bt_diff)) +
+<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">adjust =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> .<span class="dv">75</span>) +<span class="st"> </span><span class="kw">xlim</span>(<span class="kw">c</span>(-<span class="dv">2</span>, <span class="dv">2</span>) +<span class="st"> </span>pop_diff) +
+<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(rehsaped_samples$bt_diff), <span class="dt">color =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) +
+<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> pop_diff, <span class="dt">color =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) +<span class="st"> </span><span class="co"># CTL prediction mean</span>
+<span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">colour =</span> <span class="st">&quot;yellow&quot;</span>, <span class="dt">size =</span><span class="dv">1</span>, <span class="co"># CTL prediction distribution </span>
+                  <span class="dt">args =</span> <span class="kw">list</span>(<span class="dt">mean =</span> pop_diff,
+                              <span class="dt">sd =</span> pop_sigma/<span class="kw">sqrt</span>(rehsaped_samples$n.Action[<span class="dv">1</span>]))) +
+<span class="st">     </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">paste0</span>(<span class="st">&quot;Bootstrop: &quot;</span>, B, <span class="st">&quot;,  Num observations:&quot;</span>, N ))
+}
+
+stats_sample_movies &lt;-<span class="st"> </span>function(reshaped_samples) {
+  reshaped_samples %&gt;%<span class="st">   </span>
+<span class="st">    </span><span class="kw">summarize</span>(
+      <span class="dt">diff_mean =</span> <span class="kw">mean</span>(bt_diff),
+      <span class="dt">diff_sd =</span> <span class="kw">sd</span>(bt_diff),
+      <span class="dt">p_val =</span> <span class="kw">sum</span>(bt_diff&gt;<span class="dv">0</span>)/<span class="kw">length</span>(bt_diff)*<span class="dv">2</span>, 
+      <span class="dt">theory_mean =</span> pop_diff, 
+      <span class="dt">theory_sd =</span> pop_sigma/<span class="kw">sqrt</span>(<span class="kw">length</span>(bt_diff)),
+      <span class="dt">abs_error_mean =</span> <span class="kw">abs</span>(diff_mean -<span class="st"> </span>theory_mean),
+      <span class="dt">abs_error_sd =</span> <span class="kw">abs</span>(diff_sd -<span class="st"> </span>theory_sd)
+    )
+}</code></pre></div>
+<ol start="8" style="list-style-type: lower-alpha">
+<li><p>Review the above functions to understand each line. Use <code>?function_name</code> for look-up. Observe how <code>p_val</code> in <code>stats_sample_movies()</code> relates to the area of the density generated by <code>density_sample_movies()</code>. Also, check what theoretical sd in <code>stats_sample_movies()</code> calculates (sd of what?).</p></li>
+<li><p>Change N and B several times to observe how they affect the results.</p></li>
+</ol>
+</div>
+<div id="part-b-analyze-the-performance-of-clt" class="section level4 unnumbered">
+<h4>Part B: Analyze the performance of CLT</h4>
+<ol style="list-style-type: lower-alpha">
+<li><p>Pick 6 values between 0 and 120 for the number of observations <code>N</code> and store them as a vector named <code>loc_N</code>: i.e., <code>loc_N &lt;- c(20, 30, ...)</code>. Pick 5 values between 100 and 5000 for the number of bootstrap replications <code>B</code> and store them as a vector named <code>loc_B</code>.</p></li>
+<li><p>Conduct 30 experiments of bootstrapping for each combination of <code>N</code> and <code>B</code> from <code>loc_N</code> and <code>loc_B</code> and store the results of density plots and summary stats in nested lists using the following code;</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">list_density &lt;-<span class="st"> </span><span class="kw">list</span>()
+list_stats &lt;-<span class="st"> </span><span class="kw">list</span>()
+
+<span class="co"># This will take some time</span>
+for (idx_N in <span class="dv">1</span>:<span class="kw">length</span>(loc_N)) { 
+  list_density[[idx_N]] &lt;-<span class="st"> </span><span class="kw">list</span>()
+  list_stats[[idx_N]] &lt;-<span class="st"> </span><span class="kw">list</span>()
+  for (idx_B in <span class="dv">1</span>:<span class="kw">length</span>(loc_B)) {
+    <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&#39;N =&#39;</span>, loc_N[idx_N],<span class="st">&#39;, B = &#39;</span>, loc_B[idx_B]))
+    my_boot1 &lt;-<span class="st"> </span>mosaic::<span class="kw">do</span>(loc_B[idx_B]) *<span class="st"> </span>{
+      <span class="kw">my_movie_samples</span>(loc_N[idx_N]) 
+    }
+    reshaped_my_boot1 &lt;-<span class="st"> </span><span class="kw">reshape_movie_samples</span>(my_boot1)
+    list_density[[idx_N]][[idx_B]] &lt;-<span class="st"> </span><span class="kw">density_sample_movies</span>(reshaped_my_boot1, loc_N[idx_N], loc_B[idx_B])
+    list_stats[[idx_N]][[idx_B]]  &lt;-<span class="st"> </span><span class="kw">stats_sample_movies</span>(reshaped_my_boot1)
+  }
+}</code></pre></div>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Print the density plots and observe how they vary with <span class="math inline">\(N\)</span>. Do this for the largest <span class="math inline">\(B\)</span> first, then the smallest <span class="math inline">\(B\)</span>. You can use the following code and use the arrows (<code>&lt;-</code>, <code>-&gt;</code>) in the Plots Pane of Rstudio. How would you characterize the results?</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use Plots Pane in RStudio  &lt;- -&gt; to observe the influence of N  </span>
+for (idx_N in <span class="dv">1</span>:<span class="kw">length</span>(loc_N)) <span class="kw">print</span>(list_density[[idx_N]][[<span class="kw">which</span>(loc_B==<span class="kw">max</span>(loc_B))]])
+
+<span class="co"># dispersion decreases with N</span>
+for (idx_N in <span class="dv">1</span>:<span class="kw">length</span>(loc_N)) <span class="kw">print</span>(list_density[[idx_N]][[<span class="kw">which</span>(loc_B==<span class="kw">min</span>(loc_B))]]) </code></pre></div>
+<ol start="4" style="list-style-type: lower-alpha">
+<li>Use the following code to extract the results from the nested lists.</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">extract_list_stats_N &lt;-<span class="st"> </span>function(seq, idx_B, stat) {
+  <span class="kw">lapply</span>(<span class="kw">c</span>(<span class="dv">1</span>:<span class="kw">length</span>(seq)), 
+         function (idx_N) list_stats[[idx_N]][[idx_B]][[stat]]) %&gt;%<span class="st"> </span><span class="kw">unlist</span>()
+}
+
+extract_list_stats_B &lt;-<span class="st"> </span>function(seq, idx_N, stat) {
+  <span class="kw">lapply</span>(<span class="kw">c</span>(<span class="dv">1</span>:<span class="kw">length</span>(seq)), 
+         function (idx_B) list_stats[[idx_N]][[idx_B]][[stat]]) %&gt;%<span class="st"> </span><span class="kw">unlist</span>()
+}
+
+max_B &lt;-<span class="st"> </span><span class="kw">which</span>(loc_B==<span class="kw">max</span>(loc_B)) <span class="co"># index of max B</span>
+max_N &lt;-<span class="st"> </span><span class="kw">which</span>(loc_N==<span class="kw">max</span>(loc_N)) <span class="co"># index of max N</span>
+
+results_N &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">N =</span> loc_N,
+  <span class="dt">p_val =</span>  <span class="kw">extract_list_stats_N</span>(loc_N, max_B, <span class="st">&quot;p_val&quot;</span>),
+  <span class="dt">abs_error_mean =</span>  <span class="kw">extract_list_stats_N</span>(loc_N, max_B, <span class="st">&quot;abs_error_mean&quot;</span>),
+  <span class="dt">abs_error_sd  =</span>  <span class="kw">extract_list_stats_N</span>(loc_N, max_B, <span class="st">&quot;abs_error_sd&quot;</span>)
+  )
+
+results_B &lt;-<span class="st"> </span><span class="kw">data.frame</span>(
+  <span class="dt">B =</span> loc_B,
+  <span class="dt">p_val =</span>  <span class="kw">extract_list_stats_B</span>(loc_B, max_N, <span class="st">&quot;p_val&quot;</span>),
+  <span class="dt">abs_error_mean =</span> <span class="kw">extract_list_stats_B</span>(loc_B, max_N, <span class="st">&quot;abs_error_mean&quot;</span>),
+  <span class="dt">abs_error_sd  =</span>  <span class="kw">extract_list_stats_B</span>(loc_B, max_N, <span class="st">&quot;abs_error_sd&quot;</span>)
+)</code></pre></div>
+<ol start="5" style="list-style-type: lower-alpha">
+<li><p>Use <code>ggplot()</code> on <code>results_N</code> to characterize the relationships between sample size <code>N</code> and <code>p_val</code>, between <code>N</code> and <code>abs_error_mean</code>, and between <code>N</code> and <code>abs_error_sd</code>. Which relationship shows a clear pattern? Why? Hint: use <code>geom_point()</code> and <code>geom_smooth()</code>. How does this relate to the CLT?</p></li>
+<li><p>[Not essential.] Use <code>ggplot()</code> on <code>results_B</code> to characterize the relationships between bootstrap size <code>B</code> and <code>p_val</code>, between <code>B</code> and <code>abs_error_mean</code>, and between <code>B</code> and <code>abs_error_sd</code>. Which relationship shows a clear pattern? Why?</p></li>
+</ol>
+</div>
+<div id="part-c-analyze-data-with-linear-models" class="section level4 unnumbered">
+<h4>Part C: Analyze data with linear models</h4>
+<p>You will analyze <code>ChickWeight</code> data that is a part of the sample datasets automatically loaded when you start R. You will run linear models and get some practice on fixed effects (FE) and random effects (RE) models.</p>
+<p>The <code>ChickWeight</code> dataset contains data of a diet experiment on early growth of chicks. There are four variables: weight (gm), Time (days), Chick (id), and Diet (1 through 4 types). Run the following code to observe the basic structure of the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?ChickWeight <span class="co"># description shows up in the Help pane</span>
+ChickWeight2 &lt;-<span class="st"> </span>ChickWeight  <span class="co"># make a copy that we may modify </span>
+<span class="kw">head</span>(ChickWeight2)
+
+<span class="kw">table</span>(ChickWeight2$Chick)
+<span class="kw">table</span>(ChickWeight2$Diet)
+<span class="kw">table</span>(ChickWeight2$Chick, ChickWeight2$Diet)
+
+ChickWeight2 %&gt;%<span class="st"> </span>
+<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Time, <span class="dt">y =</span> weight, <span class="dt">color =</span> Diet)) +<span class="st"> </span>
+<span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> .<span class="dv">25</span>, <span class="dt">alpha=</span>.<span class="dv">5</span>) +<span class="st"> </span><span class="kw">facet_wrap</span>(~Chick)</code></pre></div>
+<p>How would you go about analyzing the effect of Diets on the weight growth?</p>
+<p>Let <span class="math inline">\(weight_{ijt}\)</span> be the weight of chick <span class="math inline">\(i\)</span> in Diet group <span class="math inline">\(j\)</span> observed in time <span class="math inline">\(t\)</span>. Compose the following linear models with <code>lm()</code>, see the summary via <code>summary()</code>, and interpret the effects of four Diet types.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Let’ start with a model of diet-specific intercepts and a quadratic time trend given by <span class="math display">\[ weight_{ijt} = \alpha_j + \beta_1\: time_t + \beta_2 \: time^2_t + \varepsilon_{ijt}. \]</span> Hint: Use <code>I(Time^2)</code> in the formula.</p></li>
+<li><p>Next try a FE model given by <span class="math display">\[ weight_{ijt} = \alpha_j + \beta_1\: time_t + \beta_2 \: time^2_t + \alpha_i + \varepsilon_{ijt} \]</span> where <span class="math inline">\(\alpha_i\)</span> is a fixed effect representing a fixed intercept for each Chick. You may be surprised by the result.</p></li>
+<li><p>Next try a RE model given by <span class="math display">\[ weight_{ijt} = \alpha_j + \beta_1\: time_t + \beta_2 \: time^2_t + v_{it}, \quad  v_{it} = \alpha_i + \varepsilon_{ijt}\]</span> where <span class="math inline">\(\alpha_i\)</span> is a random effect representing a random intercept for each Chick assumed to be normally distributed. Use <code>lmer()</code> from <code>lme4</code> package instead of <code>lm()</code> and replace variable <code>Chick</code> with random intercept <code>(1 | Chick)</code> in the formula.</p></li>
+<li><p>Now try another RE model given by <span class="math display">\[ weight_{ijt} = \alpha_0 + \beta_1\: time_t + \beta_2 \: time^2_t + v_{ijt}, \quad  v_{ijt} =\alpha_j + \alpha_i + \varepsilon_{ijt}\]</span> where <span class="math inline">\(\alpha_j\)</span> and <span class="math inline">\(\alpha_i\)</span> are a Diet random effect and a Chick random effect respectively. This model gives you a decomposition of random variation into the random effects and the unexplained residual. Depending on your research objective, this type of model may be appropriate. To see which Diet has a larger effect, you need to take additional steps to obtain the <em>conditional means</em> of random effect intercepts. Try <code>model@u</code> and <code>fitted(model)</code> for your Siamese <code>model</code>.</p></li>
+</ol>
+<p>You probably observed that the above models yield very different results (except for the similarity between a and c). Why?</p>
+<p>Are <em>some</em> of these models wrong? The right answer would be that <em>all</em> of them are wrong.</p>
+<p>In the experiment, Diet types are probably randomly assigned across Chicks, and there are no obvious sources of bias in linear model construction. Thus, you should get similar results across models if your modeling <em>approach</em> is on the right track. Now go back to the initial plot of weight growth by chick and think about how else you could approach the problem.</p>
+<p>Did it occur to you that the weight probably started out about the same across Diet groups and then took different paths given the Diet type?</p>
+<ol start="5" style="list-style-type: lower-alpha">
+<li><p>Let’s try varying linear time trends with the shared initial average weight at <span class="math inline">\(Time_t=0\)</span>.<br />
+<span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \varepsilon_{ijt}\]</span> where <span class="math inline">\(\beta_{1j}\)</span> is a (fixed) Diet-specific linear time trend. Hint: use <code>Diet*Time</code> and <code>-Diet</code> in the formula to create the interaction terms between <code>Time</code> and <code>Diet</code> and suppress the fixed intercept of <code>Diet</code>.</p></li>
+<li><p>Now try <span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \alpha_i + \varepsilon_{ijt}\]</span></p></li>
+</ol>
+<p>where <span class="math inline">\(\alpha_i\)</span> is a Chick fixed effect.</p>
+<ol start="7" style="list-style-type: lower-alpha">
+<li>Now try <span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \quad v_{ijt} =\alpha_i + \varepsilon_{ijt}\]</span></li>
+</ol>
+<p>where <span class="math inline">\(\alpha_i\)</span> is a Chick random effect.</p>
+<p>This time you should get pretty similar results across models in e, f, and g. How would you interpret the coefficient <span class="math inline">\(\beta_{1j}\)</span> of interaction terms between <code>Time</code> and <code>Diet</code>?</p>
+<ol start="8" style="list-style-type: lower-alpha">
+<li>Now try Diet-specific quadratic time trends;<br />
+<span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \beta_{2j} \: time^2_t + \varepsilon_{ijt}\]</span> where <span class="math inline">\(\alpha_0\)</span> is the common intercept across Diets. Given quadratic factorization <span class="math inline">\(a t^2 +bt + c = a(t + b/2a)^2 +c- b^2/4\)</span>, we may again suppress Diet-specific intercepts (using <code>-Diet</code>) by assuming that the average weight was the same across Diet groups at <span class="math inline">\(Time = 0\)</span>. Repeat this for the fixed effect and random effect models.</li>
+</ol>
+<p>How would you interpret the coefficient estimates on those quadratic time trends?</p>
+<ol style="list-style-type: lower-roman">
+<li>Let’s check whether our assumption on the common intercept <span class="math inline">\(\alpha_0\)</span> in model h was playing a significant role in the estimation. Run the model without <code>-Diet</code> term to obtain<br />
+<span class="math display">\[ weight_{ijt} = \alpha_{0j} + \beta_{1j}\: time_t + \beta_{2j} \: time^2_t + \varepsilon_{ijt}\]</span> where <span class="math inline">\(\alpha_{0j}\)</span> now varies with Diet group <span class="math inline">\(j\)</span>. See whether the results on <span class="math inline">\(\alpha_{0j}\)</span> are statistically significant and whether <span class="math inline">\(\beta_{1j}\)</span> and <span class="math inline">\(\beta_{2j}\)</span> are similar to the previous model.</li>
+</ol>
+<ol start="10" style="list-style-type: lower-alpha">
+<li>You may wonder if there is a way to visually pick up hints early on from the data. Well, let’s try to produce such a plot in retrospect. Modify the earlier plot and examine time trends by Diet groups using <code>geom_smooth()</code>.</li>
+</ol>
+</div>
+<div id="part-d-apply-bootstrapping-to-linear-models" class="section level4 unnumbered">
+<h4>Part D Apply bootstrapping to linear models</h4>
+<p>Earlier we looked at how we could apply bootstrapping to a linear model. Recall that we obtained bootstrap standard errors for the OLS coefficient estimates.</p>
+<p>Here you will apply bootstrapping to the models in e, f, and g above.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Start with model e: <span class="math display">\[weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \varepsilon_{ijt}\]</span> and apply the procedure that we generated <code>sample_ols1</code> and <code>bt_ols1</code> above.</li>
+</ol>
+<p>Then copy the following functions and apply them to your results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># function generating a matrix of ones </span>
+ones &lt;-<span class="st"> </span>function(r,c) <span class="kw">matrix</span>(<span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>,r*c)),<span class="dt">nrow=</span>r,<span class="dt">ncol=</span>c)
+
+<span class="co"># confidence interval by bootstrapping</span>
+<span class="co"># version 1 </span>
+ci_ver1 &lt;-<span class="st"> </span>function(est_bt, <span class="dt">alpha =</span> <span class="fl">0.05</span>) {
+  <span class="co"># est_bt: bootstrap estimates with  row = boot replications, col = coefficients </span>
+  <span class="kw">apply</span>(est_bt, <span class="dv">2</span>, function(x) <span class="kw">quantile</span>(x, <span class="kw">c</span>(alpha/<span class="dv">2</span>, <span class="dv">1</span> -<span class="st"> </span>alpha/<span class="dv">2</span>))) %&gt;%<span class="st"> </span><span class="kw">t</span>() 
+}
+
+<span class="co"># version 2 </span>
+ci_ver2 &lt;-<span class="st"> </span>function(est_sample, bt_sd, df, <span class="dt">alpha =</span> <span class="fl">0.05</span>) {
+  <span class="co"># est_semple: sample estimate vector </span>
+  <span class="co"># bt_sd: bootstrap sd estimates of est_sample-vector  </span>
+  <span class="co"># df: model degree of freedom </span>
+    <span class="kw">cbind</span>(<span class="st">&#39;2.5%&#39;</span> =<span class="st"> </span>est_sample +<span class="st"> </span><span class="kw">qt</span>(alpha/<span class="dv">2</span>, df) *<span class="st"> </span>bt_sd, 
+      <span class="st">&#39;97.5%&#39;</span> =<span class="st"> </span>est_sample +<span class="st"> </span><span class="kw">qt</span>(<span class="dv">1</span>-alpha/<span class="dv">2</span>, df) *<span class="st"> </span>bt_sd) 
+}
+  
+<span class="co"># bootstrap p-value </span>
+bt_p_val &lt;-<span class="st"> </span>function(est_sample, est_bt) {
+  <span class="co"># est_semple: sample estimate vector </span>
+  <span class="co"># est_bt: bootstrap estimates with  row = boot replications, col = coefficients </span>
+  
+  est_bt_long &lt;-<span class="st"> </span>est_bt %&gt;%<span class="st"> </span><span class="kw">data.frame</span>() %&gt;%<span class="st"> </span><span class="kw">gather</span>()  
+  
+  est_bt_long &lt;-<span class="st"> </span>est_bt_long %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(
+        <span class="dt">center_var =</span> <span class="kw">kronecker</span>(<span class="kw">ones</span>(<span class="kw">nrow</span>(est_bt),<span class="dv">1</span>), <span class="kw">matrix</span>(est_sample, <span class="dt">nrow=</span><span class="dv">1</span>)) %&gt;%<span class="st"> </span><span class="kw">c</span>(),
+        <span class="dt">extremes =</span> <span class="kw">abs</span>(value -<span class="st"> </span>center_var) &gt;=<span class="st"> </span><span class="kw">abs</span>(center_var)
+    )
+    
+  p_val &lt;-<span class="st"> </span>est_bt_long %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">group_by</span>(key) %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">p_val =</span> <span class="kw">sum</span>(extremes)/<span class="kw">nrow</span>(est_bt))
+  <span class="kw">return</span>(<span class="kw">list</span>(<span class="dt">p_val=</span>p_val, <span class="dt">df_long=</span>est_bt_long))
+}</code></pre></div>
+<p>You can follow what goes into the input arguments of these functions by observing and mimicking the following.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ci_ver1</span>(bt_est_ols1)</code></pre></div>
+<pre><code>##                     2.5%    97.5%
+## Intercept     5.29713352 6.176960
+## genreRomance -0.01984114 1.246068</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ci_ver2</span>(sample_ols1$estimate, bt_sd_ols1, ols1$df.residual)</code></pre></div>
+<pre><code>##                     2.5%    97.5%
+## Intercept     5.27717949 6.182821
+## genreRomance -0.04352989 1.250197</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">bt_p_val</span>(sample_ols1$estimate, bt_est_ols1)$p_val </code></pre></div>
+<pre><code>## # A tibble: 2 × 2
+##            key  p_val
+##          &lt;chr&gt;  &lt;dbl&gt;
+## 1 genreRomance 0.0604
+## 2    Intercept 0.0000</code></pre>
+<p>Do the same for the histogram representation of bootstrap results;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># histogram visualization  </span>
+coeff_bt_histogram &lt;-<span class="st"> </span>function(est_sample, est_bt, <span class="dt">centering =</span><span class="ot">FALSE</span>) { 
+  <span class="co"># est_semple: sample estimate vector </span>
+  <span class="co"># est_bt: bootstrap estimates with  row = boot replications, col = coefficients </span>
+
+  est_bt_long &lt;-<span class="st"> </span><span class="kw">bt_p_val</span>(est_sample, est_bt)$df_long
+  
+  if (centering) {
+    est_bt_long &lt;-<span class="st"> </span>est_bt_long %&gt;%
+<span class="st">      </span><span class="kw">mutate</span>(
+          <span class="dt">key =</span> <span class="kw">paste</span>(key, <span class="st">&quot; - center&quot;</span>),
+          <span class="dt">value =</span> value -<span class="st"> </span>center_var,
+          <span class="dt">fill_var =</span> extremes
+      )
+    legend_lab &lt;-<span class="st"> &quot;Extremes: | value - center | &gt; | center |&quot;</span>
+    x_lab &lt;-<span class="st"> &quot;value - center&quot;</span>
+  } else {
+    est_bt_long &lt;-<span class="st"> </span>est_bt_long %&gt;%
+<span class="st">      </span><span class="kw">mutate</span>(
+        <span class="dt">sign =</span> <span class="kw">kronecker</span>(<span class="kw">ones</span>(<span class="kw">nrow</span>(est_bt),<span class="dv">1</span>), 
+                         <span class="kw">matrix</span>(<span class="kw">ifelse</span>(est_sample&gt;<span class="dv">0</span>,<span class="dv">1</span>,-<span class="dv">1</span>), <span class="dt">nrow=</span><span class="dv">1</span>)) %&gt;%<span class="st"> </span><span class="kw">c</span>(), 
+        <span class="dt">fill_var =</span> value *<span class="st"> </span>sign &lt;=<span class="st"> </span><span class="dv">0</span>
+      )
+    legend_lab &lt;-<span class="st"> &quot;Crossing zero?&quot;</span>
+    x_lab &lt;-<span class="st"> &quot;value&quot;</span>
+  }
+  
+  est_bt_long %&gt;%<span class="st"> </span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">fill =</span> fill_var)) +
+<span class="st">    </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">40</span>) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;top&quot;</span>) +
+<span class="st">    </span><span class="kw">facet_wrap</span>(~key, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>) +<span class="st"> </span><span class="kw">labs</span>(<span class="dt">fill =</span> legend_lab, <span class="dt">x =</span> x_lab)
+}</code></pre></div>
+<p>Here is how you use it;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coeff_bt_histogram</span>(sample_ols1$estimate, bt_est_ols1, <span class="dt">centering=</span><span class="ot">FALSE</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">coeff_bt_histogram</span>(sample_ols1$estimate, bt_est_ols1, <span class="dt">centering=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="04-02-boot_files/figure-html/unnamed-chunk-51-2.png" width="672" /></p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li><p>Repeat it for model f: <span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \alpha_i+ \varepsilon_{ijt}\]</span>. For the histogram, there are too many parameters to plot in one figure; split them into time trends and chick effects by applying <code>filter(df_sample_est, grepl(&quot;Intercept&quot;, term) | grepl(&quot;Time&quot;, term))</code> and <code>filter(df_sample_est, grepl(&quot;Chick&quot;, term))</code> to your sample estimate <code>df_sample_est</code> and <code>select(df_bt_est, contains(&quot;Intercept&quot;), contains(&quot;Time&quot;))</code> and <code>select(df_bt_est, contains(&quot;Chick&quot;))</code> to your bootstrap estimate <code>df_bt_est</code> (note: put <code>dplyr::</code> before <code>select()</code> function to indicate that we want the one from the <code>dplyr</code> package. Try <code>?select</code> to see if any other package has a function with the same name). For the chick part, just draw the histogram for the first six chicks.</p></li>
+<li><p>Now we will extend the bootstrapping algorithm to deal with Chick random effects for model g: <span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \:\: v_{ijt} = \alpha_i+ \varepsilon_{ijt}\]</span>. Use the modified bootstrap function for the random effect model;</p></li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">getFormula &lt;-<span class="st"> </span>function(model, <span class="dt">lmer=</span><span class="ot">FALSE</span>) <span class="kw">gsub</span>(<span class="st">&quot;()&quot;</span>,<span class="st">&quot;&quot;</span>,
+                                               <span class="kw">ifelse</span>(!lmer, model$call[<span class="dv">2</span>], model@call[<span class="dv">2</span>])) 
+
+getDependentVar &lt;-<span class="st"> </span>function(model, <span class="dt">lmer=</span><span class="ot">FALSE</span>) {
+  str &lt;-<span class="st"> </span><span class="kw">getFormula</span>(model, <span class="dt">lmer=</span>lmer) 
+  <span class="kw">gsub</span>(<span class="st">&quot; &quot;</span>,<span class="st">&quot;&quot;</span>, <span class="kw">substr</span>(str, <span class="dv">1</span>, (<span class="kw">regexpr</span>(<span class="st">&quot;~&quot;</span>,str)[<span class="dv">1</span>]-<span class="dv">1</span>)))　 
+  }
+
+run_lmer_boot &lt;-<span class="st"> </span>function(lmer_rlt, <span class="dt">num_do =</span> <span class="dv">5000</span>) {
+  <span class="co"># Randome effects (RE) model bootstrapping (random intercepts, not random slopes) </span>
+  
+  rlt &lt;-<span class="st"> </span><span class="kw">list</span>()
+  rlt$model &lt;-<span class="st"> </span>model_g@pp$X        <span class="co"># model data for the part of fixed coefficients</span>
+  N &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">residuals</span>(lmer_rlt))
+  
+  rlt$fitted_no_RE &lt;-<span class="st"> </span>rlt$model %*%<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">fixef</span>(lmer_rlt), <span class="dt">ncol=</span><span class="dv">1</span>)
+  RE_vals &lt;-<span class="st"> </span>lmer_rlt@flist[[<span class="dv">1</span>]] %&gt;%<span class="st"> </span><span class="kw">unique</span>()  <span class="co">#  RE variable values</span>
+  N_RE &lt;-<span class="st"> </span><span class="kw">length</span>(RE_vals)                 <span class="co"># number of RE variable values</span>
+  rlt$RE_idx &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="ot">NA</span>, N)                <span class="co"># index of RE variable values</span>
+  for (i in <span class="dv">1</span>:N_RE) rlt$RE_idx[<span class="kw">which</span>(lmer_rlt@flist[[<span class="dv">1</span>]] ==<span class="st"> </span>RE_vals[i])] &lt;-<span class="st"> </span>i  
+ 
+  sd_res &lt;-<span class="st">  </span><span class="kw">sigma</span>(lmer_rlt)        <span class="co"># standard deviation of the residuals</span>
+  sd_RE &lt;-<span class="st">  </span>lmer_rlt@theta *<span class="st"> </span>sd_res   <span class="co"># standard deviation of RE</span>
+  dep_var &lt;-<span class="st"> </span><span class="kw">getDependentVar</span>(lmer_rlt, <span class="dt">lmer=</span><span class="ot">TRUE</span>) 
+
+  <span class="kw">do</span>(num_do) *<span class="st"> </span>
+<span class="st">    </span>({  
+        data_bt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(lmer_rlt@frame)
+    
+        <span class="co"># replace the dependent variable with its bootstrap counterpart</span>
+       
+        data_bt[[dep_var]] &lt;-<span class="st"> </span>rlt$fitted_no_RE +<span class="st">               </span><span class="co"># the predicted component </span>
+<span class="st">          </span>+<span class="st"> </span><span class="kw">rnorm</span>(N_RE, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> sd_RE)[rlt$RE_idx] +<span class="st">    </span><span class="co"># random draws of the RE </span>
+<span class="st">          </span>+<span class="st"> </span><span class="kw">rnorm</span>(N, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> sd_res)                 <span class="co"># random draws of the residual</span>
+         
+        <span class="co"># run the RE model with the same formula but with a new, bootstrap dataset  </span>
+        lmer_bt &lt;-<span class="st"> </span><span class="kw">lmer</span>(<span class="kw">as.formula</span>(<span class="kw">getFormula</span>(lmer_rlt, <span class="dt">lmer=</span><span class="ot">TRUE</span>)), <span class="dt">data =</span> data_bt)  
+        sd_res_bt &lt;-<span class="st">  </span><span class="kw">sigma</span>(lmer_bt)  
+        sd_RE_bt &lt;-<span class="st">  </span>lmer_bt@theta *<span class="st"> </span>sd_res_bt
+        <span class="kw">c</span>(<span class="kw">fixef</span>(lmer_bt), <span class="dt">sigma_RE =</span> sd_RE_bt, <span class="dt">sigma_res =</span> sd_res_bt)  <span class="co"># get parameters</span>
+    }) 
+}</code></pre></div>
+<p>Inside <code>do(num_do)({...})</code>, observe the additional random component for the random effects. It draws a vector of random intercepts at length being the number of Chicks, and then assign those to individual Chicks.</p>
+<p>Note that in the version 2 confidence interval calculation, the degree of freedom is given as the number of observations minus the number of parameters (fixed coefficient parameters plus two standard error parameters for RE and residuals).</p>
+</div>
+</div>
+<div id="the-key-1" class="section level3 unnumbered">
+<h3>The Key</h3>
+<p>To be posted.</p>
+</div>
+<div id="reflections-2" class="section level3 unnumbered">
+<h3>Reflections</h3>
+<p>To be written.</p>
+
+</div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//piecemealr.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">
+  comments powered by Disqus.</a></noscript>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-1-dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-3-next.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/kotamine/piecemealR/edit/master/04-02-boot.Rmd",
+"text": "Edit"
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "subsection",
+"download": false,
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    if (location.protocol !== "file:" && /^https?:/.test(script.src))
+      script.src  = script.src.replace(/^https?:/, '');
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

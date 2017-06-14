@@ -6,6 +6,7 @@
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache.path="../piecemealR_cache/01-Introduction_cache/html/")
 ```
 
 

@@ -6,7 +6,9 @@ __Kota Minegishi__ is an assistant professor of Dairy Analytics at the Universit
 
 __Workshop__ 
 
-- dplyr and ggplot2 exercise \@ref(dplyr): April 20, 5-6pm, Haecker 365. 
+- random sampling, bootstrapping, and linear models \@ref(boot): TBA
+
+- ~~dplyr and ggplot2 exercise \@ref(dplyr): April 20, 5-6pm, Haecker 365.~~
 
 
 

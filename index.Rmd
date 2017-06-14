@@ -36,7 +36,9 @@ More content will be added when the author hosts a small workshop  _"Data Explor
 
 __New Contents__
 
-* `r Sys.Date()`: <span style="color:red">*Test upload. VERY Preliminary!*</span>
+* `r Sys.Date()`: Section \@ref(boot) Action, Romance, and Chicks 
+
+<!-- * `r Sys.Date()`: <span style="color:red">*Test upload. VERY Preliminary!*</span> --?
 
 
 

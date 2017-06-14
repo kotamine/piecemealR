@@ -26,6 +26,7 @@ library(rmarkdown)
 preview_chapter("index.Rmd")
 
 preview_chapter("04-01-tidy-dplyr.Rmd")
+preview_chapter("04-02-boot.Rmd")
 
 
 bookdown::serve_book( in_session = FALSE, output_dir = "docs")
@@ -53,7 +54,10 @@ render("04-00-Piecemeal-Topic.Rmd", "html_document")
 
 render("04-01-tidy-dplyr.Rmd", "html_document")
 
-render("04-02-next.Rmd", "html_document")
+render("04-02-boot.Rmd", "html_document", clean = FALSE) #, intermediates_dir = "_bookdown_files/")
+
+
+render("04-99-next.Rmd", "html_document")
 
 render("05-Resources.Rmd", "html_document")
 

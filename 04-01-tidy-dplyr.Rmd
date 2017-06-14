@@ -1,8 +1,10 @@
 
 ## Unusual Deaths in Mexico {#dplyr}
 
-`r Sys.Date()`: <span style="color:red">*VERY Preliminary!*</span>
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache.path="../piecemealR_cache/04-tidy-dplyr_cache/")
+```
 
 ```{r, echo=FALSE}
 suppressWarnings({
@@ -386,7 +388,9 @@ Let's recap. The author (Wickham) investigates the temporal pattern of death in 
 In a typical application, it will be unlikely that these steps can be followed in order. Most likely, we will have to go back and forth between these steps to define variables, visualize data, and refine a model till we reach the final results. Also, the purpose of creating a model may vary from making predictions to identifying certain parameters or outliers. However, the thought process and techniques in the above exercise will be applicable to many situations of data analysis.               
 
 
-Just in case you need to see more examples, here are additional `dplyr` tutorials.  
+Just in case you need to see more examples, here are additional `dplyr` and `ggplot2` tutorials.  
+
+* [R for data science](http://r4ds.had.co.nz/visualize.html)
 
 * [100 Free Tutorials for Learning R](http://www.listendata.com/p/r-programming-tutorials.html)
 
