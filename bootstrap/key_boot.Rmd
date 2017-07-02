@@ -3,6 +3,11 @@ title: "Key: t-test, Bootstrapping, and Linear Models"
 output: html_notebook
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache.path="../piecemealR_cache/04-02-boot_cache/")
+```
+
 Load libraries and data.
 
 ```{r, warning=FALSE, message=FALSE}
@@ -104,6 +109,8 @@ stats_sample_movies(reshaped_my_boot1)
 loc_N <- c(20, 30, 40, 50, 75, 100)
 loc_B <- c(100, 500, 1000, 2000, 4000)
 
+list_density <- list()
+ list_stats <- list()
 # This will take some time
 for (idx_N in 1:length(loc_N)) { 
   list_density[[idx_N]] <- list()
@@ -153,12 +160,15 @@ results_B <- data.frame(
   abs_error_sd  =  extract_list_stats_B(loc_B, max_N, "abs_error_sd")
 )
 
+```
+
+```{r}
 # answer to e.
 results_N %>%  # proportional to 1/sqrt(N)
   ggplot(aes(x = N, y = p_val)) + geom_point() +
   geom_smooth(method = "lm", formula = y ~ sqrt(1/x), se=FALSE)
 
-results_N %>% # already unbiased estimator (each mean gets more accurete with N but the mean of means do not)
+results_N %>% # already unbiased estimator (each mean gets more accurate with N but the mean of means do not)
   ggplot(aes(x = N, y =  abs_error_mean)) + geom_point()  +
   geom_smooth(method = "lm", formula = y ~ sqrt(1/x), se=FALSE)
 
@@ -167,7 +177,7 @@ results_N %>% # proportional to 1/sqrt(N)
   geom_smooth(method = "lm", formula = y ~ sqrt(1/x), se=FALSE)
 
 # answer to f. 
-#  slowly converges to some lower or upper bounds for given N, not really following 1/sqrt(N) function 
+#  slowly converges to some lower or upper bounds for given N, not following 1/sqrt(N) function 
 results_B %>%  
   ggplot(aes(x = B, y = p_val)) + geom_point() +
   geom_smooth(method = "lm", formula = y ~ sqrt(1/x), se=FALSE)
@@ -186,6 +196,8 @@ results_B %>%
 #### Part C: Analyze data with linear models  {-}
 
 ```{r}
+ChickWeight2 <- ChickWeight  # make a copy that we may modify 
+
 # answers to a through d.  
 lm( weight ~ Diet + Time + I(Time^2) , data = ChickWeight2) %>% summary()
 lm( weight ~ Diet + Time + I(Time^2) + Chick, data = ChickWeight2) %>% summary()
@@ -237,6 +249,35 @@ ChickWeight2 %>%
 # answer to a. 
 
 model_e <- lm( weight ~ Diet*Time - Diet, data = ChickWeight2) 
+
+getFormula <- function(model) gsub("()","", model$call[2])  # gsub() substitues characters
+
+getDependentVar <- function(model) {
+  str <- getFormula(model) 
+  gsub(" ","", substr(str, 1, (regexpr("~",str)[1]-1)))　 # substr() takes a substring
+}
+
+run_ols_boot <- function(lm_rlt, num_do = 5000) {
+  
+  # calculate the standard deviation of the residuals
+  N <- length(lm_rlt$residuals)
+  sd_res <- (sum(lm_rlt$residuals^2)/lm_rlt$df.residual) %>% sqrt()
+  dep_var <- getDependentVar(lm_rlt)
+
+  do(num_do) * 
+    ({  
+        data_bt <- lm_rlt$model
+        # replace the dependent variable with its bootstrap counterpart
+        data_bt[[dep_var]] <- lm_rlt$fitted.values +    #  the predicted component
+          + rnorm(N, mean = 0, sd = sd_res)     #  random draws from the error distribution 
+         
+        # run the OLS model with the same formula but with a new, bootstrap dataset  
+        ols_bt <- lm(as.formula(getFormula(lm_rlt)), data = data_bt)  
+        coef(ols_bt)  # get coefficients 
+    }) 
+}
+
+
 rlt_model_e_bt <- run_ols_boot(model_e, num_do = 2000)
 
 obs_model_e <- tidy(model_e)  # summary of the original OLS estimates 
@@ -366,6 +407,8 @@ coeff_bt_histogram(obs_model_f_chick$estimate[1:6], rlt_model_f_bt_chick[,1:6], 
 
 
 ```{r}
+model_g <- lmer( weight ~ Diet*Time - Diet  + (1 | Chick), data = ChickWeight2) 
+  
 getFormula <- function(ols, lmer=FALSE) gsub("()","", ifelse(!lmer, ols$call[2], ols@call[2])) 
 getFormula(model_g, lmer=TRUE)
 
@@ -417,17 +460,17 @@ run_lmer_boot <- function(lmer_rlt, num_do = 5000) {
 model_g <- lmer( weight ~ Diet*Time - Diet + (1 | Chick), data = ChickWeight2) 
 rlt_model_g_bt <- run_lmer_boot(model_g, num_do = 2000)
 
-obs_model_g <- tidy(model_g)  # summary of the original OLS estimates 
+obs_model_g <- tidy(model_g)  # summary of the original lmer estimates 
 
 bt_sd_g <- apply(rlt_model_g_bt, 2, sd) # calculate bootstrap standard errors 
 bt_mode1_g <- cbind(coeff = obs_model_g$estimate, 
                  sd = bt_sd_g, 
                  tstat = obs_model_g$estimate/bt_sd_g) 
  
-# OLS estimate with statistical inferences by statistic theory
+# random model estimate with statistical inferences by statistic theory (default)
 obs_model_g
 
-# OLS estimate with statistical inferences by bootstrapping
+# random model estimate with statistical inferences by bootstrapping
 bt_mode1_g
 
 ci_ver1(rlt_model_g_bt)

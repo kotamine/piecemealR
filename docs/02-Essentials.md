@@ -3,7 +3,7 @@
 
 # Essentials {#essentials}
 
-2017-06-14: <span style="color:red">*VERY Preliminary!*</span>
+2017-07-02: <span style="color:red">*VERY Preliminary!*</span>
 
 This section provides an overview of the essential concepts for manipulating data and programming in R. 
 
@@ -1529,7 +1529,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2017-06-14 20:27:39 CDT"
+## [1] "2017-07-02 15:23:21 CDT"
 ```
 
 ```r
@@ -1546,7 +1546,7 @@ if (hour > 8 & hour < 12) {
 ```
 
 ```
-## [1] "private time"
+## [1] "afternoon"
 ```
 
 ### Loop
@@ -1701,7 +1701,7 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7f96a7da6e00>
+## <environment: 0x7fa6ea5e3f50>
 ```
 
 A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
@@ -1722,7 +1722,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7f96a98c9868>
+## <environment: 0x7fa6ea591c00>
 ```
 
 ```r
@@ -1734,7 +1734,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7f96a9936868>
+## <environment: 0x7fa6eb8af838>
 ```
 
 ```r

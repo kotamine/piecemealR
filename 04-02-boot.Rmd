@@ -7,9 +7,7 @@
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache=TRUE)
-# knitr::opts_chunk$set(cache.path="/Users/kota/Dropbox/R_projects/piecemealR_cache/04-02-boot_cache/")
 knitr::opts_chunk$set(cache.path="../piecemealR_cache/04-02-boot_cache/")
-
 ```
 
 ```{r, echo=FALSE}
@@ -905,7 +903,7 @@ run_lmer_boot <- function(lmer_rlt, num_do = 5000) {
   # Randome effects (RE) model bootstrapping (random intercepts, not random slopes) 
   
   rlt <- list()
-  rlt$model <- model_g@pp$X        # model data for the part of fixed coefficients
+  rlt$model <- lmer_rlt@pp$X        # model data for the part of fixed coefficients
   N <- length(residuals(lmer_rlt))
   
   rlt$fitted_no_RE <- rlt$model %*% matrix(fixef(lmer_rlt), ncol=1)
@@ -943,7 +941,7 @@ Note that in the version 2 confidence interval calculation, the degree of freedo
 
 ### The Key {-}
 
-To be posted. 
+<a href="bootstrap/key_boot.nb.html">Click here</a>
 
 
 ### Reflections {-}
