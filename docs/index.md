@@ -1,8 +1,8 @@
 --- 
 title: "Piecemeal R"
-subtitle: "A Tutorial for Data Exploration with R"
+subtitle: "Tutorial for Data Exploration with R"
 author: "Kota Minegishi"
-date: "Last updated: 2017-07-02"
+date: "Last updated: 2017-08-14"
 site: bookdown::bookdown_site
 always_allow_html: yes
 output: bookdown::gitbook
@@ -34,11 +34,12 @@ To answer the first question, Section \@ref(intro) *Introduction* demonstrates a
 More content will be added when the author hosts a small workshop  _"Data Exploration with R"_  at his workplace.     
 
 
+<!-- 
 __New Contents__
 
-* 2017-07-02: Section \@ref(boot) Action, Romance, and Chicks 
+* 2017-08-14: Section \@ref(boot) Action, Romance, and Chicks -->
 
-<!-- * 2017-07-02: <span style="color:red">*Test upload. VERY Preliminary!*</span> --?
+<!-- * 2017-08-14: <span style="color:red">*Test upload. VERY Preliminary!*</span> --?
 
 
 

@@ -3,6 +3,7 @@ bookdown::gitbook:
   css: style.css
   config:
     toc:
+      toc_depth: 1
       download: no
       scroll_highlight: true
       before: |
