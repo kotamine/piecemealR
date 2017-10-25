@@ -1,0 +1,67 @@
+---
+title: "Mixed Effects"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Data Analysis with Factor/Categorical Variables 
+
+## Analysis of Variance (ANOVA)
+
+
+
+[source](http://conjugateprior.org/2013/01/formulae-in-r-anova/)
+
+## Random Effect Models
+
+illustrateion [source](https://stats.stackexchange.com/questions/228800/crossed-vs-nested-random-effects-how-do-they-differ-and-how-are-they-specified)
+
+
+## Fixed Effect Models 
+
+
+## Mixed Effect Models
+
+
+```{r cars}
+summary(cars)
+
+
+ChickWeight %>% 
+  with(lmer(weight ~ Time + Diet + (1 | Chick))) %>% summary
+
+
+
+ChickWeight %>% 
+  with(lmer(weight ~ as.factor(Time)*Diet + (1 | Chick))) %>% summary
+
+lm1 <- ChickWeight %>% mutate(Time_fac = as.factor(Time)) %>%
+  with(lm(weight ~ Time_fac + Diet + Time_fac:Diet))
+
+summary(lm1)
+
+lsmeans::lsmeans(lm1, specs=c("Diet"))
+lsmeans::lsmeans(lm1, specs=c("Time_fac","Diet"))
+lsmeans::lsmeans(lm1, specs=list("Time_fac","Diet",interaction=c("Time_fac", "Diet")))
+
+lsmeansLT(lm1)
+
+lm2 <- ChickWeight %>% mutate(Time_fac = as.factor(Time)) %>%
+  with(lm(weight ~ Time_fac + Diet))
+
+summary(lm2)
+
+lsmeans::lsmeans(lm2, specs=c("Diet"))
+
+lmer(data = InstEval,
+     y ~ + (1 | dept/d ))  %>% summary()
+
+```
+
+## Including Plots
+
+
