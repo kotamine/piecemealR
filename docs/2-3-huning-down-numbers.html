@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Piecemeal R</title>
+  <meta name="description" content="This is a R tutorial.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Piecemeal R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a R tutorial." />
+  <meta name="github-repo" content="/kotamine/piecemealR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Piecemeal R" />
+  
+  <meta name="twitter:description" content="This is a R tutorial." />
+  
+
+<meta name="author" content="Kota Minegishi">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="2-2-arts-crafts.html">
+<link rel="next" href="2-4-reflections.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<script src="libs/datatables-binding-0.2/datatables.js"></script>
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.12/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.12/js/jquery.dataTables.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-97062240-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Piecemeal R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="1-index.html"><a href="1-index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-intro.html"><a href="2-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-materials.html"><a href="2-1-materials.html"><i class="fa fa-check"></i><b>2.1</b> Materials</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-arts-crafts.html"><a href="2-2-arts-crafts.html"><i class="fa fa-check"></i><b>2.2</b> Arts &amp; Crafts</a><ul>
+<li class="chapter" data-level="" data-path="2-2-arts-crafts.html"><a href="2-2-arts-crafts.html#crafts"><i class="fa fa-check"></i>Crafts</a></li>
+<li class="chapter" data-level="" data-path="2-2-arts-crafts.html"><a href="2-2-arts-crafts.html#arts"><i class="fa fa-check"></i>Arts</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-3-huning-down-numbers.html"><a href="2-3-huning-down-numbers.html"><i class="fa fa-check"></i><b>2.3</b> Huning down numbers</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-reflections.html"><a href="2-4-reflections.html"><i class="fa fa-check"></i><b>2.4</b> Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-essentials.html"><a href="3-essentials.html"><i class="fa fa-check"></i><b>3</b> Essentials</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-cheatsheets.html"><a href="3-1-cheatsheets.html"><i class="fa fa-check"></i><b>3.1</b> Cheatsheets</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-data-types.html"><a href="3-2-data-types.html"><i class="fa fa-check"></i><b>3.2</b> Data types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-data-types.html"><a href="3-2-data-types.html#atomic"><i class="fa fa-check"></i><b>3.2.1</b> Atomic</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-data-types.html"><a href="3-2-data-types.html#factor"><i class="fa fa-check"></i><b>3.2.2</b> Factor</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-data-types.html"><a href="3-2-data-types.html#matrix"><i class="fa fa-check"></i><b>3.2.3</b> Matrix</a></li>
+<li class="chapter" data-level="3.2.4" data-path="3-2-data-types.html"><a href="3-2-data-types.html#data-frame"><i class="fa fa-check"></i><b>3.2.4</b> Data Frame</a></li>
+<li class="chapter" data-level="3.2.5" data-path="3-2-data-types.html"><a href="3-2-data-types.html#list"><i class="fa fa-check"></i><b>3.2.5</b> List</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-programming.html"><a href="3-3-programming.html"><i class="fa fa-check"></i><b>3.3</b> Programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-programming.html"><a href="3-3-programming.html#operator"><i class="fa fa-check"></i><b>3.3.1</b> Operator</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-programming.html"><a href="3-3-programming.html#if-else"><i class="fa fa-check"></i><b>3.3.2</b> If else</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-programming.html"><a href="3-3-programming.html#loop"><i class="fa fa-check"></i><b>3.3.3</b> Loop</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3-3-programming.html"><a href="3-3-programming.html#function"><i class="fa fa-check"></i><b>3.3.4</b> Function</a></li>
+<li class="chapter" data-level="3.3.5" data-path="3-3-programming.html"><a href="3-3-programming.html#environment"><i class="fa fa-check"></i><b>3.3.5</b> Environment</a></li>
+<li class="chapter" data-level="3.3.6" data-path="3-3-programming.html"><a href="3-3-programming.html#debugging"><i class="fa fa-check"></i><b>3.3.6</b> Debugging</a></li>
+<li class="chapter" data-level="3.3.7" data-path="3-3-programming.html"><a href="3-3-programming.html#stat-func."><i class="fa fa-check"></i><b>3.3.7</b> Stat func.</a></li>
+<li class="chapter" data-level="3.3.8" data-path="3-3-programming.html"><a href="3-3-programming.html#string-func."><i class="fa fa-check"></i><b>3.3.8</b> String func.</a></li>
+<li class="chapter" data-level="3.3.9" data-path="3-3-programming.html"><a href="3-3-programming.html#set-func."><i class="fa fa-check"></i><b>3.3.9</b> Set func.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html"><i class="fa fa-check"></i><b>3.4</b> Housekeeping</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#working-directory"><i class="fa fa-check"></i><b>3.4.1</b> Working directory</a></li>
+<li class="chapter" data-level="3.4.2" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#r-session"><i class="fa fa-check"></i><b>3.4.2</b> R session</a></li>
+<li class="chapter" data-level="3.4.3" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#save-load"><i class="fa fa-check"></i><b>3.4.3</b> Save &amp; load</a></li>
+<li class="chapter" data-level="3.4.4" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#input-output"><i class="fa fa-check"></i><b>3.4.4</b> Input &amp; Output</a></li>
+<li class="chapter" data-level="3.4.5" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>3.4.5</b> Updating</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-piecemeal-top.html"><a href="4-piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#arts-crafts-1"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#reflections-1"><i class="fa fa-check"></i>Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-boot.html"><a href="4-2-boot.html"><i class="fa fa-check"></i><b>4.2</b> Action, Romance, and Chicks</a><ul>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#materials-2"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#t-test"><i class="fa fa-check"></i>t-test</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#bootstrapping"><i class="fa fa-check"></i>Bootstrapping</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#linear-models"><i class="fa fa-check"></i>Linear Models</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#exercise-1"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#the-key-1"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#reflections-2"><i class="fa fa-check"></i>Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-next.html"><a href="4-3-next.html"><i class="fa fa-check"></i><b>4.3</b> Upcoming topics</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Piecemeal R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="huning-down-numbers" class="section level2">
+<h2><span class="header-section-number">2.3</span> Huning down numbers</h2>
+<p>This section is optional but contains more examples of <code>dplyr</code> and <code>ggplot2</code> functions.</p>
+<p>Previously, we find that the congestion at the airports is unlikely the cause of delays. Then, what else may explain the patterns of delays? Are the airlines partly responsible? Recall that earlier we observe that some airlines have longer delays than others for NYC-MSP flights. Let’s take a look at the overall average delays by carrier.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stat_carrier &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_obs =</span> <span class="kw">n</span>(),
+            <span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
+            <span class="dt">arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+            ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">left_join</span>(airlines, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n_obs)) 
+
+stat_carrier <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="right">n_obs</th>
+<th align="right">dep_delay</th>
+<th align="right">arr_delay</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UA</td>
+<td align="right">58665</td>
+<td align="right">12.11</td>
+<td align="right">3.56</td>
+<td align="left">United Air Lines Inc.</td>
+</tr>
+<tr class="even">
+<td align="left">B6</td>
+<td align="right">54635</td>
+<td align="right">13.02</td>
+<td align="right">9.46</td>
+<td align="left">JetBlue Airways</td>
+</tr>
+<tr class="odd">
+<td align="left">EV</td>
+<td align="right">54173</td>
+<td align="right">19.96</td>
+<td align="right">15.80</td>
+<td align="left">ExpressJet Airlines Inc.</td>
+</tr>
+<tr class="even">
+<td align="left">DL</td>
+<td align="right">48110</td>
+<td align="right">9.26</td>
+<td align="right">1.64</td>
+<td align="left">Delta Air Lines Inc.</td>
+</tr>
+<tr class="odd">
+<td align="left">AA</td>
+<td align="right">32729</td>
+<td align="right">8.59</td>
+<td align="right">0.36</td>
+<td align="left">American Airlines Inc.</td>
+</tr>
+<tr class="even">
+<td align="left">MQ</td>
+<td align="right">26397</td>
+<td align="right">10.55</td>
+<td align="right">10.77</td>
+<td align="left">Envoy Air</td>
+</tr>
+<tr class="odd">
+<td align="left">US</td>
+<td align="right">20536</td>
+<td align="right">3.78</td>
+<td align="right">2.13</td>
+<td align="left">US Airways Inc.</td>
+</tr>
+<tr class="even">
+<td align="left">9E</td>
+<td align="right">18460</td>
+<td align="right">16.73</td>
+<td align="right">7.38</td>
+<td align="left">Endeavor Air Inc.</td>
+</tr>
+<tr class="odd">
+<td align="left">WN</td>
+<td align="right">12275</td>
+<td align="right">17.71</td>
+<td align="right">9.65</td>
+<td align="left">Southwest Airlines Co.</td>
+</tr>
+<tr class="even">
+<td align="left">VX</td>
+<td align="right">5162</td>
+<td align="right">12.87</td>
+<td align="right">1.76</td>
+<td align="left">Virgin America</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="right">3260</td>
+<td align="right">18.73</td>
+<td align="right">20.12</td>
+<td align="left">AirTran Airways Corporation</td>
+</tr>
+<tr class="even">
+<td align="left">AS</td>
+<td align="right">714</td>
+<td align="right">5.80</td>
+<td align="right">-9.93</td>
+<td align="left">Alaska Airlines Inc.</td>
+</tr>
+<tr class="odd">
+<td align="left">F9</td>
+<td align="right">685</td>
+<td align="right">20.22</td>
+<td align="right">21.92</td>
+<td align="left">Frontier Airlines Inc.</td>
+</tr>
+<tr class="even">
+<td align="left">YV</td>
+<td align="right">601</td>
+<td align="right">19.00</td>
+<td align="right">15.56</td>
+<td align="left">Mesa Airlines Inc.</td>
+</tr>
+<tr class="odd">
+<td align="left">HA</td>
+<td align="right">342</td>
+<td align="right">4.90</td>
+<td align="right">-6.92</td>
+<td align="left">Hawaiian Airlines Inc.</td>
+</tr>
+<tr class="even">
+<td align="left">OO</td>
+<td align="right">32</td>
+<td align="right">12.59</td>
+<td align="right">11.93</td>
+<td align="left">SkyWest Airlines Inc.</td>
+</tr>
+</tbody>
+</table>
+<p>There could be some differences across carriers. However, the simple average of delays across various routes, days, and hours of flights may not be a good measure to compare the carriers. For example, some carriers may serve the routes and hours that tend to have more delays. Also, given that our dataset covers only the flights from New York City, the comparison may not be nationally representative since carriers use different airports around the country for their regional hubs.</p>
+<p>For our purposes, let’s compare the average air time among carriers, while accounting for flight’s destination and timing. The differences in air time are not the same as the differences in delays, but they may indicate some efficiency difference among carriers.</p>
+<p>Let’s first check how air time relates to flight distance.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span> (month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, day <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="op">!</span><span class="kw">is.na</span>(air_time)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> distance, <span class="dt">y =</span> air_time)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>)  <span class="op">+</span><span class="st">  </span>
+<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><code>air_time</code> and <code>distance</code> show a general linear relationship. We can better account for this relationship if we calculate the average air time for each flight destination from New York City.</p>
+<p>First, we will consider a simple approach to control for such average air time for each destination and compare the variation in air time among carriers. We can do this by fitting a linear regression model with fixed destination effects and comparing the residuals. This resembles the ANOVA for comparing the mean air times among carriers, but the fixed destination effects here difference out the average air time for each destination from the total variation.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a copy of flights data</span>
+flights2 &lt;-<span class="st"> </span>flights
+
+<span class="co"># TRUE/FALSE vector showing whther air_time is not NA. </span>
+idx0 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">with</span>(<span class="op">!</span><span class="kw">is.na</span>(air_time))  
+
+flights2<span class="op">$</span>res &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># prepare a column of residuals to be defined below </span>
+
+flights2<span class="op">$</span>res[idx0] &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># replace rows with idx0 = TRUE</span>
+<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(air_time)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">with</span>( 
+   <span class="kw">lm</span>( air_time <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(dest))  
+        <span class="co"># lm() estimates a linear model. </span>
+        <span class="co"># &quot;y ~ x&quot;&quot; is the formula for regressing y on x. </span>
+        <span class="co"># as.factor() converts &quot;dest&quot; to a factor (categorical) class</span>
+        <span class="co"># which is used as a set of dummy variables in the regression.  </span>
+   ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">residuals</span>()  <span class="co"># obtains residuals of the lm() object </span>
+
+stat_res &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarise</span>(
+    <span class="dt">mean_res =</span> <span class="kw">mean</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="co"># mean residual by carrier </span>
+    <span class="dt">sd_res =</span> <span class="kw">sd</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+    ) 
+
+<span class="kw">left_join</span>(stat_carrier, stat_res, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="right">n_obs</th>
+<th align="right">dep_delay</th>
+<th align="right">arr_delay</th>
+<th align="left">name</th>
+<th align="right">mean_res</th>
+<th align="right">sd_res</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UA</td>
+<td align="right">58665</td>
+<td align="right">12.11</td>
+<td align="right">3.56</td>
+<td align="left">United Air Lines Inc.</td>
+<td align="right">-0.87</td>
+<td align="right">14.59</td>
+</tr>
+<tr class="even">
+<td align="left">B6</td>
+<td align="right">54635</td>
+<td align="right">13.02</td>
+<td align="right">9.46</td>
+<td align="left">JetBlue Airways</td>
+<td align="right">0.28</td>
+<td align="right">11.55</td>
+</tr>
+<tr class="odd">
+<td align="left">EV</td>
+<td align="right">54173</td>
+<td align="right">19.96</td>
+<td align="right">15.80</td>
+<td align="left">ExpressJet Airlines Inc.</td>
+<td align="right">-0.37</td>
+<td align="right">8.94</td>
+</tr>
+<tr class="even">
+<td align="left">DL</td>
+<td align="right">48110</td>
+<td align="right">9.26</td>
+<td align="right">1.64</td>
+<td align="left">Delta Air Lines Inc.</td>
+<td align="right">-0.20</td>
+<td align="right">12.32</td>
+</tr>
+<tr class="odd">
+<td align="left">AA</td>
+<td align="right">32729</td>
+<td align="right">8.59</td>
+<td align="right">0.36</td>
+<td align="left">American Airlines Inc.</td>
+<td align="right">0.68</td>
+<td align="right">13.86</td>
+</tr>
+<tr class="even">
+<td align="left">MQ</td>
+<td align="right">26397</td>
+<td align="right">10.55</td>
+<td align="right">10.77</td>
+<td align="left">Envoy Air</td>
+<td align="right">0.45</td>
+<td align="right">8.87</td>
+</tr>
+<tr class="odd">
+<td align="left">US</td>
+<td align="right">20536</td>
+<td align="right">3.78</td>
+<td align="right">2.13</td>
+<td align="left">US Airways Inc.</td>
+<td align="right">-0.42</td>
+<td align="right">9.43</td>
+</tr>
+<tr class="even">
+<td align="left">9E</td>
+<td align="right">18460</td>
+<td align="right">16.73</td>
+<td align="right">7.38</td>
+<td align="left">Endeavor Air Inc.</td>
+<td align="right">0.84</td>
+<td align="right">8.76</td>
+</tr>
+<tr class="odd">
+<td align="left">WN</td>
+<td align="right">12275</td>
+<td align="right">17.71</td>
+<td align="right">9.65</td>
+<td align="left">Southwest Airlines Co.</td>
+<td align="right">0.16</td>
+<td align="right">12.55</td>
+</tr>
+<tr class="even">
+<td align="left">VX</td>
+<td align="right">5162</td>
+<td align="right">12.87</td>
+<td align="right">1.76</td>
+<td align="left">Virgin America</td>
+<td align="right">3.26</td>
+<td align="right">17.58</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="right">3260</td>
+<td align="right">18.73</td>
+<td align="right">20.12</td>
+<td align="left">AirTran Airways Corporation</td>
+<td align="right">1.16</td>
+<td align="right">8.75</td>
+</tr>
+<tr class="even">
+<td align="left">AS</td>
+<td align="right">714</td>
+<td align="right">5.80</td>
+<td align="right">-9.93</td>
+<td align="left">Alaska Airlines Inc.</td>
+<td align="right">-2.13</td>
+<td align="right">16.17</td>
+</tr>
+<tr class="odd">
+<td align="left">F9</td>
+<td align="right">685</td>
+<td align="right">20.22</td>
+<td align="right">21.92</td>
+<td align="left">Frontier Airlines Inc.</td>
+<td align="right">3.12</td>
+<td align="right">15.16</td>
+</tr>
+<tr class="even">
+<td align="left">YV</td>
+<td align="right">601</td>
+<td align="right">19.00</td>
+<td align="right">15.56</td>
+<td align="left">Mesa Airlines Inc.</td>
+<td align="right">-0.05</td>
+<td align="right">7.06</td>
+</tr>
+<tr class="odd">
+<td align="left">HA</td>
+<td align="right">342</td>
+<td align="right">4.90</td>
+<td align="right">-6.92</td>
+<td align="left">Hawaiian Airlines Inc.</td>
+<td align="right">5.64</td>
+<td align="right">20.69</td>
+</tr>
+<tr class="even">
+<td align="left">OO</td>
+<td align="right">32</td>
+<td align="right">12.59</td>
+<td align="right">11.93</td>
+<td align="left">SkyWest Airlines Inc.</td>
+<td align="right">1.02</td>
+<td align="right">7.26</td>
+</tr>
+</tbody>
+</table>
+<p>The differences in air time across carriers (“mean_res”) somewhat differ from the patterns of differences in the simple averages of delays (“dep_delay” and “arr_delay”). The patterns are different between “dep_delay” and “arr_delay” for that matter.</p>
+<p>To some extent, it appears to make sense that the average air time is longer for low-cost carriers such as Virgin America, Frontier Airlines, and Hawaiian Airlines. The differences across other carriers, on the other hand, are small, compared to the standard deviations. To get a sense of whether these differences have any statistical significance, let’s use t-test to compare the mean residual between United Airlines and American Airlines.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t-test comparing UA vs AA for the mean air time </span>
+flights2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">with</span>({
+    idx_UA &lt;-<span class="st"> </span>carrier <span class="op">==</span><span class="st"> &quot;UA&quot;</span>
+    idx_AA &lt;-<span class="st"> </span>carrier <span class="op">==</span><span class="st"> &quot;AA&quot;</span>
+    <span class="kw">t.test</span>(res[idx_UA], res[idx_AA])
+    })</code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  res[idx_UA] and res[idx_AA]
+## t = -15.722, df = 68826, p-value &lt; 2.2e-16
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.741133 -1.355142
+## sample estimates:
+##  mean of x  mean of y 
+## -0.8689523  0.6791852</code></pre>
+<p>With a large number of observations, a seemingly small difference in the means often turns out to be a statistically significant difference. Nonetheless, statistical significance is not sufficient for being an empirically significant difference that matters in the real world. The average difference of about 1.5 minute air time per flight appears very small.</p>
+<p>In fact, we can do this sort of pair-wise comparison all at once using a regression. Using carrier fixed effects in addition to destination fixed effects, we can directly compare the mean effects across carriers. We will set United Airlines to be a reference of the carrier fixed effects, so that the fixed effect for United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2<span class="op">$</span>carrier &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(flights2<span class="op">$</span>carrier), <span class="dt">ref=</span><span class="st">&quot;UA&quot;</span>)  
+<span class="co"># reference level is United Airlines</span>
+flights2<span class="op">$</span>carrier <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">table</span>()</code></pre></div>
+<pre><code>## .
+##    UA    9E    AA    AS    B6    DL    EV    F9    FL    HA    MQ    OO 
+## 58665 18460 32729   714 54635 48110 54173   685  3260   342 26397    32 
+##    US    VX    WN    YV 
+## 20536  5162 12275   601</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">with</span>({
+    n_carrier &lt;-<span class="st"> </span><span class="kw">unique</span>(carrier) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()
+    n_dest &lt;-<span class="st"> </span><span class="kw">unique</span>(dest) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>() 
+    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;There are&#39;</span>, n_carrier, <span class="st">&#39;distinct carriers and&#39;</span>, 
+                n_dest,<span class="st">&#39;distinct destinations in the data.&#39;</span> ))
+  })</code></pre></div>
+<pre><code>## [1] &quot;There are 16 distinct carriers and 105 distinct destinations in the data.&quot;</code></pre>
+<p>With 16 carriers and 105 destinations minus 2 reference levels for carriers and destinations, the total of 119 coefficients will be estimated for the fixed effects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span>
+<span class="st"> </span><span class="kw">with</span>(
+   <span class="kw">lm</span>( air_time  <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) )  
+    <span class="co"># fixed effects for carriers and destinations</span>
+ )
+
+<span class="kw">tidy</span>(f1)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,] <span class="co"># show the first 20 coefficients</span></code></pre></div>
+<pre><code>##                    term     estimate  std.error    statistic       p.value
+## 1           (Intercept)  247.9884874 0.75069658  330.3445016  0.000000e+00
+## 2  as.factor(carrier)9E    1.8015498 0.12723996   14.1586788  1.702649e-45
+## 3  as.factor(carrier)AA    1.9326712 0.09731105   19.8607572  1.002388e-87
+## 4  as.factor(carrier)AS   -1.9071536 0.49596319   -3.8453531  1.204017e-04
+## 5  as.factor(carrier)B6    1.1808039 0.08495098   13.8998267  6.535025e-44
+## 6  as.factor(carrier)DL    0.7531812 0.08722600    8.6348244  5.907432e-18
+## 7  as.factor(carrier)EV    0.4174574 0.11044837    3.7796605  1.570702e-04
+## 8  as.factor(carrier)F9    3.8891981 0.48090201    8.0872985  6.120836e-16
+## 9  as.factor(carrier)FL    2.6434074 0.27600661    9.5773336  1.002386e-21
+## 10 as.factor(carrier)HA   11.0125104 0.89821710   12.2604106  1.503557e-34
+## 11 as.factor(carrier)MQ    1.4592669 0.11892133   12.2708590  1.321669e-34
+## 12 as.factor(carrier)OO    1.8091432 2.21222472    0.8177936  4.134757e-01
+## 13 as.factor(carrier)US    0.1319337 0.13826299    0.9542230  3.399715e-01
+## 14 as.factor(carrier)VX    4.5298528 0.18441295   24.5636378 4.086448e-133
+## 15 as.factor(carrier)WN    1.2226161 0.17520980    6.9780125  2.999500e-12
+## 16 as.factor(carrier)YV    0.5167461 0.52737831    0.9798395  3.271661e-01
+## 17   as.factor(dest)ACK -207.1011095 1.04478912 -198.2228803  0.000000e+00
+## 18   as.factor(dest)ALB -216.6188634 0.95130943 -227.7059972  0.000000e+00
+## 19   as.factor(dest)ANC  165.1365126 4.26930687   38.6799351  0.000000e+00
+## 20   as.factor(dest)ATL -136.1282095 0.75641976 -179.9638460  0.000000e+00</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a function to clean up the coefficient table above  </span>
+clean_lm_rlt &lt;-<span class="st"> </span><span class="cf">function</span>(f) {
+  <span class="co"># keep only rows for which column &quot;term&quot; contains &quot;carrier&quot;  e.g., rows 2 to 16 above</span>
+  rlt &lt;-<span class="st"> </span><span class="kw">tidy</span>(f) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;carrier&quot;</span>,term)) 
+
+  <span class="co"># create column named carrier </span>
+  rlt &lt;-<span class="st"> </span>rlt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">carrier =</span> <span class="kw">gsub</span>(<span class="st">&#39;as.factor</span><span class="ch">\\</span><span class="st">(carrier</span><span class="ch">\\</span><span class="st">)&#39;</span>,<span class="st">&#39;&#39;</span>, term)) 
+
+  <span class="co"># drop column term</span>
+  rlt &lt;-<span class="st"> </span>rlt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>term)
+  
+  <span class="co"># add columns of carrier, name, and n_obs from the stat_carrier data frame</span>
+  stat_carrier <span class="op">%&gt;%</span><span class="st">  </span>
+<span class="st">    </span><span class="kw">select</span>(carrier, name, n_obs) <span class="op">%&gt;%</span>
+<span class="st">    </span><span class="kw">left_join</span>(rlt, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) 
+}
+
+lm_rlt1 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f1)
+lm_rlt1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="left">name</th>
+<th align="right">n_obs</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UA</td>
+<td align="left">United Air Lines Inc.</td>
+<td align="right">58665</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">B6</td>
+<td align="left">JetBlue Airways</td>
+<td align="right">54635</td>
+<td align="right">1.18</td>
+<td align="right">0.08</td>
+<td align="right">13.90</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">EV</td>
+<td align="left">ExpressJet Airlines Inc.</td>
+<td align="right">54173</td>
+<td align="right">0.42</td>
+<td align="right">0.11</td>
+<td align="right">3.78</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">DL</td>
+<td align="left">Delta Air Lines Inc.</td>
+<td align="right">48110</td>
+<td align="right">0.75</td>
+<td align="right">0.09</td>
+<td align="right">8.63</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">AA</td>
+<td align="left">American Airlines Inc.</td>
+<td align="right">32729</td>
+<td align="right">1.93</td>
+<td align="right">0.10</td>
+<td align="right">19.86</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">MQ</td>
+<td align="left">Envoy Air</td>
+<td align="right">26397</td>
+<td align="right">1.46</td>
+<td align="right">0.12</td>
+<td align="right">12.27</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">US</td>
+<td align="left">US Airways Inc.</td>
+<td align="right">20536</td>
+<td align="right">0.13</td>
+<td align="right">0.14</td>
+<td align="right">0.95</td>
+<td align="right">0.34</td>
+</tr>
+<tr class="even">
+<td align="left">9E</td>
+<td align="left">Endeavor Air Inc.</td>
+<td align="right">18460</td>
+<td align="right">1.80</td>
+<td align="right">0.13</td>
+<td align="right">14.16</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">WN</td>
+<td align="left">Southwest Airlines Co.</td>
+<td align="right">12275</td>
+<td align="right">1.22</td>
+<td align="right">0.18</td>
+<td align="right">6.98</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">VX</td>
+<td align="left">Virgin America</td>
+<td align="right">5162</td>
+<td align="right">4.53</td>
+<td align="right">0.18</td>
+<td align="right">24.56</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">AirTran Airways Corporation</td>
+<td align="right">3260</td>
+<td align="right">2.64</td>
+<td align="right">0.28</td>
+<td align="right">9.58</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">AS</td>
+<td align="left">Alaska Airlines Inc.</td>
+<td align="right">714</td>
+<td align="right">-1.91</td>
+<td align="right">0.50</td>
+<td align="right">-3.85</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">F9</td>
+<td align="left">Frontier Airlines Inc.</td>
+<td align="right">685</td>
+<td align="right">3.89</td>
+<td align="right">0.48</td>
+<td align="right">8.09</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">YV</td>
+<td align="left">Mesa Airlines Inc.</td>
+<td align="right">601</td>
+<td align="right">0.52</td>
+<td align="right">0.53</td>
+<td align="right">0.98</td>
+<td align="right">0.33</td>
+</tr>
+<tr class="odd">
+<td align="left">HA</td>
+<td align="left">Hawaiian Airlines Inc.</td>
+<td align="right">342</td>
+<td align="right">11.01</td>
+<td align="right">0.90</td>
+<td align="right">12.26</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">OO</td>
+<td align="left">SkyWest Airlines Inc.</td>
+<td align="right">32</td>
+<td align="right">1.81</td>
+<td align="right">2.21</td>
+<td align="right">0.82</td>
+<td align="right">0.41</td>
+</tr>
+</tbody>
+</table>
+<p>The “estimate” column shows the mean difference in air time with United Airlines, accounting for the flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines.</p>
+<p>Next, let’s take a step further to account for flight timing as well. We can do this by adding fixed effects for flight dates and hours.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">date_id =</span> month<span class="op">*</span><span class="dv">100</span> <span class="op">+</span><span class="st"> </span>day )
+
+flights2<span class="op">$</span>date_id <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</code></pre></div>
+<pre><code>## [1] 365</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span>
+<span class="st"> </span><span class="kw">with</span>(
+   <span class="kw">lm</span>( air_time <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) <span class="op">+</span>
+<span class="st">        </span><span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(date_id) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(hour) )
+ )
+
+lm_rlt2 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f2)
+lm_rlt2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="left">name</th>
+<th align="right">n_obs</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UA</td>
+<td align="left">United Air Lines Inc.</td>
+<td align="right">58665</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">B6</td>
+<td align="left">JetBlue Airways</td>
+<td align="right">54635</td>
+<td align="right">1.60</td>
+<td align="right">0.07</td>
+<td align="right">22.50</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">EV</td>
+<td align="left">ExpressJet Airlines Inc.</td>
+<td align="right">54173</td>
+<td align="right">0.61</td>
+<td align="right">0.09</td>
+<td align="right">6.67</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">DL</td>
+<td align="left">Delta Air Lines Inc.</td>
+<td align="right">48110</td>
+<td align="right">0.95</td>
+<td align="right">0.07</td>
+<td align="right">13.03</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">AA</td>
+<td align="left">American Airlines Inc.</td>
+<td align="right">32729</td>
+<td align="right">1.84</td>
+<td align="right">0.08</td>
+<td align="right">22.81</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">MQ</td>
+<td align="left">Envoy Air</td>
+<td align="right">26397</td>
+<td align="right">1.45</td>
+<td align="right">0.10</td>
+<td align="right">14.70</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">US</td>
+<td align="left">US Airways Inc.</td>
+<td align="right">20536</td>
+<td align="right">0.17</td>
+<td align="right">0.11</td>
+<td align="right">1.51</td>
+<td align="right">0.13</td>
+</tr>
+<tr class="even">
+<td align="left">9E</td>
+<td align="left">Endeavor Air Inc.</td>
+<td align="right">18460</td>
+<td align="right">1.57</td>
+<td align="right">0.11</td>
+<td align="right">14.72</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">WN</td>
+<td align="left">Southwest Airlines Co.</td>
+<td align="right">12275</td>
+<td align="right">1.14</td>
+<td align="right">0.15</td>
+<td align="right">7.82</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">VX</td>
+<td align="left">Virgin America</td>
+<td align="right">5162</td>
+<td align="right">4.85</td>
+<td align="right">0.15</td>
+<td align="right">31.57</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">AirTran Airways Corporation</td>
+<td align="right">3260</td>
+<td align="right">2.19</td>
+<td align="right">0.23</td>
+<td align="right">9.58</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">AS</td>
+<td align="left">Alaska Airlines Inc.</td>
+<td align="right">714</td>
+<td align="right">-2.55</td>
+<td align="right">0.41</td>
+<td align="right">-6.21</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">F9</td>
+<td align="left">Frontier Airlines Inc.</td>
+<td align="right">685</td>
+<td align="right">3.31</td>
+<td align="right">0.40</td>
+<td align="right">8.29</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">YV</td>
+<td align="left">Mesa Airlines Inc.</td>
+<td align="right">601</td>
+<td align="right">0.32</td>
+<td align="right">0.44</td>
+<td align="right">0.73</td>
+<td align="right">0.46</td>
+</tr>
+<tr class="odd">
+<td align="left">HA</td>
+<td align="left">Hawaiian Airlines Inc.</td>
+<td align="right">342</td>
+<td align="right">11.79</td>
+<td align="right">0.75</td>
+<td align="right">15.80</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">OO</td>
+<td align="left">SkyWest Airlines Inc.</td>
+<td align="right">32</td>
+<td align="right">7.63</td>
+<td align="right">1.83</td>
+<td align="right">4.17</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_rlt2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier<span class="op">!=</span><span class="st">&#39;UA&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines&quot;</span>)</code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+<p>The results are similar to the previous linear mode except that this time SkyWest Airlines shows much longer air time.</p>
+<p>Before wrapping up, our final model is a check for the robustness of the above results. We would like to replace the date and hour fixed effects in the previous model with date-hour fixed effects (i.e., the interaction between date and hour). We could add such fixed effects using <code>time_hour</code> variable defined above. However, that would mean adding nearly 7,000 dummy variables to our linear regression, which is computationally too intensive.</p>
+<p>To work around this issue, we approximate this estimation by pre-processing the dependent variable. Specifically, we calculate the average air time for each combination of <code>time_hour</code> and <code>dest</code> and define a new dependent variable by subtracting this average value from the original air time variable (i.e., the new variable is centered at zero-mean for each combination of <code>time_hour</code> and <code>dest</code>). Then, we estimate a linear model with carrier and destination fixed effects.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Adding time_hour fixed effects is too computationally intensive 
+<span class="co"># f1 &lt;- flights %&gt;%</span>
+<span class="co">#  with(</span>
+<span class="co">#    lm( air_time  ~  as.factor(carrier) + as.factor(dest) + as.factor(time_hour))   </span>
+<span class="co">#  )</span>
+
+<span class="kw">unique</span>(flights2<span class="op">$</span>time_hour) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()  <span class="co"># 6,936 unique time_hour </span></code></pre></div>
+<pre><code>## [1] 6936</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">group_by</span>(dest, time_hour) <span class="op">%&gt;%</span><span class="st">   </span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">air_time_centered =</span> air_time <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(air_time, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) 
+  )
+
+f3 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span>
+<span class="st"> </span><span class="kw">with</span>(
+   <span class="kw">lm</span>( air_time_centered  <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) )
+ )
+  
+lm_rlt3 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f3)
+lm_rlt3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>) <span class="co"># Note: standard errors, t-stat, and p-val are incorrect</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrier</th>
+<th align="left">name</th>
+<th align="right">n_obs</th>
+<th align="right">estimate</th>
+<th align="right">std.error</th>
+<th align="right">statistic</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">UA</td>
+<td align="left">United Air Lines Inc.</td>
+<td align="right">58665</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">B6</td>
+<td align="left">JetBlue Airways</td>
+<td align="right">54635</td>
+<td align="right">0.82</td>
+<td align="right">0.03</td>
+<td align="right">32.24</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">EV</td>
+<td align="left">ExpressJet Airlines Inc.</td>
+<td align="right">54173</td>
+<td align="right">0.88</td>
+<td align="right">0.03</td>
+<td align="right">26.50</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">DL</td>
+<td align="left">Delta Air Lines Inc.</td>
+<td align="right">48110</td>
+<td align="right">0.52</td>
+<td align="right">0.03</td>
+<td align="right">19.85</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">AA</td>
+<td align="left">American Airlines Inc.</td>
+<td align="right">32729</td>
+<td align="right">1.20</td>
+<td align="right">0.03</td>
+<td align="right">41.06</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">MQ</td>
+<td align="left">Envoy Air</td>
+<td align="right">26397</td>
+<td align="right">1.00</td>
+<td align="right">0.04</td>
+<td align="right">27.84</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">US</td>
+<td align="left">US Airways Inc.</td>
+<td align="right">20536</td>
+<td align="right">-0.09</td>
+<td align="right">0.04</td>
+<td align="right">-2.21</td>
+<td align="right">0.03</td>
+</tr>
+<tr class="even">
+<td align="left">9E</td>
+<td align="left">Endeavor Air Inc.</td>
+<td align="right">18460</td>
+<td align="right">1.27</td>
+<td align="right">0.04</td>
+<td align="right">33.07</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">WN</td>
+<td align="left">Southwest Airlines Co.</td>
+<td align="right">12275</td>
+<td align="right">1.30</td>
+<td align="right">0.05</td>
+<td align="right">24.70</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">VX</td>
+<td align="left">Virgin America</td>
+<td align="right">5162</td>
+<td align="right">3.47</td>
+<td align="right">0.06</td>
+<td align="right">62.59</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">FL</td>
+<td align="left">AirTran Airways Corporation</td>
+<td align="right">3260</td>
+<td align="right">1.78</td>
+<td align="right">0.08</td>
+<td align="right">21.48</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">AS</td>
+<td align="left">Alaska Airlines Inc.</td>
+<td align="right">714</td>
+<td align="right">-2.86</td>
+<td align="right">0.15</td>
+<td align="right">-19.15</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">F9</td>
+<td align="left">Frontier Airlines Inc.</td>
+<td align="right">685</td>
+<td align="right">1.99</td>
+<td align="right">0.14</td>
+<td align="right">13.73</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">YV</td>
+<td align="left">Mesa Airlines Inc.</td>
+<td align="right">601</td>
+<td align="right">0.78</td>
+<td align="right">0.16</td>
+<td align="right">4.89</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">HA</td>
+<td align="left">Hawaiian Airlines Inc.</td>
+<td align="right">342</td>
+<td align="right">1.34</td>
+<td align="right">0.27</td>
+<td align="right">4.96</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">OO</td>
+<td align="left">SkyWest Airlines Inc.</td>
+<td align="right">32</td>
+<td align="right">3.50</td>
+<td align="right">0.67</td>
+<td align="right">5.26</td>
+<td align="right">0.00</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_rlt3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier<span class="op">!=</span><span class="st">&#39;UA&#39;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines: Robustness Check&quot;</span>)</code></pre></div>
+<p><img src="01-Introduction_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>The point estimates should be <em>approximately</em> close to what we would obtain if we regress <code>air_time</code> on the fixed effects of <code>carrier</code>, <code>dest</code>, and <code>time_hour</code>. However, the standard errors are not correctly displayed in the table because the centered variable has a smaller total variation compared to the original <code>air_time</code> variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)</p>
+<p>Overall, we see again a tendency that lower-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City. Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons.</p>
+</div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//piecemealr.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">
+  comments powered by Disqus.</a></noscript>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-2-arts-crafts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-4-reflections.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": true,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/kotamine/piecemealR/edit/master/01-Introduction.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+},
+"code_folding": "show",
+"highlight": "tango",
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

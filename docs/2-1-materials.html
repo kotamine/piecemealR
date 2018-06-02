@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="5-resources.html">
-
+<link rel="prev" href="2-intro.html">
+<link rel="next" href="2-2-arts-crafts.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -198,20 +198,61 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="materials" class="section level2">
+<h2><span class="header-section-number">2.1</span> Materials</h2>
+<p>The power of R grows with each addition of user-contributed R packages, or a bundle of user-developed programs. Recent developments such as <a href="https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html">tidy</a>, <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html">dplyr</a>, and <a href="http://docs.ggplot2.org/current/">ggplot2</a> have greatly streamlined the coding for data manipulation and analysis, which is the starting point for learning R that is chosen for this site. With the R syntax system, you will learn the basic operations of data wrangling and visualization at a rapid pace given that it is an intuitive <em>data operation language</em>. Like any language, its grammar and framework provide a particular way of understanding the world. In this case, it will influence your thinking about data.</p>
+<p>Following the documentation of <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html">dplyr</a>, let’s start with a sample dataset of airplane departures and arrivals. The dataset contains information on about 337,000 flights departed from New York City in 2013 (source: <a href="https://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&amp;Link=0">Bureau of Transportation Statistics</a>). We load a built-in data frame by command <code>library(nycflights13)</code> where <code>library(package_name)</code> loads an R package named <code>package_name</code> in the current R <em>session</em>, or the computing environment. In the R console (i.e., the left bottom pane in RStudio), type <code>install.packages(&quot;nycflights13&quot;)</code> and hit enter.</p>
+<p>Generally, R packages are installed locally on your computer on an as-needed basis. To install several more packages that we will use, copy the following code and execute it in your R console.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Since we&#39;re just starting, don&#39;t worry about understanding the code here</span>
+<span class="co"># &quot;#&quot;&quot; symbole is used to insert comments that are helpful to humans but are ignored by R </span>
 
-<div id="refs" class="references">
-<div>
-<p>Matloff, Norman. 2011. <em>The Art of R Programming</em>.</p>
-</div>
-<div>
-<p>Wickham, Hadey. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). <a href="http://www.jstatsoft.org/v59/i10/" class="uri">http://www.jstatsoft.org/v59/i10/</a>.</p>
-</div>
-<div>
-<p>Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>.</p>
-</div>
-</div>
+required_pkgs &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;nycflights13&quot;</span>, <span class="st">&quot;dplyr&quot;</span>, <span class="st">&quot;ggplot2&quot;</span>, <span class="st">&quot;lubridate&quot;</span>, <span class="st">&quot;knitr&quot;</span>, <span class="st">&quot;tidyr&quot;</span>, <span class="st">&quot;broom&quot;</span>)   
+  <span class="co">#  creating a new object &quot;required_pkgs&quot; containing strings &quot;nycflights13&quot;, &quot;dplyr&quot;,..</span>
+  <span class="co"># &quot;c()&quot; concatenates string names here. </span>
+  <span class="co"># &quot;&lt;-&quot; operator assigns from the object on the right to left</span>
+
+new_pkgs &lt;-<span class="st"> </span>required_pkgs[<span class="op">!</span>(required_pkgs  <span class="op">%in%</span><span class="st"> </span><span class="kw">installed.packages</span>())] 
+  <span class="co"># checking whether &quot;required_pkgs&quot; are already installed </span>
+  <span class="co"># &quot;[]&quot; of required_pkgs[ ] is extraction by logical TRUE or FALSE</span>
+  <span class="co"># &quot;%in%&quot; checks whether items on the left are members of the items on the right.</span>
+  <span class="co"># ! is a negation, so if the package is not installed, there will be an </span>
+
+<span class="cf">if</span> (<span class="kw">length</span>(new_pkgs)) {
+  <span class="kw">install.packages</span>(new_pkgs, <span class="dt">repos =</span> <span class="st">&quot;http://cran.rstudio.com&quot;</span>)
+}   </code></pre></div>
+<p>Once packages are downloaded and installed on your computer, they become available for your libraries. In each R session, we load libraries we need (instead of all existing libraries). Here we load the following;</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">suppressWarnings</span>({
+  <span class="kw">suppressMessages</span>({
+    <span class="kw">library</span>(dplyr)  <span class="co"># for data manipulation </span>
+    <span class="kw">library</span>(ggplot2)  <span class="co"># for figures  </span>
+    <span class="kw">library</span>(lubridate) <span class="co"># for date manipulation</span>
+    <span class="kw">library</span>(nycflights13)  <span class="co"># sample data of NYC flights</span>
+    <span class="kw">library</span>(knitr) <span class="co"># for table formatting</span>
+    <span class="kw">library</span>(tidyr) <span class="co"># for table formatting</span>
+    <span class="kw">library</span>(broom)  <span class="co"># for table formatting</span>
+  })
+})</code></pre></div>
+<p>Let’s see the data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(flights) <span class="co"># shows the class attribute</span>
+<span class="kw">dim</span>(flights)   <span class="co"># obtains dimention of rows and columns </span></code></pre></div>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+## [1] 336776     19</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights)  <span class="co"># displays first seveal rows and columns </span></code></pre></div>
+<pre><code>## # A tibble: 6 × 19
+##    year month   day dep_time sched_dep_time dep_delay arr_time
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+## 1  2013     1     1      517            515         2      830
+## 2  2013     1     1      533            529         4      850
+## 3  2013     1     1      542            540         2      923
+## 4  2013     1     1      544            545        -1     1004
+## 5  2013     1     1      554            600        -6      812
+## 6  2013     1     1      554            558        -4      740
+## # ... with 12 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;, minute &lt;dbl&gt;,
+## #   time_hour &lt;dttm&gt;</code></pre>
+<p>The <code>dim()</code> command returns the dimensions of a data frame, and the <code>head()</code> command returns the first several rows and columns. The <code>flights</code> dataset contains information on dates, actual departure and arrival times, scheduled departure and arrival times, carriers, origins, destinations, travel times, and distances. These variables are arranged in columns, and each row is an observation of flight.</p>
+<p>In R, we refer to a dataset as <strong>data frame</strong>, which is a <em>class</em> of R object. The <strong>data frame</strong> class is more general than the <strong>matrix</strong> class in that it can contain variables of more than one mode (numeric, character, factor etc). In case you want an overview of data types right away, here is a <a href="http://www.statmethods.net/input/datatypes.html">summary</a>.</p>
 </div>
 <div id="disqus_thread"></div>
 <script>
@@ -230,8 +271,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="5-resources.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="2-intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="2-2-arts-crafts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -261,7 +302,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/kotamine/piecemealR/edit/master/06-References.Rmd",
+"link": "https://github.com/kotamine/piecemealR/edit/master/01-Introduction.Rmd",
 "text": "Edit"
 },
 "download": null,

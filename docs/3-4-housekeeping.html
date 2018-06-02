@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="5-resources.html">
-
+<link rel="prev" href="3-3-programming.html">
+<link rel="next" href="4-piecemeal-top.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -198,21 +198,87 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="housekeeping" class="section level2">
+<h2><span class="header-section-number">3.4</span> Housekeeping</h2>
+<div id="working-directory" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Working directory</h3>
+<p><code>getwd()</code> returns the current working directly. <code>setwd(new_directory)</code> sets a specified working directory.</p>
+</div>
+<div id="r-session" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> R session</h3>
+<p><code>sessionInfo()</code> shows the current session information. In RStudio, <code>.rs.restartR()</code> restarts a session.</p>
+</div>
+<div id="save-load" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Save &amp; load</h3>
+<p>R objects can be saved and loaded by <code>save(object1, object2, ..., file=&quot;file_name.RData&quot;)</code> and <code>load(file=&quot;file_name.RData&quot;)</code>. A <code>ggplot</code> object can be save by <code>ggsave(&quot;file_name.png&quot;)</code>.</p>
+</div>
+<div id="input-output" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Input &amp; Output</h3>
+<p>A common method to read and write data files is <code>read.csv(&quot;file_name.csv&quot;)</code> and <code>write.csv(data_frame, file = &quot;file_name.csv&quot;)</code>. <code>scan()</code> is a more general function to read data files and interact with user keyboard inputs. <code>file()</code> is also a general function for reading data through <em>connections</em>, which refer to R’s mechanism for various I/O operations. <code>dir()</code> returns the file names in your working directory.</p>
+<p>A useful function is <code>cat()</code>, which can print a cleaner output to the screen, compared to <code>print()</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(<span class="st">&quot;example&quot;</span>)</code></pre></div>
+<pre><code>## [1] &quot;example&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;example</span><span class="ch">\n</span><span class="st">&quot;</span>)  <span class="co"># end with \n</span></code></pre></div>
+<pre><code>## example</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;some string&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="st">&quot;more string</span><span class="ch">\n</span><span class="st">&quot;</span>)</code></pre></div>
+<pre><code>## some string 1 2 3 4 more string</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">cat</span>(<span class="st">&quot;some string&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="st">&quot;more string</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="dt">sep=</span><span class="st">&quot;_&quot;</span>)</code></pre></div>
+<pre><code>## some string_1_2_3_4_more string</code></pre>
+</div>
+<div id="updating" class="section level3">
+<h3><span class="header-section-number">3.4.5</span> Updating</h3>
+<p>R needs regular updates for R distribution, individual R packages, and RStudio. Generally, updating once or twice a year would suffice. For updating RStudio, go to <code>Help</code> and then <code>Check for Updates</code>. Also, RStudio also makes it easy to update packages; go to <code>Tools</code> and the <code>Check for Package Updates</code>. Do these updates when you have time or you know that you need to update a particular package; updating R and R packages can be trickier than it seems.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check R version</span>
+<span class="kw">getRversion</span>()</code></pre></div>
+<pre><code>## [1] &#39;3.4.4&#39;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">version</code></pre></div>
+<pre><code>##                _                           
+## platform       x86_64-apple-darwin15.6.0   
+## arch           x86_64                      
+## os             darwin15.6.0                
+## system         x86_64, darwin15.6.0        
+## status                                     
+## major          3                           
+## minor          4.4                         
+## year           2018                        
+## month          03                          
+## day            15                          
+## svn rev        74408                       
+## language       R                           
+## version.string R version 3.4.4 (2018-03-15)
+## nickname       Someone to Lean On</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check installed packages</span>
+## installed.packages()
 
-<div id="refs" class="references">
-<div>
-<p>Matloff, Norman. 2011. <em>The Art of R Programming</em>.</p>
+<span class="co"># list all packages where an update is available</span>
+## old.packages()
+
+<span class="co"># update all available packages of installed packages </span>
+## update.packages()
+
+<span class="co"># update, without prompt</span>
+## update.packages(ask = FALSE)</code></pre></div>
+<p>For windows users, one can automate the process using <code>installr</code> package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## --- execute the following ---
+## install.packages(&quot;installr&quot;) # install
+## setInternet2(TRUE) # only for R versions older than 3.3.0
+## installr::updateR() # updating R.</code></pre></div>
+<!-- not sure if this works
+Another way to automate is discussed [here](http://bioinfo.umassmed.edu/bootstrappers/bootstrappers-courses/courses/rCourse/Additional_Resources/Updating_R.html).
+
+```r
+### get packages installed
+## packs = as.data.frame(installed.packages(.libPaths()[1]), stringsAsFactors = F)
+
+### and now re-install install packages using install.packages()
+## install.packages(packs$Package)
+```
+-->
+<p>Sometimes, you can accidentally corrupt sample datasets that come with packages. To restore the original datasets, you have to remove the package by <code>remove.packages()</code> and then install it again. Use <code>class()</code>, <code>attributes()</code>, and <code>str()</code> to check for any unrecognized attributes attached to the dataset. Also, if you suspect that you have accidentally corrupted R itself, you should re-install the R distribution.</p>
+
 </div>
-<div>
-<p>Wickham, Hadey. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). <a href="http://www.jstatsoft.org/v59/i10/" class="uri">http://www.jstatsoft.org/v59/i10/</a>.</p>
 </div>
-<div>
-<p>Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>.</p>
-</div>
-</div>
-</div>
+<!-- </div> -->
 <div id="disqus_thread"></div>
 <script>
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -230,8 +296,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="5-resources.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="3-3-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-piecemeal-top.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -261,7 +327,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/kotamine/piecemealR/edit/master/06-References.Rmd",
+"link": "https://github.com/kotamine/piecemealR/edit/master/02-Essentials.Rmd",
 "text": "Edit"
 },
 "download": null,

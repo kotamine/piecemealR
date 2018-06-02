@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="5-resources.html">
-
+<link rel="prev" href="2-3-huning-down-numbers.html">
+<link rel="next" href="3-essentials.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -198,21 +198,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<div id="reflections" class="section level2">
+<h2><span class="header-section-number">2.4</span> Reflections</h2>
+<p>In this introduction, we have reviewed the tools of <code>deplyr</code> and <code>ggplot2</code> packages as a starting point for data analyses and visualization in R. This new generation of tools is a data exploration language as much as a set of functions to shortcut traditional data manipulation methods in R. This language provides an intuitive system of translating our inquiries to the data analysis in R.</p>
+<p>Using the flight dataset, we have also investigated flight delay patterns. We find that airport congestion is unlikely a major cause of delay in New York City. There are small differences in the air time (e.g. less than 5 minutes) across carriers for a given destination although it remains unclear how this relates to the delay patterns.</p>
+<p>In fact, the concept of “delay” is complicated because it is defined in reference to the scheduled departure and arrival times, which may differ by carrier. A delay would not include the time sitting in the airplane before taking off or after landing as long as it is within the schedule. It might be more interesting to compare scheduled flight duration instead of delays or air time. (Such an analysis would involve somewhat complicated manipulations of date and time with our flight data.)</p>
+<p>This leads us to the final point of this exercise; an interesting data analysis requires <strong>knowledge on the real-world process that generated the data</strong> and <strong>the ability to ask interesting questions</strong>. <code>deplyr</code> and <code>ggplot2</code> packages can let you employ a variety of data analytics tools with ease, but the ultimate power of the analysis will always rest on your knowledge and creativity.</p>
 
-<div id="refs" class="references">
-<div>
-<p>Matloff, Norman. 2011. <em>The Art of R Programming</em>.</p>
 </div>
-<div>
-<p>Wickham, Hadey. 2014. “Tidy Data.” <em>The Journal of Statistical Software</em> 59 (10). <a href="http://www.jstatsoft.org/v59/i10/" class="uri">http://www.jstatsoft.org/v59/i10/</a>.</p>
-</div>
-<div>
-<p>Wilkinson, Leland. 2005. <em>The Grammar of Graphics</em>.</p>
-</div>
-</div>
-</div>
+<!-- </div> -->
 <div id="disqus_thread"></div>
 <script>
 (function() { // DON'T EDIT BELOW THIS LINE
@@ -230,8 +224,8 @@ s.setAttribute('data-timestamp', +new Date());
           </div>
         </div>
       </div>
-<a href="5-resources.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="2-3-huning-down-numbers.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="3-essentials.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -261,7 +255,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/kotamine/piecemealR/edit/master/06-References.Rmd",
+"link": "https://github.com/kotamine/piecemealR/edit/master/01-Introduction.Rmd",
 "text": "Edit"
 },
 "download": null,
