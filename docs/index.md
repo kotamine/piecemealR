@@ -2,7 +2,7 @@
 title: "Piecemeal R"
 subtitle: "Tutorial for Data Exploration with R"
 author: "Kota Minegishi"
-date: "Last updated: 2018-06-02"
+date: "Last updated: 2018-06-11"
 # always_allow_html: yes
 output: 
   bookdown::gitbook:
@@ -10,6 +10,7 @@ output:
     config:
       toc: 
         collapse: section
+        toc_depth: 3
         scroll_highlight: yes
         before: |
           <li><a href="./">Piecemeal R</a></li>
@@ -38,6 +39,9 @@ biblio-style: apalike
 link-citations: yes
 github-repo: /kotamine/piecemealR
 description: "This is a R tutorial. "
+# setwd("/Users/kota/Dropbox/R_projects/piecemealR")
+# library(bookdown)
+# bookdown::render_book("index.Rmd", "bookdown::gitbook",  output_dir = "docs", new_session = TRUE, output_options = list(split_by ="section+number"))
 ---
 
 # Welcome {#index}
@@ -71,9 +75,9 @@ __Workshop__
 <!-- 
 __New Contents__
 
-* 2018-06-02: Section \@ref(boot) Action, Romance, and Chicks -->
+* 2018-06-11: Section \@ref(boot) Action, Romance, and Chicks -->
 
-<!-- * 2018-06-02: <span style="color:red">*Test upload. VERY Preliminary!*</span> --?
+<!-- * 2018-06-11: <span style="color:red">*Test upload. VERY Preliminary!*</span> --?
 
 
 

@@ -64,41 +64,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -212,43 +240,44 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><p><code>group_by()</code>: assigns rows into groups within a data frame. We put column names in its arguments.</p></li>
 </ul>
 <p>The very first argument in all these functions is a <strong>data frame</strong>, and by using this we can easily <strong>pipe</strong> a sequence of data wrangling operations through <code>%&gt;%</code> operator. The key is to start with a data frame and then formulate a sequence of data wrangling operations in plain English, which we can translate into code by replacing <strong>then</strong> in the sequence with the <code>%&gt;%</code> operator. Say, we want to find the average of delays in departures and arrivals from New York to the St. Paul-Minneapolis airport (MSP). We can construct the following sequence of instructions: take the flight data frame, apply <code>filter()</code> to extract the rows of flights to MSP, and then apply <code>summarise()</code> to calculate the mean.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># take data frame &quot;flights&quot;, then</span>
-<span class="st">  </span><span class="kw">filter</span>(dest <span class="op">==</span><span class="st"> &quot;MSP&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># filter rows, then  </span>
-<span class="st">  </span><span class="kw">summarise</span>(   
-    <span class="co"># summarise departure and arrival delays for their means </span>
-    <span class="co"># and call them mean_dep_delay and mean_arr_delay respectively</span>
-    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), 
-    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-    )    <span class="co"># calculate the mean, while removing NA values  </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># take data frame &quot;flights&quot;, then</span></a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(dest <span class="op">==</span><span class="st"> &quot;MSP&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># filter rows, then  </span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(   </a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">    <span class="co"># summarise departure and arrival delays for their means </span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">    <span class="co"># and call them mean_dep_delay and mean_arr_delay respectively</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8">    )    <span class="co"># calculate the mean, while removing NA values  </span></a></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   mean_dep_delay mean_arr_delay
 ##            &lt;dbl&gt;          &lt;dbl&gt;
 ## 1       13.32481       7.270169</code></pre>
 <p>In <code>summarise()</code>, one can use <strong>summary functions</strong> that takes a vector as an input and produces a scaler as an output. This includes functions like <code>mean()</code>, <code>sd()</code> (standard deviation), <code>quantile()</code>, <code>min()</code>, <code>max()</code>, and <code>n()</code> (observation count in the <code>dplyr</code> package).</p>
 <p>Each time we apply the <code>%&gt;%</code> operator above, we pass a modified data frame from one data operation to another through the first argument. The above code is equivalent to</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(   <span class="co"># data frame &quot;flights&quot; is inside filter(), which is inside summarise() </span>
-    <span class="kw">filter</span>(flights, dest <span class="op">==</span><span class="st"> &quot;MSP&quot;</span>), 
-    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-    )</code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">summarise</span>(   <span class="co"># data frame &quot;flights&quot; is inside filter(), which is inside summarise() </span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">    <span class="kw">filter</span>(flights, dest <span class="op">==</span><span class="st"> &quot;MSP&quot;</span>), </a>
+<a class="sourceLine" id="cb9-3" data-line-number="3">    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb9-4" data-line-number="4">    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb9-5" data-line-number="5">    )</a></code></pre></div>
 <pre><code>## # A tibble: 1 × 2
 ##   mean_dep_delay mean_arr_delay
 ##            &lt;dbl&gt;          &lt;dbl&gt;
 ## 1       13.32481       7.270169</code></pre>
 <p>You will quickly discover that <code>%&gt;%</code> operator makes the code much easier to read, write, and edit and how that might inspire you want to play with the data more.</p>
 <p>Let’s add a few more lines to the previous example. Say, additionally we want to see the average delay by carrier and sort the results by the number of observations (e.g. flights) in descending order.</p>
-<p>Okay, what do we do? We make <strong>a sequence of data wrangling operations in plain English</strong> and translate that into <strong>code</strong> by replacing <strong>then</strong> with <code>%&gt;%</code> operator. For example, we say, “take the data frame <code>flights</code>; <strong>then</strong> (<code>%&gt;%</code>) <code>filter()</code> to extract the rows of flights to MSP; <strong>then</strong> (<code>%&gt;%</code>) group rows by carrier; <strong>then</strong> (<code>%&gt;%</code>) <code>summarise()</code> data for the number of observations and the means; <strong>then</strong> (<code>%&gt;%</code>) <code>arrange()</code> the results by the observation count in descending order.”</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flight_stats_MSP &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># assign the results to an object named &quot;flight_stats&quot;</span>
-<span class="st">  </span><span class="kw">filter</span>(dest <span class="op">==</span><span class="st"> &quot;MSP&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#  group rows by carrier </span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    <span class="dt">n_obs =</span> <span class="kw">n</span>(),  <span class="co"># count number of rows </span>
-    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-  ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n_obs))  <span class="co"># sort by n_obs in descending order</span>
-
-flight_stats_MSP  <span class="co"># show flight_stats object</span></code></pre></div>
+<p>Okay, what do we do? We make <strong>a sequence of data wrangling operations in plain English</strong> and translate that into <strong>code</strong> by replacing <strong>then</strong> with <code>%&gt;%</code> operator.
+For example, we say, “take the data frame <code>flights</code>; <strong>then</strong> (<code>%&gt;%</code>) <code>filter()</code> to extract the rows of flights to MSP; <strong>then</strong> (<code>%&gt;%</code>) group rows by carrier; <strong>then</strong> (<code>%&gt;%</code>) <code>summarise()</code> data for the number of observations and the means; <strong>then</strong> (<code>%&gt;%</code>) <code>arrange()</code> the results by the observation count in descending order.”</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">flight_stats_MSP &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># assign the results to an object named &quot;flight_stats&quot;</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(dest <span class="op">==</span><span class="st"> &quot;MSP&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span><span class="st">  </span><span class="co">#  group rows by carrier </span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5">    <span class="dt">n_obs =</span> <span class="kw">n</span>(),  <span class="co"># count number of rows </span></a>
+<a class="sourceLine" id="cb11-6" data-line-number="6">    <span class="dt">mean_dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb11-7" data-line-number="7">    <span class="dt">mean_arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb11-8" data-line-number="8">  ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-9" data-line-number="9"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n_obs))  <span class="co"># sort by n_obs in descending order</span></a>
+<a class="sourceLine" id="cb11-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb11-11" data-line-number="11">flight_stats_MSP  <span class="co"># show flight_stats object</span></a></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   carrier n_obs mean_dep_delay mean_arr_delay
 ##     &lt;chr&gt; &lt;int&gt;          &lt;dbl&gt;          &lt;dbl&gt;
@@ -259,10 +288,10 @@ flight_stats_MSP  <span class="co"># show flight_stats object</span></code></pre
 ## 5      OO     4       0.750000      -2.000000
 ## 6      UA     2      -6.000000      -5.500000</code></pre>
 <p>The carrier variable is expressed in the International Air Transportation Association (IATA) code, so let’s add a column of carrier names by joining another data frame called <code>airlines</code>. In RStudio, you can find this data frame under the <strong>Environment</strong> tab (in the upper right corner); switch the display option from <em>Global Environment</em> to <em>package:nycflights13</em>. To inspect the data frame, type <code>View(airlines)</code> in the R console. Also, by typing <code>data()</code> you can see a list of all datasets that are loaded with libraries.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">left_join</span>(flight_stats_MSP, airlines, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># left_join(a,b, by=&quot;var&quot;) joins two data frames a, b by matching rows of b to a </span>
-<span class="st">  </span><span class="co"># by identifier variable &quot;var&quot;.  </span>
-<span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)  <span class="co"># kable() prints a better-looking table here</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">left_join</span>(flight_stats_MSP, airlines, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="co"># left_join(a,b, by=&quot;var&quot;) joins two data frames a, b by matching rows of b to a </span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="co"># by identifier variable &quot;var&quot;.  </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)  <span class="co"># kable() prints a better-looking table here</span></a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -319,14 +348,14 @@ flight_stats_MSP  <span class="co"># show flight_stats object</span></code></pre
 </tbody>
 </table>
 <p>In the next example, we add new variables to <code>flights</code> using <code>mutate()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="co"># keep only columns named &quot;dep_delay&quot; and &quot;arr_delay&quot;</span>
-<span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">gain =</span> arr_delay <span class="op">-</span><span class="st"> </span>dep_delay,
-    <span class="dt">gain_rank =</span> <span class="kw">round</span>(<span class="kw">percent_rank</span>(gain), <span class="dt">digits =</span> <span class="dv">2</span>)
-      <span class="co"># Note: we can immediately use the &quot;gain&quot; variable we just defined. </span>
-  )</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="co"># keep only columns named &quot;dep_delay&quot; and &quot;arr_delay&quot;</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">    <span class="dt">gain =</span> arr_delay <span class="op">-</span><span class="st"> </span>dep_delay,</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">    <span class="dt">gain_rank =</span> <span class="kw">round</span>(<span class="kw">percent_rank</span>(gain), <span class="dt">digits =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">      <span class="co"># Note: we can immediately use the &quot;gain&quot; variable we just defined. </span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">  )</a></code></pre></div>
 <pre><code>## # A tibble: 336,776 × 4
 ##    dep_delay arr_delay  gain gain_rank
 ##        &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
@@ -355,49 +384,49 @@ flight_stats_MSP  <span class="co"># show flight_stats object</span></code></pre
 <p>For a function having only a single expression to execute, we can omit brackets <code>{ }</code>.</p>
 <pre><code>another_function &lt;- function(input args) task_and_output_in_a_single_expression                    </code></pre>
 <p>Let’s go through a few examples.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># generate a sequence from 1 to 10 (by the increment of 1) and name it &quot;vec1&quot;.  </span>
-vec1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
-vec1            </code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># generate a sequence from 1 to 10 (by the increment of 1) and name it &quot;vec1&quot;.  </span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">vec1 &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">vec1            </a></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># c() concatenates </span>
-vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(vec1, <span class="ot">NA</span>, <span class="ot">NA</span>)
-vec2</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># c() concatenates </span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2">vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(vec1, <span class="ot">NA</span>, <span class="ot">NA</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">vec2</a></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 NA NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mean_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x)  <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-  <span class="co"># Input arguments: x </span>
-  <span class="co"># Output: the calculation result of mean(x, na.rm = TRUE). </span>
-  <span class="co"># x is required by mean() (and implicitly assumed to be a vector of numeric values). </span>
-  <span class="co"># mean() is an existing function. The &quot;na.rm&quot; argument of mean() is set to be TRUE.  </span>
-
-<span class="kw">my_mean_1</span>(vec1)</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">my_mean_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x)  <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">  <span class="co"># Input arguments: x </span></a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">  <span class="co"># Output: the calculation result of mean(x, na.rm = TRUE). </span></a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">  <span class="co"># x is required by mean() (and implicitly assumed to be a vector of numeric values). </span></a>
+<a class="sourceLine" id="cb22-5" data-line-number="5">  <span class="co"># mean() is an existing function. The &quot;na.rm&quot; argument of mean() is set to be TRUE.  </span></a>
+<a class="sourceLine" id="cb22-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="kw">my_mean_1</span>(vec1)</a></code></pre></div>
 <pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_mean_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)  <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> na.rm)   
-  <span class="co"># Input arguments: x and na.rm (optional with the default value of TRUE) </span>
-  <span class="co"># Output: the calculation result of mean(x, na.rm = na.rm).</span>
-  <span class="co"># The input argument &quot;na.rm&quot; is passed to the input argument &quot;na.rm&quot; of mean() </span>
-
-<span class="kw">my_mean_2</span>(vec2)</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">my_mean_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)  <span class="kw">mean</span>(x, <span class="dt">na.rm =</span> na.rm)   </a>
+<a class="sourceLine" id="cb24-2" data-line-number="2">  <span class="co"># Input arguments: x and na.rm (optional with the default value of TRUE) </span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3">  <span class="co"># Output: the calculation result of mean(x, na.rm = na.rm).</span></a>
+<a class="sourceLine" id="cb24-4" data-line-number="4">  <span class="co"># The input argument &quot;na.rm&quot; is passed to the input argument &quot;na.rm&quot; of mean() </span></a>
+<a class="sourceLine" id="cb24-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb24-6" data-line-number="6"><span class="kw">my_mean_2</span>(vec2)</a></code></pre></div>
 <pre><code>## [1] 5.5</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_mean_2</span>(vec2, <span class="dt">na.rm=</span><span class="ot">FALSE</span>)  <span class="co"># not removing NA returns NA for the mean calculation.  </span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">my_mean_2</span>(vec2, <span class="dt">na.rm=</span><span class="ot">FALSE</span>)  <span class="co"># not removing NA returns NA for the mean calculation.  </span></a></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_zscore &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">remove_na=</span><span class="ot">TRUE</span>) { 
-  (x <span class="op">-</span><span class="st"> </span><span class="kw">my_mean_2</span>(x, <span class="dt">na.rm =</span> remove_na))<span class="op">/</span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> remove_na)  
-}
-  <span class="co"># Inputs: x and remove_na (optional: default = TRUE)</span>
-  <span class="co"># Output: z-score of vector x</span>
-  <span class="co"># my_mean2() and sd() return scalers but are interpreted </span>
-  <span class="co"># as a vector of repeated valuses that has the same length as x. </span>
-
-<span class="kw">my_zscore</span>(vec1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">my_zscore &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">remove_na=</span><span class="ot">TRUE</span>) { </a>
+<a class="sourceLine" id="cb28-2" data-line-number="2">  (x <span class="op">-</span><span class="st"> </span><span class="kw">my_mean_2</span>(x, <span class="dt">na.rm =</span> remove_na))<span class="op">/</span><span class="kw">sd</span>(x, <span class="dt">na.rm =</span> remove_na)  </a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">  <span class="co"># Inputs: x and remove_na (optional: default = TRUE)</span></a>
+<a class="sourceLine" id="cb28-5" data-line-number="5">  <span class="co"># Output: z-score of vector x</span></a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">  <span class="co"># my_mean2() and sd() return scalers but are interpreted </span></a>
+<a class="sourceLine" id="cb28-7" data-line-number="7">  <span class="co"># as a vector of repeated valuses that has the same length as x. </span></a>
+<a class="sourceLine" id="cb28-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb28-9" data-line-number="9"><span class="kw">my_zscore</span>(vec1) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>)</a></code></pre></div>
 <pre><code>##  [1] -1.49 -1.16 -0.83 -0.50 -0.17  0.17  0.50  0.83  1.16  1.49</code></pre>
 <p>Let’s apply functions<code>my_mean_2()</code> and <code>my_zscore()</code> in <code>summarise()</code> and <code>mutate()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(dep_delay) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    <span class="dt">mean_dep_delay =</span> <span class="kw">my_mean_2</span>(dep_delay),  <span class="co"># using my_mean_2()  </span>
-    <span class="dt">mean_dep_delay_na =</span> <span class="kw">my_mean_2</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>)  <span class="co"># this returns NA</span>
-  ) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(dep_delay) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb30-4" data-line-number="4">    <span class="dt">mean_dep_delay =</span> <span class="kw">my_mean_2</span>(dep_delay),  <span class="co"># using my_mean_2()  </span></a>
+<a class="sourceLine" id="cb30-5" data-line-number="5">    <span class="dt">mean_dep_delay_na =</span> <span class="kw">my_mean_2</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">FALSE</span>)  <span class="co"># this returns NA</span></a>
+<a class="sourceLine" id="cb30-6" data-line-number="6">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-7" data-line-number="7"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -412,16 +441,16 @@ vec2</code></pre></div>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_gain &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">gain =</span> arr_delay <span class="op">-</span><span class="st"> </span>dep_delay,
-    <span class="dt">gain_z =</span> (gain <span class="op">-</span><span class="st"> </span><span class="kw">my_mean_2</span>(gain))<span class="op">/</span><span class="kw">sd</span>(gain, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),  <span class="co"># using my_mean_2()  </span>
-    <span class="dt">gain_z2 =</span> <span class="kw">my_zscore</span>(gain_z)  <span class="co"># using my_zscore()   </span>
-  )
-
-<span class="kw">head</span>(flights_gain) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># show the first several rows</span>
-<span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">flights_gain &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb31-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb31-4" data-line-number="4">    <span class="dt">gain =</span> arr_delay <span class="op">-</span><span class="st"> </span>dep_delay,</a>
+<a class="sourceLine" id="cb31-5" data-line-number="5">    <span class="dt">gain_z =</span> (gain <span class="op">-</span><span class="st"> </span><span class="kw">my_mean_2</span>(gain))<span class="op">/</span><span class="kw">sd</span>(gain, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),  <span class="co"># using my_mean_2()  </span></a>
+<a class="sourceLine" id="cb31-6" data-line-number="6">    <span class="dt">gain_z2 =</span> <span class="kw">my_zscore</span>(gain_z)  <span class="co"># using my_zscore()   </span></a>
+<a class="sourceLine" id="cb31-7" data-line-number="7">  )</a>
+<a class="sourceLine" id="cb31-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb31-9" data-line-number="9"><span class="kw">head</span>(flights_gain) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># show the first several rows</span></a>
+<a class="sourceLine" id="cb31-10" data-line-number="10"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -480,12 +509,12 @@ vec2</code></pre></div>
 <p>Creating a function spares us from writing similar codes in multiple places. While avoiding such repetition is important for making reading and editing code easier, it also reduces coding errors.</p>
 <p>A situation where you may consider using custom functions is inside functions like <code>summarise_each()</code> and <code>mutate_each()</code>. The two functions allow for applying <strong>summary functions</strong> like <code>mean()</code> or <code>sd()</code> to each column in a data frame. <code>summarise_each()</code> and <code>mutate_each()</code> work by <em>calling</em> a function by its name. They are very easy to use when an operation is to summarize a vector into a statistics without needing to specify additional arguments, say <code>mean(var1)</code>. However, providing additional arguments into a function, say <code>mean(var1, na.rm=TRUE)</code>, becomes somewhat cumbersome in terms of its syntax.</p>
 <p>One approach to get around this problem is to pre-process the data frame before getting to a <code>summarise_each()</code> or <code>mutate_each()</code> section. For example, if we want to test the argument <code>na.rm=TRUE</code> to <code>mean()</code>, we can first filter out rows that contain missing values (<code>NA</code>) and then apply <code>summarise_each()</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_gain <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay, gain)  <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(arr_delay)) <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">    </span><span class="co"># filter out rows that have NA values in dep_delay or arr_deplay</span>
-<span class="st">  </span><span class="kw">summarise_each</span>(<span class="st">&quot;mean&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>) </code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">flights_gain <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay, gain)  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(arr_delay)) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb32-4" data-line-number="4"><span class="st">    </span><span class="co"># filter out rows that have NA values in dep_delay or arr_deplay</span></a>
+<a class="sourceLine" id="cb32-5" data-line-number="5"><span class="st">  </span><span class="kw">summarise_each</span>(<span class="st">&quot;mean&quot;</span>) <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb32-6" data-line-number="6"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>) </a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -503,10 +532,10 @@ vec2</code></pre></div>
 </tbody>
 </table>
 <p>The other approach is to use a custom function. For instance, <code>my_mean_2()</code> we defined above has the default argument <code>na.rm=TRUE</code> that gets passed into <code>mean()</code>, effectively overwriting the default argument <code>na.rm=FALSE</code> of <code>mean()</code>. A custom function (as well as any standard summary function) can be called in <code>summarise_each()</code> or <code>mutate_each()</code> using <code>funs()</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_gain <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay, gain) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="st">&quot;my_mean_2&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">flights_gain <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(dep_delay, arr_delay, gain) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise_each</span>(<span class="kw">funs</span>(<span class="st">&quot;my_mean_2&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="st">    </span><span class="kw">kable</span>(<span class="dt">digits=</span><span class="dv">2</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -527,7 +556,8 @@ vec2</code></pre></div>
 </div>
 <div id="arts" class="section level3 unnumbered">
 <h3>Arts</h3>
-<p>Now we will cover the basics of data visualization via the <a href="http://docs.ggplot2.org/current/">ggplot2</a> package. The <code>ggplot2</code> syntax has three essential components for generating graphics: <strong>data</strong>, <strong>aes</strong>, and <strong>geom</strong>. This implements the following philosophy (a quote mentioned in <a href="https://ismayc.github.io/moderndiver-book/4-viz.html">ModernDive</a>);</p>
+<p>Now we will cover the basics of data visualization via the <a href="http://docs.ggplot2.org/current/">ggplot2</a> package.
+The <code>ggplot2</code> syntax has three essential components for generating graphics: <strong>data</strong>, <strong>aes</strong>, and <strong>geom</strong>. This implements the following philosophy (a quote mentioned in <a href="https://ismayc.github.io/moderndiver-book/4-viz.html">ModernDive</a>);</p>
 <blockquote>
 <p>A statistical graphic is a mapping of <strong>data</strong> variables to <strong>aesthetic</strong> attributes of <strong>geometric</strong> objects.<br />
 — <span class="citation">(Wilkinson <a href="#ref-Wilkinson2005">2005</a>)</span></p>
@@ -545,88 +575,90 @@ vec2</code></pre></div>
 <li><p>coord: Cartesian coordinates, polar coordinates, mapping projections etc.</p></li>
 <li><p>facet: laying out multiple plot panels in a grid etc.</p></li>
 </ul>
-<p>In what follows below, we will generate five common types of plots: <strong>scatter-plots</strong>, <strong>line-graphs</strong>, <strong>boxplots</strong>, <strong>histograms</strong>, and <strong>barplots</strong>. To provide a context, let’s use these plots to investigate what may explain patterns of flight departure delays.</p>
+<p>In what follows below, we will generate five common types of plots:
+<strong>scatter-plots</strong>, <strong>line-graphs</strong>, <strong>boxplots</strong>, <strong>histograms</strong>, and <strong>barplots</strong>.
+To provide a context, let’s use these plots to investigate what may explain patterns of flight departure delays.</p>
 <p>First, let’s consider the possibility of congestion at an airport during certain times of the day or certain seasons. We can use <strong>barplots</strong> to see whether there is any obvious pattern in the flight distribution across flight origins (i.e., airports) in New York City with St. Paul-Minneapolis airport (MSP) as a destination. A barplot shows observation counts (e.g., rows) by category.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> flights,  <span class="co"># the first argument is the data frame</span>
-       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> origin)) <span class="op">+</span><span class="st">   </span><span class="co"># the second argument is &quot;mapping&quot;, which is aes()   </span>
-<span class="st">  </span><span class="kw">geom_bar</span>()  <span class="co">#  after &quot;+&quot; piping operator of ggplot(), we add geom_XXX() elements </span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> flights,  <span class="co"># the first argument is the data frame</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> origin)) <span class="op">+</span><span class="st">   </span><span class="co"># the second argument is &quot;mapping&quot;, which is aes()   </span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_bar</span>()  <span class="co">#  after &quot;+&quot; piping operator of ggplot(), we add geom_XXX() elements </span></a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>We can make the plot more informative and aesthetic.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="dt">data =</span> flights, 
-       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> origin, <span class="dt">fill =</span> origin)) <span class="op">+</span><span class="st">  </span><span class="co"># here &quot;fill&quot; gives bars distinct colors </span>
-<span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>hour)  <span class="co">#  &quot;facet_wrap( ~ var)&quot; generates a grid of plots by var </span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> flights, </a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">       <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> origin, <span class="dt">fill =</span> origin)) <span class="op">+</span><span class="st">  </span><span class="co"># here &quot;fill&quot; gives bars distinct colors </span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_bar</span>() <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>( <span class="op">~</span><span class="st"> </span>hour)  <span class="co">#  &quot;facet_wrap( ~ var)&quot; generates a grid of plots by var </span></a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Another way to see the same information is a <strong>histogram</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(hour <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># exclude hour earlier than 5 a.m.</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">fill =</span> origin)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(hour <span class="op">&gt;=</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># exclude hour earlier than 5 a.m.</span></a>
+<a class="sourceLine" id="cb36-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> hour, <span class="dt">fill =</span> origin)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>While mornings and late afternoons tend to get busy, there is not much difference in the number of flights across airports.</p>
 <p>Let’s see if there are distinct patters of departure delays over the course of a year. We do this by taking the average of departure delays for each day by flight origin and plot the data as a time series using <strong>line-graphs</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(origin, year, month, day) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))  <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>)) <span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay))  <span class="co">#  exclude rows with dep_delay == NA </span>
-
-delay_day <span class="op">%&gt;%</span><span class="st">     </span><span class="co"># &quot;facet_grid( var ~ .)&quot; is similar to &quot;facet_wrap( ~ var)&quot; </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> dep_delay)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>( origin <span class="op">~</span><span class="st"> </span>. ) </code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">delay_day &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(origin, year, month, day) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb37-5" data-line-number="5"><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay))  <span class="co">#  exclude rows with dep_delay == NA </span></a>
+<a class="sourceLine" id="cb37-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb37-7" data-line-number="7">delay_day <span class="op">%&gt;%</span><span class="st">     </span><span class="co"># &quot;facet_grid( var ~ .)&quot; is similar to &quot;facet_wrap( ~ var)&quot; </span></a>
+<a class="sourceLine" id="cb37-8" data-line-number="8"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> dep_delay)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>( origin <span class="op">~</span><span class="st"> </span>. ) </a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>The seasonal pattern seems similar across airports, and summer months appear to be busier on average. Across these airports, let’s see how closely these patterns are related to each other by focusing on a few summer months and making an overlap of the three line-graphs (EWR, JFK, and LGA).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="st">&quot;2013-07-01&quot;</span> <span class="op">&lt;=</span><span class="st"> </span>date, <span class="st">&quot;2013-08-31&quot;</span> <span class="op">&gt;=</span><span class="st"> </span>date)  <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> dep_delay, <span class="dt">color =</span> origin)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()  </code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">delay_day <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="st">&quot;2013-07-01&quot;</span> <span class="op">&lt;=</span><span class="st"> </span>date, <span class="st">&quot;2013-08-31&quot;</span> <span class="op">&gt;=</span><span class="st"> </span>date)  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> dep_delay, <span class="dt">color =</span> origin)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>()  </a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>We can see similar patterns of spikes across airports occurring on certain days, indicating a tendency for the three airports to get busy on the same days. Would this mean that the three airports tend to be congested at the same time?</p>
 <p>In the previous figure, there seems to be some cyclical pattern of delays. A good place to start would be comparing delays by day of the week. Here is a function to calculate day of the week for a given date.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">my_dow &lt;-<span class="st"> </span><span class="cf">function</span>(date) {
-  <span class="co"># as.POSIXlt(date)[[&#39;wday&#39;]] returns integers 0, 1, 2, .. 6, for Sun, Mon, ... Sat.  </span>
-  <span class="co"># We extract one item from a vector (Sun, Mon, ..., Sat) by position numbered from 1 to 7. </span>
-  dow &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(date)[[<span class="st">&#39;wday&#39;</span>]] <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
-  <span class="kw">c</span>(<span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>)[dow]  <span class="co"># extract &quot;dow&quot;-th element    </span>
-} 
-  <span class="co"># Input: date in the format as in &quot;2017-01-23&quot;</span>
-  <span class="co"># Output: day of week </span>
-<span class="kw">Sys.Date</span>()  <span class="co"># Sys.Date() returns the current date </span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">my_dow &lt;-<span class="st"> </span><span class="cf">function</span>(date) {</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">  <span class="co"># as.POSIXlt(date)[[&#39;wday&#39;]] returns integers 0, 1, 2, .. 6, for Sun, Mon, ... Sat.  </span></a>
+<a class="sourceLine" id="cb39-3" data-line-number="3">  <span class="co"># We extract one item from a vector (Sun, Mon, ..., Sat) by position numbered from 1 to 7. </span></a>
+<a class="sourceLine" id="cb39-4" data-line-number="4">  dow &lt;-<span class="st"> </span><span class="kw">as.POSIXlt</span>(date)[[<span class="st">&#39;wday&#39;</span>]] <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb39-5" data-line-number="5">  <span class="kw">c</span>(<span class="st">&quot;Sun&quot;</span>, <span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>)[dow]  <span class="co"># extract &quot;dow&quot;-th element    </span></a>
+<a class="sourceLine" id="cb39-6" data-line-number="6">} </a>
+<a class="sourceLine" id="cb39-7" data-line-number="7">  <span class="co"># Input: date in the format as in &quot;2017-01-23&quot;</span></a>
+<a class="sourceLine" id="cb39-8" data-line-number="8">  <span class="co"># Output: day of week </span></a>
+<a class="sourceLine" id="cb39-9" data-line-number="9"><span class="kw">Sys.Date</span>()  <span class="co"># Sys.Date() returns the current date </span></a></code></pre></div>
 <pre><code>## [1] &quot;2017-06-14&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">my_dow</span>(<span class="kw">Sys.Date</span>()) </code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">my_dow</span>(<span class="kw">Sys.Date</span>()) </a></code></pre></div>
 <pre><code>## [1] &quot;Wed&quot;</code></pre>
 <p>Now, let’s take a look at the mean delay by day of the week using <strong>boxplots</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(year, month, day) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))  <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),  
-         <span class="co"># date defined by as.Data() function </span>
-         <span class="dt">wday =</span> <span class="kw">my_dow</span>(date),
-         <span class="dt">weekend =</span> wday <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)  
-         <span class="co"># %in% operator: A %in% B returns TRUE/FALSE for whether each element of A is in B. </span>
-  )
-
-<span class="co"># show the first 10 elements of &quot;wday&quot; variable in &quot;delay_day&quot; data frame </span>
-delay_day<span class="op">$</span>wday[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]  </code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">delay_day &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year, month, day) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),  </a>
+<a class="sourceLine" id="cb43-5" data-line-number="5">         <span class="co"># date defined by as.Data() function </span></a>
+<a class="sourceLine" id="cb43-6" data-line-number="6">         <span class="dt">wday =</span> <span class="kw">my_dow</span>(date),</a>
+<a class="sourceLine" id="cb43-7" data-line-number="7">         <span class="dt">weekend =</span> wday <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)  </a>
+<a class="sourceLine" id="cb43-8" data-line-number="8">         <span class="co"># %in% operator: A %in% B returns TRUE/FALSE for whether each element of A is in B. </span></a>
+<a class="sourceLine" id="cb43-9" data-line-number="9">  )</a>
+<a class="sourceLine" id="cb43-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb43-11" data-line-number="11"><span class="co"># show the first 10 elements of &quot;wday&quot; variable in &quot;delay_day&quot; data frame </span></a>
+<a class="sourceLine" id="cb43-12" data-line-number="12">delay_day<span class="op">$</span>wday[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]  </a></code></pre></div>
 <pre><code>##  [1] &quot;Tue&quot; &quot;Wed&quot; &quot;Thu&quot; &quot;Fri&quot; &quot;Sat&quot; &quot;Sun&quot; &quot;Mon&quot; &quot;Tue&quot; &quot;Wed&quot; &quot;Thu&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day<span class="op">$</span>wday &lt;-<span class="st"> </span><span class="kw">ordered</span>(delay_day<span class="op">$</span>wday, 
-                         <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>))
-                            <span class="co"># adding a sorting order (Mon, Tue, ..., Sun)   </span>
-delay_day<span class="op">$</span>wday[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]  </code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">delay_day<span class="op">$</span>wday &lt;-<span class="st"> </span><span class="kw">ordered</span>(delay_day<span class="op">$</span>wday, </a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">                         <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>))</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3">                            <span class="co"># adding a sorting order (Mon, Tue, ..., Sun)   </span></a>
+<a class="sourceLine" id="cb45-4" data-line-number="4">delay_day<span class="op">$</span>wday[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]  </a></code></pre></div>
 <pre><code>##  [1] Tue Wed Thu Fri Sat Sun Mon Tue Wed Thu
 ## Levels: Mon &lt; Tue &lt; Wed &lt; Thu &lt; Fri &lt; Sat &lt; Sun</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day  <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wday, <span class="dt">y =</span> dep_delay, <span class="dt">fill =</span> weekend)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() </code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">delay_day  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wday, <span class="dt">y =</span> dep_delay, <span class="dt">fill =</span> weekend)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() </a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p>It appears that delays are on average longer on Thursdays and Fridays and shorter on Saturdays. This is plausible if more people are traveling on Thursdays and Fridays before the weekend, and less are traveling on Saturdays to enjoy the weekend. Are Saturdays really less busy? Let’s find out.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_wday &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),  
-         <span class="dt">wday =</span> <span class="kw">ordered</span>(<span class="kw">my_dow</span>(date),
-                        <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)),
-         <span class="dt">weekend =</span> wday <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)  
-  )
-
-flights_wday <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(wday) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>( <span class="dt">nobs =</span> <span class="kw">n</span>() )</code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">flights_wday &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),  </a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">         <span class="dt">wday =</span> <span class="kw">ordered</span>(<span class="kw">my_dow</span>(date),</a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">                        <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Mon&quot;</span>, <span class="st">&quot;Tue&quot;</span>, <span class="st">&quot;Wed&quot;</span>, <span class="st">&quot;Thu&quot;</span>, <span class="st">&quot;Fri&quot;</span>, <span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)),</a>
+<a class="sourceLine" id="cb48-5" data-line-number="5">         <span class="dt">weekend =</span> wday <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Sat&quot;</span>, <span class="st">&quot;Sun&quot;</span>)  </a>
+<a class="sourceLine" id="cb48-6" data-line-number="6">  )</a>
+<a class="sourceLine" id="cb48-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb48-8" data-line-number="8">flights_wday <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-9" data-line-number="9"><span class="st">  </span><span class="kw">group_by</span>(wday) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="st">  </span><span class="kw">summarise</span>( <span class="dt">nobs =</span> <span class="kw">n</span>() )</a></code></pre></div>
 <pre><code>## # A tibble: 7 × 2
 ##    wday  nobs
 ##   &lt;ord&gt; &lt;int&gt;
@@ -637,88 +669,88 @@ flights_wday <span class="op">%&gt;%</span><span class="st"> </span>
 ## 5   Fri 50308
 ## 6   Sat 38720
 ## 7   Sun 46357</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights_wday  <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wday)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() </code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">flights_wday  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wday)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>() </a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>Yes, Saturdays are less busy for the airports in terms of flight numbers.</p>
 <p>Could we generalize this positive relationship between the number of flights and the average delays, which we find across days of the week? To investigate this, we can summarize the data into the average delays by date-hour and see if the busyness of a particular hour of a particular day is correlated with the mean delay. We visualize these data using a <strong>scatter plot</strong>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(year, month, day, hour) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># grouping by date-hour </span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    <span class="dt">n_obs =</span> <span class="kw">n</span>(),
-    <span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-    )  <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),
-         <span class="dt">wday =</span> <span class="kw">my_dow</span>(date)
-  )
-
-plot_delay &lt;-<span class="st"> </span>delay_day_hr  <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> n_obs, <span class="dt">y =</span> dep_delay)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)  
-    <span class="co"># plot of n_obs and the average dep_delay </span>
-    <span class="co"># where each point represents an date-hour average</span>
-    <span class="co"># &quot;alpha = 0.1&quot;  controls the degree of transparency of points </span>
-
-plot_delay </code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">delay_day_hr &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year, month, day, hour) <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># grouping by date-hour </span></a>
+<a class="sourceLine" id="cb51-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb51-4" data-line-number="4">    <span class="dt">n_obs =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb51-5" data-line-number="5">    <span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb51-6" data-line-number="6">    )  <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb51-7" data-line-number="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">date =</span> <span class="kw">as.Date</span>(<span class="kw">paste</span>(year, month, day), <span class="dt">format=</span><span class="st">&quot;%Y %m %d&quot;</span>),</a>
+<a class="sourceLine" id="cb51-8" data-line-number="8">         <span class="dt">wday =</span> <span class="kw">my_dow</span>(date)</a>
+<a class="sourceLine" id="cb51-9" data-line-number="9">  )</a>
+<a class="sourceLine" id="cb51-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb51-11" data-line-number="11">plot_delay &lt;-<span class="st"> </span>delay_day_hr  <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb51-12" data-line-number="12"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb51-13" data-line-number="13"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> n_obs, <span class="dt">y =</span> dep_delay)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)  </a>
+<a class="sourceLine" id="cb51-14" data-line-number="14">    <span class="co"># plot of n_obs and the average dep_delay </span></a>
+<a class="sourceLine" id="cb51-15" data-line-number="15">    <span class="co"># where each point represents an date-hour average</span></a>
+<a class="sourceLine" id="cb51-16" data-line-number="16">    <span class="co"># &quot;alpha = 0.1&quot;  controls the degree of transparency of points </span></a>
+<a class="sourceLine" id="cb51-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb51-18" data-line-number="18">plot_delay </a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>Along the horizontal axis, we can see how the number of flights is distributed across date-hours. Some days are busy, and some hours busier still. It appears that there are two clusters in the number of flights, showing very slow date-hours (e.g., less than 10 flights flying out of New York city per hour) and normal date-hours (e.g., about 50 to 70 flights per hour). We could guess that the delays in the slow hours are caused by bad weather. On the other hand, we may wonder if the excess delays in the normal hours, compared to the slow hours, are caused by congestion at the airports. To see this, let’s fit a curve that captures the relationships between <code>n_obs</code> and <code>dep_delay</code>. Our hypothesis is that the delay would become more likely and longer as the number of flights increases.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_delay  <span class="op">+</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>()   <span class="co">#  geom_smooth() addes a layer of fitted curve(s) </span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">plot_delay  <span class="op">+</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_smooth</span>()   <span class="co">#  geom_smooth() addes a layer of fitted curve(s) </span></a></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>We cannot see any clear pattern. How about fitting a curve by day of the week?</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">plot_delay  <span class="op">+</span>
-<span class="st">     </span><span class="co"># additional aes() argument for applying different colors to the day of the week</span>
-<span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">color =</span> wday), <span class="dt">se=</span><span class="ot">FALSE</span>) </code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">plot_delay  <span class="op">+</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="st">     </span><span class="co"># additional aes() argument for applying different colors to the day of the week</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">color =</span> wday), <span class="dt">se=</span><span class="ot">FALSE</span>) </a></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>Surprisingly, the delay does not seem to increase with the flights. There are more delays on Thursdays and Fridays and less delays on Saturdays, but we see no evidence of flight congestion as a cause of delay.</p>
 <p>Let’s take a closer look at the distribution of the delays. If it is not normally distributed, we may want to apply a transformation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">delay_day_hr <span class="op">%&gt;%</span><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p>The distribution of the average delays are greatly skewed.<br />
 In applying a logarithmic transformation, here we have to shift the variable so that its minimum is greater than zero.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># define new column called &quot;dep_delay_shifted&quot;</span>
-delay_day_hr<span class="op">$</span>dep_delay_shifted &lt;-<span class="st"> </span>delay_day_hr <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">with</span>(dep_delay <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) 
-    <span class="co"># with() function takes a data frame in the first argument and allows for </span>
-    <span class="co"># referencing its variable names. </span>
-
-delay_day_hr <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># removing group_by() attribute</span>
-<span class="st">  </span><span class="kw">select</span>(dep_delay, dep_delay_shifted) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">with</span>(
-    <span class="kw">apply</span>(., <span class="dv">2</span>, summary)
-    <span class="co"># apply(data, num, fun)  applies function &quot;fun&quot; for each item </span>
-    <span class="co"># in dimension &quot;num&quot; (1 = cows, 2= columns) of the data frame    </span>
-    <span class="co"># Data referenced by &quot;.&quot; means all variables of the dataset inside with().   </span>
-    ) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t</span>() <span class="co">#  transpose rows and columns  </span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># define new column called &quot;dep_delay_shifted&quot;</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">delay_day_hr<span class="op">$</span>dep_delay_shifted &lt;-<span class="st"> </span>delay_day_hr <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="st">  </span><span class="kw">with</span>(dep_delay <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span><span class="st"> </span><span class="dv">1</span>) </a>
+<a class="sourceLine" id="cb58-4" data-line-number="4">    <span class="co"># with() function takes a data frame in the first argument and allows for </span></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5">    <span class="co"># referencing its variable names. </span></a>
+<a class="sourceLine" id="cb58-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb58-7" data-line-number="7">delay_day_hr <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb58-8" data-line-number="8"><span class="st">  </span><span class="kw">ungroup</span>() <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># removing group_by() attribute</span></a>
+<a class="sourceLine" id="cb58-9" data-line-number="9"><span class="st">  </span><span class="kw">select</span>(dep_delay, dep_delay_shifted) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb58-10" data-line-number="10"><span class="st">  </span><span class="kw">with</span>(</a>
+<a class="sourceLine" id="cb58-11" data-line-number="11">    <span class="kw">apply</span>(., <span class="dv">2</span>, summary)</a>
+<a class="sourceLine" id="cb58-12" data-line-number="12">    <span class="co"># apply(data, num, fun)  applies function &quot;fun&quot; for each item </span></a>
+<a class="sourceLine" id="cb58-13" data-line-number="13">    <span class="co"># in dimension &quot;num&quot; (1 = cows, 2= columns) of the data frame    </span></a>
+<a class="sourceLine" id="cb58-14" data-line-number="14">    <span class="co"># Data referenced by &quot;.&quot; means all variables of the dataset inside with().   </span></a>
+<a class="sourceLine" id="cb58-15" data-line-number="15">    ) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">t</span>() <span class="co">#  transpose rows and columns  </span></a></code></pre></div>
 <pre><code>##                   Min. 1st Qu. Median  Mean 3rd Qu. Max. NA&#39;s
 ## dep_delay          -18   1.054  6.571 12.99   15.44  269   13
 ## dep_delay_shifted    1  20.050 25.570 31.99   34.44  288   13</code></pre>
 <p>Now the transformed distribution;</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Under the log of 10 transformation, the distribution looks closer to a normal distribution.</span>
-delay_day_hr <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay_shifted)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay_shifted))  <span class="op">+</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="co"># Under the log of 10 transformation, the distribution looks closer to a normal distribution.</span></a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">delay_day_hr <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay_shifted)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay_shifted))  <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>) </a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Alternatively, one can apply the natural logarithm to transform a variable. Histogram shows no difference here.    </span>
-delay_day_hr <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay_shifted)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay_shifted)) <span class="op">+</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log&quot;</span>) <span class="op">+</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="co"># Alternatively, one can apply the natural logarithm to transform a variable. Histogram shows no difference here.    </span></a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">delay_day_hr <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay_shifted)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> dep_delay_shifted)) <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log&quot;</span>) <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>)</a></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
 <p>The transformed distribution is much less skewed than the original. Now, let’s plot the relationship between delays and flights again.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">delay_day_hr  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay_shifted), dep_delay_shifted <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> n_obs, <span class="dt">y =</span> dep_delay_shifted)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st">     </span><span class="co"># using transformation scale_y_log10() </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)  <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_smooth</span>()  </code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">delay_day_hr  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(dep_delay_shifted), dep_delay_shifted <span class="op">&gt;</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> n_obs, <span class="dt">y =</span> dep_delay_shifted)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st">     </span><span class="co"># using transformation scale_y_log10() </span></a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.1</span>)  <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb64-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_smooth</span>()  </a></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;gam&#39;</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>We still do not see a pattern that busier hours have more delays. This seems to suggest that the airports in New York City manage the fluctuating number of flights without causing congestion.</p>
@@ -784,6 +816,7 @@ gitbook.start({
 "download": null,
 "toc": {
 "collapse": "section",
+"toc_depth": 3,
 "scroll_highlight": true
 },
 "code_folding": "show",
@@ -801,7 +834,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

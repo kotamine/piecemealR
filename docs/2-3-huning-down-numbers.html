@@ -64,41 +64,69 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -202,16 +230,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2><span class="header-section-number">2.3</span> Huning down numbers</h2>
 <p>This section is optional but contains more examples of <code>dplyr</code> and <code>ggplot2</code> functions.</p>
 <p>Previously, we find that the congestion at the airports is unlikely the cause of delays. Then, what else may explain the patterns of delays? Are the airlines partly responsible? Recall that earlier we observe that some airlines have longer delays than others for NYC-MSP flights. Let’s take a look at the overall average delays by carrier.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">stat_carrier &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_obs =</span> <span class="kw">n</span>(),
-            <span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),
-            <span class="dt">arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-            ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">left_join</span>(airlines, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n_obs)) 
-
-stat_carrier <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">stat_carrier &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_obs =</span> <span class="kw">n</span>(),</a>
+<a class="sourceLine" id="cb66-4" data-line-number="4">            <span class="dt">dep_delay =</span> <span class="kw">mean</span>(dep_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</a>
+<a class="sourceLine" id="cb66-5" data-line-number="5">            <span class="dt">arr_delay =</span> <span class="kw">mean</span>(arr_delay, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb66-6" data-line-number="6">            ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7"><span class="st">  </span><span class="kw">left_join</span>(airlines, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb66-8" data-line-number="8"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n_obs)) </a>
+<a class="sourceLine" id="cb66-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb66-10" data-line-number="10">stat_carrier <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -340,42 +368,42 @@ stat_carrier <span class="op">%&gt;%</span><span class="st"> </span><span class=
 <p>There could be some differences across carriers. However, the simple average of delays across various routes, days, and hours of flights may not be a good measure to compare the carriers. For example, some carriers may serve the routes and hours that tend to have more delays. Also, given that our dataset covers only the flights from New York City, the comparison may not be nationally representative since carriers use different airports around the country for their regional hubs.</p>
 <p>For our purposes, let’s compare the average air time among carriers, while accounting for flight’s destination and timing. The differences in air time are not the same as the differences in delays, but they may indicate some efficiency difference among carriers.</p>
 <p>Let’s first check how air time relates to flight distance.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">filter</span> (month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, day <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="op">!</span><span class="kw">is.na</span>(air_time)) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> distance, <span class="dt">y =</span> air_time)) <span class="op">+</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>)  <span class="op">+</span><span class="st">  </span>
-<span class="st">  </span><span class="kw">geom_smooth</span>()</code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">flights <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span> (month <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, day <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="op">!</span><span class="kw">is.na</span>(air_time)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> distance, <span class="dt">y =</span> air_time)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>)  <span class="op">+</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb67-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_smooth</span>()</a></code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 <p><code>air_time</code> and <code>distance</code> show a general linear relationship. We can better account for this relationship if we calculate the average air time for each flight destination from New York City.</p>
 <p>First, we will consider a simple approach to control for such average air time for each destination and compare the variation in air time among carriers. We can do this by fitting a linear regression model with fixed destination effects and comparing the residuals. This resembles the ANOVA for comparing the mean air times among carriers, but the fixed destination effects here difference out the average air time for each destination from the total variation.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a copy of flights data</span>
-flights2 &lt;-<span class="st"> </span>flights
-
-<span class="co"># TRUE/FALSE vector showing whther air_time is not NA. </span>
-idx0 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">with</span>(<span class="op">!</span><span class="kw">is.na</span>(air_time))  
-
-flights2<span class="op">$</span>res &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># prepare a column of residuals to be defined below </span>
-
-flights2<span class="op">$</span>res[idx0] &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># replace rows with idx0 = TRUE</span>
-<span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(air_time)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">with</span>( 
-   <span class="kw">lm</span>( air_time <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(dest))  
-        <span class="co"># lm() estimates a linear model. </span>
-        <span class="co"># &quot;y ~ x&quot;&quot; is the formula for regressing y on x. </span>
-        <span class="co"># as.factor() converts &quot;dest&quot; to a factor (categorical) class</span>
-        <span class="co"># which is used as a set of dummy variables in the regression.  </span>
-   ) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">residuals</span>()  <span class="co"># obtains residuals of the lm() object </span>
-
-stat_res &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">summarise</span>(
-    <span class="dt">mean_res =</span> <span class="kw">mean</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="co"># mean residual by carrier </span>
-    <span class="dt">sd_res =</span> <span class="kw">sd</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
-    ) 
-
-<span class="kw">left_join</span>(stat_carrier, stat_res, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="co"># a copy of flights data</span></a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">flights2 &lt;-<span class="st"> </span>flights</a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb69-4" data-line-number="4"><span class="co"># TRUE/FALSE vector showing whther air_time is not NA. </span></a>
+<a class="sourceLine" id="cb69-5" data-line-number="5">idx0 &lt;-<span class="st"> </span>flights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">with</span>(<span class="op">!</span><span class="kw">is.na</span>(air_time))  </a>
+<a class="sourceLine" id="cb69-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb69-7" data-line-number="7">flights2<span class="op">$</span>res &lt;-<span class="st"> </span><span class="ot">NA</span> <span class="co"># prepare a column of residuals to be defined below </span></a>
+<a class="sourceLine" id="cb69-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb69-9" data-line-number="9">flights2<span class="op">$</span>res[idx0] &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st">  </span><span class="co"># replace rows with idx0 = TRUE</span></a>
+<a class="sourceLine" id="cb69-10" data-line-number="10"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(air_time)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-11" data-line-number="11"><span class="st">  </span><span class="kw">with</span>( </a>
+<a class="sourceLine" id="cb69-12" data-line-number="12">   <span class="kw">lm</span>( air_time <span class="op">~</span><span class="st"> </span><span class="kw">as.factor</span>(dest))  </a>
+<a class="sourceLine" id="cb69-13" data-line-number="13">        <span class="co"># lm() estimates a linear model. </span></a>
+<a class="sourceLine" id="cb69-14" data-line-number="14">        <span class="co"># &quot;y ~ x&quot;&quot; is the formula for regressing y on x. </span></a>
+<a class="sourceLine" id="cb69-15" data-line-number="15">        <span class="co"># as.factor() converts &quot;dest&quot; to a factor (categorical) class</span></a>
+<a class="sourceLine" id="cb69-16" data-line-number="16">        <span class="co"># which is used as a set of dummy variables in the regression.  </span></a>
+<a class="sourceLine" id="cb69-17" data-line-number="17">   ) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-18" data-line-number="18"><span class="st">  </span><span class="kw">residuals</span>()  <span class="co"># obtains residuals of the lm() object </span></a>
+<a class="sourceLine" id="cb69-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb69-20" data-line-number="20">stat_res &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-21" data-line-number="21"><span class="st">  </span><span class="kw">group_by</span>(carrier) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb69-22" data-line-number="22"><span class="st">  </span><span class="kw">summarise</span>(</a>
+<a class="sourceLine" id="cb69-23" data-line-number="23">    <span class="dt">mean_res =</span> <span class="kw">mean</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="co"># mean residual by carrier </span></a>
+<a class="sourceLine" id="cb69-24" data-line-number="24">    <span class="dt">sd_res =</span> <span class="kw">sd</span>(res, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb69-25" data-line-number="25">    ) </a>
+<a class="sourceLine" id="cb69-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb69-27" data-line-number="27"><span class="kw">left_join</span>(stat_carrier, stat_res, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -537,13 +565,13 @@ stat_res &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><s
 </table>
 <p>The differences in air time across carriers (“mean_res”) somewhat differ from the patterns of differences in the simple averages of delays (“dep_delay” and “arr_delay”). The patterns are different between “dep_delay” and “arr_delay” for that matter.</p>
 <p>To some extent, it appears to make sense that the average air time is longer for low-cost carriers such as Virgin America, Frontier Airlines, and Hawaiian Airlines. The differences across other carriers, on the other hand, are small, compared to the standard deviations. To get a sense of whether these differences have any statistical significance, let’s use t-test to compare the mean residual between United Airlines and American Airlines.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t-test comparing UA vs AA for the mean air time </span>
-flights2 <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">with</span>({
-    idx_UA &lt;-<span class="st"> </span>carrier <span class="op">==</span><span class="st"> &quot;UA&quot;</span>
-    idx_AA &lt;-<span class="st"> </span>carrier <span class="op">==</span><span class="st"> &quot;AA&quot;</span>
-    <span class="kw">t.test</span>(res[idx_UA], res[idx_AA])
-    })</code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="co"># t-test comparing UA vs AA for the mean air time </span></a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">flights2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="st">  </span><span class="kw">with</span>({</a>
+<a class="sourceLine" id="cb70-4" data-line-number="4">    idx_UA &lt;-<span class="st"> </span>carrier <span class="op">==</span><span class="st"> &quot;UA&quot;</span></a>
+<a class="sourceLine" id="cb70-5" data-line-number="5">    idx_AA &lt;-<span class="st"> </span>carrier <span class="op">==</span><span class="st"> &quot;AA&quot;</span></a>
+<a class="sourceLine" id="cb70-6" data-line-number="6">    <span class="kw">t.test</span>(res[idx_UA], res[idx_AA])</a>
+<a class="sourceLine" id="cb70-7" data-line-number="7">    })</a></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -557,30 +585,30 @@ flights2 <span class="op">%&gt;%</span>
 ## -0.8689523  0.6791852</code></pre>
 <p>With a large number of observations, a seemingly small difference in the means often turns out to be a statistically significant difference. Nonetheless, statistical significance is not sufficient for being an empirically significant difference that matters in the real world. The average difference of about 1.5 minute air time per flight appears very small.</p>
 <p>In fact, we can do this sort of pair-wise comparison all at once using a regression. Using carrier fixed effects in addition to destination fixed effects, we can directly compare the mean effects across carriers. We will set United Airlines to be a reference of the carrier fixed effects, so that the fixed effect for United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2<span class="op">$</span>carrier &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(flights2<span class="op">$</span>carrier), <span class="dt">ref=</span><span class="st">&quot;UA&quot;</span>)  
-<span class="co"># reference level is United Airlines</span>
-flights2<span class="op">$</span>carrier <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">table</span>()</code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">flights2<span class="op">$</span>carrier &lt;-<span class="st"> </span><span class="kw">relevel</span>(<span class="kw">factor</span>(flights2<span class="op">$</span>carrier), <span class="dt">ref=</span><span class="st">&quot;UA&quot;</span>)  </a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="co"># reference level is United Airlines</span></a>
+<a class="sourceLine" id="cb72-3" data-line-number="3">flights2<span class="op">$</span>carrier <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">table</span>()</a></code></pre></div>
 <pre><code>## .
 ##    UA    9E    AA    AS    B6    DL    EV    F9    FL    HA    MQ    OO 
 ## 58665 18460 32729   714 54635 48110 54173   685  3260   342 26397    32 
 ##    US    VX    WN    YV 
 ## 20536  5162 12275   601</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">with</span>({
-    n_carrier &lt;-<span class="st"> </span><span class="kw">unique</span>(carrier) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()
-    n_dest &lt;-<span class="st"> </span><span class="kw">unique</span>(dest) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>() 
-    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;There are&#39;</span>, n_carrier, <span class="st">&#39;distinct carriers and&#39;</span>, 
-                n_dest,<span class="st">&#39;distinct destinations in the data.&#39;</span> ))
-  })</code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">flights2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="st">  </span><span class="kw">with</span>({</a>
+<a class="sourceLine" id="cb74-3" data-line-number="3">    n_carrier &lt;-<span class="st"> </span><span class="kw">unique</span>(carrier) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</a>
+<a class="sourceLine" id="cb74-4" data-line-number="4">    n_dest &lt;-<span class="st"> </span><span class="kw">unique</span>(dest) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>() </a>
+<a class="sourceLine" id="cb74-5" data-line-number="5">    <span class="kw">print</span>(<span class="kw">paste</span>(<span class="st">&#39;There are&#39;</span>, n_carrier, <span class="st">&#39;distinct carriers and&#39;</span>, </a>
+<a class="sourceLine" id="cb74-6" data-line-number="6">                n_dest,<span class="st">&#39;distinct destinations in the data.&#39;</span> ))</a>
+<a class="sourceLine" id="cb74-7" data-line-number="7">  })</a></code></pre></div>
 <pre><code>## [1] &quot;There are 16 distinct carriers and 105 distinct destinations in the data.&quot;</code></pre>
 <p>With 16 carriers and 105 destinations minus 2 reference levels for carriers and destinations, the total of 119 coefficients will be estimated for the fixed effects.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f1 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw">with</span>(
-   <span class="kw">lm</span>( air_time  <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) )  
-    <span class="co"># fixed effects for carriers and destinations</span>
- )
-
-<span class="kw">tidy</span>(f1)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,] <span class="co"># show the first 20 coefficients</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">f1 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="st"> </span><span class="kw">with</span>(</a>
+<a class="sourceLine" id="cb76-3" data-line-number="3">   <span class="kw">lm</span>( air_time  <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) )  </a>
+<a class="sourceLine" id="cb76-4" data-line-number="4">    <span class="co"># fixed effects for carriers and destinations</span></a>
+<a class="sourceLine" id="cb76-5" data-line-number="5"> )</a>
+<a class="sourceLine" id="cb76-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb76-7" data-line-number="7"><span class="kw">tidy</span>(f1)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,] <span class="co"># show the first 20 coefficients</span></a></code></pre></div>
 <pre><code>##                    term     estimate  std.error    statistic       p.value
 ## 1           (Intercept)  247.9884874 0.75069658  330.3445016  0.000000e+00
 ## 2  as.factor(carrier)9E    1.8015498 0.12723996   14.1586788  1.702649e-45
@@ -602,25 +630,25 @@ flights2<span class="op">$</span>carrier <span class="op">%&gt;%</span><span cla
 ## 18   as.factor(dest)ALB -216.6188634 0.95130943 -227.7059972  0.000000e+00
 ## 19   as.factor(dest)ANC  165.1365126 4.26930687   38.6799351  0.000000e+00
 ## 20   as.factor(dest)ATL -136.1282095 0.75641976 -179.9638460  0.000000e+00</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># a function to clean up the coefficient table above  </span>
-clean_lm_rlt &lt;-<span class="st"> </span><span class="cf">function</span>(f) {
-  <span class="co"># keep only rows for which column &quot;term&quot; contains &quot;carrier&quot;  e.g., rows 2 to 16 above</span>
-  rlt &lt;-<span class="st"> </span><span class="kw">tidy</span>(f) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;carrier&quot;</span>,term)) 
-
-  <span class="co"># create column named carrier </span>
-  rlt &lt;-<span class="st"> </span>rlt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">carrier =</span> <span class="kw">gsub</span>(<span class="st">&#39;as.factor</span><span class="ch">\\</span><span class="st">(carrier</span><span class="ch">\\</span><span class="st">)&#39;</span>,<span class="st">&#39;&#39;</span>, term)) 
-
-  <span class="co"># drop column term</span>
-  rlt &lt;-<span class="st"> </span>rlt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>term)
-  
-  <span class="co"># add columns of carrier, name, and n_obs from the stat_carrier data frame</span>
-  stat_carrier <span class="op">%&gt;%</span><span class="st">  </span>
-<span class="st">    </span><span class="kw">select</span>(carrier, name, n_obs) <span class="op">%&gt;%</span>
-<span class="st">    </span><span class="kw">left_join</span>(rlt, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) 
-}
-
-lm_rlt1 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f1)
-lm_rlt1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="co"># a function to clean up the coefficient table above  </span></a>
+<a class="sourceLine" id="cb78-2" data-line-number="2">clean_lm_rlt &lt;-<span class="st"> </span><span class="cf">function</span>(f) {</a>
+<a class="sourceLine" id="cb78-3" data-line-number="3">  <span class="co"># keep only rows for which column &quot;term&quot; contains &quot;carrier&quot;  e.g., rows 2 to 16 above</span></a>
+<a class="sourceLine" id="cb78-4" data-line-number="4">  rlt &lt;-<span class="st"> </span><span class="kw">tidy</span>(f) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;carrier&quot;</span>,term)) </a>
+<a class="sourceLine" id="cb78-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb78-6" data-line-number="6">  <span class="co"># create column named carrier </span></a>
+<a class="sourceLine" id="cb78-7" data-line-number="7">  rlt &lt;-<span class="st"> </span>rlt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">carrier =</span> <span class="kw">gsub</span>(<span class="st">&#39;as.factor</span><span class="ch">\\</span><span class="st">(carrier</span><span class="ch">\\</span><span class="st">)&#39;</span>,<span class="st">&#39;&#39;</span>, term)) </a>
+<a class="sourceLine" id="cb78-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb78-9" data-line-number="9">  <span class="co"># drop column term</span></a>
+<a class="sourceLine" id="cb78-10" data-line-number="10">  rlt &lt;-<span class="st"> </span>rlt <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="op">-</span>term)</a>
+<a class="sourceLine" id="cb78-11" data-line-number="11">  </a>
+<a class="sourceLine" id="cb78-12" data-line-number="12">  <span class="co"># add columns of carrier, name, and n_obs from the stat_carrier data frame</span></a>
+<a class="sourceLine" id="cb78-13" data-line-number="13">  stat_carrier <span class="op">%&gt;%</span><span class="st">  </span></a>
+<a class="sourceLine" id="cb78-14" data-line-number="14"><span class="st">    </span><span class="kw">select</span>(carrier, name, n_obs) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb78-15" data-line-number="15"><span class="st">    </span><span class="kw">left_join</span>(rlt, <span class="dt">by=</span><span class="st">&quot;carrier&quot;</span>) </a>
+<a class="sourceLine" id="cb78-16" data-line-number="16">}</a>
+<a class="sourceLine" id="cb78-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb78-18" data-line-number="18">lm_rlt1 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f1)</a>
+<a class="sourceLine" id="cb78-19" data-line-number="19">lm_rlt1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -782,19 +810,19 @@ lm_rlt1 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
 </table>
 <p>The “estimate” column shows the mean difference in air time with United Airlines, accounting for the flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines.</p>
 <p>Next, let’s take a step further to account for flight timing as well. We can do this by adding fixed effects for flight dates and hours.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">mutate</span>( <span class="dt">date_id =</span> month<span class="op">*</span><span class="dv">100</span> <span class="op">+</span><span class="st"> </span>day )
-
-flights2<span class="op">$</span>date_id <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">flights2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>( <span class="dt">date_id =</span> month<span class="op">*</span><span class="dv">100</span> <span class="op">+</span><span class="st"> </span>day )</a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb79-4" data-line-number="4">flights2<span class="op">$</span>date_id <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()</a></code></pre></div>
 <pre><code>## [1] 365</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw">with</span>(
-   <span class="kw">lm</span>( air_time <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) <span class="op">+</span>
-<span class="st">        </span><span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(date_id) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(hour) )
- )
-
-lm_rlt2 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f2)
-lm_rlt2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1">f2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st"> </span><span class="kw">with</span>(</a>
+<a class="sourceLine" id="cb81-3" data-line-number="3">   <span class="kw">lm</span>( air_time <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) <span class="op">+</span></a>
+<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="st">        </span><span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(date_id) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(hour) )</a>
+<a class="sourceLine" id="cb81-5" data-line-number="5"> )</a>
+<a class="sourceLine" id="cb81-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb81-7" data-line-number="7">lm_rlt2 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f2)</a>
+<a class="sourceLine" id="cb81-8" data-line-number="8">lm_rlt2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>)</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -954,34 +982,34 @@ lm_rlt2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_rlt2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier<span class="op">!=</span><span class="st">&#39;UA&#39;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">lm_rlt2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier<span class="op">!=</span><span class="st">&#39;UA&#39;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines&quot;</span>)</a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
 <p>The results are similar to the previous linear mode except that this time SkyWest Airlines shows much longer air time.</p>
 <p>Before wrapping up, our final model is a check for the robustness of the above results. We would like to replace the date and hour fixed effects in the previous model with date-hour fixed effects (i.e., the interaction between date and hour). We could add such fixed effects using <code>time_hour</code> variable defined above. However, that would mean adding nearly 7,000 dummy variables to our linear regression, which is computationally too intensive.</p>
 <p>To work around this issue, we approximate this estimation by pre-processing the dependent variable. Specifically, we calculate the average air time for each combination of <code>time_hour</code> and <code>dest</code> and define a new dependent variable by subtracting this average value from the original air time variable (i.e., the new variable is centered at zero-mean for each combination of <code>time_hour</code> and <code>dest</code>). Then, we estimate a linear model with carrier and destination fixed effects.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Adding time_hour fixed effects is too computationally intensive 
-<span class="co"># f1 &lt;- flights %&gt;%</span>
-<span class="co">#  with(</span>
-<span class="co">#    lm( air_time  ~  as.factor(carrier) + as.factor(dest) + as.factor(time_hour))   </span>
-<span class="co">#  )</span>
-
-<span class="kw">unique</span>(flights2<span class="op">$</span>time_hour) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()  <span class="co"># 6,936 unique time_hour </span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">## Adding time_hour fixed effects is too computationally intensive </a>
+<a class="sourceLine" id="cb83-2" data-line-number="2"><span class="co"># f1 &lt;- flights %&gt;%</span></a>
+<a class="sourceLine" id="cb83-3" data-line-number="3"><span class="co">#  with(</span></a>
+<a class="sourceLine" id="cb83-4" data-line-number="4"><span class="co">#    lm( air_time  ~  as.factor(carrier) + as.factor(dest) + as.factor(time_hour))   </span></a>
+<a class="sourceLine" id="cb83-5" data-line-number="5"><span class="co">#  )</span></a>
+<a class="sourceLine" id="cb83-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb83-7" data-line-number="7"><span class="kw">unique</span>(flights2<span class="op">$</span>time_hour) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">length</span>()  <span class="co"># 6,936 unique time_hour </span></a></code></pre></div>
 <pre><code>## [1] 6936</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flights2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="kw">group_by</span>(dest, time_hour) <span class="op">%&gt;%</span><span class="st">   </span>
-<span class="st">  </span><span class="kw">mutate</span>(
-    <span class="dt">air_time_centered =</span> air_time <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(air_time, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) 
-  )
-
-f3 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw">with</span>(
-   <span class="kw">lm</span>( air_time_centered  <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) )
- )
-  
-lm_rlt3 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f3)
-lm_rlt3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>) <span class="co"># Note: standard errors, t-stat, and p-val are incorrect</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">flights2 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(dest, time_hour) <span class="op">%&gt;%</span><span class="st">   </span></a>
+<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(</a>
+<a class="sourceLine" id="cb85-4" data-line-number="4">    <span class="dt">air_time_centered =</span> air_time <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(air_time, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) </a>
+<a class="sourceLine" id="cb85-5" data-line-number="5">  )</a>
+<a class="sourceLine" id="cb85-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb85-7" data-line-number="7">f3 &lt;-<span class="st"> </span>flights2 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb85-8" data-line-number="8"><span class="st"> </span><span class="kw">with</span>(</a>
+<a class="sourceLine" id="cb85-9" data-line-number="9">   <span class="kw">lm</span>( air_time_centered  <span class="op">~</span><span class="st">  </span><span class="kw">as.factor</span>(carrier) <span class="op">+</span><span class="st"> </span><span class="kw">as.factor</span>(dest) )</a>
+<a class="sourceLine" id="cb85-10" data-line-number="10"> )</a>
+<a class="sourceLine" id="cb85-11" data-line-number="11">  </a>
+<a class="sourceLine" id="cb85-12" data-line-number="12">lm_rlt3 &lt;-<span class="st"> </span><span class="kw">clean_lm_rlt</span>(f3)</a>
+<a class="sourceLine" id="cb85-13" data-line-number="13">lm_rlt3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>(<span class="dt">digit=</span><span class="dv">2</span>) <span class="co"># Note: standard errors, t-stat, and p-val are incorrect</span></a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1141,9 +1169,9 @@ lm_rlt3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">
 </tr>
 </tbody>
 </table>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lm_rlt3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier<span class="op">!=</span><span class="st">&#39;UA&#39;</span>) <span class="op">%&gt;%</span>
-<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span>
-<span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines: Robustness Check&quot;</span>)</code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">lm_rlt3 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(carrier<span class="op">!=</span><span class="st">&#39;UA&#39;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> carrier, <span class="dt">y =</span> estimate)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_col</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Mean Air Time Compared to United Airlines: Robustness Check&quot;</span>)</a></code></pre></div>
 <p><img src="01-Introduction_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>The point estimates should be <em>approximately</em> close to what we would obtain if we regress <code>air_time</code> on the fixed effects of <code>carrier</code>, <code>dest</code>, and <code>time_hour</code>. However, the standard errors are not correctly displayed in the table because the centered variable has a smaller total variation compared to the original <code>air_time</code> variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)</p>
 <p>Overall, we see again a tendency that lower-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City. Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons.</p>
@@ -1202,6 +1230,7 @@ gitbook.start({
 "download": null,
 "toc": {
 "collapse": "section",
+"toc_depth": 3,
 "scroll_highlight": true
 },
 "code_folding": "show",
@@ -1219,7 +1248,7 @@ gitbook.start({
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    var src = "";
+    var src = "true";
     if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:" && /^https?:/.test(src))
       src = src.replace(/^https?:/, '');

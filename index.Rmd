@@ -10,6 +10,7 @@ output:
     config:
       toc: 
         collapse: section
+        toc_depth: 3
         scroll_highlight: yes
         before: |
           <li><a href="./">Piecemeal R</a></li>
@@ -38,6 +39,9 @@ biblio-style: apalike
 link-citations: yes
 github-repo: /kotamine/piecemealR
 description: "This is a R tutorial. "
+# setwd("/Users/kota/Dropbox/R_projects/piecemealR")
+# library(bookdown)
+# bookdown::render_book("index.Rmd", "bookdown::gitbook",  output_dir = "docs", new_session = TRUE, output_options = list(split_by ="section+number"))
 ---
 
 # Welcome {#index}
