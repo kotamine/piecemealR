@@ -1,6 +1,7 @@
 ---
 title: "Key: dplyr exercise"
 output: html_notebook
+# render("tidy_case_study/04_01_key.Rmd")
 ---
 
 
@@ -14,6 +15,15 @@ library(dplyr)
 library(ggplot2)
 library(xtable)
 load("tidy_case_study.RData")
+
+# force function namespace for key dplyr functions  
+select <- function(...) dplyr::select(...)
+filter <- function(...) dplyr::filter(...)
+arrange <- function(...) dplyr::arrange(...)
+summarise <- function(...) dplyr::summarise(...)
+summarize <- function(...) dplyr::summarise(...)
+mutate <- function(...) dplyr::mutate(...) 
+group_by <- function(...) dplyr::group_by(...) 
 ```
 
 
@@ -22,8 +32,10 @@ load("tidy_case_study.RData")
 
 We use `ggplot() + geom_line()`; 
 ```{r}
-deaths %>%
-  filter(!is.na(hod)) %>%
+deaths2 <- deaths %>%
+  filter(!is.na(hod))
+
+deaths2 %>%
   group_by(hod) %>%
   summarise(nobs = n()) %>%
   ggplot(aes(x = hod, y = nobs)) + geom_line()
@@ -31,8 +43,7 @@ deaths %>%
 
 Add axis labels and comma;  
 ```{r}
-deaths %>%
-  filter(!is.na(hod)) %>%
+deaths2 %>%
   group_by(hod) %>%
   summarise(nobs = n()) %>%
   ggplot(aes(x = hod, y = nobs)) + geom_line() +
@@ -64,10 +75,9 @@ ggsave("overall.png", width = 10, height = 6)
 Create panels (a) and (b) of Table 16;  we group the data by cause of death (`cod`) and hour of day (`hod`), summarize the data for the frequency count, and then join a lookup-table for `cod` descriptions.   
 ```{r}
 # ---- Count deaths per hour, per disease ----
-deaths_cod_hod <- deaths %>%
+deaths_cod_hod <- deaths2 %>%
   group_by(cod, hod) %>%
-  filter(!is.na(hod)) %>%
-  summarise( nobs = n() ) %>%
+  summarise( freq = n() ) %>%
   left_join(codes, by = "cod")
 
 head(deaths_cod_hod)
@@ -77,21 +87,33 @@ Create panel (c); we group the data by `cod` and create a variable for the propo
 ```{r}
 cod_hod_prop <- deaths_cod_hod %>%
   group_by(cod) %>%
-  mutate( prop = nobs / sum(nobs) )
+  mutate( prop = freq / sum(freq) )
+
+# # alternatively 
+# deaths2 %>% group_by(cod) %>% 
+#   mutate(inv_sum_cod = 1/n()) %>% 
+#   group_by(hod, cod) %>% 
+#   summarise(prop=sum(inv_sum_cod))
 
 head(cod_hod_prop)
 ```
 
 
-Create panel (d); we further summarise the data for the overall hourly death rates. In `cod_hod_prop`, we have a frequency of each `cod-hod` pair  (`nobs`), and here we are adding it up across `cod` to obtain the total frequency of deaths for each hour and then converting that into a relative frequency (through dividing it by the grand total of deaths).    
+Create panel (d); we further summarise the data for the overall hourly death rates. In `cod_hod_prop`, we have a frequency of each `cod-hod` pair  (`freq`), and here we are adding it up across `cod` to obtain the total frequency of deaths for each hour and then converting that into a relative frequency (through dividing it by the grand total of deaths).    
 ```{r}
 # ----  Compare to overall abundance ----
 overall_freq <- cod_hod_prop %>%
   # Note: grouping by hod to get the overal trend for each hour
   group_by(hod) %>%
-  summarise( freq_all = sum(nobs) ) %>%
+  summarise( freq_all = sum(freq) ) %>%
   ungroup() %>%
   mutate( prop_all = freq_all/sum(freq_all) )
+
+# # alternatively 
+# deaths2 %>% group_by(hod) %>%
+#   summarise(freq_all=n()) %>% 
+#   ungroup() %>% 
+#   mutate(prop_all = freq/sum(freq_all))
 
 master_hod <- left_join(cod_hod_prop, overall_freq, by = "hod")
 head(master_hod)
@@ -107,7 +129,7 @@ table_C <- master_hod %>%
 table_C %>%
   # MASS package has its own select() function
   # to specify a function from a particular package, use ::
-  dplyr::select(hod, cod, disease, nobs, prop, freq_all, prop_all) %>%
+  dplyr::select(hod, cod, disease, freq, prop, freq_all, prop_all) %>%
   arrange(hod) %>%
   filter(hod %in% c(8, 9, 10, 11), !(hod==11 & cod=="N18"))
 ```
@@ -123,7 +145,7 @@ For each cause of death, we first create an overall frequency count and an avera
 devi_cod <- master_hod %>%
   group_by(cod) %>%
   summarise(
-    n = sum(nobs),
+    n = sum(freq),
     dist = mean((prop - prop_all)^2)
   ) %>%
   filter(n > 50)
@@ -137,7 +159,7 @@ devi_cod %>%
 ggsave("n-dist-raw.png", width = 6, height = 6)
 ```
 
-We can see that the distributions of `n` and `dist` are both highly skewed, for which the logarithmic transformation is often useful. 
+We can see that the distributions of `n` and `dist` are both highly skewed, for which the logarithmic transformation is often useful.  
 ```{r, message=FALSE}
 devi_cod %>%
   ggplot(aes(x = n)) +
@@ -157,9 +179,8 @@ devi_cod %>%
   scale_x_log10() +
   geom_histogram(color='white') 
 ```
+There are a handful of extremely common causes of death, and many relatively rare causes of death.
 
-There are a handful of extremely common causes of death, and many somewhat unusual causes of death. 
-There are several causes of death that deviate a lot from the overall hourly death rate, while many causes of death do not deviate much from it.     
 
 Now plot  `devi_cod` in the logarithmic scale; 
 ```{r, message=FALSE}
@@ -181,7 +202,7 @@ devi_cod %>%
 ggsave("n-dist-log.png", width = 6, height = 6)
 ```
 
-Thus, in the logarithmic scale, we see a pattern that the more common the cause, the smaller the deviation from the overall hourly death rate tends to be. In below we will fit a linear relationship to account for this tendency via regression and define the vertical differences between the observed points and the fitted line (i.e., regression residuals). Then, we will define "unusual" causes of death in terms of particularly large residuals. 
+In the logarithmic scale, we clearly see a pattern that **the more common the cause, the smaller the deviation (dist) tends to be.**  In below we will fit a linear relationship to account for this tendency via regression and define the vertical differences between the observed points and the fitted line (i.e., regression residuals). Then, we will define "unusual" causes of death in terms of particularly large residuals. 
 
 
 
@@ -199,9 +220,7 @@ my_rlm_resid <- function(y, x1) {
 }
 
 devi_cod <- devi_cod %>%
-  mutate(
-    resid = my_rlm_resid(log(dist),log(n))
-    )
+  mutate(resid = my_rlm_resid(log(dist),log(n)))
 
 ### Alternatively, we provide instructions inside a function do() with ".$varname" notations
 # devi_cod$resid <- devi_cod %>%
@@ -215,7 +234,7 @@ devi_cod <- devi_cod %>%
 #   }) %>% unlist()
 ```
 
-Plot the residuals against log(n) with a horizontal line at 1.5.
+Plot the residuals against *log(n)* with a horizontal line at 1.5.
 ```{r}
 devi_cod %>%
   ggplot(aes(x = n, y = resid)) +
@@ -268,5 +287,5 @@ ggsave("unusual-sml.png", width = 8, height = 4)
 ```
 
 
-<a href="../3-1-dplyr.html">Go back</a>
+<a href="../4-1-dplyr.html">Go back</a>
 

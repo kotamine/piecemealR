@@ -1,0 +1,280 @@
+---
+title: "Bootstrapping Exercise"
+output: html_notebook
+# render("bootstrap/RE_boot.Rmd")
+---
+
+<a href="../4-2-boot.html">Earlier</a> we looked at how we could apply bootstrapping to a linear model. We generated bootstrap standard errors for the OLS coefficient estimates. Here we will apply bootstrapping to the models to `ChickWeight` data. 
+
+Let $weight_{ijt}$ be the weight of chick $i$ in Diet group $j$ observed in time $t$.  We will apply bootstrapping to the following models; 
+
+- Model 1: linear time trend $$weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \varepsilon_{ijt}$$ 
+
+- Model 2: linear time trend with Chick fixed effects $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \alpha_i+ \varepsilon_{ijt}$$
+
+- Model 3: linear time trend with Chick random effects $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \:\: v_{ijt} = \alpha_i+ \varepsilon_{ijt}$$
+
+
+Load libraries and data.
+
+```{r, warning=FALSE, message=FALSE}
+    library(dplyr)
+    library(ggplot2)
+    library(broom)
+    library(tidyr)
+    library(mosaic)
+    library(nlme)
+    library(lme4)
+    library(knitr)
+load("movies2.RData")
+```
+
+### Define functions used for bootstrapping linear models 
+
+```{r}
+getFormula <- function(ols, lmer=FALSE) gsub("()","", ifelse(!lmer, ols$call[2], ols@call[2])) 
+
+getDependentVar <- function(ols, lmer=FALSE) {
+  str <- getFormula(ols, lmer=lmer) 
+  gsub(" ","", substr(str, 1, (regexpr("~",str)[1]-1)))　 
+}
+
+
+run_ols_boot <- function(lm_rlt, num_do = 5000) {
+  
+  # calculate the standard deviation of the residuals
+  N <- length(lm_rlt$residuals)
+  sd_res <- (sum(lm_rlt$residuals^2)/lm_rlt$df.residual) %>% sqrt()
+  dep_var <- getDependentVar(lm_rlt)
+
+  do(num_do) * 
+    ({  
+        data_bt <- lm_rlt$model
+        # replace the dependent variable with its bootstrap counterpart
+        data_bt[[dep_var]] <- lm_rlt$fitted.values +    #  the predicted component
+          + rnorm(N, mean = 0, sd = sd_res)     #  random draws from the error distribution 
+         
+        # run the OLS model with the same formula but with a new, bootstrap dataset  
+        ols_bt <- lm(as.formula(getFormula(lm_rlt)), data = data_bt)  
+        coef(ols_bt)  # get coefficients 
+    }) 
+}
+
+```
+
+
+```{r} 
+# function generating a matrix of ones 
+ones <- function(r,c) matrix(c(rep(1,r*c)),nrow=r,ncol=c)
+
+# confidence interval by bootstrapping
+# version 1 
+ci_ver1 <- function(est_bt, alpha = 0.05) {
+  # est_bt: bootstrap estimates with  row = boot replications, col = coefficients 
+  apply(est_bt, 2, function(x) quantile(x, c(alpha/2, 1 - alpha/2))) %>% t() 
+}
+
+# version 2 
+ci_ver2 <- function(est_sample, bt_sd, alpha = 0.05) {
+  # est_semple: sample estimate vector 
+  # bt_sd: bootstrap sd estimates of est_sample-vector  
+  cbind('2.5%' = est_sample - 1.96 * bt_sd, 
+      '97.5%' = est_sample + 1.96 * bt_sd) 
+}
+  
+# bootstrap p-value 
+bt_p_val <- function(est_sample, est_bt) {
+  # est_semple: sample estimate vector 
+  # est_bt: bootstrap estimates with  row = boot replications, col = coefficients 
+  
+  est_bt_long <- est_bt %>% data.frame() %>% gather()  
+  
+  est_bt_long <- est_bt_long %>%
+    mutate(
+        center_var = kronecker(ones(nrow(est_bt),1), matrix(est_sample, nrow=1)) %>% c(),
+        extremes = abs(value - center_var) >= abs(center_var)
+    )
+    
+  p_val <- est_bt_long %>% 
+    group_by(key) %>% 
+    summarise(p_val = sum(extremes)/nrow(est_bt))
+  return(list(p_val=p_val, df_long=est_bt_long))
+}
+
+```
+
+```{r}
+# histogram visualization  
+coeff_bt_histogram <- function(est_sample, est_bt, centering =FALSE) { 
+  # est_semple: sample estimate vector 
+  # est_bt: bootstrap estimates with  row = boot replications, col = coefficients 
+
+  est_bt_long <- bt_p_val(est_sample, est_bt)$df_long
+  
+  if (centering) {
+    est_bt_long <- est_bt_long %>%
+      mutate(
+          key = paste(key, " - center"),
+          value = value - center_var,
+          fill_var = extremes
+      )
+    legend_lab <- "Extremes: | value - center | > | center |"
+    x_lab <- "value - center"
+  } else {
+    est_bt_long <- est_bt_long %>%
+      mutate(
+        sign = kronecker(ones(nrow(est_bt),1), matrix(ifelse(est_sample>0,1,-1), nrow=1)) %>% c(), 
+        fill_var = value * sign <= 0
+      )
+    legend_lab <- "Crossing zero?"
+    x_lab <- "value"
+  }
+  
+  est_bt_long %>% 
+    ggplot(aes(x = value, fill = fill_var)) +
+    geom_histogram(color = "white", bins = 40) + theme(legend.position="bottom") +
+    facet_wrap(~key, scales = "free") + labs(fill = legend_lab, x = x_lab)
+}
+```
+
+
+```{r}
+run_lmer_boot <- function(lmer_rlt, num_do = 5000) {
+  # Randome effects (RE) model bootstrapping (random intercepts, not random slopes) 
+  
+  rlt <- list()
+  rlt$model <- lmer_rlt@pp$X        # model data for the part of fixed coefficients
+  N <- length(residuals(lmer_rlt))
+  
+  rlt$fitted_no_RE <- rlt$model %*% matrix(fixef(lmer_rlt), ncol=1)
+  RE_vals <- lmer_rlt@flist[[1]] %>% unique()  #  RE variable values
+  N_RE <- length(RE_vals)                 # number of RE variable values
+  rlt$RE_idx <- rep(NA, N)
+  for (i in 1:N_RE) rlt$RE_idx[which(lmer_rlt@flist[[1]] == RE_vals[i])] <- i  # index of RE variable values
+ 
+  sd_res <-  sigma(lmer_rlt)        # standard deviation of the residuals
+  sd_RE <-  lmer_rlt@theta * sd_res   # standard deviation of RE
+  dep_var <- getDependentVar(lmer_rlt, lmer=TRUE) 
+
+  do(num_do) * 
+    ({  
+        data_bt <- data.frame(lmer_rlt@frame)
+    
+        # replace the dependent variable with its bootstrap counterpart
+        data_bt[[dep_var]] <- rlt$fitted_no_RE +          # the predicted component by fixed coefficients 
+          + rnorm(N_RE, mean = 0, sd = sd_RE)[rlt$RE_idx] + # random draws of tge RE distribution
+          + rnorm(N, mean = 0, sd = sd_res)               # random draws of the residual distribution
+         
+        # run the RE model with the same formula but with a new, bootstrap dataset  
+        lmer_bt <- lmer(as.formula(getFormula(lmer_rlt, lmer=TRUE)), data = data_bt)  
+        sd_res_bt <-  sigma(lmer_bt)  
+        sd_RE_bt <-  lmer_bt@theta * sd_res_bt
+        c(fixef(lmer_bt), sigma_RE = sd_RE_bt, sigma_res = sd_res_bt)  # get fixed coefficients 
+    }) 
+}
+```
+
+Inside `do(num_do)({...})`, observe the additional random component for the random effects, which is a vector of random intercepts of length = number of random effect variable.  We assign these random draws to individual units.  
+
+
+### Apply bootstrapping to ChickWeight data  {-} 
+
+####  Model 1 {-} 
+
+- Model 1: linear time trend $$weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \varepsilon_{ijt}$$ 
+
+```{r}
+ChickWeight2 <- ChickWeight
+
+# model 1 
+model_1 <- lm( weight ~ Diet*Time - Diet, data = ChickWeight2) 
+
+rlt_model_1_bt <- run_ols_boot(model_1, num_do = 2000)
+
+obs_model_1 <- tidy(model_1)  # summary of the original OLS estimates 
+
+bt_sd_1 <- apply(rlt_model_1_bt, 2, sd) # calculate bootstrap standard errors 
+bt_mode1_1 <- cbind(coeff = obs_model_1$estimate, 
+                 sd = bt_sd_1, 
+                 tstat = obs_model_1$estimate/bt_sd_1) 
+
+# OLS estimate with statistical inferences by statistic theory
+obs_model_1
+
+# OLS estimate with statistical inferences by bootstrapping
+bt_mode1_1 
+
+
+ci_ver1(rlt_model_1_bt)
+ci_ver2(obs_model_1$estimate, bt_sd_1, model_1$df.residual)
+bt_p_val(obs_model_1$estimate, rlt_model_1_bt)$p_val 
+
+# histogram
+coeff_bt_histogram(obs_model_1$estimate, rlt_model_1_bt, centering=FALSE)
+```
+
+####  Model 2 {-} 
+
+- Model 2: linear time trend with Chick fixed effects $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \alpha_i+ \varepsilon_{ijt}$$
+
+```{r}
+# model 2 
+model_2 <- lm( weight ~ Diet*Time - Diet + Chick, data = ChickWeight2) 
+rlt_model_2_bt <- run_ols_boot(model_2, num_do = 2000)
+
+obs_model_2 <- tidy(model_2)  # summary of the original OLS estimates 
+
+bt_sd_2 <- apply(rlt_model_2_bt, 2, sd) # calculate bootstrap standard errors 
+bt_mode1_2 <- cbind(coeff = obs_model_2$estimate, 
+                 sd = bt_sd_2, 
+                 tstat = obs_model_2$estimate/bt_sd_2) 
+
+# OLS estimate with statistical inferences by statistic theory
+obs_model_2
+
+# OLS estimate with statistical inferences by bootstrapping
+bt_mode1_2
+
+ci_ver1(rlt_model_2_bt)
+ci_ver2(obs_model_2$estimate, bt_sd_2, model_2$df.residual)
+bt_p_val(obs_model_2$estimate, rlt_model_2_bt)$p_val 
+
+obs_model_2_time <- obs_model_2 %>% filter(grepl("Intercept", term) | grepl("Time", term)) 
+obs_model_2_chick <- obs_model_2 %>% filter(grepl("Chick", term)) 
+rlt_model_2_bt_time <- rlt_model_2_bt %>% dplyr::select(contains("Intercept"), contains("Time")) 
+rlt_model_2_bt_chick <- rlt_model_2_bt %>% dplyr::select(contains("Chick")) 
+
+coeff_bt_histogram(obs_model_2_time$estimate, rlt_model_2_bt_time, centering=FALSE)
+coeff_bt_histogram(obs_model_2_chick$estimate[1:6], rlt_model_2_bt_chick[,1:6], centering=FALSE)
+```
+
+####  Model 3 {-} 
+
+- Model 3: linear time trend with Chick random effects $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \:\: v_{ijt} = \alpha_i+ \varepsilon_{ijt}$$
+
+```{r}
+# model 3
+model_3 <- lmer( weight ~ Diet*Time - Diet + (1 | Chick), data = ChickWeight2) 
+rlt_model_3_bt <- run_lmer_boot(model_3, num_do = 2000)
+
+obs_model_3 <- tidy(model_3)  # summary of the original lmer estimates 
+
+bt_sd_3 <- apply(rlt_model_3_bt, 2, sd) # calculate bootstrap standard errors 
+bt_mode1_3 <- cbind(coeff = obs_model_3$estimate, 
+                 sd = bt_sd_3, 
+                 tstat = obs_model_3$estimate/bt_sd_3) 
+ 
+# random model estimate with statistical inferences by statistic theory (default)
+obs_model_3
+
+# random model estimate with statistical inferences by bootstrapping
+bt_mode1_3
+
+ci_ver1(rlt_model_3_bt)
+ci_ver2(obs_model_3$estimate, bt_sd_3, (nrow(ChickWeight2) - nrow(obs_model_3)))
+bt_p_val(obs_model_3$estimate, rlt_model_3_bt)$p_val 
+coeff_bt_histogram(obs_model_3$estimate, rlt_model_3_bt, centering=FALSE)
+```
+
+
+<a href="../4-2-boot.html">Go back</a>

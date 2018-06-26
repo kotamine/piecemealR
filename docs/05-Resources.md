@@ -68,6 +68,9 @@ __Introduction to Coding__
 * [Coding Resources for Beginners by Tori Dykes](http://toridykes.com/blog/2015/10/25/coding-resources-for-beginners#.WMf84xCNooE)
 
 
+__Introduction to Shiny__ 
+
+* [Excel Tools to Shiny](https://kotamine.github.io/excel_shiny/) (the author's Shiny tutorial)
 
 <!-- 
 Many More
@@ -182,4 +185,4 @@ http://tutorials.iq.harvard.edu/R/Rstatistics/Rstatistics.html#orgheadline6
 [A quick and easy function to plot lm() results with ggplot2 in R | Susan E Johnston](https://susanejohnston.wordpress.com/2012/08/09/a-quick-and-easy-function-to-plot-lm-results-in-r/)
 
 
--- >
+-->

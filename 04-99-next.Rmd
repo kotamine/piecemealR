@@ -1,7 +1,0 @@
-## Upcoming topics {#next}
-
-* ~~Statistical inferences with simulations~~
-
-* Linear regressions
-
-

@@ -2,20 +2,18 @@
 ## Unusual Deaths in Mexico {#dplyr}
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache=TRUE, 
+                      warnings=FALSE, 
+                      messages=FALSE)
 knitr::opts_chunk$set(cache.path="../piecemealR_cache/04-tidy-dplyr_cache/")
 ```
 
 ```{r, echo=FALSE}
-suppressWarnings({
-  suppressMessages({
-    library(dplyr)
-    library(ggplot2)
-    library(knitr)
-    library(DT)
-    library(webshot)
-  })  
-})
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(DT)
+library(webshot)
 
 load(file="tidy_case_study/tidy_case_study.RData")
 deaths08 <- deaths %>% filter(yod == 2008, mod != 0, dod != 0, !is.na(hod))
@@ -27,7 +25,7 @@ colnames(deaths08b) <- c("Year of Death (yod)", "Month of Death (mod)",
 ### Materials {-}
 This is a practice session of [dplyr](http://docs.ggplot2.org/current/) and [ggplot2](http://docs.ggplot2.org/current/) using [a case study](http://vita.had.co.nz/papers/tidy-data.html) related to [tidyr](https://www.r-bloggers.com/data-manipulation-with-tidyr/) package.
 
-The case is about investigating the causes of death in Mexico that have unusual temporal patterns within a day.  The data on mortalities in 2008 have the following pattern by hour;    
+The case is about investigating the causes of death in Mexico that have unusual temporal patterns within a day.  The data on mortality in 2008 have the following pattern by hour;    
 
 
 ```{r, echo=FALSE, fig.cap = 'Temporal pattern of all causes of death', out.width="90%", fig.asp=.75, fig.align='center'}
@@ -36,7 +34,7 @@ include_graphics("tidy_case_study/overall.png")
 
 Do you find anything unusual or unexpected? The figure shows several peaks within a day, indicating some increased risk of death during certain times of the day. What could generate these patterns? 
 
-Wickham, the author, finds; 
+Wickham, the author of the case study, finds; 
 
 > The causes of [unusual] death fall into three main groups: murder, drowning, and transportation related. Murder is more common at night, drowning in the afternoon, and transportation related deaths during commute times [@Wickham2014]. 
 
@@ -46,7 +44,10 @@ include_graphics("tidy_case_study/unusual-big.png")
 ```
 
 
-We will use two datasets: `deaths` containing the timing and coded causes of deaths and `codes` containing the look-up table for the coded causes. 
+We will use two datasets: 
+
+  - `deaths` containing the timing and coded causes of deaths 
+  - `codes` containing the look-up table for the coded causes. 
 
 <!--
 # ```{r, echo=FALSE} 
@@ -97,7 +98,7 @@ The six important functions in `dplyr` are:
 * `group_by()`: assigns rows into groups within a data frame. We put column names in its arguments.  
 
 
-We use piping operator `%>%` (read as *then*) to translate a sentence of sequential instructions. For example, take dataset `deaths08`, `%>%` (*then*) group the data by month of death, and `%>%` (*then*) summarize the grouped data for the number of observations.   
+We use piping operator `%>%` (read as **then**) to translate a sentence of sequential instructions. For example, start with dataset `deaths08`, **then** group the data by month of death, and **then** summarize the grouped data for the number of observations.   
 
 ```{r} 
 deaths08 %>% 
@@ -116,15 +117,17 @@ The graphics with `ggplot2`  consist of three components:
 * **aes**:  specifications for x-y variables, as well as variables to differentiate **geom** objects by color, shape, or size. e.g., `aes(x = var_x, y = var_y, shape = var_z)` 
  
 
-We specify **data** and **aes** in `ggplot()` and then add **geom** objects followed by `+` symbol (read as *add a layer of*);  e.g., `ggplot(data = dataset, mapping = aes(x = ...)) + geom_point()`. The order of layers added by `+` symbol is generally interchangeable. 
+We specify **data** and **aes** in `ggplot()` and then add **geom** objects followed by `+` symbol (read as **add a layer of**);  e.g., `ggplot(data = dataset, mapping = aes(x = ...)) + geom_point()`. The order of layers added by `+` symbol is mostly interchangeable. 
 
-Combined with `%>%` operator, we can think of the code as a sentence. For example, take dataset `deaths08`, `%>%` (*then*) plot with `gglpot()` with `aes()` featuring hour of day on the x-axis, `+` (*and add a player of*) geom object `geom_histogram()`.       
+Combined with `%>%` operator, we can think of the code as a sentence. For example, consider a histogram of the line-graph for the total number of deaths above. 
+We can formulate the following sequence of steps; "start with dataset `deaths08`, **then** plot data via `gglpot()` where `aes()` features hour of day on the x-axis **and add a player of** geom object `geom_histogram()`."       
 
 ```{r}
-#  a histogram version of the line-graph for the total number of deaths above
 deaths08 %>% 
   ggplot(aes(x = hod)) + geom_histogram(binwidth = 1, color = "white") 
 ```
+
+Here are a few more examples. 
 
 ```{r}  
 # a summary by month of day and hour of day.
@@ -152,19 +155,50 @@ Now it is your turn. The exercise is to reproduce the above results for the unus
 
 3. Load libraries: `library(dplyr)`, `library(ggplot2)`, `library(MASS)` (used for fitting data by robust regression)
 
-* Note 1: There is a minor error in the case study where the author accidentally kept several records of data from years other than 2008. This has virtually no effect on the results, and we are seeking to produce the same results as that case study.     
+* Note 1: There is a minor error in the case study where the author accidentally kept several records of data from years other than 2008. This has virtually no effect on the results, and we are seeking to reproduce the same results as in the case study.     
 
-* Note 2: You could look at the code in the paper for hints. However, the code is written with the functions of [plyr](https://cran.r-project.org/web/packages/plyr/index.html) package, or the predecessor of `dplyr`. Do not load both `plyr` and `dplyr` libraries in the same R session; they do not seem to have good compatibility. Restart R if you accidentally loaded both.  
+* Note 2: You could look at the code in the paper for hints. However, the code is written with the functions of [plyr](https://cran.r-project.org/web/packages/plyr/index.html) package, which is sort of like a predecessor of `dplyr`. 
+
+Speaking of `plyr`, when loaded together, `plyr` and `dplyr` can cause namespace issues (having the same function names from different packages!). `plyr` namespace is automatically loaded with `ggplot2`. If you type `?summarise` and `?arrange` you will see that these functions are loaded from the two packages. 
+
+This problem is not uncommon in R, as notified upon loading packages by the warnings about masked functions. To call a function from a specific package, use double-colon operator (e.g., `dplyr::summarise()`). The reference before `::` is called **namespace**, and you can find out all namespaces loaded in the current session; 
+```{r}
+ loadedNamespaces()
+```
+
+<!-- get('summarise',  pos = "package:plyr") -->
+<!-- get('summarise',  pos = "package:dplyr") -->
+
+
+For example, the following commands produce different results; 
+```{r}
+mtcars  %>% group_by(cyl) %>% dplyr::summarise(avgwt = mean(wt))
+mtcars  %>% group_by(cyl) %>% plyr::summarise(avgwt = mean(wt))
+```
+
+One way to ensure that we refer to `dplyr` functions, we can overwrite function names and pass the arguments; 
+```{r}
+# force function namespace for key dplyr functions  
+select <- function(...) dplyr::select(...)
+filter <- function(...) dplyr::filter(...)
+arrange <- function(...) dplyr::arrange(...)
+summarise <- function(...) dplyr::summarise(...)
+summarize <- function(...) dplyr::summarise(...)
+mutate <- function(...) dplyr::mutate(...) 
+group_by <- function(...) dplyr::group_by(...) 
+```
+
+
 
 #### Part A. Display overall hourly deaths {-}
 
-We will reproduce:
+We will reproduce the following plot:
 
 <img src="tidy_case_study/overall.png" width="100%">
 
 Hints:
 
-* Filter `NA` in the hour of day (hod) variable
+* Filter `NA` in the hour of day (hod) variable and define a new dataset
 
 * Use `group_by()`,  `summarise()`, `n()` to obtain death counts by group
 
@@ -178,7 +212,7 @@ Hints:
 
 #### Part B. Count deaths per hour, per disease {-}
 
-We will reproduce: 
+We will reproduce the following table: 
 
 ```{r, echo=FALSE, out.width="90%", fig.asp=.75, fig.align='center'}
 include_graphics("tidy_case_study/table16.png") 
@@ -189,9 +223,10 @@ include_graphics("tidy_case_study/table16.png")
 </figure>
 -->
 
-Panel (a) of the table contains the frequency (i.e. the number of rows) for each combination of hour of day (hod) and cause of death (cod), supplemented by the disease description in panel (b). Panel (c) shows the proportion (prop) of each hod-cod combination in the total deaths by the cod. Panel (d) contains the frequency and proportion (freq_all and prop_all) of the deaths by hour of day.  
+The table shows the first 15 rows of a transformed dataset. Panel (a) shows a frequency  (i.e. the number of rows) for each combination of hour of day (hod) and cause of death (cod), supplemented by the disease description in panel (b).  Panel (c) shows the proportion (prop) of these combinations within the cause of death; which likely a given cause of death is observed across hours of the day? Panel (d) presents the overall hourly death counts and rates (freq_all and prop_all); if every hour has the same probability of death, we would see prop_all $\approx$ 0.042 (i.e., 1/24). 
 
-That is, panel (a) is the raw counts (e.g., frequency) of observations by **each pair** of hour of day (hod) and cause of death (cod), and panel (b) makes it easy to see the cause of death (cod). Panel (c) converts this frequency of *hod-cod pair* into the relative frequency within the total frequency of **cod**, so that we see at which **hour** a disproportionately large number of deaths occurs for  **cod**. Panel (d), on the other hand, presents the overall hourly death rates; if every hour has the same probability of death, we would see prop_all $\approx$ 0.042 (i.e., 1/24). Here, we see the author's idea of identifying "unusual deaths" by looking at how "prop" of each **hod-cod pairs** deviates from "prop_all" (see figure \@ref(fig:unusual-big)).  
+Here, we see the author's idea of identifying "unusual deaths" by looking at how "prop" of each **hod-cod pairs** deviates from "prop_all" (see figure \@ref(fig:unusual-big)). 
+What would this comparison mean?  Intuitively, we can think of "prop_all" as the **normal death rate in a given hour**. The key here is to recognize how the author defines **unusual deaths**. Clearly,  there are a small set of common causes of death and a large set of many rare (and obscure) causes of death. The causes of death that are simply rare are not particularly interesting to examine. Here, the author defines  **unusual deaths** as the deaths occurred in unusual hours of the day and examines the associated causes. The variable "prop" describes how each cause of death appears each hour of the day as its total proportion of deaths by that cause.   
 
 
 Hints for creating panel (a) 
@@ -206,19 +241,19 @@ Hints for creating panel (b)
 
 Hints for creating panel (c)
 
-* Use `mutate()` with `sum()` on the joined dataset 
+* Use `mutate()` with `sum()` on the joined dataset above
 
 Hints for creating panel (d) 
 
-* Create a new data frame by using `summarise()` on the joined and mutated data frame. `summarise()` will reduce the dimension of the data frame to its summary, which is the basis of panel (d). Once the desired summary is created, merge it to the data frame of panels (a)-(c).
+* Create a new data frame by using `summarise()` on the joined and mutated data frame above. `summarise()` will reduce the dimension of the data frame to its summary, which is the basis of panel (d). Once the desired summary is created, merge it to the data frame of panels (a)-(c).
 
 * Before using `summarise()` above, use `group_by()` to specify new grouping
 
-* First create `freq_all` variable via `summarise()` with `n()` and then create `prop_all` variable via `mutate()` with `sum()` (call this data frame `overall_freq`, which will be used again at the very end)  
+* First create `freq_all` variable via `summarise()` with `n()`, use `ungroup()`, then create `prop_all` variable via `mutate()` with `sum()`. Call this data frame `overall_freq`, which will be used again at the very end.   
 
 * Use `left_join()` to join panels (a)-(c) and panel (d) (`overall_freq`), which we refer to as `master_hod` data frame.  
 
-Hints for extracting the same rows as in the Table 16 above 
+Hints for displaying the same rows as in the Table 16 above 
 
 * Create a subset of the `master_hod` data under a new name 
 
@@ -229,11 +264,16 @@ Hints for extracting the same rows as in the Table 16 above
 
 #### Part C. Find outliers {-}
 
-We will reproduce: 
+We will reproduce the following plots: 
 
 
-<img src="tidy_case_study/n-dist-raw.png" width="50%" align="left">
-<img src="tidy_case_study/n-dist-log.png" width="50%" align="left">
+```{r, echo=FALSE, fig.cap = 'Figure 2: (a) Plot of n vs deviation. Variability of deviation is dominated by sample size: small samples have large variability. (b) Log-log plot makes it easy to see the pattern of variation as well as unusually high values. The blue line is a robust line of best fit.', out.width="100%", fig.asp=.75}
+
+include_graphics("tidy_case_study/n-dist-raw-log.png") 
+```
+
+<!-- <img src="tidy_case_study/n-dist-raw.png" width="50%" align="left"> -->
+<!-- <img src="tidy_case_study/n-dist-log.png" width="50%" align="left"> -->
 
 <!--
 ```{r, echo=FALSE, out.width="50%", fig.asp=.75, fig.align='center'}
@@ -242,9 +282,9 @@ include_graphics("tidy_case_study/n-dist-log.png")
 ```
 -->
 
-We will create a deviation variable named `dist` by taking the mean of squared differences between `prop` and `prop_all`. The above figures show the the number of observations `n` and this distance measure `dist` by cause of death in the raw scale (left) and in the log scale (right).     
+We will create a deviation variable named *dist* by taking the mean of squared differences between *prop* and *prop_all*. The above figures show the the number of deaths *n* by each cause of death and this distance measure *dist* in the raw-data scale (left) and in the log scale (right).       
 
-This is the author's linear model that describes how each cause of death tends to exhibit a similar pattern of hourly death rates with the overall pattern.  Once the model is defined, we can define "outliers", which do not follow the model's prediction. 
+The author's intuition is that we may observe a pattern that **the more common the cause, the smaller the deviation (dist) tends to be.**  The author uses a linear model to account for such a relationship between the variability and sample size in the logarithmic scale. Once the model is defined and estimated, we can identify "outliers" that deviate largely from its prediction. Those outliers then become the candidates for usual deaths. 
 
 Hints
 
@@ -260,24 +300,24 @@ Hints
 
 * Technically speaking, we should change the axis labels to indicate the logarithmic transformation, but we skip it here.  
 
-* Let's not worry about  reproducing the exact grids as they appear in the paper
+* Let's not worry about reproducing the exact grids as they appear in the paper
 
 
 
 #### Part D. Fit data by a regression and plot residuals {-}
 
-We will reproduce:
+We will reproduce the following plot:
 
 <!--
 <figure>
 <img src="tidy_case_study/n-dist-resid.png" width="500">
 </figure>
 --> 
-```{r, echo=FALSE, out.width="50%", fig.asp=.75, fig.align='center'}
+```{r, echo=FALSE, out.width="50%", fig.asp=.75, fig.align='center', fig.cap ='Figure 3: Residuals from a robust linear model predicting log(dist) by log(n). Horizontal line at 1.5 shows threshold for further exploration.'} 
 include_graphics("tidy_case_study/n-dist-resid.png")
 ```
 
-The figure is a plot of the regression residuals `resid` of `log(dist)` on `log(n)`. By visual inspection, the points lying above the horizontal line at `resid=1.5` are considered to be "unusual causes of deaths" by the author.
+The figure is a plot of the regression residuals *resid* of *log(dist)* on *log(n)*. By visual inspection, the points lying above the horizontal line at *resid=1.5* are considered to be "unusual causes of deaths" by the author.
 
 Here the author used the robust linear model (`rlm()`) regression, but the syntax is mostly the same as that of the standard linear model regression (`lm()` ).  
 
@@ -302,7 +342,7 @@ The model is estimated by `lm()` as follows;
 f1 <- lm(formula = y1 ~ x1,  data = df) 
 ```
 
-Now let's see what we get out of the estimation results `f1`. 
+Let's see what we get out of the estimation results `f1`. 
 
 ```{r}
 class(f1)    # class "lm"
@@ -313,7 +353,7 @@ predict(f1)       # predicted (fitted) values with the estimated coefficients
 resid(f1)         # residuals:  
 ```
 
-Now let's get back to our exercise and reproduce the figure above. 
+Let's get back to our exercise and reproduce the figure above. 
 
 Hints 
 
@@ -321,7 +361,7 @@ Hints
 
 * Plot the residual against log-scale `n` 
 
-* Note: Check the dataset `devi_cod` for missing values of `dist` and `n` before running a regression (you should not have missing values in this case).  Most regression functions, including `lm()` and `rlm()`, drop any row with missing values from the estimation. This becomes an issue if we want to add a new column containing predicted values or residuals to the original dataset. (When rows containing missing values are dropped, the vector generated by `predict()` or  `resid()` will be shorter than the number of rows in the original dataset.)      
+* Note: Check the dataset `devi_cod` for missing values of `dist` and `n` before running a regression (you should not have missing values in this case).  Most regression functions, including `lm()` and `rlm()`, drop any row with missing values. This becomes an issue if we want to add a new column containing predicted values or residuals to the original dataset. (When rows containing missing values are dropped, the vector generated by `predict()` or  `resid()` will be shorter than the number of rows in the original dataset.)      
 
 * Use `ggplot() + geom_point()` structure for the plot
 
@@ -331,7 +371,7 @@ Hints
 
 #### Part E. Visualize unusual causes of death {-}
 
-We will reproduce:
+We will reproduce the following plots:
 
 ```{r, echo=FALSE, out.width="100%", fig.asp=.75, fig.align='center'}
 include_graphics("tidy_case_study/unusual-big.png")
@@ -377,7 +417,7 @@ Let's recap. The author (Wickham) investigates the temporal pattern of death in 
 
 * A. Visualize the overall hourly frequency of death within a day 
 
-* B. Construct variables to compare the relative frequency of death per hour per cause with the overall hourly death rate
+* B. Construct variables to compare the proportion of death for each hour per cause against the overall proportion of hourly death
 
 * C. Plot the data to identify a general relationship among key variables 
 
@@ -385,10 +425,11 @@ Let's recap. The author (Wickham) investigates the temporal pattern of death in 
 
 * E. Visualize the temporal pattern of the "unusual" cases, or the causes of death that have relatively large residuals  
 
-In a typical application, it will be unlikely that these steps can be followed in order. Most likely, we will have to go back and forth between these steps to define variables, visualize data, and refine a model till we reach the final results. Also, the purpose of creating a model may vary from making predictions to identifying certain parameters or outliers. However, the thought process and techniques in the above exercise will be applicable to many situations of data analysis.               
+
+While these steps may not serve as a template for your data analysis, the thought process and techniques in the above exercise will be applicable to various situations. 
 
 
-Just in case you need to see more examples, here are additional `dplyr` and `ggplot2` tutorials.  
+In case you need to see more examples, here are additional `dplyr` and `ggplot2` tutorials.  
 
 * [R for data science](http://r4ds.had.co.nz/visualize.html)
 

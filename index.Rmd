@@ -1,16 +1,18 @@
 --- 
 title: "Piecemeal R"
 subtitle: "Tutorial for Data Exploration with R"
-author: "Kota Minegishi"
+# author: "Kota Minegishi"
 date: "Last updated: `r Sys.Date()`"
 # always_allow_html: yes
 output: 
   bookdown::gitbook:
+    split_by: section+number
     css: style.css
     config:
       toc: 
-        collapse: section
+        toc: true
         toc_depth: 3
+        collapse: subsection
         scroll_highlight: yes
         before: |
           <li><a href="./">Piecemeal R</a></li>
@@ -18,7 +20,7 @@ output:
           <li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
       edit: https://github.com/kotamine/piecemealR/edit/master/%s
       code_folding: show
-      highlight: tango
+      highlight: zenburn
       toolbar:
         position: fixed
       download: null
@@ -46,25 +48,26 @@ description: "This is a R tutorial. "
 
 # Welcome {#index}
 
-Welcome to a tutorial website for data analysis and visualization with [R](https://www.r-project.org/). This site provides a quick overview and topic-based tutorials in a piecemeal fashion. 
+Welcome to a tutorial website for data analysis and visualization with [R](https://www.r-project.org/). 
 
-The site is organized based on two questions: 
+Two objectives of this site are: 
 
-* How best to quickly introduce R to new audiences and showcase its data analytics tools? 
+  - Introducing R's modern data analytics tools (Section \@ref(intro))
+  - Providing topic-based tutorials (Section \@ref(piecemeal-top))  
 
-* How best to provide tutorials for topic-based data applications with R? 
+Additional materials include: 
 
-
-To answer the first question, Section \@ref(intro) *Introduction* demonstrates a set of modern data analysis tools in R. Sections  \@ref(essentials) describes essential concepts of R. For the second question, Section \@ref(piecemeal-top) provides topic-based tutorials. Additional resources are listed in Section \@ref(resources).   
-
-More content will be added when the author hosts a small workshop  _"Data Exploration with R"_  at his workplace.     
-
+  - Essential concepts for R programming (Section \@ref(essentials))
+  - List of additional resources (Section \@ref(resources))
 
 ## About {-} 
 
-__Kota Minegishi__ is an assistant professor of Dairy Analytics at the University of Minnesota. He is an agricultural economist by training and works in the Department of Animal Science.    
+This site is created and maintained by __Kota Minegishi__, an assistant professor at the University of Minnesota. He is an agricultural economist and works in the Department of Animal Science.    
 
 <!--
+More content will be added when the author hosts a small workshop  _"Data Exploration with R"_  at his workplace.     
+
+
 __Workshop__ 
 
 - ~~random sampling, bootstrapping, and linear models \@ref(boot): July 3, 5-6pm (4:30 recap), Haecker 365~~
@@ -77,7 +80,9 @@ __New Contents__
 
 * `r Sys.Date()`: Section \@ref(boot) Action, Romance, and Chicks -->
 
-<!-- * `r Sys.Date()`: <span style="color:red">*Test upload. VERY Preliminary!*</span> --?
+<!-- * `r Sys.Date()`: <span style="color:red">*Test upload. VERY Preliminary!*</span> 
+
+-->
 
 
 

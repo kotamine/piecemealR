@@ -3,25 +3,57 @@
 
 # Essentials {#essentials}
 
-2018-06-11: <span style="color:red">*VERY Preliminary!*</span>
 
-This section provides an overview of the essential concepts for manipulating data and programming in R. 
+This section provides an overview of the essential concepts for manipulating data and programming in R. We cover most of the materials  in [The Art of R Programming](https://www.amazon.com/Art-Programming-Statistical-Software-Design/dp/1593273843) by Norman Matloff. 
 
 
-## Cheatsheets 
+ - \@ref(cheatsheets) Cheetsheets 
+ 
+ - \@ref(datatypes) Data types
+ 
+ - \@ref(programming) Programming
+ 
+ - \@ref(housekeeping) Housekeeping
+
+## Cheatsheets {#cheatsheets}
 
 Cheatsheets are useful for glancing at various functions.    
 
-* [Base R](http://github.com/rstudio/cheatsheets/raw/master/source/pdfs/base-r.pdf)
+* [Base R](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf)
 
-* [RStudio IDE](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf)
+* [RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf) 
 
-* [dplyr](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf)
+* [dplyr](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf)
 
-* [ggplot2](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf)
+* [ggplot2](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf) 
 
 
-## Data types
+Cheatseets are updated, and new ones are added. You can check [here](https://www.rstudio.com/resources/cheatsheets/). You might find  the following useful or intriguing: 
+
+* [syntax comparison for data analysis tools](https://github.com/rstudio/cheatsheets/raw/master/syntax.pdf)
+
+* [string manipulation](https://github.com/rstudio/cheatsheets/raw/master/strings.pdf)
+
+* [regular expressions](https://www.rstudio.com/wp-content/uploads/2016/09/RegExCheatsheet.pdf)
+
+* [dates and time](https://github.com/rstudio/cheatsheets/raw/master/lubridate.pdf)
+
+* [data imports](https://github.com/rstudio/cheatsheets/raw/master/data-import.pdf)
+
+* [reports via Rmarkdown](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
+
+* [online application via Shiny](https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf)
+
+* [machine-learning tool overview](https://github.com/rstudio/cheatsheets/raw/master/Machine%20Learning%20Modelling%20in%20R.pdf)
+
+* [machine-learning via Caret](https://github.com/rstudio/cheatsheets/raw/master/caret.pdf)
+
+* [machine-learning via Keras](https://github.com/rstudio/cheatsheets/raw/master/keras.pdf)
+
+* [Leaflet maps](https://github.com/rstudio/cheatsheets/raw/master/leaflet.pdf)
+
+
+## Data types {#datatypes}
 
 ### Atomic 
 
@@ -1458,7 +1490,7 @@ lapply(mylist1, function(x) {
 ## "numeric" "numeric"
 ```
 
-## Programming
+## Programming {#programming}
 
 ### Operator
 
@@ -1529,7 +1561,7 @@ Sys.time()
 ```
 
 ```
-## [1] "2018-06-11 17:38:45 CDT"
+## [1] "2018-06-26 15:09:14 CDT"
 ```
 
 ```r
@@ -1701,7 +1733,7 @@ f1()  # inside f1 has its own enviornment
 ```
 
 ```
-## <environment: 0x7f9398ab6e00>
+## <environment: 0x7f9f96a21918>
 ```
 
 A function can access to the objects in its environment (i.e., *global* to the function) and those defined inside (i.e., *local* to the function) and generally cannot overwrite the global objects. It allows for using common names such as "x1", "var1" etc. defined inside functions, but those objects are only accessible within the function. 
@@ -1722,7 +1754,7 @@ f2()  #  one instance creating an environment
 ```
 
 ```
-## <environment: 0x7f93989e0b08>
+## <environment: 0x7f9f964f4860>
 ```
 
 ```r
@@ -1734,7 +1766,7 @@ f2()  #  another instance creating another environment
 ```
 
 ```
-## <environment: 0x7f939761d990>
+## <environment: 0x7f9f96aeae70>
 ```
 
 ```r
@@ -2021,7 +2053,7 @@ c("a","b","t","s") %in% c("t","a","a")
 ```
 
 
-## Housekeeping
+## Housekeeping {#housekeeping}
 
 ### Working directory
 

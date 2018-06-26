@@ -1,4 +1,6 @@
 # Piecemeal Topics {#piecemeal-top}
 
-Workshop materials will be added here.  
+  - \@ref(dplyr) dplyr and ggplot exercise 
+
+  - \@ref(boot) t-test, bootstrapping, and linear regressions
 

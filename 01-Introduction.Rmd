@@ -2,7 +2,7 @@
 
 # Introduction {#intro} 
 
-`r Sys.Date()`: <span style="color:red">*VERY Preliminary!*</span>
+<!-- `r Sys.Date()`: <span style="color:red">*VERY Preliminary!*</span> -->
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(cache=TRUE)
@@ -10,37 +10,42 @@ knitr::opts_chunk$set(cache.path="../piecemealR_cache/01-Introduction_cache/html
 ```
 
 
-**A Few Words from the Author** 
+**Prerequisites** 
 
-[R](https://www.r-project.org/) has come a long way in its evolution. [Its download page](https://cran.r-project.org/) looks pretty much unchanged from years ago but don't be fooled by its archaic appearance. This piece of the past may be something to do with how the R developer community honors its legacy of turning an open-source project into one of the most popular data analytic tools of today. Please don't mistake that archaic look as a sign of snobbishness--I hope you too will appreciate it some day. Welcome to the community.      
+<!-- [R](https://www.r-project.org/) has come a long way in its evolution. [Its download page](https://cran.r-project.org/) looks pretty much unchanged from years ago but don't be fooled by its archaic appearance. This piece of the past may be something to do with how the R developer community honors its legacy of turning an open-source project into one of the most popular data analytic tools of today. Please don't mistake that archaic look as a sign of snobbishness--I hope you too will appreciate it some day. Welcome to the community.       -->
 
-In what follows below, we assume that you have  [R](https://cran.r-project.org/) and [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) (free IDE) installed. It will be handy to have cheat sheets for [base R](http://github.com/rstudio/cheatsheets/raw/master/source/pdfs/base-r.pdf), 
-[RStudio IDE](https://www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf), [dplyr](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf), and [ggplot2](https://www.rstudio.com/wp-content/uploads/2016/11/ggplot2-cheatsheet-2.1.pdf) as well.  
+In what follows below, we assume that you have  [R](https://cran.r-project.org/) and [RStudio](https://www.rstudio.com/products/rstudio/download/) (free/open-source IDE) installed. 
 
-If you find this introduction too technical, please start with [ModernDive](https://ismayc.github.io/moderndiver-book/4-viz.html) open-source textbook (say, up to Chapter 5). That book provided the initial inspiration for me to start this site. Also, more information on R is available in Section \@ref(essentials), as well as various sources listed in Section \@ref(resources).   
+**Sneak Peek**
+
+If you are new to R, the following cheatsheets give you a good idea of how it is like to conduct data analyses in R: [Base R](http://github.com/rstudio/cheatsheets/raw/master/base-r.pdf), 
+[RStudio IDE](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf), [dplyr](https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf), [ggplot2](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf).  
+
+If you find the materials in this introduction too technical, please start with [ModernDive](https://ismayc.github.io/moderndiver-book/4-viz.html), an open-source textbook that gave an initial inspiration to start this site. Also, more information on R is available in Section \@ref(essentials), as well as various resources listed in Section \@ref(resources).   
 
 ## Materials
 
-The power of R grows with each addition of user-contributed R packages, or a bundle of user-developed programs. Recent developments such as [tidy](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html), [dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html), and [ggplot2](http://docs.ggplot2.org/current/)
-have greatly streamlined the coding for data manipulation and analysis, which is the starting point for learning R that is chosen for this site. With the R syntax system, you will learn the basic operations of data wrangling and visualization at a rapid pace given that it is an intuitive *data operation language*. Like any language, its grammar and framework provide a particular way of understanding the world. In this case, it will influence your thinking about data.     
+R is continuously evolving with user-contributed R packages, or a bundle of user-developed programs. Recent developments such as [tidy](https://cran.r-project.org/web/packages/tidyr/vignettes/tidy-data.html), [dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html), and [ggplot2](https://ggplot2.tidyverse.org/index.html) (often referred to as [tidyverse](https://www.tidyverse.org/) tools) have greatly streamlined the coding for data manipulation and analysis, which is the starting point for learning R chosen for this site.  This [tidyverse](https://www.tidyverse.org/) syntax gives you an intuitive and powerful *data operation language*  to wrangle, visualize, and analyze data. 
 
-Following the documentation of [dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html), let's start with a sample dataset of airplane departures and arrivals. The dataset contains information on about 337,000 flights departed from New York City in 2013 (source: [Bureau of Transportation Statistics](https://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0)). We load a built-in data frame by command `library(nycflights13)` where `library(package_name)` loads an R package named `package_name` in the current R *session*, or the computing environment. In the R console (i.e., the left bottom pane in RStudio), type `install.packages("nycflights13")` and hit enter. 
+Following [dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html)'s documentation, let's start with a sample dataset of airplane departures and arrivals. This contains information on about 337,000 flights departed from New York City in 2013 (source: [Bureau of Transportation Statistics](https://www.transtats.bts.gov/DatabaseInfo.asp?DB_ID=120&Link=0)). 
+
+In the R console (i.e., the left bottom pane in RStudio), type `install.packages("nycflights13")` and hit enter.  Then, load the package via `library(nycflights13)`, in the current computing environment (called R *session*).  Its built-in data frames will be added to your R session.     
 
 Generally, R packages are installed locally on your computer on an as-needed basis. To install several more packages that we will use, copy the following code and execute it in your R console. 
 ```{r}
 # Since we're just starting, don't worry about understanding the code here
-# "#"" symbole is used to insert comments that are helpful to humans but are ignored by R 
+# "#"" symbole is for adding comments that are helpful to humans but are ignored by R 
 
 required_pkgs <- c("nycflights13", "dplyr", "ggplot2", "lubridate", "knitr", "tidyr", "broom")   
   #  creating a new object "required_pkgs" containing strings "nycflights13", "dplyr",..
-  # "c()" concatenates string names here. 
-  # "<-" operator assigns from the object on the right to left
+  # c(): concatenates string names here 
+  # <-:  an assignment operator from right to left
 
 new_pkgs <- required_pkgs[!(required_pkgs  %in% installed.packages())] 
   # checking whether "required_pkgs" are already installed 
-  # "[]" of required_pkgs[ ] is extraction by logical TRUE or FALSE
-  # "%in%" checks whether items on the left are members of the items on the right.
-  # ! is a negation, so if the package is not installed, there will be an 
+  # [ ]:extraction by logical TRUE or FALSE
+  # %in%: checks whether items on the left are members of the items on the right.
+  # !: a negation operator 
 
 if (length(new_pkgs)) {
   install.packages(new_pkgs, repos = "http://cran.rstudio.com")
@@ -50,18 +55,14 @@ if (length(new_pkgs)) {
 Once packages are downloaded and installed on your computer, they become available for your libraries. 
 In each R session, we load libraries we need (instead of all existing libraries). Here we load the following;
 
-```{r}
-suppressWarnings({
-  suppressMessages({
-    library(dplyr)  # for data manipulation 
-    library(ggplot2)  # for figures  
-    library(lubridate) # for date manipulation
-    library(nycflights13)  # sample data of NYC flights
-    library(knitr) # for table formatting
-    library(tidyr) # for table formatting
-    library(broom)  # for table formatting
-  })
-})
+```{r, warning=FALSE, message=FALSE}
+library(dplyr)  # for data manipulation 
+library(ggplot2)  # for figures  
+library(lubridate) # for date manipulation
+library(nycflights13)  # sample data of NYC flights
+library(knitr) # for table formatting
+library(tidyr) # for table formatting
+library(broom)  # for table formatting
 ```
 
 Let's see the data. 
@@ -74,46 +75,48 @@ dim(flights)   # obtains dimention of rows and columns
 head(flights)  # displays first seveal rows and columns 
 ```
 
-The `dim()` command returns the dimensions of a data frame, and the `head()` command returns the first several rows and columns. The `flights` dataset contains information on dates, actual departure and arrival times, scheduled departure and arrival times, carriers, origins, destinations, travel times, and distances. These variables are arranged in columns, and each row is an observation of flight.   
+ `dim()` returns the dimensions of a data frame, and `head()` returns the first several rows and columns. The `flights` dataset contains information on dates, actual departure times, and arrival times, etc. The variables are arranged in columns, and each row is an observation of flight data.   
 
 
-In R, we refer to a dataset as **data frame**, which is a *class* of R object. The **data frame** class is more general than the **matrix** class in that it can contain variables of more than one mode (numeric, character, factor etc). In case you want an overview of data types right away, here is a [summary](http://www.statmethods.net/input/datatypes.html). 
+In R, we refer to a dataset as **data frame**, which is a *class* of R object. The **data frame** class is more general than the **matrix** class in that it can contain variables of more than one mode (numeric, character, factor etc). 
+<!-- In case you want an overview of data types right away, here is a [summary](http://www.statmethods.net/input/datatypes.html). -->
 
 
-## Arts & Crafts 
-
-### Crafts  {-}
+## Crafts  
 
 We will focus on six data wrangling functions in the `dplyr` package:
 
-* `filter()`: extracts rows (e.g., observations) of a data frame. We put logical vectors in its arguments.  
+* `filter()`: extracts rows (observations) of a data frame based on logical vectors.   
 
-* `select()`: extracts columns (e.g., variables) of a data frame. We put column names in its arguments. 
+* `select()`: extracts columns (variables) of a data frame based on column names. 
 
-* `arrange()`: orders rows of a data frame. We put column names in its arguments. 
+* `arrange()`: orders rows of a data frame based on column names. 
 
-* `summarise()`: collapses a data frame into summary statistics. We put **summary functions** (e.g., statistics functions) using column names in its arguments.     
+* `summarise()`: collapses a data frame into summary statistics based on **summary functions** (e.g., statistics functions) specified with column names.      
 
-* `mutate()`: creates new variables and adds them to the existing columns. We put **window functions** (e.g., transforming operations) using column names in its arguments.  
+* `mutate()`: creates new variables and adds them to the existing columns based on **window functions** (e.g., transforming operations) specified with column names.  
 
-* `group_by()`: assigns rows into groups within a data frame. We put column names in its arguments.  
+* `group_by()`: assigns rows into groups within a data frame based on column names.  
 
-The very first argument in all these functions is a **data frame**, and by using this we can easily **pipe** a sequence of data wrangling operations through `%>%` operator. The key is to start with a data frame and then formulate a sequence of data wrangling operations in plain English, which we can translate into code by replacing **then** in the sequence with the `%>%` operator.  Say, we want to find the average of delays in departures and arrivals from New York to the St. Paul-Minneapolis airport (MSP). We can construct the following sequence of instructions: take the flight data frame, apply `filter()` to extract the rows of flights to MSP, and then apply `summarise()` to calculate the mean.
+The very first argument in all these functions is a **data frame**, followed by logical vectors, column names, or other kinds of items. This allows for applying these functions sequentially through the first argument; for example, `func3(func2(func1(data,...), ...), ...)`.  This can be rewritten as `data %>% func1(...) %>% func2(...) %>% func3(...)` via **a pipe operator** `%>%`.   
+This lets us express a sequence of data wrangling operations in plain English. Specifically, we read `%>%` as **then**, so that the above example becomes; start with the data, then apply `func1(...)`, then apply `func2(...)`, then `func3(..)`.  
+
+Say, we want to find the average of delays in departures and arrivals from New York to the St. Paul-Minneapolis airport (MSP). We can construct the following sequence of instructions: start with the flight data frame, apply `filter()` to extract the rows of flights to MSP, and then apply `summarise()` to calculate the mean.
 
 ````{r}
-flights %>%  # take data frame "flights", then
+flights %>%  # data frame "flights", then
   filter(dest == "MSP") %>%  # filter rows, then  
   summarise(   
     # summarise departure and arrival delays for their means 
     # and call them mean_dep_delay and mean_arr_delay respectively
     mean_dep_delay = mean(dep_delay, na.rm = TRUE), 
-    mean_arr_delay = mean(arr_delay, na.rm = TRUE)
+    mean_arr_delay = mean(arr_delay, na.rm = TRUE) 
     )    # calculate the mean, while removing NA values  
 ````
 
-In `summarise()`, one can use **summary functions** that takes a vector as an input and produces a scaler as an output. This includes functions like `mean()`, `sd()` (standard deviation), `quantile()`, `min()`, `max()`, and `n()` (observation count in the `dplyr` package).      
+In `summarise()`, one can use **summary functions** that maps a vector to a scaler. Examples include functions like `mean()`, `sd()` (standard deviation), `quantile()`, `min()`, `max()`, and `n()` (observation count in the `dplyr` package).      
 
-Each time we apply the `%>%` operator above, we pass a modified data frame from one data operation to another through the first argument. The above code is equivalent to  
+Each time we apply the `%>%` operator above, we pass a modified data frame from one data wrangling operation to another through the first argument. The above code is equivalent to  
 
 ````{r} 
 summarise(   # data frame "flights" is inside filter(), which is inside summarise() 
@@ -123,12 +126,12 @@ summarise(   # data frame "flights" is inside filter(), which is inside summaris
     )
 ````
 
-You will quickly discover that `%>%` operator makes the code much easier to read, write, and edit and how that might inspire you want to play with the data more.  
+You will quickly discover that `%>%` operator makes the code much easier to read, write, and edit and how that inspires you to explore the data more.  
 
-Let's add a few more lines to the previous example. Say, additionally we want to see the average delay by carrier and sort the results by the number of observations (e.g. flights) in descending order. 
+Let's add a few more lines to the previous example. Say, now we want to see the average delay by carrier and sort the results by the number of observations (e.g. flights) in descending order. 
 
-Okay, what do we do?  We make **a sequence of data wrangling operations in plain English** and translate that into **code** by replacing **then** with `%>%` operator. 
-For example, we say, "take the data frame `flights`; **then** (`%>%`) `filter()` to extract the rows of flights to MSP; **then** (`%>%`) group rows by carrier; **then** (`%>%`) `summarise()` data for the number of observations and the means; **then** (`%>%`) `arrange()` the results by the observation count in descending order."   
+Okay, what do we do?  We make **a sequence of data wrangling operations in plain English** and translate that into **code** by replacing **then** with pipe operator `%>%`.  
+For example, try thinking this way; "start with the data frame `flights`; **then** (`%>%`) `filter()` to extract the rows of flights to MSP; **then** group rows by carrier; **then**  `summarise()` data for the number of observations and the means; **then**  `arrange()` the results by the observation count in descending order."   
 
 ````{r}
 flight_stats_MSP <- flights %>%  # assign the results to an object named "flight_stats"
@@ -144,14 +147,16 @@ flight_stats_MSP <- flights %>%  # assign the results to an object named "flight
 flight_stats_MSP  # show flight_stats object
 ````
 
+**Tip #1: Frame tasks in a sequence and use pipe operator %>% accordingly.**
 
 The carrier variable is expressed in the International Air Transportation Association (IATA) code, so let's add a column of carrier names by joining another data frame called `airlines`. In RStudio, you can find this data frame under the **Environment**  tab (in the upper right corner); switch the display option from *Global Environment* to *package:nycflights13*. To inspect the data frame, type `View(airlines)` in the R console. Also, by typing `data()` you can see a list of all datasets that are loaded with libraries. 
 
 ```{r}
+# left_join(a,b, by="var") joins two data frames a and b by matching rows of b to a 
+  # by identifier variable "var".
+# kable() prints a better-looking table here
 left_join(flight_stats_MSP, airlines, by="carrier") %>%
-  # left_join(a,b, by="var") joins two data frames a, b by matching rows of b to a 
-  # by identifier variable "var".  
-  kable(digits=2)  # kable() prints a better-looking table here
+  kable(digits=2) 
 ``` 
 
 
@@ -170,14 +175,24 @@ flights %>%
 
 We extracted specific columns of `flights` by `select()` and added new columns defined in `mutate()`. `mutate()` differs from `summarise()` in that  `mutate()` adds new columns to the data frame, while `summarise()` collapses the data frame into a summary table. 
 
+There are roughly five types of [window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html) that are commonly used inside `mutate()`: 
 
-There are roughly five types of [window functions](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html) that are commonly used inside `mutate()`: (1)  **summary functions**, which are interpreted as a vector of repeated values (e.g., a column of an identical mean value): (2)  ranking or ordering functions (e.g., `row_number()`, `min_rank()`, `dense_rank()`, `cume_dist()`, `percent_rank()`, and `ntile()`): (3) offset functions, say defining a lagged variable in time series data (`lead()` and `lag()`): (4)  cumulative aggregates (e.g., `cumsum()`, `cummin()`, `cummax()`, `cumall()`, `cumany()`, and `cummean()`): (5) fixed-window rolling aggregates such as a windowed mean, median, etc.  To find help files for these function, for example, type `?cumsum`.  
+  - 1.  **summary functions**, which are interpreted as a vector of repeated values (e.g., a column of an identical mean value)
+  - 2.  ranking or ordering functions (e.g., `row_number()`, `min_rank()`, `dense_rank()`, `cume_dist()`, `percent_rank()`, and `ntile()`)
+  - 3. offset functions, say defining a lagged variable in time series data (`lead()` and `lag()`)
+  - 4. cumulative aggregates (e.g., `cumsum()`, `cummin()`, `cummax()`, `cumall()`, `cumany()`, and `cummean()`)
+  - 5. fixed-window rolling aggregates such as a windowed mean, median, etc.  
+To look up documentations of these function, for example, type `?cumsum`.  
 
+**Tip #2: In the beginning you might find it confusing to choose between `summarise()` and `mutate()`. Just remeber `mutate()` is for creating new variables or overwriting existing variables.**
 
-Before moving to the graphics, let's quickly go over what a **function** is in R and how you can use a custom function inside `summarise()` or  `mutate()`. In R, we use `function()` to create a function, which has its name, input arguments separated by comma, and a body (e.g., tasks to perform and what to return as an output).    
+By no means, the use of `summarise()` and `mutate()` is not restricted to these functions listed above. You can define your own function and apply inside `summarise()` or `mutate()`. 
+Let's quickly go over what a **function** is in R and how you can use a custom function in the *tidyverse syntax*.   
+
+In R, we use `function()` to define a function, which consists of a function name, input arguments separated by comma, and a body containing tasks to be performed (multiple expressions are bundled by brackets `{ }`, and the last expression is returned as an output).    
 
 ```
-your_function_name <- function(input arguments) {
+your_function_name <- function(input_arg1, input_arg2) {
                         task1
                         task2
                         .
@@ -196,49 +211,37 @@ another_function <- function(input args) task_and_output_in_a_single_expression
 Let's go through a few examples. 
 
 ```{r} 
-# generate a sequence from 1 to 10 (by the increment of 1) and name it "vec1".  
-vec1 <- 1:10
-vec1            
-# c() concatenates 
-vec2 <- c(vec1, NA, NA)
-vec2
-my_mean_1 <- function(x)  mean(x, na.rm = TRUE)
-  # Input arguments: x 
-  # Output: the calculation result of mean(x, na.rm = TRUE). 
-  # x is required by mean() (and implicitly assumed to be a vector of numeric values). 
-  # mean() is an existing function. The "na.rm" argument of mean() is set to be TRUE.  
-
-my_mean_1(vec1)
-
-my_mean_2 <- function(x, na.rm=TRUE)  mean(x, na.rm = na.rm)   
-  # Input arguments: x and na.rm (optional with the default value of TRUE) 
-  # Output: the calculation result of mean(x, na.rm = na.rm).
-  # The input argument "na.rm" is passed to the input argument "na.rm" of mean() 
-
-my_mean_2(vec2)
-my_mean_2(vec2, na.rm=FALSE)  # not removing NA returns NA for the mean calculation.  
+vec1 <- c(1:10, NA, NA)
+vec1
 
 
-my_zscore <- function(x, remove_na=TRUE) { 
-  (x - my_mean_2(x, na.rm = remove_na))/sd(x, na.rm = remove_na)  
+my_mean <- function(x, na.rm=TRUE)  mean(x, na.rm = na.rm)   
+# sets the default of "na.rm" argument to be TRUE. 
+
+mean(vec1) # returns NA
+my_mean(vec1)
+my_mean(vec1, na.rm=FALSE)  # returns NA
+
+
+my_zscore <- function(x, remove_na=TRUE, digits=2) { 
+  zscore <- (x - my_mean(x, na.rm = remove_na))/sd(x, na.rm = remove_na)  
+  round(zscore, digits=digits)
 }
-  # Inputs: x and remove_na (optional: default = TRUE)
-  # Output: z-score of vector x
-  # my_mean2() and sd() return scalers but are interpreted 
-  # as a vector of repeated valuses that has the same length as x. 
+  # calculates a z-score of vector x
 
-my_zscore(vec1) %>% round(2)
+my_zscore(vec1)
 ```
 
 
 
-Let's apply functions`my_mean_2()` and `my_zscore()` in `summarise()` and `mutate()`. 
+Let's try using functions `my_mean()` and `my_zscore()` in `summarise()` and `mutate()`. 
 ```{r}
 flights %>% 
   select(dep_delay) %>% 
   summarise(
-    mean_dep_delay = my_mean_2(dep_delay),  # using my_mean_2()  
-    mean_dep_delay_na = my_mean_2(dep_delay, na.rm = FALSE)  # this returns NA
+    mean_dep_delay_na = mean(dep_delay),  # returns NA
+    mean_dep_delay_1 = mean(dep_delay, na.rm = TRUE), # passing argument na.rm = TRUE
+    mean_dep_delay_2 = my_mean(dep_delay)  # using my_mean()  
   ) %>%
   kable(digits=2)
 
@@ -246,45 +249,77 @@ flights_gain <- flights %>%
   select(dep_delay, arr_delay) %>% 
   mutate(
     gain = arr_delay - dep_delay,
-    gain_z = (gain - my_mean_2(gain))/sd(gain, na.rm=TRUE),  # using my_mean_2()  
-    gain_z2 = my_zscore(gain_z)  # using my_zscore()   
+    gain_mean = my_mean(gain),  # returns the same mean for all rows
+    gain_z2 = my_zscore(gain)  # using my_zscore()   
   )
 
 head(flights_gain) %>%  # show the first several rows
   kable(digits=2)
 ```
 
-Creating a function spares us from writing similar codes in multiple places. While avoiding such repetition is important for making reading and editing code easier, it also reduces coding errors. 
+<!-- Creating a function reduces repetitious codes in multiple places, which makes editing easier and also helps reduce coding errors.  -->
 
-A situation where you may consider using custom functions is inside functions like `summarise_each()` and `mutate_each()`. The two functions allow for applying **summary functions** like `mean()` or `sd()` to each column in a data frame.  `summarise_each()` and `mutate_each()` work by  *calling* a function by its name. They are very easy to use when an operation is to summarize a vector into a statistics without needing to specify additional arguments, say `mean(var1)`. However, providing additional arguments into a function, say `mean(var1, na.rm=TRUE)`, becomes somewhat cumbersome in terms of its syntax. 
-
-One approach to get around this problem is to pre-process the data frame before getting to a `summarise_each()` or `mutate_each()` section. For example, if we want to test the argument `na.rm=TRUE` to `mean()`,  we can first filter out rows that contain missing values  (`NA`) and then apply `summarise_each()`. 
+`summarise_all()` and `mutate_all()` apply **summary functions** like `mean()` and `sd()` to all columns in a data frame. But, we can also use any custom function that returns appropriate output (i.e., a scalar output for `summarise_all()` and a vector output for `mutate_all()`).  For example, here are several ways to calculate the means when the data frame contains missing values.  
 
 ```{r}
+# Calculation fails due to NA values 
+flights_gain %>% 
+  select(dep_delay, arr_delay, gain)  %>%
+  summarise_all(mean) %>%  
+  kable(digits=2) 
+
+# filter rows that contain any NA value 
 flights_gain %>% 
   select(dep_delay, arr_delay, gain)  %>%
   filter(!is.na(dep_delay) & !is.na(arr_delay)) %>%  
-    # filter out rows that have NA values in dep_delay or arr_deplay
-  summarise_each("mean") %>%  
+  summarise_all(mean) %>%  
   kable(digits=2) 
-```
- 
-The other approach is to use a custom function. For instance, `my_mean_2()` we defined above has the default argument `na.rm=TRUE` that gets passed into `mean()`, effectively overwriting the default argument `na.rm=FALSE` of `mean()`. A custom function (as well as any standard summary function) can be called in `summarise_each()` or `mutate_each()` using `funs()`
 
-```{r}
+# pass argument na.rm=TRUE to mean()
 flights_gain %>% 
   select(dep_delay, arr_delay, gain) %>%
-  summarise_each(funs("my_mean_2")) %>%
+  summarise_all(funs(mean), na.rm=TRUE) %>%
+    kable(digits=2)
+
+# use a custom function with default na.rm=TRUE
+flights_gain %>% 
+  select(dep_delay, arr_delay, gain) %>%
+  summarise_all(funs(my_mean)) %>%
     kable(digits=2)
 ```
+ 
+To practice the *tydiverse syntax* above, start with data extraction by combining `filter()`, `select()`, and `arrange()`.  Then, try summarising data via `summarise()` and creating new variables via `mutate()`, followed by adding additional layers of tasks such as grouping statistics via `group_by()` and filtering data by `filter()`.  
 
-Being able to use your own functions in `dplyr`-style data wrangling operations will greatly enhance your ability to quickly analyze data in R.  
+
+**Exercise** 
+
+Try the following exercises using `flights` data. 
+
+  -  Find the set of all origin-carrier combinations whose destination is MSP. Hint: use `filter()`, `select()`, and `unique()`.  (Ans.: 10 unique combinations.)
+  -  Sort that by origin. Hint: use `arrange()`.  
+  - Find the mean and standard deviation of air time from New York to MSP. Hint: use `filter()` and `summarise()`. 
+  - Find the average arrival delay as a percentage of air time from New York to MSP. Hint: use `filter()`, `mutate()`, and `summarise()`. (Ans.: 4.50%.) 
+  - Do the above calculation by carrier. Hint: use `filter()`, `mutate()`, `group_by()`, and `summarise()`.  (Ans.: ranges from -3.57% to 4.97%.) 
+  - Do the above calculation by origin and carrier and sort the results by origin. 
+  - Do that in z-score using the grand mean and grand s.d. to find any origin-carrier combination exhibits statistically significant arrival delay (in percentage of air time).   Hint: do the following all inside `mutate()`, define a percentage arrival delay variable, define variables for its mean and s.d., and define a z-statistic using those three variables. (Ans.: ranges from -0.118 to 1.584.)    
 
 
-### Arts  {-}
+<!-- ```{r} -->
+<!-- flights %>% filter(dest == "MSP") %>%  -->
+<!--   mutate(arr_delay_pct = arr_delay/air_time, -->
+<!--          avg_arr_delay_pct = mean(arr_delay_pct, na.rm=TRUE), -->
+<!--          sd_arr_delay_pct = sd(arr_delay_pct, na.rm=TRUE), -->
+<!--          z_arr_delay_pct = (arr_delay_pct -  avg_arr_delay_pct)/sd_arr_delay_pct -->
+<!--          ) %>% group_by(origin, carrier) %>% summarise(mean(z_arr_delay_pct, na.rm=T)) %>% arrange(origin) -->
+<!-- ``` -->
 
-Now we will cover the basics of data visualization via the [ggplot2](http://docs.ggplot2.org/current/) package. 
-The `ggplot2` syntax has three essential components for generating graphics:  **data**,  **aes**,  and **geom**. This implements the following philosophy (a quote mentioned in [ModernDive](https://ismayc.github.io/moderndiver-book/4-viz.html)); 
+Take time to do these exercises since we will be using the *tydiverse syntax* in next section.
+
+
+## Arts  
+
+Now we will cover the tools of data visualization via [ggplot2](http://docs.ggplot2.org/current/).  
+The `ggplot2` syntax has three essential components for generating graphics:  **data**,  **aes**,  and **geom**, implementing the following philosophy; 
 
 > 
 A statistical graphic is a mapping of **data** variables to **aesthetic** attributes of **geometric** objects.  
@@ -292,15 +327,17 @@ A statistical graphic is a mapping of **data** variables to **aesthetic** attrib
 >  
 
 
-While coding complex graphics via `ggplot()` may appear intimidating at first, it  boils down to the three primary components:
+Coding complex graphics via `ggplot()` may  appear at first intimidating, yet it is very simple once you understand the three primary components:
 
 * **data**: a data frame e.g., the first argument in `ggplot(data, ...)`.    
 
+* **aes**:  specifications for x-y variables and the variables that differentiate **geom** objects by color , shape, or size. e.g., `aes(x = var_x, y = var_y, shape = var_z)`  
+
 * **geom**: geometric objects such as points, lines, bars, etc. with parameters given in the (), e.g., `geom_point()`, `geom_line()`,  `geom_histogram()`  
 
-* **aes**:  specifications for x-y variables, as well as variables to differentiate **geom** objects by color , shape, or size. e.g., `aes(x = var_x, y = var_y, shape = var_z)`  
+
  
-One can refine a plot figure by adding secondary components or characteristics such as
+We can further refine a plot by adding secondary components or characteristics such as
 
 * stat: data transformation, overlay of statistical inferences etc. 
 
@@ -310,16 +347,20 @@ One can refine a plot figure by adding secondary components or characteristics s
 
 * facet: laying out multiple plot panels in a grid etc. 
 
-In what follows below, we will generate five common types of plots: 
-**scatter-plots**, **line-graphs**, **boxplots**, **histograms**, and **barplots**. 
-To provide a context, let's use these plots to investigate what may explain patterns of flight departure delays.   
+However, don't worry about learning details. You don't need to know them all. All you need is a basic but solid understanding of the three primary components that makes up the structure of the `ggplot` syntax. You can find everything else by Internet search. 
 
-First, let's consider the possibility of congestion at an airport during certain times of the day or certain seasons. We can use  **barplots** to see whether there is any obvious pattern in the flight distribution across flight origins (i.e., airports) in New York City with St. Paul-Minneapolis airport (MSP) as a destination. A barplot shows observation counts (e.g., rows) by category. 
+**Tip #3. Learn to ask questions in Internet search for what you want to accomplish with your custom plots. You will frequently find answers in [Stack Overflow](https://stackoverflow.com/).**     
+
+Let's generate five common types of plots: 
+**scatter-plots**, **line-graphs**, **boxplots**, **histograms**, and **barplots**. 
+To provide a context, we will use these plots to explore potential causes of flight departure delays.   
+
+First, let's consider the possibility of congestion at an airport during certain times of the day or certain seasons. We can use  **barplots** to see whether there is any obvious pattern in the flight distribution across flight origins (i.e., airports) in New York City. A barplot shows observation counts (e.g., rows) by category. 
 
 ````{r}
 ggplot(data = flights,  # the first argument is the data frame
-       mapping = aes(x = origin)) +   # the second argument is "mapping", which is aes()   
-  geom_bar()  #  after "+" piping operator of ggplot(), we add geom_XXX() elements 
+       mapping = aes(x = origin)) +   # the second argument is mapping, which is aes()   
+  geom_bar()  #  after "+" operator of ggplot(), we add geom_XXX() elements 
 ```
 
 We can make the plot more informative and aesthetic. 
@@ -339,20 +380,36 @@ flights %>%
  
 While mornings and late afternoons tend to get busy, there is not much difference in the number of flights across airports. 
 
-Let's see if there are distinct patters of departure delays over the course of a year. We do this by taking the average of departure delays for each day by flight origin and plot the data as a time series using **line-graphs**.   
+**Exercise** 
+
+  - Generate a bar graph showing the number of flights by carrier in the `flights` dataset. Hint: use `aes(x=...)` and  `+ geom_bar()`. 
+  
+  - Add color coded origins of flights to the previous graph. Hint: use `aes(x=..., fill=...)`. 
+  
+  - Filter the `flights` data for the date of Janauary 1st and generate a scatter plot of distance and air time. Hint: use `filter()`, `ggplot(aes(x=..., y=...))`, and `+ geom_point(alpha=0.1)`.  
+  
+  - Add a fitted linear curve to the previous plot. Hint: use `+ geom_smooth(method="lm")`. 
+  
+  - Further filter the data for the distance range of [0, 2800] and carrier to be either "AA (American Airways)", "DL (Delta)", and "WN (Southwest)" and color-code the graph by carrier. Hint: use `filter(..., carrier %in% c("AA", "DL", "WN"))` and  `aes(x=..., y=..., color=...)` and `geom_smooth(method="lm", se=FALSE)`. 
+
+## More examples 1
+
+The rest of the section provides more examples of `dplyr` and `ggplot2` functions in the context of continued exploration of the flight data.   
+
+Let's see if there are distinct patters of departure delays over the course of a year. We can do this by taking the average of departure delays for each day by flight origin and plot the data as a time series using **line-graphs**.   
 
 ```{r}
 delay_day <- flights %>% 
   group_by(origin, year, month, day) %>% 
   summarise(dep_delay = mean(dep_delay, na.rm = TRUE))  %>% 
   mutate(date = as.Date(paste(year, month, day), format="%Y %m %d")) %>%
- filter(!is.na(dep_delay))  #  exclude rows with dep_delay == NA 
+  filter(!is.na(dep_delay))  #  exclude rows with dep_delay == NA 
 
 delay_day %>%     # "facet_grid( var ~ .)" is similar to "facet_wrap( ~ var)" 
   ggplot(aes(x = date, y = dep_delay)) + geom_line() + facet_grid( origin ~ . ) 
 ```
 
-The seasonal pattern seems similar across airports, and summer months appear to be busier on average. Across these airports, let's see how closely these patterns are related to each other by focusing on a few summer months and making an overlap of the three line-graphs (EWR, JFK, and LGA).
+Seasonal patterns seem similar across airports, and summer months appear to be busier on average. Let's see how closely these patterns compare across the three line-graphs (EWR, JFK, and LGA) in summer months. 
 
 ```{r}
 delay_day %>% 
@@ -365,14 +422,15 @@ We can see similar patterns of spikes across airports occurring on certain days,
 In the previous figure, there seems to be some cyclical pattern of delays. A good place to start would be comparing delays by day of the week. Here is a function to calculate day of the week for a given date.   
 
 ```{r}
+# Input: date in the format as in "2017-01-23"
+# Output: day of week 
 my_dow <- function(date) {
   # as.POSIXlt(date)[['wday']] returns integers 0, 1, 2, .. 6, for Sun, Mon, ... Sat.  
   # We extract one item from a vector (Sun, Mon, ..., Sat) by position numbered from 1 to 7. 
   dow <- as.POSIXlt(date)[['wday']] + 1
   c("Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat")[dow]  # extract "dow"-th element    
 } 
-  # Input: date in the format as in "2017-01-23"
-  # Output: day of week 
+
 Sys.Date()  # Sys.Date() returns the current date 
 my_dow(Sys.Date()) 
 ```
@@ -385,44 +443,49 @@ delay_day <- flights %>%
   summarise(dep_delay = mean(dep_delay, na.rm = TRUE))  %>% 
   mutate(date = as.Date(paste(year, month, day), format="%Y %m %d"),  
          # date defined by as.Data() function 
-         wday = my_dow(date),
-         weekend = wday %in% c("Sat", "Sun")  
+         dow = my_dow(date),
+         weekend = dow %in% c("Sat", "Sun")  
          # %in% operator: A %in% B returns TRUE/FALSE for whether each element of A is in B. 
   )
 
-# show the first 10 elements of "wday" variable in "delay_day" data frame 
-delay_day$wday[1:10]  
-delay_day$wday <- ordered(delay_day$wday, 
-                         levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))
-                            # adding a sorting order (Mon, Tue, ..., Sun)   
-delay_day$wday[1:10]  
+# show the first 10 elements of "dow" variable in "delay_day" data frame 
+delay_day$dow[1:10]  
+delay_day <- delay_day %>% mutate(
+  # add a sorting order (Mon, Tue, ..., Sun) and overwrite dow    
+  dow = ordered(dow, 
+                 levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))
+                    )
+                           
+delay_day$dow[1:10]  
 
 delay_day  %>% 
   filter(!is.na(dep_delay)) %>%
-  ggplot(aes(x = wday, y = dep_delay, fill = weekend)) + geom_boxplot() 
+  ggplot(aes(x = dow, y = dep_delay, fill = weekend)) + geom_boxplot() 
 ```
 
 It appears that delays are on average longer on Thursdays and Fridays and shorter on Saturdays. This is plausible if more people are traveling on Thursdays and Fridays before the weekend, and less are traveling on Saturdays to enjoy the weekend. Are Saturdays really less busy? Let's find out.  
 
 ```{r}
-flights_wday <- flights %>% 
+flights_dow <- flights %>% 
   mutate(date = as.Date(paste(year, month, day), format="%Y %m %d"),  
-         wday = ordered(my_dow(date),
+         dow = ordered(my_dow(date),
                         levels = c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")),
-         weekend = wday %in% c("Sat", "Sun")  
+         weekend = dow %in% c("Sat", "Sun")  
   )
 
-flights_wday %>% 
-  group_by(wday) %>%
+# count flight numbers by  
+flights_dow %>% 
+  group_by(dow) %>%
   summarise( nobs = n() )
   
-flights_wday  %>% 
-  ggplot(aes(x = wday)) + geom_bar() 
+# visualize this as a bar plot 
+flights_dow  %>% 
+  ggplot(aes(x = dow)) + geom_bar() 
 ```
 
 Yes, Saturdays are less busy for the airports in terms of flight numbers.   
 
-Could we generalize this positive relationship between the number of flights and the average delays, which we find across days of the week? To investigate this, we can summarize the data into the average delays by date-hour and see if the busyness of a particular hour of a particular day is correlated with the mean delay. We visualize these data using a **scatter plot**.     
+Could we generalize this positive relationship between the number of flights and the average delays, which we find across days of the week? To explore this, we can summarize the data into the average delays by date-hour and see if the busyness of a particular hour of a particular day is correlated with the mean delay. Let's visualize these data using a **scatter plot**.     
 
 ```{r}
 delay_day_hr <- flights %>% 
@@ -432,20 +495,21 @@ delay_day_hr <- flights %>%
     dep_delay = mean(dep_delay, na.rm = TRUE)
     )  %>% 
   mutate(date = as.Date(paste(year, month, day), format="%Y %m %d"),
-         wday = my_dow(date)
-  )
+         dow = my_dow(date)
+  ) %>% ungroup()   # it's a good practice to remove group_by() attribute
+
 
 plot_delay <- delay_day_hr  %>%
   filter(!is.na(dep_delay)) %>% 
   ggplot(aes(x = n_obs, y = dep_delay)) + geom_point(alpha = 0.1)  
-    # plot of n_obs and the average dep_delay 
+    # plot of n_obs against the average dep_delay 
     # where each point represents an date-hour average
     # "alpha = 0.1"  controls the degree of transparency of points 
 
 plot_delay 
 ```
 
-Along the horizontal axis, we can see how the number of flights is distributed across date-hours. Some days are busy, and some hours busier still. It appears that there are two clusters in the number of flights, showing very slow date-hours (e.g., less than 10 flights flying out of New York city per hour) and normal date-hours (e.g., about 50 to 70 flights per hour). We could guess that the delays in the slow hours are caused by bad weather. On the other hand, we may wonder if the excess delays in the normal hours, compared to the slow hours, are caused by congestion at the airports. To see this, let's fit a curve that captures the relationships between `n_obs` and `dep_delay`. Our hypothesis is that the delay would become more likely and longer as the number of flights increases.     
+Along the horizontal axis, we can see how the number of flights is distributed across date-hours. Some days are busy, and some hours busier still. It appears that there are two clusters in the number of flights, showing very slow date-hours (e.g., less than 10 flights flying out of New York city per hour) and normal date-hours (e.g., about 50 to 70 flights per hour). We might guess that the delays in the slow hours are caused by bad weather. On the other hand, for normal hours we may wonder if the excess delays are caused by congestion at the airports. To see this, let's fit a curve that captures the relationships between `n_obs` and `dep_delay`. Our hypothesis is that the delay would become longer as the number of flights increases, which would result in an upward-sloped curve.     
 
 ```{r}
 plot_delay  +
@@ -457,7 +521,7 @@ We cannot see any clear pattern. How about fitting a curve by day of the week?
 ```{r}
 plot_delay  +
      # additional aes() argument for applying different colors to the day of the week
-  geom_smooth(aes(color = wday), se=FALSE) 
+  geom_smooth(aes(color = dow), se=FALSE) 
  
 ```
 
@@ -471,26 +535,25 @@ delay_day_hr %>%  filter(!is.na(dep_delay)) %>%
 ```
 
 The distribution of the average delays are greatly skewed.   
-In applying a logarithmic transformation, here we have to shift the variable so that its minimum is greater than zero.
+To apply a logarithmic transformation, here we have to shift the variable by setting its minimum value  zero.
 
 ```{r}
 # define new column called "dep_delay_shifted"
-delay_day_hr$dep_delay_shifted <- delay_day_hr %>%  
-  with(dep_delay - min(dep_delay, na.rm = TRUE) + 1) 
-    # with() function takes a data frame in the first argument and allows for 
-    # referencing its variable names. 
+delay_day_hr <- delay_day_hr %>% 
+  mutate(dep_delay_shifted = dep_delay - min(dep_delay, na.rm = TRUE) + 1) 
 
+# check summary stats 
 delay_day_hr %>% 
-  ungroup() %>%   # removing group_by() attribute
   select(dep_delay, dep_delay_shifted) %>%
   with(
     apply(., 2, summary)
-    # apply(data, num, fun)  applies function "fun" for each item 
-    # in dimension "num" (1 = cows, 2= columns) of the data frame    
-    # Data referenced by "." means all variables of the dataset inside with().   
     ) %>% t() #  transpose rows and columns  
 ```      
 
+**Tips #3:  `with(data, ...)` function allows for referencing variable names inside the data frame (i.e., "var_name" instead of "data$var_name"). This is very useful when you work with various functions that were created outside the tidyverse syntax, while keeping your codes consistent with the tidyverse syntax.**
+
+**Tips #4: apply(data, num, fun)  applies function "fun" for each item in dimension "num" (1 = cows, 2= columns) of the data frame. The data referenced by "." means all variables in the dataset.** 
+    
 Now the transformed distribution; 
 
 ```{r}
@@ -500,11 +563,11 @@ delay_day_hr %>% filter(!is.na(dep_delay_shifted)) %>%
   scale_x_log10() + 
   geom_histogram(color = "white") 
 
-# Alternatively, one can apply the natural logarithm to transform a variable. Histogram shows no difference here.    
-delay_day_hr %>% filter(!is.na(dep_delay_shifted)) %>% 
-  ggplot(aes(x = dep_delay_shifted)) +  
-  scale_x_continuous(trans = "log") +  
-  geom_histogram(color = "white")
+# # Alternatively, one can apply the natural logarithm to transform a variable. Histogram shows no difference here.    
+# delay_day_hr %>% filter(!is.na(dep_delay_shifted)) %>% 
+#   ggplot(aes(x = dep_delay_shifted)) +  
+#   scale_x_continuous(trans = "log") +  
+#   geom_histogram(color = "white")
 ```
 
 The transformed distribution is much less skewed than the original. Now, let's plot the relationship between delays and flights again. 
@@ -517,13 +580,16 @@ delay_day_hr  %>% filter(!is.na(dep_delay_shifted), dep_delay_shifted > 5) %>%
   geom_smooth()  
 ``` 
 
-We still do not see a pattern that busier hours have more delays. This seems to suggest that the airports in New York City manage the fluctuating number of flights without causing congestion.  
+Again we do not see a pattern of more delays for busier hours. It seems that the airports in New York City manage the fluctuating number of flights without causing congestion.  
 
-## Huning down numbers
 
-This section is optional but contains more examples of `dplyr` and `ggplot2` functions.  
 
-Previously, we find that the congestion at the airports is unlikely the cause of delays. Then, what else may explain the patterns of delays? Are the airlines partly responsible? Recall that earlier we observe that some airlines have longer delays than others for NYC-MSP flights. Let's take a look at the overall average delays by carrier.   
+
+## More examples 2
+
+Let's keep going with exmaples using `flights` data. 
+
+Previously, we find that the congestion at the airports is unlikely the cause of delays. Then, what else may explain the patterns of delays? Recall that earlier we observe that some airlines have longer delays than others for NYC-MSP flights.  Are some airlines responsible for the delays? Let's take a look at the average delays by carrier.   
 
 ```{r}
 stat_carrier <- flights %>% 
@@ -538,9 +604,9 @@ stat_carrier <- flights %>%
 stat_carrier %>% kable(digit=2)
 ```
 
-There could be some differences across carriers. However, the simple average of delays across various routes, days, and hours of flights may not be a good measure to compare the carriers. For example, some carriers may serve the routes and hours that tend to have more delays. Also, given that our dataset covers only the flights from New York City, the comparison may not be nationally representative since carriers use different airports around the country for their regional hubs. 
+While we see some differences, the simple average of delays over various routes, days, and hours of flights may not be a good measure for the comparison across carriers. For example, some carriers may serve the routes and hours that tend to have more delays. Also, given that our dataset covers only the flights from New York City, the comparison may not be nationally representative since carriers use different airports around the country as their regional hubs. 
 
-For our purposes, let's compare the average air time among carriers, while accounting for flight's destination and timing. The differences in air time are not the same as the differences in delays, but they may indicate some efficiency difference among carriers. 
+For our purposes, instead of delays, let's compare the average air time among carriers, for whihch we can account for flight's destination and timing. The differences in air time may indicate some efficiency differences. 
 
 Let's first check how air time relates to flight distance.   
 ```{r}
@@ -553,41 +619,47 @@ flights %>%
 
 `air_time` and `distance` show a general linear relationship. We can better account for this relationship if we calculate the average air time for each flight destination from New York City.  
 
-First, we will consider a simple approach to control for such average air time for each destination and compare the variation in air time among carriers. We can do this by fitting a linear regression model with fixed destination effects and comparing the residuals. This resembles the ANOVA for comparing the mean air times among carriers, but the fixed destination effects here difference out the average air time for each destination from the total variation.  
+First, consider using a simple linear regression model of air time to account for varying destinations. The idea is to estimate the regression-mean air time for each destination, remove the destination effects from the total variation of air time, and then compare that across carriers. 
 
 ```{r}
-# a copy of flights data
+# make a copy of flights data
 flights2 <- flights
 
-# TRUE/FALSE vector showing whther air_time is not NA. 
-idx0 <- flights %>% with(!is.na(air_time))  
+flights2 <- flights2 %>%  # handle missing data as NA 
+  mutate( idx_na1 = is.na(air_time) | is.na(dest) )
 
-flights2$res <- NA # prepare a column of residuals to be defined below 
-
-flights2$res[idx0] <- flights2 %>%  # replace rows with idx0 = TRUE
-  filter(!is.na(air_time)) %>% 
+res <- flights2 %>%  # estimate a linear model and obtain residuals 
   with( 
-   lm( air_time ~ as.factor(dest))  
+   lm( air_time ~ 0 + as.factor(dest), subset=!idx_na1)  
         # lm() estimates a linear model. 
         # "y ~ x"" is the formula for regressing y on x. 
+        # "y ~ 0 + x" removes the intercept from the model. 
         # as.factor() converts "dest" to a factor (categorical) class
         # which is used as a set of dummy variables in the regression.  
    ) %>% 
-  residuals()  # obtains residuals of the lm() object 
+  residuals()
 
-stat_res <- flights2 %>% 
+summary(res)
+
+# define a variable containing a vector of NA
+# replace rows with idx_na1 == FALSE
+flights2$res <- NA
+flights2$res[!flights2$idx_na1] <- res 
+
+flights2 %>% 
   group_by(carrier) %>%
   summarise(
     mean_res = mean(res, na.rm = TRUE), # mean residual by carrier 
     sd_res = sd(res, na.rm = TRUE)
-    ) 
+    ) %>%
+  left_join(stat_carrier, by="carrier") %>% 
+  select(carrier, name, n_obs, dep_delay, arr_delay, mean_res, sd_res) %>% 
+  arrange(-n_obs) %>% 
+  kable(digit=2)
 
-left_join(stat_carrier, stat_res, by="carrier") %>% kable(digit=2)
 ```
 
-The differences in air time across carriers ("mean_res") somewhat differ from the patterns of differences in the simple averages of delays ("dep_delay" and "arr_delay"). The patterns are different between "dep_delay" and "arr_delay" for that matter. 
-
-To some extent, it appears to make sense that the average air time is longer for low-cost carriers such as Virgin America, Frontier Airlines, and Hawaiian Airlines. The differences across other carriers, on the other hand, are small, compared to the standard deviations. To get a sense of whether these differences have any statistical significance, let's use t-test to compare the mean residual between United Airlines and American Airlines.    
+It appears to make sense that the average air time is longer for low-cost carriers such as Virgin America, Frontier Airlines, and Hawaiian Airlines. The differences across other carriers, on the other hand, appear small relative to standard errors. To get a sense of whether these differences have any statistical significance, let's use t-test to compare the mean residual between United Airlines and American Airlines.    
 ```{r} 
 # t-test comparing UA vs AA for the mean air time 
 flights2 %>%
@@ -598,7 +670,7 @@ flights2 %>%
     })
 ```
 
-With a large number of observations, a seemingly small difference in the means often turns out to be a statistically significant difference. Nonetheless, statistical significance is not sufficient for being an empirically significant difference that matters in the real world. The average difference of about 1.5 minute air time per flight appears very small. 
+With a large number of observations, a seemingly small difference in the means often turns out to be statistically significant. Nonetheless, the average difference of about 1.5 minute air time per flight appears very small. 
 
 In fact, we can do this sort of pair-wise comparison all at once using a regression. Using carrier fixed effects in addition to destination fixed effects, we can directly compare the mean effects across carriers. We will set United Airlines to be a reference of the carrier fixed effects, so that the fixed effect for United Airlines is set to zero (i.e., omitted category), from which the fixed effects of all other airlines are estimated. 
 
@@ -646,11 +718,10 @@ clean_lm_rlt <- function(f) {
     left_join(rlt, by="carrier") 
 }
 
-lm_rlt1 <- clean_lm_rlt(f1)
-lm_rlt1 %>% kable(digit=2)
+clean_lm_rlt(f1) %>% kable(digit=2)
 ```
  
-The "estimate" column shows the mean difference in air time with United Airlines, accounting for the flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines. 
+The "estimate" column shows the mean difference in air time comapred to United Airlines, accounting for the flight destination. The estimate tends to be more precise (i.e., smaller standard errors) for carriers with a larger number of observations. This time, we find that Virgin America, Air Tran, Frontier Airlines, and Hawaiian Airlines tend to show particularly longer air times than United Airlines. 
 
 Next, let's take a step further to account for flight timing as well. We can do this by adding fixed effects for flight dates and hours. 
 
@@ -676,12 +747,12 @@ lm_rlt2 %>% filter(carrier!='UA') %>%
 
 The results are similar to the previous linear mode except that this time SkyWest Airlines shows much longer air time.  
 
-Before wrapping up, our final model is a check for the robustness of the above results. We would like to replace the date and hour fixed effects in the previous model with date-hour fixed effects (i.e., the interaction between date and hour). We could add such fixed effects using `time_hour` variable defined above. However, that would mean adding nearly 7,000 dummy variables to our linear regression, which is computationally too intensive. 
+Our final model is a check for the robustness of the above results. Let's replace the date and hour fixed effects in the previous model with date-hour fixed effects (i.e., the interaction between date and hour). We could add such fixed effects using `time_hour` variable defined above. However, that would mean adding nearly 7,000 dummy variables to our linear regression, which is computationally intensive. 
 
 To work around this issue, we approximate this estimation by pre-processing the dependent variable. Specifically, we calculate the average air time for each combination of `time_hour` and `dest` and define a new dependent variable by subtracting this average value from the original air time variable (i.e., the new variable is centered at zero-mean for each combination of `time_hour` and `dest`).  Then, we estimate a linear model with carrier and destination fixed effects. 
 
 ```{r}
-## Adding time_hour fixed effects is too computationally intensive 
+## Adding time_hour fixed effects is computationally intensive 
 # f1 <- flights %>%
 #  with(
 #    lm( air_time  ~  as.factor(carrier) + as.factor(dest) + as.factor(time_hour))   
@@ -708,17 +779,19 @@ lm_rlt3 %>% filter(carrier!='UA') %>%
   labs(title = "Mean Air Time Compared to United Airlines: Robustness Check")
 ```
 
-The point estimates should be *approximately* close to what we would obtain if we regress `air_time` on the fixed effects of `carrier`, `dest`, and `time_hour`. However, the standard errors are not correctly displayed in the table because the centered variable has a smaller total variation compared to the original `air_time` variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)  
+The point estimates should be approximately what we would obtain if we regress `air_time` on the fixed effects of `carrier`, `dest`, and `time_hour`. However, the standard errors are not correctly displayed in the table because the centered variable has a smaller total variation compared to the original `air_time` variable. (Correct standard errors can be obtained, for example, through a bootstrapping technique.)  
 
-Overall, we see again a tendency that lower-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from  United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City.  Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight times and destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on certain date-hours of the peak vacation seasons. 
+Overall, we see again a tendency that lower-cost carriers like Sky West Airlines, Virgin America, Frontier Airlines, and Air Tran show particularly longer air time than United Airlines. Jet Blue Airways, another low-cost carrier, shows a less obvious difference from  United Airlines, possibly suggesting that their operation focused on the East Cost is efficient for the flights departing from New York City.  Hawaiian Airlines and Alaskan Airlines appear to be somewhat different from other carriers perhaps because they are more specialized in particular flight destinations compared to their rivals. In particular, the flights to Hawaii may have distinct delay patterns that are concentrated on peak vacation seasons. 
 
 ##  Reflections 
 
-In this introduction, we have reviewed the tools of `deplyr` and `ggplot2` packages as a starting point for data analyses and visualization in R. This new generation of tools is a data exploration language as much as a set of functions to shortcut traditional data manipulation methods in R. This language provides an intuitive system of translating our inquiries to the data analysis in R.      
+In this introduction, we reviewed the tools of `deplyr` and `ggplot2` packages as a starting point for data analyses and visualization in R.  This new generation of tools utilizing the *tidyverse syntax*  is particularly suitable for data exploration. It allows for simple conversions of our inquiry into sequential coding of data manipulation and analysis via pipe operator `%>%`. Also, manipulating data and creating plots are streamlined via the systematic framework over three primary components `data`, `aes`, and `geom`.         
 
-Using the flight dataset, we have also investigated flight delay patterns. We find that airport congestion is unlikely a major cause of delay in New York City. There are small differences in the air time (e.g. less than 5 minutes) across carriers for a given destination although it remains unclear how this relates to the delay patterns.  
 
-In fact, the concept of "delay" is complicated because it is defined in reference to the scheduled departure and arrival times, which may differ by carrier. A delay would not include the time sitting in the airplane before taking off or after landing as long as it is within the schedule. It might be more interesting to compare scheduled flight duration instead of delays or air time. (Such an analysis would involve somewhat complicated manipulations of date and time with our flight data.)  
+<!-- Using the flight dataset, we also investigated flight delay patterns. We found that airport congestion was unlikely a major cause of delay in New York City. There were small differences in the air time (e.g. less than 5 minutes) across carriers for a given destination.   -->
 
-This leads us to the final point of this exercise; an interesting data analysis requires **knowledge on the real-world process that generated the data** and **the ability to ask interesting questions**.  `deplyr` and `ggplot2` packages can let you employ a variety of data analytics tools with ease, but the ultimate power of the analysis will always rest on your knowledge and creativity. 
- 
+<!-- In fact, the concept of "delay" is complicated because it is defined in reference to the scheduled time of departure and arrival.  A delay may be not capture  the time people spend sitting in the airplane before the take-off or after landing. -->
+
+
+<!-- This brings us to the final point of this exercise; an interesting data analysis requires **knowledge on the real-world process that generated the data** and **the ability to ask insightful questions**. `deplyr` and `ggplot2` packages can let you employ a variety of data analytics tools with ease, but the ultimate power of the analysis will always rest on your knowledge and creativity.  -->
+

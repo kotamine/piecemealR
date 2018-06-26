@@ -40,11 +40,11 @@ bookdown::serve_book( in_session = FALSE, output_dir = "docs")
 library(rmarkdown)
 setwd("~/Dropbox/R_projects/piecemealR")
 
-render("index.Rmd", "html_document")
+render("/docs/index.Rmd", "html_document")
 
-render("00-About.Rmd", "html_document")
+# render("/docs/00-About.Rmd", "html_document")
 
-render("01-Introduction.Rmd", "html_document")
+render("/docs/01-Introduction.Rmd", "html_document")
 
 render("02-Essentials.Rmd", "html_document")
 

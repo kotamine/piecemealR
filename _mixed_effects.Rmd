@@ -28,17 +28,12 @@ illustrateion [source](https://stats.stackexchange.com/questions/228800/crossed-
 ## Mixed Effect Models
 
 
-```{r cars}
-summary(cars)
-
-
-ChickWeight %>% 
-  with(lmer(weight ~ Time + Diet + (1 | Chick))) %>% summary
-
-
+```{r}
+# make a copy of dataset
+ChickWeight2 <- ChickWeight
 
 ChickWeight %>% 
-  with(lmer(weight ~ as.factor(Time)*Diet + (1 | Chick))) %>% summary
+  with(lmer(weight ~ Diet*Time - Diet + (1 | Chick))) %>% summary
 
 lm1 <- ChickWeight %>% mutate(Time_fac = as.factor(Time)) %>%
   with(lm(weight ~ Time_fac + Diet + Time_fac:Diet))
