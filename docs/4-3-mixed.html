@@ -436,8 +436,8 @@ model_<span class="dv">2</span> &lt;-<span class="st"> </span>ChickWeight2 <span
 ## Degrees-of-freedom method: satterthwaite 
 ## Confidence level used: 0.95</code></pre>
 </div>
-<div id="model-4-diet-fixed-effects-on-quadratic-time-growth-rates-beta_1j-chick-random-effects-u_i" class="section level4 unnumbered">
-<h4>Model 4: Diet fixed effects on quadratic-time growth rates <span class="math inline">\(\beta_{1j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></h4>
+<div id="model-4-diet-fixed-effects-on-quadratic-time-growth-rates-beta_1j-and-beta_2j-chick-random-effects-u_i" class="section level4 unnumbered">
+<h4>Model 4: Diet fixed effects on quadratic-time growth rates <span class="math inline">\(\beta_{1j}\)</span> and <span class="math inline">\(\beta_{2j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></h4>
 <p><span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \beta_{2j}\: time_t^2 + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}\]</span></p>
 <p>Note: we assume common intercept <span class="math inline">\(\alpha_{0}\)</span> at Time=0 across Diet types.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_<span class="dv">4</span> &lt;-<span class="st"> </span>ChickWeight2 <span class="op">%&gt;%</span>

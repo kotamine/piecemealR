@@ -84,7 +84,7 @@ summary(model_3)
 lsmeans(model_3, specs=c("Diet"), at=list(Time=c(5, 10, 20)))
 ```
 
-#### Model 4: Diet fixed effects on quadratic-time growth rates $\beta_{1j}$,  Chick random effects $u_i$ {-}
+#### Model 4: Diet fixed effects on quadratic-time growth rates $\beta_{1j}$ and  $\beta_{2j}$,  Chick random effects $u_i$ {-}
 
 $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \beta_{2j}\: time_t^2 + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}$$
 
