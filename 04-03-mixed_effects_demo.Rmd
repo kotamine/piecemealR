@@ -74,9 +74,6 @@ $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \:\: v_{ijt} = u_i
 Note: we assume common intercept $\alpha_{0}$ at Time=0 across Diet types.
 
 ```{r}
-# make a copy of dataset
-ChickWeight2 <- ChickWeight
-
 model_3 <- ChickWeight2 %>% 
   with(lmer(weight ~ Diet*Time - Diet + (1 | Chick))) 
 

@@ -382,10 +382,7 @@ model_<span class="dv">2</span> &lt;-<span class="st"> </span>ChickWeight2 <span
 <h4>Model 3: Diet fixed effects on liear-time growth rates <span class="math inline">\(\beta_{1j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></h4>
 <p><span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}\]</span></p>
 <p>Note: we assume common intercept <span class="math inline">\(\alpha_{0}\)</span> at Time=0 across Diet types.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a copy of dataset</span>
-ChickWeight2 &lt;-<span class="st"> </span>ChickWeight
-
-model_<span class="dv">3</span> &lt;-<span class="st"> </span>ChickWeight2 <span class="op">%&gt;%</span><span class="st"> </span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_<span class="dv">3</span> &lt;-<span class="st"> </span>ChickWeight2 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">with</span>(<span class="kw">lmer</span>(weight <span class="op">~</span><span class="st"> </span>Diet<span class="op">*</span>Time <span class="op">-</span><span class="st"> </span>Diet <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Chick))) 
 
 <span class="co"># summary including marginal effects (coefficients)</span>
@@ -421,6 +418,7 @@ model_<span class="dv">3</span> &lt;-<span class="st"> </span>ChickWeight2 <span
 ## Diet4:Time  0.004 -0.573  0.361  0.361</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lsmeans: projected mean for each Diet at given Time values </span>
 <span class="kw">lsmeans</span>(model_<span class="dv">3</span>, <span class="dt">specs=</span><span class="kw">c</span>(<span class="st">&quot;Diet&quot;</span>), <span class="dt">at=</span><span class="kw">list</span>(<span class="dt">Time=</span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>)))</code></pre></div>
+<pre><code>## Loading required namespace: lmerTest</code></pre>
 <pre><code>##  Diet Time    lsmean       SE     df  lower.CL  upper.CL
 ##  1       5  62.04951 3.661222  60.89  54.72817  69.37084
 ##  2       5  71.27029 3.808503  68.67  63.65444  78.88614

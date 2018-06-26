@@ -237,9 +237,6 @@ Note: we assume common intercept $\alpha_{0}$ at Time=0 across Diet types.
 
 
 ```r
-# make a copy of dataset
-ChickWeight2 <- ChickWeight
-
 model_3 <- ChickWeight2 %>% 
   with(lmer(weight ~ Diet*Time - Diet + (1 | Chick))) 
 
@@ -282,6 +279,10 @@ summary(model_3)
 ```r
 # lsmeans: projected mean for each Diet at given Time values 
 lsmeans(model_3, specs=c("Diet"), at=list(Time=c(5, 10, 20)))
+```
+
+```
+## Loading required namespace: lmerTest
 ```
 
 ```
