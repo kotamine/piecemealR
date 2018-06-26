@@ -4,3 +4,5 @@
 
   - \@ref(boot) t-test, bootstrapping, and linear regressions
 
+  - \@ref(mixed) Demo: Mixed Effects and LSMEANS 
+

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Piecemeal R</title>
+  <meta name="description" content="This is a R tutorial.">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Piecemeal R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a R tutorial." />
+  <meta name="github-repo" content="/kotamine/piecemealR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Piecemeal R" />
+  
+  <meta name="twitter:description" content="This is a R tutorial." />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="4-3-mixed.html">
+<link rel="next" href="visualizing-model-fit.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.4/datatables.js"></script>
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.16/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-97062240-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Piecemeal R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a><ul>
+<li class="chapter" data-level="" data-path="about.html"><a href="about.html"><i class="fa fa-check"></i>About</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-intro.html"><a href="2-intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1" data-path="2-1-materials.html"><a href="2-1-materials.html"><i class="fa fa-check"></i><b>2.1</b> Materials</a></li>
+<li class="chapter" data-level="2.2" data-path="2-2-crafts.html"><a href="2-2-crafts.html"><i class="fa fa-check"></i><b>2.2</b> Crafts</a></li>
+<li class="chapter" data-level="2.3" data-path="2-3-arts.html"><a href="2-3-arts.html"><i class="fa fa-check"></i><b>2.3</b> Arts</a></li>
+<li class="chapter" data-level="2.4" data-path="2-4-more-examples-1.html"><a href="2-4-more-examples-1.html"><i class="fa fa-check"></i><b>2.4</b> More examples 1</a></li>
+<li class="chapter" data-level="2.5" data-path="2-5-more-examples-2.html"><a href="2-5-more-examples-2.html"><i class="fa fa-check"></i><b>2.5</b> More examples 2</a></li>
+<li class="chapter" data-level="2.6" data-path="2-6-reflections.html"><a href="2-6-reflections.html"><i class="fa fa-check"></i><b>2.6</b> Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-essentials.html"><a href="3-essentials.html"><i class="fa fa-check"></i><b>3</b> Essentials</a><ul>
+<li class="chapter" data-level="3.1" data-path="3-1-cheatsheets.html"><a href="3-1-cheatsheets.html"><i class="fa fa-check"></i><b>3.1</b> Cheatsheets</a></li>
+<li class="chapter" data-level="3.2" data-path="3-2-datatypes.html"><a href="3-2-datatypes.html"><i class="fa fa-check"></i><b>3.2</b> Data types</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="3-2-datatypes.html"><a href="3-2-datatypes.html#atomic"><i class="fa fa-check"></i><b>3.2.1</b> Atomic</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-2-datatypes.html"><a href="3-2-datatypes.html#factor"><i class="fa fa-check"></i><b>3.2.2</b> Factor</a></li>
+<li class="chapter" data-level="3.2.3" data-path="3-2-datatypes.html"><a href="3-2-datatypes.html#matrix"><i class="fa fa-check"></i><b>3.2.3</b> Matrix</a></li>
+<li class="chapter" data-level="3.2.4" data-path="3-2-datatypes.html"><a href="3-2-datatypes.html#data-frame"><i class="fa fa-check"></i><b>3.2.4</b> Data Frame</a></li>
+<li class="chapter" data-level="3.2.5" data-path="3-2-datatypes.html"><a href="3-2-datatypes.html#list"><i class="fa fa-check"></i><b>3.2.5</b> List</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-3-programming.html"><a href="3-3-programming.html"><i class="fa fa-check"></i><b>3.3</b> Programming</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="3-3-programming.html"><a href="3-3-programming.html#operator"><i class="fa fa-check"></i><b>3.3.1</b> Operator</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-3-programming.html"><a href="3-3-programming.html#if-else"><i class="fa fa-check"></i><b>3.3.2</b> If else</a></li>
+<li class="chapter" data-level="3.3.3" data-path="3-3-programming.html"><a href="3-3-programming.html#loop"><i class="fa fa-check"></i><b>3.3.3</b> Loop</a></li>
+<li class="chapter" data-level="3.3.4" data-path="3-3-programming.html"><a href="3-3-programming.html#function"><i class="fa fa-check"></i><b>3.3.4</b> Function</a></li>
+<li class="chapter" data-level="3.3.5" data-path="3-3-programming.html"><a href="3-3-programming.html#environment"><i class="fa fa-check"></i><b>3.3.5</b> Environment</a></li>
+<li class="chapter" data-level="3.3.6" data-path="3-3-programming.html"><a href="3-3-programming.html#debugging"><i class="fa fa-check"></i><b>3.3.6</b> Debugging</a></li>
+<li class="chapter" data-level="3.3.7" data-path="3-3-programming.html"><a href="3-3-programming.html#stat-func."><i class="fa fa-check"></i><b>3.3.7</b> Stat func.</a></li>
+<li class="chapter" data-level="3.3.8" data-path="3-3-programming.html"><a href="3-3-programming.html#string-func."><i class="fa fa-check"></i><b>3.3.8</b> String func.</a></li>
+<li class="chapter" data-level="3.3.9" data-path="3-3-programming.html"><a href="3-3-programming.html#set-func."><i class="fa fa-check"></i><b>3.3.9</b> Set func.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html"><i class="fa fa-check"></i><b>3.4</b> Housekeeping</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#working-directory"><i class="fa fa-check"></i><b>3.4.1</b> Working directory</a></li>
+<li class="chapter" data-level="3.4.2" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#r-session"><i class="fa fa-check"></i><b>3.4.2</b> R session</a></li>
+<li class="chapter" data-level="3.4.3" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#save-load"><i class="fa fa-check"></i><b>3.4.3</b> Save &amp; load</a></li>
+<li class="chapter" data-level="3.4.4" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#input-output"><i class="fa fa-check"></i><b>3.4.4</b> Input &amp; Output</a></li>
+<li class="chapter" data-level="3.4.5" data-path="3-4-housekeeping.html"><a href="3-4-housekeeping.html#updating"><i class="fa fa-check"></i><b>3.4.5</b> Updating</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-piecemeal-top.html"><a href="4-piecemeal-top.html"><i class="fa fa-check"></i><b>4</b> Piecemeal Topics</a><ul>
+<li class="chapter" data-level="4.1" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html"><i class="fa fa-check"></i><b>4.1</b> Unusual Deaths in Mexico</a><ul>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#materials-1"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#arts-crafts"><i class="fa fa-check"></i>Arts &amp; Crafts</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#exercise"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#the-key"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="" data-path="4-1-dplyr.html"><a href="4-1-dplyr.html#reflections-1"><i class="fa fa-check"></i>Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-2-boot.html"><a href="4-2-boot.html"><i class="fa fa-check"></i><b>4.2</b> Action, Romance, and Chicks</a><ul>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#materials-2"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#t-test"><i class="fa fa-check"></i>t-test</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#bootstrapping"><i class="fa fa-check"></i>Bootstrapping</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#linear-models"><i class="fa fa-check"></i>Linear Models</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#exercise-1"><i class="fa fa-check"></i>Exercise</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#the-key-1"><i class="fa fa-check"></i>The Key</a></li>
+<li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#reflections-2"><i class="fa fa-check"></i>Reflections</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-mixed.html"><a href="4-3-mixed.html"><i class="fa fa-check"></i><b>4.3</b> Demo. Mixed Effects Models and LSMEANS</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="mixed-effect-models.html"><a href="mixed-effect-models.html"><i class="fa fa-check"></i>Mixed Effect Models</a><ul>
+<li><a href="mixed-effect-models.html#model-1-linear-time-trend-beta_1-diet-fixed-effects-alpha_j-chick-random-effects-u_i">Model 1 linear time trend <span class="math inline">\(\beta_{1}\)</span>, Diet fixed effects <span class="math inline">\(\alpha_{j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></a></li>
+<li><a href="mixed-effect-models.html#model-2-discrete-time-fixed-effects-beta_t-diet-fixed-effects-alpha_j-and-chick-random-effects-u_i">Model 2: discrete time fixed effects <span class="math inline">\(\beta_{t}\)</span>, Diet fixed effects <span class="math inline">\(\alpha_{j}\)</span> and Chick random effects <span class="math inline">\(u_i\)</span></a></li>
+<li><a href="mixed-effect-models.html#model-3-diet-fixed-effects-on-liear-time-growth-rates-beta_1j-chick-random-effects-u_i">Model 3: Diet fixed effects on liear-time growth rates <span class="math inline">\(\beta_{1j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></a></li>
+<li><a href="mixed-effect-models.html#model-4-diet-fixed-effects-on-quadratic-time-growth-rates-beta_1j-chick-random-effects-u_i">Model 4: Diet fixed effects on quadratic-time growth rates <span class="math inline">\(\beta_{1j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="visualizing-model-fit.html"><a href="visualizing-model-fit.html"><i class="fa fa-check"></i>Visualizing Model Fit</a><ul>
+<li class="chapter" data-level="" data-path="visualizing-model-fit.html"><a href="visualizing-model-fit.html#raw-data"><i class="fa fa-check"></i>Raw data</a></li>
+<li class="chapter" data-level="" data-path="visualizing-model-fit.html"><a href="visualizing-model-fit.html#model-1-fit-approx."><i class="fa fa-check"></i>Model 1 fit (approx.)</a></li>
+<li class="chapter" data-level="" data-path="visualizing-model-fit.html"><a href="visualizing-model-fit.html#model-2-fit-approx."><i class="fa fa-check"></i>Model 2 fit (approx.)</a></li>
+<li class="chapter" data-level="" data-path="visualizing-model-fit.html"><a href="visualizing-model-fit.html#model-3-fit-approx."><i class="fa fa-check"></i>Model 3 fit (approx.)</a></li>
+<li class="chapter" data-level="" data-path="visualizing-model-fit.html"><a href="visualizing-model-fit.html#model-4-fit-approx."><i class="fa fa-check"></i>Model 4 fit (approx.)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org/yihui/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Piecemeal R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mixed-effect-models" class="section level1 unnumbered">
+<h1>Mixed Effect Models</h1>
+<p>Let <span class="math inline">\(weight_{ijt}\)</span> be the weight of chick <span class="math inline">\(i\)</span> in Diet group <span class="math inline">\(j\)</span> observed in time <span class="math inline">\(t\)</span>. Consider modeling the effect of Diet on weight. (If you are new to R estimation syntax, <a href="http://conjugateprior.org/2013/01/formulae-in-r-anova/">reading this</a> may be helpful.)</p>
+<div id="model-1-linear-time-trend-beta_1-diet-fixed-effects-alpha_j-chick-random-effects-u_i" class="section level3 unnumbered">
+<h3>Model 1 linear time trend <span class="math inline">\(\beta_{1}\)</span>, Diet fixed effects <span class="math inline">\(\alpha_{j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></h3>
+<p><span class="math display">\[ weight_{ijt} = \alpha_{j} + \beta_{1}\: time_t + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}\]</span> where <span class="math inline">\(\varepsilon_{ijt}\)</span> is an error term.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_<span class="dv">1</span> &lt;-<span class="st"> </span>ChickWeight2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">with</span>(<span class="kw">lmer</span>(weight <span class="op">~</span><span class="st">  </span>Diet <span class="op">+</span><span class="st"> </span>Time  <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Chick))) 
+
+<span class="co"># marginal effects </span>
+<span class="kw">summary</span>(model_<span class="dv">1</span>)</code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: weight ~ Diet + Time + (1 | Chick)
+## 
+## REML criterion at convergence: 5584
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.0591 -0.5779 -0.1182  0.4962  3.4515 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Chick    (Intercept) 525.4    22.92   
+##  Residual             799.4    28.27   
+## Number of obs: 578, groups:  Chick, 50
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  11.2438     5.7887   1.942
+## Diet2        16.2100     9.4643   1.713
+## Diet3        36.5433     9.4643   3.861
+## Diet4        30.0129     9.4708   3.169
+## Time          8.7172     0.1755  49.684
+## 
+## Correlation of Fixed Effects:
+##       (Intr) Diet2  Diet3  Diet4 
+## Diet2 -0.550                     
+## Diet3 -0.550  0.339              
+## Diet4 -0.550  0.339  0.339       
+## Time  -0.307 -0.015 -0.015 -0.011</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lsmeans: projected mean for each Diet </span>
+lsmeans<span class="op">::</span><span class="kw">lsmeans</span>(model_<span class="dv">1</span>, <span class="dt">specs=</span><span class="kw">c</span>(<span class="st">&quot;Diet&quot;</span>))</code></pre></div>
+<pre><code>## Loading required namespace: lmerTest</code></pre>
+<pre><code>##  Diet   lsmean       SE    df  lower.CL upper.CL
+##  1    104.6748 5.510541 47.38  93.59138 115.7582
+##  2    120.8848 7.694168 45.64 105.40941 136.3602
+##  3    141.2181 7.694168 45.64 125.74275 156.6935
+##  4    134.6877 7.702571 45.83 119.19541 150.1800
+## 
+## Degrees-of-freedom method: satterthwaite 
+## Confidence level used: 0.95</code></pre>
+</div>
+<div id="model-2-discrete-time-fixed-effects-beta_t-diet-fixed-effects-alpha_j-and-chick-random-effects-u_i" class="section level3 unnumbered">
+<h3>Model 2: discrete time fixed effects <span class="math inline">\(\beta_{t}\)</span>, Diet fixed effects <span class="math inline">\(\alpha_{j}\)</span> and Chick random effects <span class="math inline">\(u_i\)</span></h3>
+<p><span class="math display">\[ weight_{ijt} = \alpha_{j} + \beta_{t} + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># add a factor time variable</span>
+ChickWeight2 &lt;-<span class="st"> </span>ChickWeight2 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">Time_fac =</span> <span class="kw">as.factor</span>(Time)) 
+
+model_<span class="dv">2</span> &lt;-<span class="st"> </span>ChickWeight2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">with</span>(<span class="kw">lmer</span>(weight <span class="op">~</span><span class="st">  </span>Diet <span class="op">+</span><span class="st"> </span>Time_fac <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Chick)))
+
+<span class="co"># marginal effects </span>
+<span class="kw">summary</span>(model_<span class="dv">2</span>)</code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: weight ~ Diet + Time_fac + (1 | Chick)
+## 
+## REML criterion at convergence: 5499.1
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.3235 -0.5158 -0.0179  0.4625  3.2968 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Chick    (Intercept) 523.3    22.87   
+##  Residual             770.2    27.75   
+## Number of obs: 578, groups:  Chick, 50
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)   24.424      6.616   3.692
+## Diet2         16.310      9.427   1.730
+## Diet3         36.643      9.427   3.887
+## Diet4         30.230      9.434   3.205
+## Time_fac2      8.160      5.550   1.470
+## Time_fac4     18.660      5.587   3.340
+## Time_fac6     33.006      5.587   5.908
+## Time_fac8     49.945      5.587   8.940
+## Time_fac10    66.537      5.587  11.909
+## Time_fac12    87.945      5.587  15.741
+## Time_fac14   101.947      5.620  18.141
+## Time_fac16   125.667      5.653  22.229
+## Time_fac18   147.774      5.653  26.139
+## Time_fac20   167.253      5.687  29.407
+## Time_fac21   175.710      5.723  30.703</code></pre>
+<pre><code>## 
+## Correlation matrix not shown by default, as p = 15 &gt; 12.
+## Use print(x, correlation=TRUE)  or
+##   vcov(x)     if you need it</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lsmeans: projected mean for each Diet </span>
+lsmeans<span class="op">::</span><span class="kw">lsmeans</span>(model_<span class="dv">2</span>, <span class="dt">specs=</span><span class="kw">c</span>(<span class="st">&quot;Diet&quot;</span>))</code></pre></div>
+<pre><code>##  Diet   lsmean       SE    df  lower.CL upper.CL
+##  1    106.3072 5.488820 47.51  95.26823 117.3461
+##  2    122.6167 7.664476 45.76 107.20212 138.0312
+##  3    142.9500 7.664476 45.76 127.53546 158.3645
+##  4    136.5373 7.672861 45.96 121.10587 151.9687
+## 
+## Results are averaged over the levels of: Time_fac 
+## Degrees-of-freedom method: satterthwaite 
+## Confidence level used: 0.95</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lsmeans: projected mean for each combination of Time_fac and Diet </span>
+lsmeans<span class="op">::</span><span class="kw">lsmeans</span>(model_<span class="dv">2</span>, <span class="dt">specs=</span><span class="kw">c</span>(<span class="st">&quot;Time_fac&quot;</span>,<span class="st">&quot;Diet&quot;</span>))</code></pre></div>
+<pre><code>##  Time_fac Diet    lsmean       SE     df  lower.CL  upper.CL
+##  0        1     24.42351 6.615760  99.01  11.29643  37.55059
+##  2        1     32.58351 6.615760  99.01  19.45643  45.71059
+##  4        1     43.08306 6.669652 101.11  29.84904  56.31707
+##  6        1     57.43000 6.669652 101.11  44.19598  70.66401
+##  8        1     74.36877 6.669652 101.11  61.13476  87.60278
+##  10       1     90.96061 6.669652 101.11  77.72660 104.19462
+##  12       1    112.36877 6.669652 101.11  99.13476 125.60278
+##  14       1    126.37031 6.707010 103.14 113.06217 139.67845
+##  16       1    150.09078 6.744365 105.23 136.70852 163.47304
+##  18       1    172.19716 6.744365 105.23 158.81490 185.57942
+##  20       1    191.67605 6.768521 106.60 178.24586 205.10624
+##  21       1    200.13339 6.805510 108.76 186.62981 213.63698
+##  0        2     40.73301 8.543480  70.20  23.78093  57.68510
+##  2        2     48.89301 8.543480  70.20  31.94093  65.84510
+##  4        2     59.39256 8.555171  70.64  42.41728  76.36785
+##  6        2     73.73950 8.555171  70.64  56.76422  90.71479
+##  8        2     90.67828 8.555171  70.64  73.70299 107.65356
+##  10       2    107.27012 8.555171  70.64  90.29483 124.24540
+##  12       2    128.67828 8.555171  70.64 111.70299 145.65356
+##  14       2    142.67982 8.571485  71.16 125.67216 159.68747
+##  16       2    166.40029 8.588795  71.72 149.35829 183.44229
+##  18       2    188.50667 8.588795  71.72 171.46467 205.54867
+##  20       2    207.98556 8.607256  72.31 190.90693 225.06419
+##  21       2    216.44290 8.626723  72.94 199.32564 233.56016
+##  0        3     61.06635 8.543480  70.20  44.11426  78.01844
+##  2        3     69.22635 8.543480  70.20  52.27426  86.17844
+##  4        3     79.72590 8.555171  70.64  62.75061  96.70118
+##  6        3     94.07284 8.555171  70.64  77.09755 111.04812
+##  8        3    111.01161 8.555171  70.64  94.03633 127.98690
+##  10       3    127.60345 8.555171  70.64 110.62816 144.57873
+##  12       3    149.01161 8.555171  70.64 132.03633 165.98690
+##  14       3    163.01315 8.571485  71.16 146.00549 180.02080
+##  16       3    186.73362 8.588795  71.72 169.69162 203.77562
+##  18       3    208.84000 8.588795  71.72 191.79800 225.88200
+##  20       3    228.31889 8.607256  72.31 211.24026 245.39752
+##  21       3    236.77623 8.626723  72.94 219.65897 253.89349
+##  0        4     54.65362 8.547798  70.33  37.69297  71.61428
+##  2        4     62.81362 8.547798  70.33  45.85297  79.77428
+##  4        4     73.31317 8.559459  70.77  56.32938  90.29696
+##  6        4     87.66011 8.559459  70.77  70.67632 104.64390
+##  8        4    104.59889 8.559459  70.77  87.61509 121.58268
+##  10       4    121.19072 8.559459  70.77 104.20693 138.17452
+##  12       4    142.59889 8.559459  70.77 125.61509 159.58268
+##  14       4    156.60042 8.575756  71.29 139.58429 173.61655
+##  16       4    180.32089 8.593047  71.85 163.27046 197.37133
+##  18       4    202.42728 8.593047  71.85 185.37684 219.47772
+##  20       4    221.90616 8.630538  73.05 204.78134 239.03099
+##  21       4    230.36351 8.650333  73.70 213.19940 247.52761
+## 
+## Degrees-of-freedom method: satterthwaite 
+## Confidence level used: 0.95</code></pre>
+</div>
+<div id="model-3-diet-fixed-effects-on-liear-time-growth-rates-beta_1j-chick-random-effects-u_i" class="section level3 unnumbered">
+<h3>Model 3: Diet fixed effects on liear-time growth rates <span class="math inline">\(\beta_{1j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></h3>
+<p><span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}\]</span></p>
+<p>Note: common intercept at Time=0 across Diet types.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># make a copy of dataset</span>
+ChickWeight2 &lt;-<span class="st"> </span>ChickWeight
+
+model_<span class="dv">3</span> &lt;-<span class="st"> </span>ChickWeight2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">with</span>(<span class="kw">lmer</span>(weight <span class="op">~</span><span class="st"> </span>Diet<span class="op">*</span>Time <span class="op">-</span><span class="st"> </span>Diet <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Chick))) 
+
+<span class="co"># marginal effects </span>
+<span class="kw">summary</span>(model_<span class="dv">3</span>)</code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: weight ~ Diet * Time - Diet + (1 | Chick)
+## 
+## REML criterion at convergence: 5488
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.3226 -0.5908 -0.0699  0.5435  3.5918 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Chick    (Intercept) 532.9    23.09   
+##  Residual             643.0    25.36   
+## Number of obs: 578, groups:  Chick, 50
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  28.1852     3.8206   7.377
+## Time          6.7729     0.2435  27.818
+## Diet2:Time    1.8442     0.3857   4.782
+## Diet3:Time    4.4756     0.3857  11.605
+## Diet4:Time    2.9418     0.3906   7.532
+## 
+## Correlation of Fixed Effects:
+##            (Intr) Time   Dt2:Tm Dt3:Tm
+## Time       -0.287                     
+## Diet2:Time  0.008 -0.581              
+## Diet3:Time  0.008 -0.581  0.366       
+## Diet4:Time  0.004 -0.573  0.361  0.361</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lsmeans: projected mean for each Diet at given Time values </span>
+lsmeans<span class="op">::</span><span class="kw">lsmeans</span>(model_<span class="dv">3</span>, <span class="dt">specs=</span><span class="kw">c</span>(<span class="st">&quot;Diet&quot;</span>), <span class="dt">at=</span><span class="kw">list</span>(<span class="dt">Time=</span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>)))</code></pre></div>
+<pre><code>##  Diet Time    lsmean       SE     df  lower.CL  upper.CL
+##  1       5  62.04951 3.661222  60.89  54.72817  69.37084
+##  2       5  71.27029 3.808503  68.67  63.65444  78.88614
+##  3       5  84.42731 3.808503  68.67  76.81146  92.04317
+##  4       5  76.75832 3.814692  68.99  69.13009  84.38655
+##  1      10  95.91377 3.895676  71.79  88.12360 103.70394
+##  2      10 114.35534 4.399435 101.23 105.55780 123.15287
+##  3      10 140.66939 4.399435 101.23 131.87185 149.46692
+##  4      10 125.33140 4.432729 103.29 116.46729 134.19551
+##  1      20 163.64230 5.254660 164.97 153.13457 174.15003
+##  2      20 200.52543 6.624401 248.93 187.27864 213.77222
+##  3      20 253.15353 6.624401 248.93 239.90674 266.40033
+##  4      20 222.47756 6.728268 255.00 209.02306 235.93206
+## 
+## Degrees-of-freedom method: satterthwaite 
+## Confidence level used: 0.95</code></pre>
+</div>
+<div id="model-4-diet-fixed-effects-on-quadratic-time-growth-rates-beta_1j-chick-random-effects-u_i" class="section level3 unnumbered">
+<h3>Model 4: Diet fixed effects on quadratic-time growth rates <span class="math inline">\(\beta_{1j}\)</span>, Chick random effects <span class="math inline">\(u_i\)</span></h3>
+<p><span class="math display">\[ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \beta_{2j}\: time_t^2 + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}\]</span></p>
+<p>Note: common intercept at Time=0 across Diet types.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model_<span class="dv">4</span> &lt;-<span class="st"> </span>ChickWeight2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">with</span>(<span class="kw">lmer</span>(weight <span class="op">~</span><span class="st"> </span>Diet<span class="op">:</span>Time <span class="op">+</span><span class="st"> </span>Diet<span class="op">:</span><span class="kw">I</span>(Time<span class="op">^</span><span class="dv">2</span>) <span class="op">-</span><span class="st"> </span>Diet  <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>Chick)))
+
+<span class="co"># marginal effects</span>
+<span class="kw">summary</span>(model_<span class="dv">4</span>)</code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: weight ~ Diet:Time + Diet:I(Time^2) - Diet + (1 | Chick)
+## 
+## REML criterion at convergence: 5463.7
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -4.0129 -0.5185 -0.0110  0.5288  3.4598 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Chick    (Intercept) 522.4    22.86   
+##  Residual             600.6    24.51   
+## Number of obs: 578, groups:  Chick, 50
+## 
+## Fixed effects:
+##                 Estimate Std. Error t value
+## (Intercept)     37.99451    4.14966   9.156
+## Diet1:Time       4.53465    0.85256   5.319
+## Diet2:Time       5.78814    1.12549   5.143
+## Diet3:Time       5.11572    1.12549   4.545
+## Diet4:Time       7.79434    1.13449   6.870
+## Diet1:I(Time^2)  0.10316    0.03995   2.583
+## Diet2:I(Time^2)  0.13111    0.05262   2.491
+## Diet3:I(Time^2)  0.29413    0.05262   5.589
+## Diet4:I(Time^2)  0.08703    0.05356   1.625
+## 
+## Correlation of Fixed Effects:
+##             (Intr) Dt1:Tm Dt2:Tm Dt3:Tm Dt4:Tm D1:I(T D2:I(T D3:I(T
+## Diet1:Time  -0.349                                                 
+## Diet2:Time  -0.259  0.090                                          
+## Diet3:Time  -0.259  0.090  0.067                                   
+## Diet4:Time  -0.259  0.090  0.067  0.067                            
+## Dt1:I(Tm^2)  0.281 -0.961 -0.073 -0.073 -0.073                     
+## Dt2:I(Tm^2)  0.207 -0.072 -0.962 -0.053 -0.053  0.058              
+## Dt3:I(Tm^2)  0.207 -0.072 -0.053 -0.962 -0.053  0.058  0.043       
+## Dt4:I(Tm^2)  0.206 -0.072 -0.053 -0.053 -0.961  0.058  0.043  0.043</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># lsmeans: projected mean for each Diet at given Time values </span>
+lsmeans<span class="op">::</span><span class="kw">lsmeans</span>(model_<span class="dv">4</span>, <span class="dt">specs=</span><span class="kw">c</span>(<span class="st">&quot;Diet&quot;</span>), <span class="dt">at=</span><span class="kw">list</span>(<span class="dt">Time=</span><span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>)))</code></pre></div>
+<pre><code>## NOTE: Results may be misleading due to involvement in interactions</code></pre>
+<pre><code>##  Diet   lsmean       SE     df lower.CL upper.CL
+##  1    108.9524 4.349821  88.98 100.3094 117.5954
+##  2    128.4676 5.413575 131.34 117.7109 139.2243
+##  3    149.1506 5.413575 131.34 138.3939 159.9073
+##  4    144.1593 5.415879 131.77 133.3981 154.9206
+## 
+## Results are averaged over the levels of: Time 
+## Degrees-of-freedom method: satterthwaite 
+## Confidence level used: 0.95</code></pre>
+</div>
+</div>
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//piecemealr.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the
+<a href="https://disqus.com/?ref_noscript">
+  comments powered by Disqus.</a></noscript>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-3-mixed.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualizing-model-fit.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": true,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "serif",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/kotamine/piecemealR/edit/master/04-03-mixed_effects_demo.Rmd",
+"text": "Edit"
+},
+"download": null,
+"toc": {
+"collapse": "subsection",
+"toc": true,
+"toc_depth": 3,
+"scroll_highlight": true
+},
+"code_folding": "show",
+"highlight": "zenburn",
+"toolbar": {
+"position": "fixed"
+},
+"search": true
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -175,6 +175,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#the-key-1"><i class="fa fa-check"></i>The Key</a></li>
 <li class="chapter" data-level="" data-path="4-2-boot.html"><a href="4-2-boot.html#reflections-2"><i class="fa fa-check"></i>Reflections</a></li>
 </ul></li>
+<li class="chapter" data-level="4.3" data-path="4-3-mixed.html"><a href="4-3-mixed.html"><i class="fa fa-check"></i><b>4.3</b> Demo. Mixed Effects Models and LSMEANS</a><ul>
+<li class="chapter" data-level="" data-path="4-3-mixed.html"><a href="4-3-mixed.html#mixed-effect-models"><i class="fa fa-check"></i>Mixed Effect Models</a></li>
+<li class="chapter" data-level="" data-path="4-3-mixed.html"><a href="4-3-mixed.html#visualizing-model-fit"><i class="fa fa-check"></i>Visualizing Model Fit</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="5-resources.html"><a href="5-resources.html"><i class="fa fa-check"></i><b>5</b> Resources</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -290,7 +294,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ifelse</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>) <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>)  <span class="co"># return 1 if TRUE and -1 if else  </span></code></pre></div>
 <pre><code>## [1] -1 -1  1</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Sys.time</span>()</code></pre></div>
-<pre><code>## [1] &quot;2018-06-26 15:09:14 CDT&quot;</code></pre>
+<pre><code>## [1] &quot;2018-06-26 16:52:34 CDT&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">time &lt;-<span class="st"> </span><span class="kw">Sys.time</span>()
 hour &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">substr</span>(time, <span class="dv">12</span>,<span class="dv">13</span>))
 <span class="co"># sequential if-else statements</span>
@@ -365,7 +369,7 @@ hour &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span clas
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">environment</span>(f1)  <span class="co"># environment of f1(), which is .GlobalEnv </span></code></pre></div>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f1</span>()  <span class="co"># inside f1 has its own enviornment </span></code></pre></div>
-<pre><code>## &lt;environment: 0x7f9f96a21918&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7fa275e02b18&gt;</code></pre>
 <p>A function can access to the objects in its environment (i.e., <em>global</em> to the function) and those defined inside (i.e., <em>local</em> to the function) and generally cannot overwrite the global objects. It allows for using common names such as “x1”, “var1” etc. defined inside functions, but those objects are only accessible within the function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># object named &quot;a&quot; in .GlobalEnv</span>
 f2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
@@ -375,10 +379,10 @@ f2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
       }
 <span class="kw">f2</span>()  <span class="co">#  one instance creating an environment   </span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<pre><code>## &lt;environment: 0x7f9f964f4860&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7fa2776d4e60&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">f2</span>()  <span class="co">#  another instance creating another environment</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<pre><code>## &lt;environment: 0x7f9f96aeae70&gt;</code></pre>
+<pre><code>## &lt;environment: 0x7fa277830270&gt;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">a  <span class="co"># stays NULL </span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ls</span>()  <span class="co"># ls() shows all objects of an environment (here .GlobablEnv)</span></code></pre></div>

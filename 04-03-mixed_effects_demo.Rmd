@@ -1,8 +1,18 @@
----
-title: "Demo. Mixed Effects Models and LSMEANS"
-output: html_document
 
----
+
+## Demo. Mixed Effects Models and LSMEANS {#mixed}
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_chunk$set(cache.path="../piecemealR_cache/04-03-mixed_cache/")
+```
+
+
+Mixed effects models employing fixed and random parameters are popular in the analysis of experimental data.  In some disciplines, there is a strong tradition of summarizing results with "LSMEANS", a [SAS's terminology](http://andrey-myslivets.tumblr.com/post/92630498431/en).  
+
+Here we will briefly  demonstrate mixed effect estimation and
+[lsmeans](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjk4-XQo_LbAhVk4oMKHXY4ACUQFggoMAA&url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Flsmeans%2Fvignettes%2Fusing-lsmeans.pdf&usg=AOvVaw2kxQsw-sISiXmxlP2kTzj4) in R.   
+
 
 ```{r, warning=FALSE, message=FALSE}
 library(dplyr)
@@ -14,33 +24,28 @@ library(lsmeans)
 ChickWeight2 <- ChickWeight
 ```
 
-Mixed effects models employing fixed and random parameters are popular in the analysis of experimental data.  In some disciplines, there is a strong tradition of summarizing results with "LSMEANS", a [SAS's terminology](http://andrey-myslivets.tumblr.com/post/92630498431/en).  
-
-Here we will briefly  demonstrate mixed effect estimation and
-[lsmeans](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwjk4-XQo_LbAhVk4oMKHXY4ACUQFggoMAA&url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2Flsmeans%2Fvignettes%2Fusing-lsmeans.pdf&usg=AOvVaw2kxQsw-sISiXmxlP2kTzj4) in R.   
-
-# Mixed Effect Models {-}
+### Mixed Effect Models {-}
 
 Let $weight_{ijt}$ be the weight of chick $i$ in Diet group $j$ observed in time $t$.  Consider modeling the effect of Diet on weight. (If you are new to R estimation syntax, [reading this](http://conjugateprior.org/2013/01/formulae-in-r-anova/)
  may be helpful.) 
 
-### Model 1 linear time trend $\beta_{1}$, Diet fixed effects $\alpha_{j}$,  Chick random effects $u_i$ {-}
+#### Model 1 linear time trend $\beta_{1}$, Diet fixed effects $\alpha_{j}$,  Chick random effects $u_i$ {-}
 
 $$ weight_{ijt} = \alpha_{j} + \beta_{1}\: time_t + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}$$
-where $\varepsilon_{ijt}$ is an error term. 
+where $ v_{ijt}$ is a composite error term consisting of Chick random effects $u_i$  and random error component $\varepsilon_{ijt}$.  
 
 ```{r}
 model_1 <- ChickWeight2 %>% 
   with(lmer(weight ~  Diet + Time  + (1 | Chick))) 
 
-# marginal effects 
+# summary including marginal effects (coefficients) 
 summary(model_1)
 
 # lsmeans: projected mean for each Diet 
-lsmeans::lsmeans(model_1, specs=c("Diet"))
+lsmeans(model_1, specs=c("Diet"))
 ```
 
-### Model 2: discrete time fixed effects $\beta_{t}$, Diet fixed effects $\alpha_{j}$ and Chick random effects $u_i$ {-}
+#### Model 2: discrete time fixed effects $\beta_{t}$, Diet fixed effects $\alpha_{j}$ and Chick random effects $u_i$ {-}
 
 $$ weight_{ijt} = \alpha_{j} + \beta_{t} + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}$$
 
@@ -51,22 +56,22 @@ ChickWeight2 <- ChickWeight2 %>% mutate(Time_fac = as.factor(Time))
 model_2 <- ChickWeight2 %>%
   with(lmer(weight ~  Diet + Time_fac + (1 | Chick)))
 
-# marginal effects 
+# summary including marginal effects (coefficients) 
 summary(model_2)
 
 # lsmeans: projected mean for each Diet 
-lsmeans::lsmeans(model_2, specs=c("Diet"))
+lsmeans(model_2, specs=c("Diet"))
 
 # lsmeans: projected mean for each combination of Time_fac and Diet 
-lsmeans::lsmeans(model_2, specs=c("Time_fac","Diet"))
+lsmeans(model_2, specs=c("Time_fac","Diet"))
 ```
 
 
-### Model 3: Diet fixed effects on liear-time growth rates $\beta_{1j}$,  Chick random effects $u_i$ {-}
+#### Model 3: Diet fixed effects on liear-time growth rates $\beta_{1j}$,  Chick random effects $u_i$ {-}
 
 $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}$$
 
-Note: common intercept at Time=0 across Diet types.
+Note: we assume common intercept $\alpha_{0}$ at Time=0 across Diet types.
 
 ```{r}
 # make a copy of dataset
@@ -75,34 +80,34 @@ ChickWeight2 <- ChickWeight
 model_3 <- ChickWeight2 %>% 
   with(lmer(weight ~ Diet*Time - Diet + (1 | Chick))) 
 
-# marginal effects 
+# summary including marginal effects (coefficients)
 summary(model_3)
 
 # lsmeans: projected mean for each Diet at given Time values 
-lsmeans::lsmeans(model_3, specs=c("Diet"), at=list(Time=c(5, 10, 20)))
+lsmeans(model_3, specs=c("Diet"), at=list(Time=c(5, 10, 20)))
 ```
 
-### Model 4: Diet fixed effects on quadratic-time growth rates $\beta_{1j}$,  Chick random effects $u_i$ {-}
+#### Model 4: Diet fixed effects on quadratic-time growth rates $\beta_{1j}$,  Chick random effects $u_i$ {-}
 
 $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + \beta_{2j}\: time_t^2 + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}$$
 
-Note: common intercept at Time=0 across Diet types.
+Note: we assume common intercept $\alpha_{0}$ at Time=0 across Diet types.
 
 ```{r}
 model_4 <- ChickWeight2 %>%
   with(lmer(weight ~ Diet:Time + Diet:I(Time^2) - Diet  + (1 | Chick)))
 
-# marginal effects
+# summary including marginal effects (coefficients)
 summary(model_4)
 
 # lsmeans: projected mean for each Diet at given Time values 
-lsmeans::lsmeans(model_4, specs=c("Diet"), at=list(Time=c(5, 10, 20)))
+lsmeans(model_4, specs=c("Diet"), at=list(Time=c(5, 10, 20)))
 ```
 
 
-# Visualizing Model Fit {-}
+### Visualizing Model Fit {-}
 
-### Raw data {-}
+#### Raw data {-}
 ```{r}
 # raw data plot 
 base_plot <- 
@@ -115,7 +120,7 @@ base_plot <-
 base_plot
 ```
 
-### Model 1 fit (approx.) {-}
+#### Model 1 fit (approx.) {-}
 
 ```{r}
 # overlay model_1, approximated by  y ~ x
@@ -127,7 +132,7 @@ base_plot +
     method='lm', formula = y ~ x, se=FALSE)
 ```
 
-### Model 2 fit (approx.) {-}
+#### Model 2 fit (approx.) {-}
 ```{r}
 # overlay model_2, approximated by loess 
 base_plot +
@@ -137,7 +142,7 @@ base_plot +
         color = Diet), se=FALSE)
 ```
 
-### Model 3 fit (approx.) {-}
+#### Model 3 fit (approx.) {-}
 ```{r}
 # overlay model_3, approximated by  y ~ x
 base_plot +
@@ -148,7 +153,7 @@ base_plot +
     method='lm', formula = y ~ x, se=FALSE)
 ```
 
-### Model 4 fit (approx.) {-}
+#### Model 4 fit (approx.) {-}
 ```{r}
 # overlay model_4, approximated by  y ~ x + x^2 
 base_plot +
