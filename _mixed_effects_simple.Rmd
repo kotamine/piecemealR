@@ -62,7 +62,7 @@ lsmeans::lsmeans(model_2, specs=c("Time_fac","Diet"))
 ```
 
 
-### Model 3: Diet fixed effects on liear-time growth rates $\beta_{1j}$,  Chick random effects $u_i$ {-}
+### Model 3: Diet fixed effects on linear-time growth rates $\beta_{1j}$,  Chick random effects $u_i$ {-}
 
 $$ weight_{ijt} = \alpha_{0} + \beta_{1j}\: time_t + v_{ijt}, \:\: v_{ijt} = u_i+ \varepsilon_{ijt}$$
 
